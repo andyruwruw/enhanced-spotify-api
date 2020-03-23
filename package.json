@@ -1,8 +1,8 @@
 {
   "name": "enhanced-spotify-api",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Wrapper for Spotify's API. Includes additional functionality and grouping of requests.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,12 +13,18 @@
   "keywords": [
     "spotify",
     "api",
-    "music"
+    "music",
+    "spotify-api",
+    "spotify-data",
+    "spotify-wrapper"
   ],
   "author": "Andrew Young",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/andyruwruw/enhanced-spotify-api/issues"
   },
-  "homepage": "https://github.com/andyruwruw/enhanced-spotify-api#readme"
+  "homepage": "https://github.com/andyruwruw/enhanced-spotify-api#readme",
+  "directories": {
+    "test": "test"
+  }
 }
