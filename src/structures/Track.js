@@ -126,8 +126,9 @@ Track.prototype = {
      */
     getFullObject: async function(enhancedSpotifyAPI) {
         try {
-            if (!(await this.containsFullObject()))
+            if (!(await this.containsFullObject())) {
                 await this.retrieveFullObject(enhancedSpotifyAPI);
+            }
             return {
                 id: this.id,
                 name: this.name,
@@ -164,8 +165,9 @@ Track.prototype = {
      */
     getSimplifiedObject: async function(enhancedSpotifyAPI) {
         try {
-            if (!(await this.containsSimplifiedObject()))
+            if (!(await this.containsSimplifiedObject())) {
                 await this.retrieveFullObject(enhancedSpotifyAPI);
+            }
             return {
                 id: this.id,
                 name: this.name,
@@ -199,8 +201,9 @@ Track.prototype = {
      */
     getLinkObject: async function(enhancedSpotifyAPI) {
         try {
-            if (!(await this.containsLinkObject()))
+            if (!(await this.containsLinkObject())) {
                 await this.retrieveFullObject(enhancedSpotifyAPI);
+            } 
             return {
                 id: this.id,
                 external_urls: this.external_urls,
@@ -222,8 +225,9 @@ Track.prototype = {
      */
     getAudioFeatures: async function(enhancedSpotifyAPI) {
         try {
-            if (!(await this.containsAudioFeatures()))
+            if (!(await this.containsAudioFeatures())) {
                 await this.retrieveAudioFeatures(enhancedSpotifyAPI);
+            }
             return {
                 id: this.id,
                 duration_ms: this.duration_ms,
@@ -258,8 +262,9 @@ Track.prototype = {
      */
     getAudioAnalysis: async function(enhancedSpotifyAPI) {
         try {
-            if (!(await this.containsAudioAnalysis()))
+            if (!(await this.containsAudioAnalysis())) {
                 await this.retrieveAudioAnalysis(enhancedSpotifyAPI);
+            }
             return {
                 id: this.id,
                 bars: this.bars,
@@ -379,7 +384,9 @@ Track.prototype = {
      */
     getArtists: async function(enhancedSpotifyAPI) {
         try {
-            if (!(this.artists != null)) await this.retrieveFullObject(enhancedSpotifyAPI);
+            if (!(this.artists != null)) {
+                await this.retrieveFullObject(enhancedSpotifyAPI);
+            }
 
         } catch (error) {
             throw error;
@@ -394,8 +401,10 @@ Track.prototype = {
      */
     getAlbum: async function(enhancedSpotifyAPI) {
         try {
-            if (!this.album) await this.retrieveFullObject(enhancedSpotifyAPI);
-
+            if (!this.album) {
+                await this.retrieveFullObject(enhancedSpotifyAPI);
+            }
+            return new Album(this.album);
         } catch (error) {
             throw error;
         }
@@ -443,7 +452,9 @@ Track.prototype = {
         } catch (error) {
             throw error;
         }
-    }
+    },
+
+    getRecommendations: null,
 }
 
 Track.addMethods = function(methods) {
