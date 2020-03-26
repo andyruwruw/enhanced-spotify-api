@@ -100,6 +100,28 @@ Tracks.prototype = {
         } catch (error) {
             throw error;
         }
+    },
+
+    /**
+     * Get Full Object
+     */
+    getFullObjects: async function(enhancedSpotifyAPI) {
+        try {
+            for (let track in this.tracks) {
+                if (await this.tracks[track].containsFullObject();
+            }
+            let ids = [];
+            let response;
+            do {
+                response = await enhancedSpotifyAPI.getTracks(ids.splice(0, 50));
+                for (let i = 0; i < response.data.tracks.length; i++) {
+                    if (response.data.tracks[i] == null) continue;
+                    this.tracks[response.data.tracks[i].id].loadFullObject(response.data.tracks[i]);
+                }
+            } while (ids.length > 0);
+        } catch (error) {
+            throw error;
+        }
     }
 }
 

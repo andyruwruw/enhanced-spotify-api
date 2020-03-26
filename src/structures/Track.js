@@ -279,6 +279,31 @@ Track.prototype = {
         }
     },
 
+    loadFullObject: function(data) {
+        try {
+            this.name = data.name;
+            this.album = data.album;
+            this.artists = data.artists;
+            this.available_markets = data.available_markets;
+            this.disc_number = data.disc_number;
+            this.duration_ms = data.duration_ms;
+            this.explicit = data.explicit;
+            this.external_ids = data.external_ids;
+            this.external_urls = data.external_urls;
+            this.href = data.href;
+            this.is_playable = data.is_playable;
+            this.linked_from = data.linked_from;
+            this.restrictions = data.restrictions;
+            this.popularity = data.popularity;
+            this.preview_url = data.preview_url;
+            this.track_number = data.track_number;
+            this.uri = data.uri;
+            this.is_local = data.is_local;
+        } catch (error) {
+            throw error;
+        }
+    },
+
     /**
      * Retrieve Full Object
      * Retrieves full track data from Spotify API
