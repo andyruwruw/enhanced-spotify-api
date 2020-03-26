@@ -26,5 +26,8 @@
   "homepage": "https://github.com/andyruwruw/enhanced-spotify-api#readme",
   "directories": {
     "test": "test"
+  },
+  "dependencies": {
+    "spotify-web-api-node": "^4.0.0"
   }
 }

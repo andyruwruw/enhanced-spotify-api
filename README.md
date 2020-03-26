@@ -1,14 +1,41 @@
 # enhanced-spotify-api
 
+<p style="margin-top: 15px; max-width: 600px">
+    <a href="https://melophile.org"><img src="https://img.shields.io/npm/v/enhanced-spotify-api"></a>
+    <a href="#"><img src="https://img.shields.io/npm/dt/enhanced-spotify-api"/></a>
+    <a href="https://melophile.org"><img src="https://img.shields.io/github/issues-raw/andyruwruw/enhanced-spotify-api"></a>
+</p>
+
 ## **Under Development**
 
-This library is aimed at *expanding the endpoints for Spotify's API* by *grouping relevent requests together* in various classes and methods.
+### [Documentation](https://github.com/andyruwruw/enhanced-spotify-api/wiki)
+
+**enhanced-spotify-api** aims to **expand available endpoints for Spotify's API** namely by **grouping relevent requests together** into more complicated requests.
+
+Requests such as **AVERAGE DANCEABILITY FOR USER'S WHOLE LIBRARY** will be available through member functions of the enhanced-spotify-api instance.
+
+In addition to additional possible queries, enhanced-spotify-api provides **simple and easy to use classes for data objects**.
+
+Data Objects:
+- Track
+- Artist
+- Album
+- Playlist
+
+Plural Data Objects:
+- Tracks (Multiple Tracks)
+- Artists (Multiple Tracks)
+- Albums (Multiple Tracks)
+
+Each with their own set of member functions to save you the expense of figuring out what requests to make.
+
+For example, an endpoint you're interested might only return **simplified track objects** but you need **full track objects**. 
+
+Using the **Tracks** object you can load in the track data you recieved and run **Tracks.getFullObjects** and be returned an array of full track objects using the minimum amount of requests for fastest time.
 
 Built upon [spotify-web-api-js](https://github.com/JMPerez/spotify-web-api-js).
 
-Requests that are not available, such as *AVERAGE DANCEABILITY FOR USER'S WHOLE LIBRARY* will be available through this library.
-
-I'll be building a **node** version as well.
+---
 
 See below for coming features.
 
