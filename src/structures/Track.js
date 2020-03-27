@@ -1,7 +1,9 @@
 'use strict';
 
+var Tracks = require('./Tracks');
 var Artists = require('./Artists');
 var Album = require('./Album');
+var { addMethods, override } = require('./shared');
 
  /**
  * Constructor
@@ -279,6 +281,99 @@ Track.prototype = {
         }
     },
 
+    /**
+     * Get All Data
+     * Returns all data. Retrieves from Spotify API if nessisary.
+     * 
+     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @returns {object} All Track's Data
+     */
+    getAllData: async function(enhancedSpotifyAPI) {
+        try {
+            if (!(await this.containsAudioAnalysis())) {
+                await this.retrieveAudioAnalysis(enhancedSpotifyAPI);
+            }
+            if (!(await this.containsAudioFeatures())) {
+                await this.retrieveAudioFeatures(enhancedSpotifyAPI);
+            }
+            if (!(await this.containsFullObject())) {
+                await this.retrieveFullObject(enhancedSpotifyAPI);
+            }
+            return {
+                id: this.id,
+                name: this.name,
+                album: this.album,
+                artists: this.artists,
+                available_markets: this.available_markets,
+                disc_number: this.disc_number,
+                explicit: this.explicit,
+                external_ids: this.external_ids,
+                external_urls: this.external_urls,
+                href: this.href,
+                is_playable: this.is_playable,
+                linked_from: this.linked_from,
+                restrictions: this.restrictions,
+                popularity: this.popularity,
+                preview_url: this.preview_url,
+                track_number: this.track_number,
+                type: "track",
+                uri: this.uri,
+                is_local: this.is_local,
+                duration_ms: this.duration_ms,
+                key: this.key,
+                mode: this.mode,
+                time_signature: this.time_signature,
+                acousticness: this.acousticness,
+                danceability: this.danceability,
+                energy: this.energy,
+                instrumentalness: this.instrumentalness,
+                liveness: this.liveness,
+                loudness: this.loudness,
+                speechiness: this.speechiness,
+                valence: this.valence,
+                tempo: this.tempo,
+                track_href: this.track_href,
+                analysis_url: this.analysis_url,
+                bars: this.bars,
+                beats: this.beats,
+                sections: this.sections,
+                segments: this.segments,
+                tatums: this.tatums,
+                track: this.track,
+            };
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Get Current Data
+     * Just returns whatever the track object currently holds
+     * 
+     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @returns {object} Any Track Data.
+     */
+    getCurrentData: function () {
+        try {
+            let data = { id: this.id, type: 'track' };
+            let properties = [ "name", "album", "artists", "available_markets", "disc_number", "explicit", "external_ids", "external_urls", "href", "is_playable", "linked_from", "restrictions", "popularity", "preview_url", "track_number", "uri", "is_local", "acousticness", "danceability", "energy", "instrumentalness", "liveness", "loudness", "speechiness", "valence", "tempo", "track_href", "analysis_url", "bars", "beats", "sections", "segments", "tatums", "track"];
+            for (let i = 0; i < properties.length; i++) {
+                if (this[properties[i]] != null) {
+                    data[properties[i]] = this[properties[i]];
+                }
+            }
+            return data;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Load Full Object
+     * Sets full data (outside constructor).
+     * 
+     * @param {object} data Object with track full object data.
+     */
     loadFullObject: function(data) {
         try {
             this.name = data.name;
@@ -299,6 +394,54 @@ Track.prototype = {
             this.track_number = data.track_number;
             this.uri = data.uri;
             this.is_local = data.is_local;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Load Audio Features
+     * Sets audio feature data (outside constructor).
+     * 
+     * @param {object} data Object with track audio feature data.
+     */
+    loadAudioFeatures: function(data) {
+        try {
+            this.duration_ms = data.duration_ms;
+            this.key = data.key;
+            this.mode = data.mode;
+            this.time_signature = data.time_signature;
+            this.acousticness = data.acousticness;
+            this.danceability = data.danceability;
+            this.energy = data.energy;
+            this.instrumentalness = data.instrumentalness;
+            this.liveness = data.liveness;
+            this.loudness = data.loudness;
+            this.speechiness = data.speechiness;
+            this.valence = data.valence;
+            this.tempo = data.tempo;
+            this.uri = data.url;
+            this.track_href = data.track_href;
+            this.analysis_url = data.analysis_url;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Load Audio Analysis
+     * Sets audio analysis data (outside constructor).
+     * 
+     * @param {object} data Object with track audio analysis data.
+     */
+    loadAudioAnalysis: function(data) {
+        try {
+            this.bars = response.body.bars;
+            this.beats = response.body.beats;
+            this.sections = response.body.sections;
+            this.segments = response.body.segments;
+            this.tatums = response.body.tatums;
+            this.track = response.body.track;
         } catch (error) {
             throw error;
         }
@@ -412,7 +555,7 @@ Track.prototype = {
             if (!(this.artists != null)) {
                 await this.retrieveFullObject(enhancedSpotifyAPI);
             }
-
+            return new Artists(this.artists);
         } catch (error) {
             throw error;
         }
@@ -467,7 +610,7 @@ Track.prototype = {
 
     /**
     * Unlike Track
-    * Removes track to the user's library.
+    * Removes track from the user's library.
     * 
     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
     */
@@ -479,14 +622,121 @@ Track.prototype = {
         }
     },
 
-    getRecommendations: null,
-}
+    /**
+     * Get Recommendations
+     * Returns recommendations for track.
+     * 
+     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {number} limit Number of tracks to retrieve. 
+     * @param {object} options Optional additional options.
+     * @returns {Tracks} Track Instance with recommended tracks.
+     */
+    getRecommendations: async function(enhancedSpotifyAPI, limit, options) {
+        try {
+            let passedOptions = { seed_tracks: this.id, limit: (limit != null) ? limit : 20 };
+            if (options != null && typeof(options) == 'object') {
+                for (let property in options) {
+                    passedOptions[property] = options[property];
+                }
+            } else {
+                throw new Error("Track.getRecommendations: Invalid Parameter \"options\"");
+            }
+            let response = await enhancedSpotifyAPI.getRecommendations(passedOptions);
+            return new Tracks(response.body.tracks);
+        } catch (error) {
+            throw error;
+        }
+    },
 
+    /**
+     * Get Recommendations with Audio Features
+     * Returns recommendations for track with added target on audio feature values.
+     * 
+     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {number} limit Number of tracks to retrieve. 
+     * @param {object} options Optional additional options.
+     * @returns {Tracks} Track Instance with recommended tracks.
+     */
+    getRecommendationWithAudioFeatures: async function(enhancedSpotifyAPI, limit, options) {
+        try {
+            if (!(await this.containsAudioFeatures())) {
+                await this.retrieveAudioFeatures(enhancedSpotifyAPI);
+            }
+            let options = { 
+                seed_tracks: this.id, 
+                limit: (limit != null) ? limit : 20,
+                target_acousticness: this.acousticness,
+                target_danceability: this.danceability,
+                target_energy: this.energy,
+                target_instrumentalness: this.instrumentalness,
+                target_liveness: this.liveness,
+                target_mode: this.mode,
+                target_speechiness: this.speechiness,
+                target_tempo: this.tempo,
+                target_valence: this.valence,
+            };
+            if (options != null && typeof(options) == 'object') {
+                for (let property in options) {
+                    passedOptions[property] = options[property];
+                }
+            } else {
+                throw new Error("Track.getRecommendations: Invalid Parameter \"options\"");
+            }
+            let response = await enhancedSpotifyAPI.getRecommendations(options);
+            return new Tracks(response.body.tracks);
+        } catch (error) {
+            throw error;
+        }
+    },
+};
+
+/**
+ * Add Methods
+ * Adds functionality to Class
+ * 
+ * @param {object} methods Object with methods as properties.
+ */
 Track.addMethods = function(methods) {
     for (var method in methods) {
       if (methods.hasOwnProperty(method)) {
-        this.prototype[i] = methods[method];
+        this.prototype[method] = methods[method];
       }
+    }
+};
+
+/**
+ * Override
+ * Replaces a method within the class.
+ * 
+ * @param {string} oldMethod Name of the method to replace.
+ * @param {function} newMethod Function to replace old method with.
+ */
+Track.override = function(oldMethod, newMethod) {
+    if (this.prototype.hasOwnProperty(oldMethod)) {
+        this.prototype[oldMethod] = newMethod;
+    }
+}
+
+/**
+ * Search for a Track
+ * Returns search results for a query.
+ * 
+ * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+ * @param {string} query String to search for.
+ * @param {number} limit Number of tracks to return.
+ * @param {number} offset Place in the list to start at.
+ * @returns {Tracks} Tracks returned from Search.
+ */
+Track.search = async function(enhancedSpotifyAPI, query, limit, offset) {
+    try {
+        let options = { 
+            limit: limit ? limit : 20,
+            offset: offset ? offset : 0,
+        };
+        let response = await enhancedSpotifyAPI.searchTracks(query, options);
+        return new Tracks(response.body.tracks.items);
+    } catch (error) {
+        throw error;
     }
 };
 

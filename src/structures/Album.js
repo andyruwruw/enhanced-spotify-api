@@ -2,6 +2,8 @@
 
 let Tracks = require('./Tracks');
 let Artists = require('./Artists');
+let Albums = require('./Albums');
+var { addMethods, override } = require('./shared');
 
 function Album(data) {
     try {
@@ -136,11 +138,73 @@ Album.prototype = {
             if (this.album_group != null) {
                 data.album_group = this.album_group;
             }
-            return this.data; 
+            return data; 
         } catch (error) {
             throw error;
         }
     },
+
+    /**
+     * Get Current Data
+     * Just returns whatever the album object currently holds
+     * 
+     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @returns {object} Any Album Data.
+     */
+    getCurrentData: function() {
+        try {
+            let data = { id: this.id, type: 'album' };
+            let properties = ["name", "album_type", "artists", "available_markets", "copyrights", "external_ids", "external_urls", "genres", "href", "images", "label", "popularity", "release_date", "release_date_precision", "restrictions", "tracks", "uri"];
+            for (let i = 0; i < properties.length; i++) {
+                if (this[properties[i]] != null) {
+                    data[properties[i]] = this[properties[i]];
+                }
+            }
+            if (this.tracksRetrieved) {
+                data._tracks = this._tracks;
+            }
+            return data;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Load Full Object
+     * Sets full data (outside constructor).
+     * 
+     * @param {object} data Object with album full object data.
+     */
+    loadFullObject: function(data) {
+        try {
+            this.name = data.name;
+            this.album_type = data.album_type;
+            this.artists = data.artists;
+            this.available_markets = data.available_markets;
+            this.copyrights = data.copyrights;
+            this.external_ids = data.external_ids;
+            this.external_urls = data.external_urls;
+            this.genres = data.genres;
+            this.href = data.href;
+            this.images = data.images;
+            this.label = data.label;
+            this.popularity = data.popularity;
+            this.release_date = data.release_date;
+            this.release_date_precision = data.release_date_precision;
+            this.restrictions = data.restrictions;
+            this.uri = data.uri;
+            this.tracks = data.tracks;
+            if ('items' in data.tracks) {
+                await this.addTracks(data.tracks.items);
+            } else {
+                await this.addTracks(data.tracks);
+            }
+            
+        } catch (error) {
+            throw error;
+        }
+    },
+
 
     /**
      * Retrieve Full Object
@@ -196,14 +260,14 @@ Album.prototype = {
     },
 
     /**
-     * Play Artist
-     * Plays artist on user's active device.
+     * Play Album
+     * Plays album on user's active device.
      * 
      * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
-     * @param {number} position_ms Offset where to start track in milliseconds.
      * @param {number} offset Track to start on.
+     * @param {number} position_ms Offset where to start track in milliseconds.
      */
-    play: function(enhancedSpotifyAPI, position_ms, offset) {
+    play: function(enhancedSpotifyAPI, offset, position_ms) {
         try {
             enhancedSpotifyAPI.play({ context_uri: 'spotify:album:' + this.id, position_ms: position_ms ? position_ms : 0 , offset: offset ? offset : 0 });
         } catch (error) {
@@ -211,9 +275,12 @@ Album.prototype = {
         }
     },
 
-    getArtists: async function() {
+    getArtists: async function(enhancedSpotifyAPI) {
         try {
-            
+            if (!(await this.containsSimplifiedObject())) {
+                await this.retrieveFullObject(enhancedSpotifyAPI);
+            }
+            return new Artists(this.artists);
         } catch (error) {
             throw error;
         }
@@ -244,17 +311,78 @@ Album.prototype = {
         } catch (error) {
             throw error;
         }
-    }
+    },
+
+    /**
+     * Is Liked
+     * Returns whether an album is saved to the user's library.
+     * 
+     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @returns {boolean} Whether album is saved to the user's library.
+     */
+    isLiked: async function(enhancedSpotifyAPI) {
+        try {
+            let response = await enhancedSpotifyAPI.containsMySavedAlbums([this.id]);
+            return response.body[0];
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Like Album
+     * Adds album to the user's library.
+     * 
+     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     */
+    like: async function(enhancedSpotifyAPI) {
+        try {
+            await enhancedSpotifyAPI.addToMySavedAlbums([this.id]);
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+    * Unlike Album
+    * Removes album from the user's library.
+    * 
+    * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+    */
+    unlike: async function(enhancedSpotifyAPI) {
+        try {
+            await enhancedSpotifyAPI.removeFromMySavedAlbums([this.id]);
+        } catch (error) {
+            throw error;
+        }
+    },
 }
 
-Artist.addMethods = function(methods) {
+Album.addMethods = function(methods) {
     for (var method in methods) {
       if (methods.hasOwnProperty(method)) {
-        this.prototype[i] = methods[method];
+        this.prototype[method] = methods[method];
       }
     }
 };
 
-module.exports = Artist;
+Album.override = function(oldMethod, newMethod) {
+    if (this.prototype.hasOwnProperty(oldMethod)) {
+        this.prototype[oldMethod] = newMethod;
+    }
+};
+
+Album.search = async function(enhancedSpotifyAPI, query, limit, offset) {
+    try {
+        let options = { 
+            limit: limit ? limit : 20,
+            offset: offset ? offset : 0,
+        };
+        let response = await enhancedSpotifyAPI.searchAlbums(query, options);
+        return new Albums(response.body.albums.items);
+    } catch (error) {
+        throw error;
+    }
+};
 
 module.exports = Album;
