@@ -304,7 +304,7 @@ Albums.prototype = {
      * @param {number} offset Track to start on.
      * @param {number} position_ms Offset where to start track in milliseconds.
      */
-    play: function(enhancedSpotifyAPI, albumOffset, offset, position_ms) {
+    play: async function(enhancedSpotifyAPI, albumOffset, offset, position_ms) {
         try {
             let albums = await Object.values(this.albums).sort((a, b) => {
                 return a.index - b.index;

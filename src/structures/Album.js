@@ -17,9 +17,9 @@ function Album(data) {
             }
             if ('tracks' in data) {
                 if ('items' in data.tracks) {
-                    await this.addTracks(data.tracks.items);
+                    this.addTracks(data.tracks.items);
                 } else if (data.tracks instanceof Array) {
-                    await this.addTracks(data.tracks);
+                    this.addTracks(data.tracks);
                 }
             }
             this.name = 'name' in data ? data.name : null;
@@ -175,7 +175,7 @@ Album.prototype = {
      * 
      * @param {object} data Object with album full object data.
      */
-    loadFullObject: function(data) {
+    loadFullObject: async function(data) {
         try {
             this.name = data.name;
             this.album_type = data.album_type;

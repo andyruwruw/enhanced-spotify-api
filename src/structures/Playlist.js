@@ -155,7 +155,7 @@ Playlist.prototype = {
      * 
      * @param {object} data Object with album full object data.
      */
-    loadFullObject: function(data) {
+    loadFullObject: async function(data) {
         try {
             this.collaborative = data.collaborative;
             this.description = data.description;

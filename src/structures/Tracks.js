@@ -357,7 +357,7 @@ Tracks.prototype = {
     audioFeatureAverages: async function(enhancedSpotifyAPI) {
         try {
             await this.retrieveAudioFeatures(enhancedSpotifyAPI);
-            let addAudioFeatures = function(total, curr) {
+            let addAudioFeatures = async function(total, curr) {
                 let data = await curr.getAudioFeatures(enhancedSpotifyAPI);
                 return {
                     duration_ms: total.duration_ms + data.duration_ms,
@@ -412,7 +412,7 @@ Tracks.prototype = {
         try {
             await this.retrieveAudioFeatures(enhancedSpotifyAPI);
             let properties = ["acousticness", "danceability", "energy", "instrumentalness", "liveness", "loudness", "speechiness", "valence", "tempo"];
-            let distributeAudioFeatures = function(total, curr) {
+            let distributeAudioFeatures = async function(total, curr) {
                 let data = await curr.getAudioFeatures(enhancedSpotifyAPI);
                 for (let i = 0; i < properties.length; i++) {
                     let divisor = (properties[i] == 'tempo') ? 1 : 250;
@@ -566,7 +566,7 @@ Tracks.prototype = {
      * @param {number} offset (Optional) Track to start on.
      * @param {number} position_ms (Optional) Offset where to start track in milliseconds.
      */
-    play: function(enhancedSpotifyAPI, offset, position_ms) {
+    play: async function(enhancedSpotifyAPI, offset, position_ms) {
         try {
             let tracks = await Object.values(this.tracks).sort((a, b) => {
                 return a.index - b.index;

@@ -1,4 +1,7 @@
-// let EnhancedSpotifyAPI = require('../src/index');
+let EnhancedSpotifyAPI = require('../src/index');
 
-// let enhancedSpotifyAPI = new EnhancedSpotifyAPI();
-// console.log(enhancedSpotifyAPI);
+console.log(EnhancedSpotifyAPI);
+console.log(Object.keys(EnhancedSpotifyAPI));
+
+let enhancedSpotifyAPI = new EnhancedSpotifyAPI();
+console.log(enhancedSpotifyAPI);
