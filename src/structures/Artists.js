@@ -113,17 +113,17 @@ Artists.prototype = {
      * Get Full Objects
      * Returns full artist data for all artists. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Artist Full Objects.
      */
-    getFullObjects: async function(enhancedSpotifyAPI) {
+    getFullObjects: async function(wrapper) {
         try {
-            await this.retrieveFullObjects(enhancedSpotifyAPI, 'full');
+            await this.retrieveFullObjects(wrapper, 'full');
             let artists = await Object.values(this.artists).sort((a, b) => {
                 return a.index - b.index;
             });
             return await Promise.all(await artists.map(async (artist) => {
-                return await artist.getFullObject(enhancedSpotifyAPI);
+                return await artist.getFullObject(wrapper);
             }));
         } catch (error) {
             throw error;
@@ -134,17 +134,17 @@ Artists.prototype = {
      * Get Simplified Objects
      * Returns simplified artist data for all artists. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Artist Simplified Objects.
      */
-    getSimplifiedObjects: async function(enhancedSpotifyAPI) {
+    getSimplifiedObjects: async function(wrapper) {
         try {
-            await this.retrieveFullObjects(enhancedSpotifyAPI, 'simplified');
+            await this.retrieveFullObjects(wrapper, 'simplified');
             let artists = await Object.values(this.artists).sort((a, b) => {
                 return a.index - b.index;
             });
             return await Promise.all(await artists.map(async (artist) => {
-                return await artist.getSimplifiedObject(enhancedSpotifyAPI);
+                return await artist.getSimplifiedObject(wrapper);
             }));
         } catch (error) {
             throw error;
@@ -174,10 +174,10 @@ Artists.prototype = {
      * Retrieve Full Objects
      * Retrieves full artist data for all artists from Spotify API
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @param {string} objectType Optional | 'simplified', 'link' or 'full', what to check if the artist contains.
      */
-    retrieveFullObjects: async function(enhancedSpotifyAPI, objectType) {
+    retrieveFullObjects: async function(wrapper, objectType) {
         try {
             let ids = [];
             for (let artist in this.artists) {
@@ -194,7 +194,7 @@ Artists.prototype = {
             if (ids.length) {
                 let response;
                 do {
-                    response = await enhancedSpotifyAPI.getArtists(ids.splice(0, 50));
+                    response = await wrapper.getArtists(ids.splice(0, 50));
                     for (let i = 0; i < response.data.artists.length; i++) {
                         if (response.data.artists[i] == null) continue;
                         this.artists[response.data.artists[i].id].loadFullObject(response.data.artists[i]);
@@ -210,12 +210,12 @@ Artists.prototype = {
      * Are Followed
      * Returns array of booleans whether artists are followed by the user.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Booleans Whether artists are followed by the user.
      */
-    areFollowed: async function(enhancedSpotifyAPI) {
+    areFollowed: async function(wrapper) {
         try {
-            let response = await enhancedSpotifyAPI.isFollowingArtists(Object.keys(this.artists));
+            let response = await wrapper.isFollowingArtists(Object.keys(this.artists));
             return response.body;
         } catch (error) {
             throw error;
@@ -226,11 +226,11 @@ Artists.prototype = {
      * Follow Artists
      * Follows artists.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    follow: async function(enhancedSpotifyAPI) {
+    follow: async function(wrapper) {
         try {
-            await enhancedSpotifyAPI.followArtists(Object.keys(this.artists));
+            await wrapper.followArtists(Object.keys(this.artists));
         } catch (error) {
             throw error;
         }
@@ -240,11 +240,11 @@ Artists.prototype = {
      * Unfollow Artists
      * Unfollows artists.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    unfollow: async function(enhancedSpotifyAPI) {
+    unfollow: async function(wrapper) {
         try {
-            await enhancedSpotifyAPI.unfollowArtists(Object.keys(this.artists));
+            await wrapper.unfollowArtists(Object.keys(this.artists));
         } catch (error) {
             throw error;
         }
@@ -254,12 +254,12 @@ Artists.prototype = {
      * Get All Artist's Top Tracks
      * Returns Tracks instance with all artist's tracks.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Tracks}  Tracks object of all artist's tracks.
      */
-    getTopTracks: async function(enhancedSpotifyAPI) {
+    getTopTracks: async function(wrapper) {
         try {
-            await this.retrieveFullObjects(enhancedSpotifyAPI);
+            await this.retrieveFullObjects(wrapper);
             let tracks = new Tracks();
             for (let artist in this.artists) {
                 await tracks.concat(await this.artists[artist].getTracks(getTopTracks));
@@ -274,15 +274,15 @@ Artists.prototype = {
      * Get All Artists's Albums
      * Returns Albums instance with all artists's albums.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Albums}  Albums object of all artist's albums.
      */
-    getAlbums: async function(enhancedSpotifyAPI) {
+    getAlbums: async function(wrapper) {
         try {
-            await this.retrieveFullObjects(enhancedSpotifyAPI);
+            await this.retrieveFullObjects(wrapper);
             let albums = new Albums();
             for (let artist in this.artists) {
-                await albums.concat(await this.artists[artist].getAlbums(enhancedSpotifyAPI));
+                await albums.concat(await this.artists[artist].getAlbums(wrapper));
             }
         } catch (error) {
             throw error;
@@ -310,13 +310,23 @@ Artists.prototype = {
     },
 }
 
-Artists.search = async function(enhancedSpotifyAPI, query, limit, offset) {
+/**
+ * Search for an Artist
+ * Returns search results for a query.
+ * 
+ * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {string} query String to search for.
+ * @param {number} limit Number of artists to return.
+ * @param {number} offset Place in the list to start at.
+ * @returns {Artists} Artists returned from Search.
+ */
+Artists.search = async function(wrapper, query, limit, offset) {
     try {
         let options = { 
             limit: limit ? limit : 20,
             offset: offset ? offset : 0,
         };
-        let response = await enhancedSpotifyAPI.searchArtists(query, options);
+        let response = await wrapper.searchArtists(query, options);
         return new Artists(response.body.artists.items);
     } catch (error) {
         throw error;

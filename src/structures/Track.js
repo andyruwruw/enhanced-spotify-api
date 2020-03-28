@@ -123,13 +123,13 @@ Track.prototype = {
      * Get Full Object
      * Returns full track data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Track Full Object Data.
      */
-    getFullObject: async function(enhancedSpotifyAPI) {
+    getFullObject: async function(wrapper) {
         try {
             if (!(await this.containsFullObject())) {
-                await this.retrieveFullObject(enhancedSpotifyAPI);
+                await this.retrieveFullObject(wrapper);
             }
             return {
                 id: this.id,
@@ -162,13 +162,13 @@ Track.prototype = {
      * Get Simplified Object
      * Returns simplified track data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Track Simplified Object Data.
      */
-    getSimplifiedObject: async function(enhancedSpotifyAPI) {
+    getSimplifiedObject: async function(wrapper) {
         try {
             if (!(await this.containsSimplifiedObject())) {
-                await this.retrieveFullObject(enhancedSpotifyAPI);
+                await this.retrieveFullObject(wrapper);
             }
             return {
                 id: this.id,
@@ -198,13 +198,13 @@ Track.prototype = {
      * Get Track Link
      * Returns track link data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Track Link Data
      */
-    getLinkObject: async function(enhancedSpotifyAPI) {
+    getLinkObject: async function(wrapper) {
         try {
             if (!(await this.containsLinkObject())) {
-                await this.retrieveFullObject(enhancedSpotifyAPI);
+                await this.retrieveFullObject(wrapper);
             } 
             return {
                 id: this.id,
@@ -222,13 +222,13 @@ Track.prototype = {
      * Get Audio Feature Data
      * Returns audio feature data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Track Audio Feature Data
      */
-    getAudioFeatures: async function(enhancedSpotifyAPI) {
+    getAudioFeatures: async function(wrapper) {
         try {
             if (!(await this.containsAudioFeatures())) {
-                await this.retrieveAudioFeatures(enhancedSpotifyAPI);
+                await this.retrieveAudioFeatures(wrapper);
             }
             return {
                 id: this.id,
@@ -259,13 +259,13 @@ Track.prototype = {
      * Get Audio Analysis Data
      * Returns audio analysis data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Track Audio Analysis Data
      */
-    getAudioAnalysis: async function(enhancedSpotifyAPI) {
+    getAudioAnalysis: async function(wrapper) {
         try {
             if (!(await this.containsAudioAnalysis())) {
-                await this.retrieveAudioAnalysis(enhancedSpotifyAPI);
+                await this.retrieveAudioAnalysis(wrapper);
             }
             return {
                 id: this.id,
@@ -285,19 +285,19 @@ Track.prototype = {
      * Get All Data
      * Returns all data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} All Track's Data
      */
-    getAllData: async function(enhancedSpotifyAPI) {
+    getAllData: async function(wrapper) {
         try {
             if (!(await this.containsAudioAnalysis())) {
-                await this.retrieveAudioAnalysis(enhancedSpotifyAPI);
+                await this.retrieveAudioAnalysis(wrapper);
             }
             if (!(await this.containsAudioFeatures())) {
-                await this.retrieveAudioFeatures(enhancedSpotifyAPI);
+                await this.retrieveAudioFeatures(wrapper);
             }
             if (!(await this.containsFullObject())) {
-                await this.retrieveFullObject(enhancedSpotifyAPI);
+                await this.retrieveFullObject(wrapper);
             }
             return {
                 id: this.id,
@@ -350,7 +350,7 @@ Track.prototype = {
      * Get Current Data
      * Just returns whatever the track object currently holds
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Any Track Data.
      */
     getCurrentData: function () {
@@ -451,11 +451,11 @@ Track.prototype = {
      * Retrieve Full Object
      * Retrieves full track data from Spotify API
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    retrieveFullObject: async function(enhancedSpotifyAPI) {
+    retrieveFullObject: async function(wrapper) {
         try {
-            let response = await enhancedSpotifyAPI.getTrack(this.id);
+            let response = await wrapper.getTrack(this.id);
             this.name = response.body.name;
             this.album = response.body.album;
             this.artists = response.body.artists;
@@ -483,11 +483,11 @@ Track.prototype = {
      * Retrieve Audio Features
      * Retrieves audio feature data from Spotify API
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    retrieveAudioFeatures: async function(enhancedSpotifyAPI) {
+    retrieveAudioFeatures: async function(wrapper) {
         try {
-            let response = await enhancedSpotifyAPI.getAudioFeaturesForTrack(this.id);
+            let response = await wrapper.getAudioFeaturesForTrack(this.id);
             this.duration_ms = response.body.duration_ms;
             this.key = response.body.key;
             this.mode = response.body.mode;
@@ -513,11 +513,11 @@ Track.prototype = {
      * Retrieve Audio Analysis
      * Retrieves audio analysis data from Spotify API
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    retrieveAudioAnalysis: async function(enhancedSpotifyAPI) {
+    retrieveAudioAnalysis: async function(wrapper) {
         try {
-            let response = await enhancedSpotifyAPI.getAudioAnalysisForTrack(this.id);
+            let response = await wrapper.getAudioAnalysisForTrack(this.id);
             this.bars = response.body.bars;
             this.beats = response.body.beats;
             this.sections = response.body.sections;
@@ -533,12 +533,12 @@ Track.prototype = {
      * Play Track
      * Plays track on user's active device.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @param {number} position_ms Offset where to start track in milliseconds.
      */
-    play: function(enhancedSpotifyAPI, position_ms) {
+    play: function(wrapper, position_ms) {
         try {
-            enhancedSpotifyAPI.play({ uris: [ 'spotify:track:' + this.id ], position_ms: position_ms ? position_ms : 0 });
+            wrapper.play({ uris: [ 'spotify:track:' + this.id ], position_ms: position_ms ? position_ms : 0 });
         } catch (error) {
             throw error;
         }
@@ -548,12 +548,12 @@ Track.prototype = {
      * Get Track Artists
      * Returns Artists Object with artists.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    getArtists: async function(enhancedSpotifyAPI) {
+    getArtists: async function(wrapper) {
         try {
             if (!(this.artists != null)) {
-                await this.retrieveFullObject(enhancedSpotifyAPI);
+                await this.retrieveFullObject(wrapper);
             }
             return new Artists(this.artists);
         } catch (error) {
@@ -565,12 +565,12 @@ Track.prototype = {
      * Get Track Album
      * Returns Album Object for track album.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    getAlbum: async function(enhancedSpotifyAPI) {
+    getAlbum: async function(wrapper) {
         try {
             if (!this.album) {
-                await this.retrieveFullObject(enhancedSpotifyAPI);
+                await this.retrieveFullObject(wrapper);
             }
             return new Album(this.album);
         } catch (error) {
@@ -582,12 +582,12 @@ Track.prototype = {
      * Is Liked
      * Returns whether a track is saved to the user's library.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {boolean} Whether track is saved to the user's library.
      */
-    isLiked: async function(enhancedSpotifyAPI) {
+    isLiked: async function(wrapper) {
         try {
-            let response = await enhancedSpotifyAPI.containsMySavedTracks([this.id]);
+            let response = await wrapper.containsMySavedTracks([this.id]);
             return response.body[0];
         } catch (error) {
             throw error;
@@ -598,11 +598,11 @@ Track.prototype = {
      * Like Track
      * Adds track to the user's library.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    like: async function(enhancedSpotifyAPI) {
+    like: async function(wrapper) {
         try {
-            await enhancedSpotifyAPI.addToMySavedTracks([this.id]);
+            await wrapper.addToMySavedTracks([this.id]);
         } catch (error) {
             throw error;
         }
@@ -612,11 +612,11 @@ Track.prototype = {
     * Unlike Track
     * Removes track from the user's library.
     * 
-    * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+    * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
     */
-    unlike: async function(enhancedSpotifyAPI) {
+    unlike: async function(wrapper) {
         try {
-            await enhancedSpotifyAPI.removeFromMySavedTracks([this.id]);
+            await wrapper.removeFromMySavedTracks([this.id]);
         } catch (error) {
             throw error;
         }
@@ -626,12 +626,12 @@ Track.prototype = {
      * Get Recommendations
      * Returns recommendations for track.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @param {number} limit Number of tracks to retrieve. 
      * @param {object} options Optional additional options.
      * @returns {Tracks} Track Instance with recommended tracks.
      */
-    getRecommendations: async function(enhancedSpotifyAPI, limit, options) {
+    getRecommendations: async function(wrapper, limit, options) {
         try {
             let passedOptions = { seed_tracks: this.id, limit: (limit != null) ? limit : 20 };
             if (options != null && typeof(options) == 'object') {
@@ -641,7 +641,7 @@ Track.prototype = {
             } else {
                 throw new Error("Track.getRecommendations: Invalid Parameter \"options\"");
             }
-            let response = await enhancedSpotifyAPI.getRecommendations(passedOptions);
+            let response = await wrapper.getRecommendations(passedOptions);
             return new Tracks(response.body.tracks);
         } catch (error) {
             throw error;
@@ -652,15 +652,15 @@ Track.prototype = {
      * Get Recommendations with Audio Features
      * Returns recommendations for track with added target on audio feature values.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @param {number} limit Number of tracks to retrieve. 
      * @param {object} options Optional additional options.
      * @returns {Tracks} Track Instance with recommended tracks.
      */
-    getRecommendationWithAudioFeatures: async function(enhancedSpotifyAPI, limit, options) {
+    getRecommendationWithAudioFeatures: async function(wrapper, limit, options) {
         try {
             if (!(await this.containsAudioFeatures())) {
-                await this.retrieveAudioFeatures(enhancedSpotifyAPI);
+                await this.retrieveAudioFeatures(wrapper);
             }
             let options = { 
                 seed_tracks: this.id, 
@@ -682,7 +682,7 @@ Track.prototype = {
             } else {
                 throw new Error("Track.getRecommendations: Invalid Parameter \"options\"");
             }
-            let response = await enhancedSpotifyAPI.getRecommendations(options);
+            let response = await wrapper.getRecommendations(options);
             return new Tracks(response.body.tracks);
         } catch (error) {
             throw error;

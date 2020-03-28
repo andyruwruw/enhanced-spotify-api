@@ -10,7 +10,7 @@
 
 ### [Documentation](https://github.com/andyruwruw/enhanced-spotify-api/wiki)
 
-**enhanced-spotify-api** aims to **expand available endpoints for Spotify's API** namely by **grouping relevent requests together** into more complicated requests.
+**enhanced-spotify-api** is an object-oriented API wrapper aimed to **expand available endpoints for Spotify's API** namely by **grouping relevent requests together** into more complicated requests.
 
 Requests such as **AVERAGE DANCEABILITY FOR USER'S WHOLE LIBRARY** will be available through member functions of the enhanced-spotify-api instance.
 

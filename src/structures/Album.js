@@ -17,9 +17,9 @@ function Album(data) {
             }
             if ('tracks' in data) {
                 if ('items' in data.tracks) {
-                    this.addTracks(data.tracks.items);
+                    this.loadTracks(data.tracks.items);
                 } else if (data.tracks instanceof Array) {
-                    this.addTracks(data.tracks);
+                    this.loadTracks(data.tracks);
                 }
             }
             this.name = 'name' in data ? data.name : null;
@@ -74,13 +74,13 @@ Album.prototype = {
      * Get Full Object
      * Returns full album data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Album Full Object Data.
      */
-    getFullObject: async function(enhancedSpotifyAPI) {
+    getFullObject: async function(wrapper) {
         try {
             if (!(await this.containsFullObject())) {
-                await this.retrieveFullObject(enhancedSpotifyAPI);
+                await this.retrieveFullObject(wrapper);
             }
             return {
                 id: this.id,
@@ -112,13 +112,13 @@ Album.prototype = {
      * Get Simplified Object
      * Returns simplified album data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Album Simplified Object Data.
      */
-    getSimplifiedObject: async function(enhancedSpotifyAPI) {
+    getSimplifiedObject: async function(wrapper) {
         try {
             if (!(await this.containsSimplifiedObject())) {
-                await this.retrieveFullObject(enhancedSpotifyAPI);
+                await this.retrieveFullObject(wrapper);
             }
             let data = {
                 id: this.id,
@@ -148,7 +148,7 @@ Album.prototype = {
      * Get Current Data
      * Just returns whatever the album object currently holds
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Any Album Data.
      */
     getCurrentData: function() {
@@ -195,9 +195,9 @@ Album.prototype = {
             this.uri = data.uri;
             this.tracks = data.tracks;
             if ('items' in data.tracks) {
-                await this.addTracks(data.tracks.items);
+                await this.loadTracks(data.tracks.items);
             } else {
-                await this.addTracks(data.tracks);
+                await this.loadTracks(data.tracks);
             }
             
         } catch (error) {
@@ -210,11 +210,11 @@ Album.prototype = {
      * Retrieve Full Object
      * Retrieves full album data from Spotify API
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    retrieveFullObject: async function(enhancedSpotifyAPI) {
+    retrieveFullObject: async function(wrapper) {
         try {
-            let response = await enhancedSpotifyAPI.getArtist(this.id);
+            let response = await wrapper.getArtist(this.id);
             this.name = response.body.name;
             this.album_type = response.body.album_type;
             this.artists = response.body.artists;
@@ -231,7 +231,7 @@ Album.prototype = {
             this.release_date_precision = response.body.release_date_precision;
             this.restrictions = response.body.restrictions;
             this.tracks = response.body.tracks;
-            await this.addTracks(response.body.tracks.items);
+            await this.loadTracks(response.body.tracks.items);
             this.uri = response.body.uri;
         } catch (error) {
             throw error;
@@ -242,16 +242,16 @@ Album.prototype = {
      * Retrieve Album Tracks
      * Retrieves all tracks in album from Spotify API
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    retrieveTracks: async function(enhancedSpotifyAPI) {
+    retrieveTracks: async function(wrapper) {
         try {
             this.tracksRetrieved = true;
             let options = { limit: 50, offset: 0 };
             let response;
             do {
-                response = await enhancedSpotifyAPI.getAlbumTracks(this.id, options);
-                await this.addTracks(response.body.items);
+                response = await wrapper.getAlbumTracks(this.id, options);
+                await this.loadTracks(response.body.items);
                 options.offset += 50;
             } while (!(response.body.items.length < 50))
         } catch (error) {
@@ -263,22 +263,29 @@ Album.prototype = {
      * Play Album
      * Plays album on user's active device.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @param {number} offset Track to start on.
      * @param {number} position_ms Offset where to start track in milliseconds.
      */
-    play: function(enhancedSpotifyAPI, offset, position_ms) {
+    play: function(wrapper, offset, position_ms) {
         try {
-            enhancedSpotifyAPI.play({ context_uri: 'spotify:album:' + this.id, position_ms: position_ms ? position_ms : 0 , offset: offset ? offset : 0 });
+            wrapper.play({ context_uri: 'spotify:album:' + this.id, position_ms: position_ms ? position_ms : 0 , offset: offset ? offset : 0 });
         } catch (error) {
             throw error;
         }
     },
 
-    getArtists: async function(enhancedSpotifyAPI) {
+    /**
+     * Get Album Artists
+     * Returns Artists object of album artists.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @returns {Artists} Artists instance with all album artists.
+     */
+    getArtists: async function(wrapper) {
         try {
             if (!(await this.containsSimplifiedObject())) {
-                await this.retrieveFullObject(enhancedSpotifyAPI);
+                await this.retrieveFullObject(wrapper);
             }
             return new Artists(this.artists);
         } catch (error) {
@@ -286,10 +293,17 @@ Album.prototype = {
         }
     },
 
-    getTracks: async function(enhancedSpotifyAPI) {
+    /**
+     * Get Album Tracks
+     * Returns Tracks object of album tracks.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @returns {Tracks} Tracks instance with all album tracks.
+     */
+    getTracks: async function(wrapper) {
         try {
             if (this.tracksRetrieved == null) {
-                await this.retrieveTracks(enhancedSpotifyAPI);
+                await this.retrieveTracks(wrapper);
             }
             return this._tracks;
         } catch (error) {
@@ -297,7 +311,13 @@ Album.prototype = {
         }
     },
 
-    addTracks: async function(tracks) {
+    /**
+     * Load Tracks
+     * Used to add retrieved tracks to the album's instance of Tracks object.
+     * 
+     * @param {Array | object | string} tracks Tracks to add to instance
+     */
+    loadTracks: async function(tracks) {
         try {
             if (tracks instanceof Array) {
                 for (let i = 0; i < tracks.length; i++) {
@@ -306,7 +326,7 @@ Album.prototype = {
             } else if (typeof(tracks) == 'object' || typeof(tracks) == 'string') {
                 this._tracks.add(tracks);
             } else {
-                throw new Error("Album.addTracks: Invalid Parameter \"tracks\"");
+                throw new Error("Album.loadTracks: Invalid Parameter \"tracks\"");
             }
         } catch (error) {
             throw error;
@@ -317,12 +337,12 @@ Album.prototype = {
      * Is Liked
      * Returns whether an album is saved to the user's library.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {boolean} Whether album is saved to the user's library.
      */
-    isLiked: async function(enhancedSpotifyAPI) {
+    isLiked: async function(wrapper) {
         try {
-            let response = await enhancedSpotifyAPI.containsMySavedAlbums([this.id]);
+            let response = await wrapper.containsMySavedAlbums([this.id]);
             return response.body[0];
         } catch (error) {
             throw error;
@@ -333,11 +353,11 @@ Album.prototype = {
      * Like Album
      * Adds album to the user's library.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    like: async function(enhancedSpotifyAPI) {
+    like: async function(wrapper) {
         try {
-            await enhancedSpotifyAPI.addToMySavedAlbums([this.id]);
+            await wrapper.addToMySavedAlbums([this.id]);
         } catch (error) {
             throw error;
         }
@@ -347,11 +367,11 @@ Album.prototype = {
     * Unlike Album
     * Removes album from the user's library.
     * 
-    * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+    * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
     */
-    unlike: async function(enhancedSpotifyAPI) {
+    unlike: async function(wrapper) {
         try {
-            await enhancedSpotifyAPI.removeFromMySavedAlbums([this.id]);
+            await wrapper.removeFromMySavedAlbums([this.id]);
         } catch (error) {
             throw error;
         }

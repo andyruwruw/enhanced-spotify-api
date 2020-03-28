@@ -118,17 +118,17 @@ Albums.prototype = {
      * Get Full Objects
      * Returns full album data for all albums. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Album Full Objects.
      */
-    getFullObjects: async function(enhancedSpotifyAPI) {
+    getFullObjects: async function(wrapper) {
         try {
-            await this.retrieveFullObjects(enhancedSpotifyAPI, 'full');
+            await this.retrieveFullObjects(wrapper, 'full');
             let albums = await Object.values(this.albums).sort((a, b) => {
                 return a.index - b.index;
             });
             return await Promise.all(await albums.map(async (album) => {
-                return await album.getFullObject(enhancedSpotifyAPI);
+                return await album.getFullObject(wrapper);
             }));
         } catch (error) {
             throw error;
@@ -139,17 +139,17 @@ Albums.prototype = {
      * Get Simplified Objects
      * Returns simplified album data for all albums. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Album Simplified Objects.
      */
-    getSimplifiedObjects: async function(enhancedSpotifyAPI) {
+    getSimplifiedObjects: async function(wrapper) {
         try {
-            await this.retrieveFullObjects(enhancedSpotifyAPI, 'simplified');
+            await this.retrieveFullObjects(wrapper, 'simplified');
             let albums = await Object.values(this.albums).sort((a, b) => {
                 return a.index - b.index;
             });
             return await Promise.all(await albums.map(async (album) => {
-                return await album.getSimplifiedObject(enhancedSpotifyAPI);
+                return await album.getSimplifiedObject(wrapper);
             }));
         } catch (error) {
             throw error;
@@ -179,10 +179,10 @@ Albums.prototype = {
      * Retrieve Full Objects
      * Retrieves full album data for all albums from Spotify API
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @param {string} objectType Optional | 'simplified', 'link' or 'full', what to check if the album contains.
      */
-    retrieveFullObjects: async function(enhancedSpotifyAPI, objectType) {
+    retrieveFullObjects: async function(wrapper, objectType) {
         try {
             let ids = [];
             for (let album in this.albums) {
@@ -199,7 +199,7 @@ Albums.prototype = {
             if (ids.length) {
                 let response;
                 do {
-                    response = await enhancedSpotifyAPI.getAlbums(ids.splice(0, 50));
+                    response = await wrapper.getAlbums(ids.splice(0, 50));
                     for (let i = 0; i < response.data.albums.length; i++) {
                         if (response.data.albums[i] == null) continue;
                         this.albums[response.data.albums[i].id].loadFullObject(response.data.albums[i]);
@@ -215,12 +215,12 @@ Albums.prototype = {
      * Are Liked
      * Returns array of booleans whether albums are saved to the user's library.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {boolean} Array of Booleans Whether albums are saved to the user's library.
      */
-    areLiked: async function(enhancedSpotifyAPI) {
+    areLiked: async function(wrapper) {
         try {
-            let response = await enhancedSpotifyAPI.containsMySavedAlbums(Object.keys(this.albums));
+            let response = await wrapper.containsMySavedAlbums(Object.keys(this.albums));
             return response.body[0];
         } catch (error) {
             throw error;
@@ -231,11 +231,11 @@ Albums.prototype = {
      * Like Album
      * Adds albums to the user's library.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    like: async function(enhancedSpotifyAPI) {
+    like: async function(wrapper) {
         try {
-            await enhancedSpotifyAPI.addToMySavedAlbums(Object.keys(this.albums));
+            await wrapper.addToMySavedAlbums(Object.keys(this.albums));
         } catch (error) {
             throw error;
         }
@@ -245,11 +245,11 @@ Albums.prototype = {
     * Unlike Album
     * Removes albums from the user's library.
     * 
-    * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+    * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
     */
-    unlike: async function(enhancedSpotifyAPI) {
+    unlike: async function(wrapper) {
         try {
-            await enhancedSpotifyAPI.removeFromMySavedAlbums(Object.keys(this.albums));
+            await wrapper.removeFromMySavedAlbums(Object.keys(this.albums));
         } catch (error) {
             throw error;
         }
@@ -259,15 +259,15 @@ Albums.prototype = {
      * Get All Album's Artists
      * Returns Artists instance with all album's artists.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Artists}  Artists object of all album artists.
      */
-    getArtists: async function(enhancedSpotifyAPI) {
+    getArtists: async function(wrapper) {
         try {
-            await this.retrieveFullObjects(enhancedSpotifyAPI);
+            await this.retrieveFullObjects(wrapper);
             let artists = new Artists();
             for (let album in this.albums) {
-                await artists.concat(await this.albums[album].getArtists(enhancedSpotifyAPI));
+                await artists.concat(await this.albums[album].getArtists(wrapper));
             }
             return tracks;
         } catch (error) {
@@ -279,15 +279,15 @@ Albums.prototype = {
      * Get All Album's Tracks
      * Returns Tracks instance with all album's tracks.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Tracks}  Tracks object of all album tracks.
      */
-    getTracks: async function(enhancedSpotifyAPI) {
+    getTracks: async function(wrapper) {
         try {
-            await this.retrieveFullObjects(enhancedSpotifyAPI);
+            await this.retrieveFullObjects(wrapper);
             let tracks = new Tracks();
             for (let album in this.albums) {
-                await tracks.concat(await this.albums[album].getTracks(enhancedSpotifyAPI));
+                await tracks.concat(await this.albums[album].getTracks(wrapper));
             }
             return tracks;
         } catch (error) {
@@ -299,18 +299,18 @@ Albums.prototype = {
      * Play Album
      * Plays artist on user's active device.
      * 
-     * @param {enhanced-spotify-api} enhancedSpotifyAPI Enhanced Spotify API instance for API calls.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @param {number} albumOffset Album to start on.
      * @param {number} offset Track to start on.
      * @param {number} position_ms Offset where to start track in milliseconds.
      */
-    play: async function(enhancedSpotifyAPI, albumOffset, offset, position_ms) {
+    play: async function(wrapper, albumOffset, offset, position_ms) {
         try {
             let albums = await Object.values(this.albums).sort((a, b) => {
                 return a.index - b.index;
             });
             let id = albums[(typeof(albumOffset) == 'number') ? albumOffset : 0].id;
-            enhancedSpotifyAPI.play({ context_uri: 'spotify:album:' + id, position_ms: position_ms ? position_ms : 0 , offset: offset ? offset : 0 });
+            wrapper.play({ context_uri: 'spotify:album:' + id, position_ms: position_ms ? position_ms : 0 , offset: offset ? offset : 0 });
         } catch (error) {
             throw error;
         }
@@ -337,13 +337,23 @@ Albums.prototype = {
     },
 };
 
-Albums.search = async function(enhancedSpotifyAPI, query, limit, offset) {
+/**
+ * Search for an Album
+ * Returns search results for a query.
+ * 
+ * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {string} query String to search for.
+ * @param {number} limit Number of albums to return.
+ * @param {number} offset Place in the list to start at.
+ * @returns {Albums} Albums returned from Search.
+ */
+Albums.search = async function(wrapper, query, limit, offset) {
     try {
         let options = { 
             limit: limit ? limit : 20,
             offset: offset ? offset : 0,
         };
-        let response = await enhancedSpotifyAPI.searchAlbums(query, options);
+        let response = await wrapper.searchAlbums(query, options);
         return new Albums(response.body.albums.items);
     } catch (error) {
         throw error;
