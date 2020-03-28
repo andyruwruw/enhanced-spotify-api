@@ -577,7 +577,7 @@ Tracks.prototype = {
         }
     },
 
-    getURIs: function() {
+    getURIs: async function() {
         try {
             let uris = [];
             let tracks = await Object.values(this.tracks).sort((a, b) => {
