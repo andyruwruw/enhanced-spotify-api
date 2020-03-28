@@ -1,1 +1,3 @@
 node_modules
+test/authentication/authentication.json
+test/authentication/node_modules

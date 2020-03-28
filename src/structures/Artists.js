@@ -310,20 +310,6 @@ Artists.prototype = {
     },
 }
 
-Artists.addMethods = function(methods) {
-    for (var method in methods) {
-      if (methods.hasOwnProperty(method)) {
-        this.prototype[method] = methods[method];
-      }
-    }
-};
-
-Artists.override = function(oldMethod, newMethod) {
-    if (this.prototype.hasOwnProperty(oldMethod)) {
-        this.prototype[oldMethod] = newMethod;
-    }
-};
-
 Artists.search = async function(enhancedSpotifyAPI, query, limit, offset) {
     try {
         let options = { 
@@ -336,5 +322,9 @@ Artists.search = async function(enhancedSpotifyAPI, query, limit, offset) {
         throw error;
     }
 };
+
+Artists.addMethods = addMethods;
+
+Artists.override = override;
 
 module.exports = Artists;

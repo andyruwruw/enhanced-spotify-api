@@ -1,0 +1,1 @@
+const Albums = require('../../src/structures/Albums');

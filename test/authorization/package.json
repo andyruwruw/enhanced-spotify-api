@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "authorization",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,5 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1"
+  }
 }

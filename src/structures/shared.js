@@ -1,4 +1,3 @@
-
 /**
  * Add Methods
  * Adds functionality to Class

@@ -271,31 +271,8 @@ Artist.prototype = {
     },
 };
 
-Artist.addMethods = function(enhancedSpotifyAPI, methods) {
-    for (var method in methods) {
-      if (methods.hasOwnProperty(method)) {
-        this.prototype[method] = methods[method];
-      }
-    }
-};
+Artist.addMethods = addMethods;
 
-Artist.override = function(oldMethod, newMethod) {
-    if (this.prototype.hasOwnProperty(oldMethod)) {
-        this.prototype[oldMethod] = newMethod;
-    }
-};
-
-Artist.search = async function(enhancedSpotifyAPI, query, limit, offset) {
-    try {
-        let options = { 
-            limit: limit ? limit : 20,
-            offset: offset ? offset : 0,
-        };
-        let response = await enhancedSpotifyAPI.searchArtists(query, options);
-        return new Artists(response.body.artists.items);
-    } catch (error) {
-        throw error;
-    }
-};
+Artist.override = override;
 
 module.exports = Artist;

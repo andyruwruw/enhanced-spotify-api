@@ -358,31 +358,8 @@ Album.prototype = {
     },
 }
 
-Album.addMethods = function(methods) {
-    for (var method in methods) {
-      if (methods.hasOwnProperty(method)) {
-        this.prototype[method] = methods[method];
-      }
-    }
-};
+Album.addMethods = addMethods;
 
-Album.override = function(oldMethod, newMethod) {
-    if (this.prototype.hasOwnProperty(oldMethod)) {
-        this.prototype[oldMethod] = newMethod;
-    }
-};
-
-Album.search = async function(enhancedSpotifyAPI, query, limit, offset) {
-    try {
-        let options = { 
-            limit: limit ? limit : 20,
-            offset: offset ? offset : 0,
-        };
-        let response = await enhancedSpotifyAPI.searchAlbums(query, options);
-        return new Albums(response.body.albums.items);
-    } catch (error) {
-        throw error;
-    }
-};
+Album.override = override;
 
 module.exports = Album;

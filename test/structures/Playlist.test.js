@@ -1,0 +1,1 @@
+const Playlist = require('../../src/structures/Playlist');

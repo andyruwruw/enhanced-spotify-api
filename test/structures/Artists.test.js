@@ -1,0 +1,1 @@
+const Artists = require('../../src/structures/Artists');

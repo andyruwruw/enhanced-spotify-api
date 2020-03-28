@@ -337,20 +337,6 @@ Albums.prototype = {
     },
 };
 
-Albums.addMethods = function(methods) {
-    for (var method in methods) {
-      if (methods.hasOwnProperty(method)) {
-        this.prototype[method] = methods[method];
-      }
-    }
-};
-
-Albums.override = function(oldMethod, newMethod) {
-    if (this.prototype.hasOwnProperty(oldMethod)) {
-        this.prototype[oldMethod] = newMethod;
-    }
-};
-
 Albums.search = async function(enhancedSpotifyAPI, query, limit, offset) {
     try {
         let options = { 
@@ -363,5 +349,9 @@ Albums.search = async function(enhancedSpotifyAPI, query, limit, offset) {
         throw error;
     }
 };
+
+Albums.addMethods = addMethods;
+
+Albums.override = override;
 
 module.exports = Albums;
