@@ -184,7 +184,7 @@ Artist.prototype = {
     getCurrentData: () => {
         try {
             let data = { id: this.id, type: 'artist' };
-            let properties = ["name", "external_urls", "followers", "genres", "href", "images", "popularity", "uri", 'type'];
+            let properties = ['id', 'name', 'external_urls', 'followers', 'genres', 'href', 'images', 'popularity', 'uri'];
             for (let i = 0; i < properties.length; i++) {
                 if (this[properties[i]] != null) {
                     data[properties[i]] = this[properties[i]];

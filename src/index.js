@@ -5,6 +5,8 @@ function Wrapper() {};
 Wrapper.prototype = {
     // Inherits from spotify-web-api-node
     ...require('spotify-web-api-node').prototype,
+    // Missing Endpoints
+    ...require('./functions/Shows'),
 }
 
 module.exports = {

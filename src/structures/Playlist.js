@@ -12,14 +12,8 @@ function Playlist(data) {
     try {
         if (typeof(data) == 'string') {
             this.id = data;
+            this._tracks = new Playlist.Tracks();
         } else if (typeof(data) == 'object') {
-            if ('tracks' in data) {
-                if ('items' in data.tracks) {
-                    this.loadTracks(data.tracks.items);
-                } else if (data.tracks instanceof Array) {
-                    this.loadTracks(data.tracks);
-                }
-            }
             this.id = 'id' in data ? data.id : null;
             this.name = 'name' in data ? data.name : null;
             this.collaborative = 'collaborative' in data ? data.collaborative : null;
@@ -34,6 +28,13 @@ function Playlist(data) {
             this.tracks = 'tracks' in data ? data.tracks : null;
             this.uri = 'uri' in data ? data.uri : null;
             this._tracks = '_tracks' in data ? data._tracks : new Playlist.Tracks();
+            if ('tracks' in data) {
+                if ('items' in data.tracks) {
+                    this.loadTracks(data.tracks.items);
+                } else if (data.tracks instanceof Array) {
+                    this.loadTracks(data.tracks);
+                }
+            }
         } else if (data instanceof Playlist.Tracks) {
             this._tracks = data;
         } else {

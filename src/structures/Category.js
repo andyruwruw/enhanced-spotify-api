@@ -81,6 +81,28 @@ Category.prototype = {
     },
 
     /**
+     * Get Current Data
+     * Just returns whatever the category object currently holds
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @returns {object} Any Category Data.
+     */
+    getCurrentData: () => {
+        try {
+            let data = { id: this.id, type: 'album' };
+            let properties = ['id', 'name', 'href', 'icons'];
+            for (let i = 0; i < properties.length; i++) {
+                if (this[properties[i]] != null) {
+                    data[properties[i]] = this[properties[i]];
+                }
+            }
+            return data;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
      * Get Category Playlists
      * Returns Playlists instance with category playlists.
      * 

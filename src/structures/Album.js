@@ -12,18 +12,12 @@ function Album(data) {
     try {
         if (typeof(data) == 'string') {
             this.id = data;
+            this._tracks = new Album.Tracks();
         } else if (typeof(data) == 'object') {
             if ('id' in data) {
                 this.id = data.id; 
             } else {
                 throw new Error("Album.constructor: No ID Provided");
-            }
-            if ('tracks' in data) {
-                if ('items' in data.tracks) {
-                    this.loadTracks(data.tracks.items);
-                } else if (data.tracks instanceof Array) {
-                    this.loadTracks(data.tracks);
-                }
             }
             this.name = 'name' in data ? data.name : null;
             this.album_type = 'album_type' in data ? data.album_type : null;
@@ -44,6 +38,13 @@ function Album(data) {
             this.uri = 'uri' in data ? data.uri : null;
             this.album_group = 'album_group' in data ? data.album_group : null;
             this._tracks = '_tracks' in data ? data._tracks : new Album.Tracks();
+            if ('tracks' in data) {
+                if ('items' in data.tracks) {
+                    this.loadTracks(data.tracks.items);
+                } else if (data.tracks instanceof Array) {
+                    this.loadTracks(data.tracks);
+                }
+            }
         } else {
             throw new Error("Album.constructor: Invalid Data");
         }
@@ -222,7 +223,7 @@ Album.prototype = {
     getCurrentData: () => {
         try {
             let data = { id: this.id, type: 'album' };
-            let properties = ['name', 'album_type', 'artists', 'available_markets', 'copyrights', 'external_ids', 'external_urls', 'genres', 'href', 'images', 'label', 'popularity', 'release_date', 'release_date_precision', 'restrictions', 'tracks', 'uri', '_tracks'];
+            let properties = ['id', 'name', 'album_type', 'artists', 'available_markets', 'copyrights', 'external_ids', 'external_urls', 'genres', 'href', 'images', 'label', 'popularity', 'release_date', 'release_date_precision', 'restrictions', 'tracks', 'uri', '_tracks'];
             for (let i = 0; i < properties.length; i++) {
                 if (this[properties[i]] != null) {
                     data[properties[i]] = this[properties[i]];
@@ -385,14 +386,12 @@ Album.prototype = {
      * Load Track
      * Helper method to add tracks to album's internal Tracks item.
      * 
-     * @param {Array | Track | object | string} tracks 
+     * @param {Tracks | Array | Track | object | string} tracks 
      */
     loadTracks: async (tracks) => {
         try {
-            if (tracks instanceof Array) {
-                for (let i = 0; i < tracks.length; i++) {
-                    this._tracks.add(tracks[i]);
-                }
+            if (tracks instanceof Album.Tracks || tracks instanceof Array) {
+                this._tracks.concat(tracks);
             } else if (typeof(tracks) == 'object' || typeof(tracks) == 'string') {
                 this._tracks.add(tracks);
             } else {
@@ -415,8 +414,7 @@ Album.prototype = {
 Album.getAlbum = async (wrapper, albumID) => {
     try {
         let album = new Album(albumID);
-        await album.retrieveFullObjects(wrapper);
-        return album;
+        return await album.retrieveFullObjects(wrapper);
     } catch (error) {
         throw error;
     }
