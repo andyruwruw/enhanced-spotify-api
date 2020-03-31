@@ -1,8 +1,5 @@
 'use strict';
 
-var Album = require('./Album');
-var Tracks = require('./Tracks');
-var Artists = require('./Artists');
 var { addMethods, override } = require('./shared');
 
 function Albums(albums) {
@@ -24,6 +21,10 @@ function Albums(albums) {
     }
 }
 
+Albums.Album = require('./Album');
+Albums.Tracks = require('./Tracks');
+Albums.Artists = require('./Artists');
+
 Albums.prototype = {
     /**
      * Add
@@ -34,7 +35,7 @@ Albums.prototype = {
     add: function(album) {
         try {
             let index = Object.keys(this.albums).length;
-            if (album instanceof Album) {
+            if (album instanceof Albums.Album) {
                 if (album.id in this.albums) {
                     return;
                 }
@@ -44,13 +45,13 @@ Albums.prototype = {
                 if (album.id in this.albums) {
                     return;
                 }
-                this.albums[album.id] = new Album(album);
+                this.albums[album.id] = new Albums.Album(album);
                 this.albums[album.id].index = index;
             } else if (typeof(album) == 'string') {
                 if (album in this.albums) {
                     return;
                 }
-                this.albums[album] = new Album(album);
+                this.albums[album] = new Albums.Album(album);
                 this.albums[album].index = index;
             } else {
                 throw new Error("Albums.add: Invalid Parameter \"album\"");
@@ -97,7 +98,7 @@ Albums.prototype = {
      */
     remove: function(album) {
         try {
-            if (album instanceof Album || typeof(album) == 'object') {
+            if (album instanceof Albums.Album || typeof(album) == 'object') {
                 if (!(album.id in this.albums)) {
                     throw new Error("Albums.remove: No ID Provided");
                 }
@@ -109,6 +110,20 @@ Albums.prototype = {
             } else {
                 throw new Error("Albums.remove: Invalid Parameter \"album\"");
             }
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Get Size
+     * Returns number of items in manager.
+     * 
+     * @returns {number} Number of items in manager.
+     */
+    size: function() {
+        try {
+            return Object.keys(this.albums).length;
         } catch (error) {
             throw error;
         }
@@ -265,7 +280,7 @@ Albums.prototype = {
     getArtists: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper);
-            let artists = new Artists();
+            let artists = new Albums.Artists();
             for (let album in this.albums) {
                 await artists.concat(await this.albums[album].getArtists(wrapper));
             }
@@ -285,7 +300,7 @@ Albums.prototype = {
     getTracks: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper);
-            let tracks = new Tracks();
+            let tracks = new Albums.Tracks();
             for (let album in this.albums) {
                 await tracks.concat(await this.albums[album].getTracks(wrapper));
             }
@@ -355,6 +370,66 @@ Albums.search = async function(wrapper, query, limit, offset) {
         };
         let response = await wrapper.searchAlbums(query, options);
         return new Albums(response.body.albums.items);
+    } catch (error) {
+        throw error;
+    }
+};
+
+/**
+ * Get My Saved Albums
+ * Returns Albums object with user saved albums.
+ * 
+ * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @returns {Albums} Albums of user saved albums.
+ */
+Albums.getMySavedAlbums = async function(wrapper) {
+    try {
+        
+    } catch (error) {
+        throw error;
+    }
+};
+
+/**
+ * Get Albums
+ * Returns Albums object with user saved albums.
+ * 
+ * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @returns {Albums} Albums of user saved albums.
+ */
+Albums.getAlbums = async function(wrapper, albumIds) {
+    try {
+        
+    } catch (error) {
+        throw error;
+    }
+};
+
+/**
+ * Get Albums
+ * Returns Albums object with user saved albums.
+ * 
+ * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @returns {Albums} Albums of user saved albums.
+ */
+Albums.getArtistAlbums = async function(wrapper, albumIds) {
+    try {
+        
+    } catch (error) {
+        throw error;
+    }
+};
+
+/**
+ * Get Albums
+ * Returns Albums object with user saved albums.
+ * 
+ * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @returns {Albums} Albums of user saved albums.
+ */
+Albums.getNewReleases = async function(wrapper, albumIds) {
+    try {
+        
     } catch (error) {
         throw error;
     }

@@ -1,5 +1,4 @@
 {
     "instructions": "Create a file authentication.json with these fields.",
-    "clientID": "",
     "authToken": ""
 }

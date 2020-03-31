@@ -19,6 +19,8 @@ function Playlists(playlists) {
     }
 }
 
+Playlists.Playlist = require('./Playlist');
+
 Playlists.prototype = {
     /**
      * Add
@@ -29,7 +31,7 @@ Playlists.prototype = {
     add: function(playlist) {
         try {
             let index = Object.keys(this.playlists).length;
-            if (playlist instanceof Playlist) {
+            if (playlist instanceof Playlists.Playlist) {
                 if (playlist.id in this.playlists) {
                     return;
                 }
@@ -39,13 +41,13 @@ Playlists.prototype = {
                 if (playlist.id in this.playlists) {
                     return;
                 }
-                this.playlists[playlist.id] = new Playlist(playlist);
+                this.playlists[playlist.id] = new Playlists.Playlist(playlist);
                 this.playlists[playlist.id].index = index;
             } else if (typeof(playlist) == 'string') {
                 if (playlist in this.playlists) {
                     return;
                 }
-                this.playlists[playlist] = new Playlist(playlist);
+                this.playlists[playlist] = new Playlists.Playlist(playlist);
                 this.playlists[playlist].index = index;
             } else {
                 throw new Error("Playlists.add: Invalid Parameter \"playlist\"");
@@ -86,24 +88,38 @@ Playlists.prototype = {
 
     /**
      * Remove
-     * Removes an Album object from the Albums instance.
+     * Removes an Playlist object from the Playlists instance.
      * 
-     * @param {Album | array } album Album instance, album data, or album id to remove.
+     * @param {Playlist | array } album Playlist instance, playlist data, or playlist id to remove.
      */
-    remove: function(album) {
+    remove: function(playlist) {
         try {
-            if (album instanceof Album || typeof(album) == 'object') {
-                if (!(album.id in this.albums)) {
-                    throw new Error("Albums.remove: No ID Provided");
+            if (playlist instanceof Playlists.Playlist || typeof(playlist) == 'object') {
+                if (!(playlist.id in this.playlists)) {
+                    throw new Error("Playlists.remove: No ID Provided");
                 }
-                delete this.albums[album.id];
-            } else if (typeof(album) == 'string') {
-                if (album in this.albums) {
-                    delete this.albums[album];
+                delete this.playlists[playlist.id];
+            } else if (typeof(playlist) == 'string') {
+                if (playlist in this.playlists) {
+                    delete this.playlists[playlist];
                 }
             } else {
-                throw new Error("Albums.remove: Invalid Parameter \"album\"");
+                throw new Error("Playlists.remove: Invalid Parameter \"playlist\"");
             }
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Get Size
+     * Returns number of items in manager.
+     * 
+     * @returns {number} Number of items in manager.
+     */
+    size: function() {
+        try {
+            return Object.keys(this.albums).length;
         } catch (error) {
             throw error;
         }

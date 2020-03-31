@@ -4,12 +4,16 @@
  * 
  * @param {object} methods Object with methods as properties.
  */
-let addMethods = function(methods) {
+let addMethods = (methods) => {
+  try {
     for (var method in methods) {
       if (methods.hasOwnProperty(method)) {
         this.prototype[method] = methods[method];
       }
     }
+  } catch (error) {
+    throw error;
+  }
 };
 
 /**
@@ -19,10 +23,14 @@ let addMethods = function(methods) {
  * @param {string} oldMethod Name of the method to replace.
  * @param {function} newMethod Function to replace old method with.
  */
-let override = function(oldMethod, newMethod) {
+let override = (oldMethod, newMethod) => {
+  try {
     if (this.prototype.hasOwnProperty(oldMethod)) {
-        this.prototype[oldMethod] = newMethod;
+      this.prototype[oldMethod] = newMethod;
     }
+  } catch (error) {
+    throw error;
+  }
 };
 
 // Export

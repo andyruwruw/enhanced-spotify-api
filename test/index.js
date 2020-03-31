@@ -1,1 +1,0 @@
-let {Wrapper, Track, Tracks, Artist, Artists, Album, Albums, Playlist, Playlists } = require('../src/index');

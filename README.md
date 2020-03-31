@@ -1,60 +1,77 @@
-# enhanced-spotify-api
-
-<p style="margin-top: 15px; max-width: 600px">
+<div align="center">
+    <img width="200px" src="./documentation/logo.svg"/>
+</div>
+<div align="center" style="margin-bottom: 0px;">
+    <img width="500px" src="./documentation/title.svg"/>
+</div>
+<p align="center" style="margin-top: 0px">Object Oriented Spotify API Wrapper with Extended Functionality.<p>
+<p align="center" style="margin: 0 auto; margin-top: 15px; max-width: 600px">
     <a href="https://melophile.org"><img src="https://img.shields.io/npm/v/enhanced-spotify-api"></a>
     <a href="#"><img src="https://img.shields.io/npm/dt/enhanced-spotify-api"/></a>
     <a href="https://melophile.org"><img src="https://img.shields.io/github/issues-raw/andyruwruw/enhanced-spotify-api"></a>
 </p>
 
-## **Under Development**
+# Under Development, should be out within a week!
 
-### [Documentation](https://github.com/andyruwruw/enhanced-spotify-api/wiki)
+# Overview
 
-**enhanced-spotify-api** is an object-oriented API wrapper aimed to **expand available endpoints for Spotify's API** namely by **grouping relevent requests together** into more complicated requests.
+Spend more of your time making something cool, and less time scouring over Spotify's API documentation.
 
-Requests such as **AVERAGE DANCEABILITY FOR USER'S WHOLE LIBRARY** will be available through member functions of the enhanced-spotify-api instance.
+enhanced-spotify-api is an **object-oriented API wrapper** aimed to **expand available endpoints** for Spotify's API by:
 
-In addition to additional possible queries, enhanced-spotify-api provides **simple and easy to use classes for data objects**.
+- **Object Oriented** package with Classes for `Track`, `Artist`, `Playlist`, `Multiple Tracks` and more.
+    - Member functions for **all endpoints** relevent to each item.
+    - **Automatic loading of the data** you need when you need it. No more *Simplified* objects and *Full* objects.
+    - Retrieving data in as **few requests as possible**.
+- **Grouping relevent requests together** into more complicated requests.
+- **Add and Override Methods!** Complete customization of Classes available for your own uses. 
+- Providing all the original functionality of [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node).
 
-Data Objects:
+# Visit the Official Website / Documentation
+## Under Progress Still
+## [enhancedspotifyapi.com](enhancedspotifyapi.com)
+
+
+# Why Use enhanced-spotify-api?
+
+After months of working with Spotify's API and [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node), I found myself repeating code just to recieve the data I needed.
+
+Sometimes I got a *Simplfied Track Object* from this request but needed a *Full Track Object*. 
+
+Sometimes I needed all the tracks from an Album but had to run through a *Paging Object* with a while loop to retrieve them all.
+
+I built these Data Access Classes and realized they could be really useful to the community. I had a lot of customizations only relevant to me (Attatching to Mongo Database) so I made it customizable as well!
+
+# Features
+
+### Data Access Classes:
+
+*Instance and static methods for all endpoints relevent to each items*
+
 - Track
 - Artist
 - Album
 - Playlist
+- Show
+- Episode
+- User
+- Playback
 
-Plural Data Objects:
-- Tracks (Multiple Tracks)
-- Artists (Multiple Tracks)
-- Albums (Multiple Tracks)
 
-Each with their own set of member functions to save you the expense of figuring out what requests to make.
+### Manager Classes:
 
-For example, an endpoint you're interested might only return **simplified track objects** but you need **full track objects**. 
+*Manager classes are built to retrieve multiple items in single requests to limit the amount of requests needed.*
 
-Using the **Tracks** object you can load in the track data you recieved and run **Tracks.getFullObjects** and be returned an array of full track objects using the minimum amount of requests for fastest time.
+- Tracks (Multiple Tracks) 
+- Artists (Multiple Artists)
+- Albums (Multiple Albums)
+- Playlists (Multiple Playlists)
+- Episodes (Multiple Episodes)
+- Categories (Multiple Categories)
 
-Built upon [spotify-web-api-js](https://github.com/JMPerez/spotify-web-api-js).
-
----
-
-See below for coming features.
-
-*Audio Features:*
-- *Happiness (valence)*
-- *Danceability*
-- *Energy*
-- *Liveness*
-- *Acousticness*
-- *Instrumentalness*
-- *Speechiness*
-- *Tempo*
-- *Key*
-- *Mode*
-- *Loudness*
 
 # Coming Features
 - All Functionality of **spotify-web-api**
-- Node Version
 - Process User's Entire Library
     - Averages of Audio Features in Library
     - Distribution of Audio Features in Library
@@ -118,14 +135,3 @@ See below for coming features.
             - Distribution of Audio Features
             - Timeline of Audio Features (If you listened from start)
         - Playlists Included In
-    
-        
-- Data Access Objects for Ease of Requests
-    - Track DAO
-    - Tracks DAO (Multiple Tracks)
-    - Artist DAO
-    - Artists DAO
-    - Genre DAO
-    - Playlist DAO
-    - Album DAO
-    - Profile DAO (User Data)

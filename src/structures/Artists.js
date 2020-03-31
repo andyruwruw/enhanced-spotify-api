@@ -1,6 +1,5 @@
 'use strict';
 
-var Artist = require('./Artist');
 var { addMethods, override } = require('./shared');
 
 function Artists(artists) {
@@ -22,6 +21,10 @@ function Artists(artists) {
     }
 }
 
+Artists.Tracks = require('./Tracks');
+Artists.Artist = require('./Artist');
+Artists.Albums = require('./Albums');
+
 Artists.prototype = {
     /**
      * Add
@@ -32,7 +35,7 @@ Artists.prototype = {
     add: function(artist) {
         try {
             let index = Object.keys(this.tracks).length;
-            if (artist instanceof Artist) {
+            if (artist instanceof Artists.Artist) {
                 if (artist.id in this.artists) {
                     return;
                 }
@@ -42,13 +45,13 @@ Artists.prototype = {
                 if (artist.id in this.artists) {
                     return;
                 }
-                this.artists[artist.id] = new Artist(artist);
+                this.artists[artist.id] = new Artists.Artist(artist);
                 this.artists[artist.id].index = index;
             } else if (typeof(artist) == 'string') {
                 if (artist in this.artists) {
                     return;
                 }
-                this.artists[artist] = new Artist(artist);
+                this.artists[artist] = new Artists.Artist(artist);
                 this.artists[artist].index = index;
             } else {
                 throw new Error("Artists.add: Invalid Parameter \"artist\"");
@@ -91,7 +94,7 @@ Artists.prototype = {
      */
     remove: function(artist) {
         try {
-            if (artist instanceof Artist || typeof(artist) == 'object') {
+            if (artist instanceof Artists.Artist || typeof(artist) == 'object') {
                 if (!(id in this.artists)) {
                     throw new Error("Artists: No ID Provided");
                 }
@@ -104,6 +107,20 @@ Artists.prototype = {
                 throw new Error("Artists.remove: Invalid Parameter \"artist\"");
             }
 
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Get Size
+     * Returns number of items in manager.
+     * 
+     * @returns {number} Number of items in manager.
+     */
+    size: function() {
+        try {
+            return Object.keys(this.albums).length;
         } catch (error) {
             throw error;
         }
@@ -260,7 +277,7 @@ Artists.prototype = {
     getTopTracks: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper);
-            let tracks = new Tracks();
+            let tracks = new Artists.Tracks();
             for (let artist in this.artists) {
                 await tracks.concat(await this.artists[artist].getTracks(getTopTracks));
             }
@@ -280,7 +297,7 @@ Artists.prototype = {
     getAlbums: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper);
-            let albums = new Albums();
+            let albums = new Artists.Albums();
             for (let artist in this.artists) {
                 await albums.concat(await this.artists[artist].getAlbums(wrapper));
             }

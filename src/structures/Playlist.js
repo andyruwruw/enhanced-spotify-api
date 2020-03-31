@@ -1,21 +1,26 @@
 'use strict';
 
-var Tracks = require('./Tracks');
-var Artists = require('./Artists');
-var Albums = require('./Albums');
-var Playlists = require('./Playlists');
 var { addMethods, override } = require('./shared');
 
+ /**
+ * Playlist Constructor
+ * Creates a new Playlist Instance for a given playlist or new playlist.
+ * 
+ * @param {object | string} data Data to be preloaded. Should either be a string of the track ID or contain an `id` property if playlist exists.
+ */
 function Playlist(data) {
     try {
         if (typeof(data) == 'string') {
             this.id = data;
         } else if (typeof(data) == 'object') {
-            if ('id' in data) {
-                this.id = data.id; 
-            } else {
-                throw new Error("Playlist.constructor: No ID Provided");
+            if ('tracks' in data) {
+                if ('items' in data.tracks) {
+                    this.loadTracks(data.tracks.items);
+                } else if (data.tracks instanceof Array) {
+                    this.loadTracks(data.tracks);
+                }
             }
+            this.id = 'id' in data ? data.id : null;
             this.name = 'name' in data ? data.name : null;
             this.collaborative = 'collaborative' in data ? data.collaborative : null;
             this.description = 'name' in description ? data.description : null;
@@ -28,25 +33,92 @@ function Playlist(data) {
             this.snapshot_id = 'snapshot_id' in data ? data.snapshot_id : null;
             this.tracks = 'tracks' in data ? data.tracks : null;
             this.uri = 'uri' in data ? data.uri : null;
-            this._tracks = '_tracks' in data ? data._tracks : new Tracks();
-        } else if (data instanceof Tracks) {
+            this._tracks = '_tracks' in data ? data._tracks : new Playlist.Tracks();
+        } else if (data instanceof Playlist.Tracks) {
             this._tracks = data;
         } else {
-            this._tracks = new Tracks();
+            this._tracks = new Playlist.Tracks();
         }
     } catch (error) {
         throw error;
     }
 }
 
+Playlist.Tracks = require('./Tracks');
+Playlist.Artists = require('./Artists');
+Playlist.Albums = require('./Albums');
+Playlist.Playlists = require('./Playlists');
+
 Playlist.prototype = {
+    /**
+     * Play Playlist
+     * Plays playlist on user's active device.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {object} options (Optional) Additional options.
+     */
+    play: async (wrapper, options) => {
+        try {
+            let _options = options ? options : {};
+            _options.context_uri = 'spotify:playlist:' + this.id;
+            return await wrapper.play(_options);
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Is Followed
+     * Returns whether an playlist is followed by the user.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @returns {boolean} Whether playlist is followed by user.
+     */
+    isFollowed: async (wrapper) => {
+        try {
+            let userID = await (await wrapper.getMe()).body.id;
+            let response = await wrapper.areFollowingPlaylist([this.id], [userID]);
+            return response.body[0];
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Follow Playlist
+     * Follows playlist.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     */
+    follow: async (wrapper) => {
+        try {
+            return await wrapper.followPlaylist([this.id]);
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Unfollow Playlist
+     * Unfollows playlist.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     */
+    unfollow: async (wrapper) => {
+        try {
+            return await wrapper.unfollowPlaylist([this.id]);
+        } catch (error) {
+            throw error;
+        }
+    },
+
     /**
      * Contains Full Object
      * Returns boolean whether full object data is present.
      * 
      * @returns {boolean} Whether full object is loaded.
      */
-    containsFullObject: function() {
+    containsFullObject: () => {
         return ((this.name != null) && (this.collaborative != null) && (this.description != null) && (this.external_urls) && (this.followers) && (this.href != null) && (this.images != null) && (this.owner) && (this.public != null) && (this.snapshot_id != null) && (this.tracks != null) && (this.uri != null));
     },
 
@@ -56,7 +128,7 @@ Playlist.prototype = {
      * 
      * @returns {boolean} Whether simplified object is loaded.
      */
-    containsSimplifiedObject: function() {
+    containsSimplifiedObject: () => {
         return ((this.name != null) && (this.collaborative != null) && (this.description != null) && (this.external_urls) && (this.href != null) && (this.images != null) && (this.owner) && (this.public != null) && (this.snapshot_id != null) && (this.tracks != null) && (this.uri != null));
     },
 
@@ -67,7 +139,7 @@ Playlist.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Playlist Full Object Data.
      */
-    getFullObject: async function(wrapper) {
+    getFullObject: async (wrapper) => {
         try {
             if (!(await this.containsFullObject())) {
                 await this.retrieveFullObject(wrapper);
@@ -100,7 +172,7 @@ Playlist.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Playlist Simplified Object Data.
      */
-    getSimplifiedObject: async function(wrapper) {
+    getSimplifiedObject: async (wrapper) => {
         try {
             if (!(await this.containsSimplifiedObject())) {
                 await this.retrieveFullObject(wrapper);
@@ -133,7 +205,7 @@ Playlist.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Any Playlist Data.
      */
-    getCurrentData: function() {
+    getCurrentData: () => {
         try {
             let data = { id: this.id, type: 'playlist' };
             let properties = ["collaborative", "description", "external_urls", "followers", "href", "images", "name", "owner", "public", "snapshot_id", "tracks", "uri"];
@@ -150,30 +222,32 @@ Playlist.prototype = {
     },
 
     /**
-     * Load Full Object
-     * Sets full data (outside constructor).
+     * Get Playlist Tracks
+     * Returns Tracks object with all playlist tracks. Retrieves if nessisary.
      * 
-     * @param {object} data Object with album full object data.
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @returns {Tracks} Tracks instance with all playlist tracks.
      */
-    loadFullObject: async function(data) {
+    getTracks: async (wrapper) => {
         try {
-            this.collaborative = data.collaborative;
-            this.description = data.description;
-            this.external_urls = data.external_urls;
-            this.followers = data.followers;
-            this.href = data.href;
-            this.images = data.images;
-            this.name = data.name;
-            this.owner = data.owner;
-            this.public = data.public;
-            this.snapshot_id = data.snapshot_id;
-            this.uri = data.uri;
-            this.tracks = data.tracks;
-            if ('items' in data.tracks) {
-                await this.loadTracks(data.tracks.items);
-            } else {
-                await this.loadTracks(data.tracks);
-            }
+            await this.retrieveTracks(wrapper);
+            return await this._tracks;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Get Playlist Artists
+     * Returns Artists object with all playlist artists. Retrieves if nessisary.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @returns {Artists} Artists instance with all playlist artists.
+     */
+    getArtists: async (wrapper) => {
+        try {
+            await this.retrieveTracks(wrapper);
+            return await this._tracks.getArtists(wrapper);
         } catch (error) {
             throw error;
         }
@@ -185,7 +259,7 @@ Playlist.prototype = {
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    retrieveFullObject: async function(wrapper) {
+    retrieveFullObject: async (wrapper) => {
         try {
             let response = await wrapper.getArtist(this.id);
             this.collaborative = response.body.collaborative;
@@ -212,7 +286,7 @@ Playlist.prototype = {
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    retrieveTracks: async function(wrapper) {
+    retrieveTracks: async (wrapper) => {
         try {
             let options = { limit: 50, offset: 0 };
             let response;
@@ -227,51 +301,81 @@ Playlist.prototype = {
     },
 
     /**
-     * Play Playlist
-     * Plays playlist on user's active device.
+     * Load Full Object
+     * Sets full data (outside constructor).
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
-     * @param {number} offset Track to start on.
-     * @param {number} position_ms Offset where to start track in milliseconds.
+     * @param {object} data Object with playlist full object data.
      */
-    play: function(wrapper, offset, position_ms) {
+    loadFullObject: async (data) => {
         try {
-            wrapper.play({ context_uri: 'spotify:playlist:' + this.id, position_ms: position_ms ? position_ms : 0 , offset: offset ? offset : 0 });
+            this.collaborative = data.collaborative;
+            this.description = data.description;
+            this.external_urls = data.external_urls;
+            this.followers = data.followers;
+            this.href = data.href;
+            this.images = data.images;
+            this.name = data.name;
+            this.owner = data.owner;
+            this.public = data.public;
+            this.snapshot_id = data.snapshot_id;
+            this.uri = data.uri;
+            this.tracks = data.tracks;
+            if ('items' in data.tracks) {
+                await this.loadTracks(data.tracks.items);
+            } else {
+                await this.loadTracks(data.tracks);
+            }
         } catch (error) {
             throw error;
         }
     },
 
-    getArtists: async function(wrapper) {
+    /**
+     * Load Simplified Object
+     * Sets simplified data (outside constructor).
+     * 
+     * @param {object} data Object with playlist simplified object data.
+     */
+    loadSimplifiedObject: async (data) => {
         try {
-            await this.retrieveTracks(wrapper);
-            return await this._tracks.getArtists(wrapper);
+            this.collaborative = data.collaborative;
+            this.description = data.description;
+            this.external_urls = data.external_urls;
+            this.href = data.href;
+            this.images = data.images;
+            this.name = data.name;
+            this.owner = data.owner;
+            this.public = data.public;
+            this.snapshot_id = data.snapshot_id;
+            this.tracks = data.tracks;
+            this.uri = data.uri;
         } catch (error) {
             throw error;
         }
     },
 
-    getTracks: async function(wrapper) {
-        try {
-            await this.retrieveTracks(wrapper);
-            return await this._tracks;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    loadTracks: async function(tracks) {
+    /**
+     * Load Track
+     * Helper method to add tracks to playlist's internal Tracks item.
+     * 
+     * @param {Array | Track | object | string} tracks 
+     */
+    loadTracks: async (tracks) => {
         try {
             if (tracks instanceof Array) {
                 for (let i = 0; i < tracks.length; i++) {
-                    if ('added_at' in tracks[i]) {
+                    if (tracks[i] instanceof Playlist.Track) {
+                        this._tracks.add(tracks);
+                    } else if ('added_at' in tracks[i]) {
                         this._tracks.add(tracks[i].track);
                     } else {
                         this._tracks.add(tracks[i]);
                     }
                 }
             } else if (typeof(tracks) == 'object' || typeof(tracks) == 'string') {
-                if ('added_at' in tracks) {
+                if (tracks instanceof Playlist.Track) {
+                    this._tracks.add(tracks);
+                } else if ('added_at' in tracks) {
                     this._tracks.add(tracks.track);
                 } else {
                     this._tracks.add(tracks);
@@ -284,33 +388,40 @@ Playlist.prototype = {
         }
     },
 
-    addTracks: async function(wrapper, tracks, position) {
-        try {
-            if (tracks instanceof Tracks) {
-                let uris = tracks.getURIs();
-                do {
-                    await wrapper.addTracksToPlaylist(this.id, uris.splice(0, 100), { position: position != null ? position : 0 });
-                } while (uris.length >= 100);
-            } else if (tracks instanceof Array) {
+    // /**
+    //  * Add Tracks
+    //  * Adds tracks to Spotify Playlist
+    //  * 
+    //  * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+    //  * @param {Tracks | Array | Track | object | string} tracks 
+    //  */
+    // addTracks: async function(wrapper, tracks, position) {
+    //     try {
+    //         if (tracks instanceof Tracks) {
+    //             let uris = tracks.getURIs();
+    //             do {
+    //                 await wrapper.addTracksToPlaylist(this.id, uris.splice(0, 100), { position: position != null ? position : 0 });
+    //             } while (uris.length >= 100);
+    //         } else if (tracks instanceof Array) {
                 
-            } else if (tracks instanceof Track || typeof(tracks) == 'object') {
+    //         } else if (tracks instanceof Track || typeof(tracks) == 'object') {
                 
-            } else if (typeof(tracks) == 'string') {
+    //         } else if (typeof(tracks) == 'string') {
 
-            } else {
-                throw new Error("Playlist.addTracks: Invalid Parameter \"tracks\"");
-            }
-        } catch (error) {
-            throw error;
-        }
-    },
+    //         } else {
+    //             throw new Error("Playlist.addTracks: Invalid Parameter \"tracks\"");
+    //         }
+    //     } catch (error) {
+    //         throw error;
+    //     }
+    // },
 };
-
-
 
 Playlist.addMethods = addMethods;
 
 Playlist.override = override;
+
+Playlist.getPlaylist()
 
 // Export
 module.exports = Playlist;
