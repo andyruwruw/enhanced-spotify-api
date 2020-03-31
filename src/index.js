@@ -17,4 +17,12 @@ module.exports = {
     Albums: require('./structures/Albums'),
     Playlist: require('./structures/Playlist'),
     Playlists: require('./structures/Playlists'),
+    Category: require('./structures/Category'),
+    Categories: require('./structures/Categories'),
+    Show: require('./structures/Show'),
+    Shows: require('./structures/Shows'),
+    Episode: require('./structures/Episode'),
+    Episodes: require('./structures/Episodes'),
+    Playback: require('./structures/Playback'),
+    User: require('./structures/User'),
 };

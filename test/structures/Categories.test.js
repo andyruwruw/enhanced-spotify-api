@@ -1,4 +1,4 @@
-const { Track } = require('../../src/index');
+const { Categories } = require('../../src/index');
 const { generateSpotifyWebAPI, generateWrapper } = require('../TestFunctions');
 
 test('Placeholder', () => {

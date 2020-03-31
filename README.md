@@ -1,9 +1,9 @@
-<div align="center">
-    <img width="200px" src="./documentation/logo.svg"/>
-</div>
-<div align="center" style="margin-bottom: 0px;">
-    <img width="500px" src="./documentation/title.svg"/>
-</div>
+<p align="center">
+    <img width="200px" src="https://raw.githubusercontent.com/andyruwruw/enhanced-spotify-api/master/documentation/logo.svg?sanitize=true"/>
+</p>
+<p align="center" style="margin-bottom: 0px;">
+    <img width="500px" src="https://raw.githubusercontent.com/andyruwruw/enhanced-spotify-api/master/documentation/title.svg?sanitize=true"/>
+</p>
 <p align="center" style="margin-top: 0px">Object Oriented Spotify API Wrapper with Extended Functionality.<p>
 <p align="center" style="margin: 0 auto; margin-top: 15px; max-width: 600px">
     <a href="https://melophile.org"><img src="https://img.shields.io/npm/v/enhanced-spotify-api"></a>
@@ -11,26 +11,34 @@
     <a href="https://melophile.org"><img src="https://img.shields.io/github/issues-raw/andyruwruw/enhanced-spotify-api"></a>
 </p>
 
-# Under Development, should be out within a week!
+Under Development, should be out within a week!
 
 # Overview
 
-Spend more of your time making something cool, and less time scouring over Spotify's API documentation.
-
 enhanced-spotify-api is an **object-oriented API wrapper** aimed to **expand available endpoints** for Spotify's API by:
 
-- **Object Oriented** package with Classes for `Track`, `Artist`, `Playlist`, `Multiple Tracks` and more.
+No more *Simplified Objects* when you need *Full Objects*
+
+No more *Paging Objects* when you need *All Playlist Tracks*
+
+Spend more of your time making something cool, and less time scouring over Spotify's API documentation.
+
+- **Object Oriented** package with Classes for `Track`, `Artist`, `Playlist`, and more.
     - Member functions for **all endpoints** relevent to each item.
-    - **Automatic loading of the data** you need when you need it. No more *Simplified* objects and *Full* objects.
+    - **Automatic loading of the data** you need when you need it. 
     - Retrieving data in as **few requests as possible**.
+
 - **Grouping relevent requests together** into more complicated requests.
+
 - **Add and Override Methods!** Complete customization of Classes available for your own uses. 
-- Providing all the original functionality of [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node).
+
+- Providing **all the original functionality** of [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node).
 
 # Visit the Official Website / Documentation
-## Under Progress Still
-## [enhancedspotifyapi.com](enhancedspotifyapi.com)
 
+Under Progress Still
+
+## [enhancedspotifyapi.com](enhancedspotifyapi.com)
 
 # Why Use enhanced-spotify-api?
 
@@ -40,7 +48,9 @@ Sometimes I got a *Simplfied Track Object* from this request but needed a *Full 
 
 Sometimes I needed all the tracks from an Album but had to run through a *Paging Object* with a while loop to retrieve them all.
 
-I built these Data Access Classes and realized they could be really useful to the community. I had a lot of customizations only relevant to me (Attatching to Mongo Database) so I made it customizable as well!
+I built these Data Access Classes and realized they could be really useful to the community. 
+
+I had a lot of customizations only relevant to me (Attatching to Mongo Database) so I made it customizable as well!
 
 # Features
 

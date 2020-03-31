@@ -219,7 +219,7 @@ Tracks.prototype = {
      * @param {function} method Method to filter by.
      * @returns {Tracks} Filtered Tracks object.
      */
-    filter: (method) => {
+    filter: async (method) => {
         try {
             if (typeof(method) != 'function') {
                 throw new Error("Tracks.filter: \"method\" is not a function"); 
@@ -324,7 +324,7 @@ Tracks.prototype = {
      * 
      * @param {function} method Function to be run on each item.
      */
-    forEach: (method) => {
+    forEach: async (method) => {
         try {
             if (typeof(method) != 'function') {
                 throw new Error("Tracks.forEach: \"method\" is not a function"); 

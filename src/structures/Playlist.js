@@ -421,7 +421,9 @@ Playlist.addMethods = addMethods;
 
 Playlist.override = override;
 
-Playlist.getPlaylist()
+Playlist.getPlaylist = () => {
+    return 0;
+}
 
 // Export
 module.exports = Playlist;

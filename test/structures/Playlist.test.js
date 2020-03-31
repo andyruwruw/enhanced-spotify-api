@@ -1,1 +1,6 @@
-const Playlist = require('../../src/structures/Playlist');
+const { Playlist } = require('../../src/index');
+const { generateSpotifyWebAPI, generateWrapper } = require('../TestFunctions');
+
+test('Placeholder', () => {
+    expect({ hello: "hi "}).toStrictEqual({ hello: "hi "});
+});
