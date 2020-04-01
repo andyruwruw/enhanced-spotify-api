@@ -468,21 +468,23 @@ Track.prototype = {
      * Returns recommendations for track.
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
-     * @param {number} limit Number of tracks to retrieve. 
      * @param {object} options Optional additional options.
      * @returns {Tracks} Track Instance with recommended tracks.
      */
     getRecommendations: async (wrapper, limit, options) => {
         try {
-            let passedOptions = { seed_tracks: this.id, limit: (limit != null) ? limit : 20 };
-            if (options != null && typeof(options) == 'object') {
-                for (let property in options) {
-                    passedOptions[property] = options[property];
-                }
-            } else {
+            if (options != null && typeof(options) != 'object') {
                 throw new Error("Track.getRecommendations: Invalid Parameter \"options\"");
             }
-            let response = await wrapper.getRecommendations(passedOptions);
+            let _options = options ? options : {};
+            if ('seed_artists' in _options) {
+                delete _options.seed_artists;
+            }
+            if ('seed_genres' in _options) {
+                delete _options.seed_artists;
+            }
+            _options.seed_tracks = this.id;
+            let response = await wrapper.getRecommendations(_options);
             return new Track.Tracks(response.body.tracks);
         } catch (error) {
             throw error;
@@ -494,36 +496,35 @@ Track.prototype = {
      * Returns recommendations for track with added target on audio feature values.
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
-     * @param {number} limit Number of tracks to retrieve. 
      * @param {object} options Optional additional options.
      * @returns {Tracks} Track Instance with recommended tracks.
      */
-    getRecommendationWithAudioFeatures: async (wrapper, limit, options) => {
+    getRecommendationWithAudioFeatures: async (wrapper, options) => {
         try {
+            if (options != null && typeof(options) != 'object') {
+                throw new Error("Track.getRecommendations: Invalid Parameter \"options\"");
+            }
             if (!(await this.containsAudioFeatures())) {
                 await this.retrieveAudioFeatures(wrapper);
             }
-            let options = { 
-                seed_tracks: this.id, 
-                limit: (limit != null) ? limit : 20,
-                target_acousticness: this.acousticness,
-                target_danceability: this.danceability,
-                target_energy: this.energy,
-                target_instrumentalness: this.instrumentalness,
-                target_liveness: this.liveness,
-                target_mode: this.mode,
-                target_speechiness: this.speechiness,
-                target_tempo: this.tempo,
-                target_valence: this.valence,
-            };
-            if (options != null && typeof(options) == 'object') {
-                for (let property in options) {
-                    passedOptions[property] = options[property];
-                }
-            } else {
-                throw new Error("Track.getRecommendations: Invalid Parameter \"options\"");
+            let _options = options ? options : {};
+            if ('seed_artists' in _options) {
+                delete _options.seed_artists;
             }
-            let response = await wrapper.getRecommendations(options);
+            if ('seed_genres' in _options) {
+                delete _options.seed_artists;
+            }
+            _options.seed_tracks = this.id;
+            _options.target_acousticness = this.acousticness;
+            _options.target_danceability = this.danceability;
+            _options.target_energy = this.energy;
+            _options.target_instrumentalness = this.instrumentalness;
+            _options.target_liveness = this.liveness;
+            _options.target_mode = this.mode;
+            _options.target_speechiness = this.speechiness;
+            _options.target_tempo = this.tempo;
+            _options.target_valence = this.valence;
+            let response = await wrapper.getRecommendations(_options);
             return new Track.Tracks(response.body.tracks);
         } catch (error) {
             throw error;

@@ -223,7 +223,7 @@ Album.prototype = {
     getCurrentData: () => {
         try {
             let data = { id: this.id, type: 'album' };
-            let properties = ['id', 'name', 'album_type', 'artists', 'available_markets', 'copyrights', 'external_ids', 'external_urls', 'genres', 'href', 'images', 'label', 'popularity', 'release_date', 'release_date_precision', 'restrictions', 'tracks', 'uri', '_tracks'];
+            let properties = ['name', 'album_type', 'artists', 'available_markets', 'copyrights', 'external_ids', 'external_urls', 'genres', 'href', 'images', 'label', 'popularity', 'release_date', 'release_date_precision', 'restrictions', 'tracks', 'uri', '_tracks'];
             for (let i = 0; i < properties.length; i++) {
                 if (this[properties[i]] != null) {
                     data[properties[i]] = this[properties[i]];
@@ -292,7 +292,6 @@ Album.prototype = {
      */
     retrieveTracks: async (wrapper) => {
         try {
-            this.tracksRetrieved = true;
             let options = { limit: 50, offset: 0 };
             let response;
             do {

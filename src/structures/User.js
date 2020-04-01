@@ -346,7 +346,7 @@ User.getUser = async (wrapper, userId) => {
  * Returns User object of Current User
  * 
  * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
- * @returns {User} User of current user..
+ * @returns {User} User of current user.
  */
 User.getMe = async (wrapper) => {
     try {

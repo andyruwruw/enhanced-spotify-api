@@ -2,9 +2,27 @@
 
 var { addMethods, override } = require('./shared');
 
-function Albums(albums) {
+ /**
+ * Constructor
+ * Creates a new Albums Instance.
+ * 
+ * @param {Array | Album | object | string} data (optional) Data to be preloaded. Single or multiple albums.
+ */
+function Albums(data) {
     try {
-        
+        this.items = {};
+        this.order = [];
+        if (data) {
+            if (data instanceof Array)  {
+                for (let i = 0; i < data.length; i++) {
+                    this.push(data[i]);
+                }
+            } else if (data instanceof Albums.Album || typeof(data) == 'string' || typeof(data) == 'object') {
+                this.push(data);
+            } else {
+                throw new Error("Tracks.constructor: Invalid Parameter \"data\"");
+            }
+        }
     } catch (error) {
         throw error;
     }
@@ -416,18 +434,10 @@ Albums.prototype = {
      */
     sortSafe: async (wrapper, order, property) => {
         try {
-            let fullObject = ["name", "album", "artists", "available_markets", "disc_number", "duration_ms", "explicit", "external_ids", "external_urls", "href", "is_playable", "linked_from", "restrictions", "popularity", "preview_url", "album_number", "uri", "is_local"];
-            let audioFeatures = ["duration_ms","key","mod","time_signature","acousticness","danceability","energy","instrumentalness","liveness","loudness","speechiness","valence","tempo","uri","album_href","analysis_url"];
-            let audioAnalysis = [ "bars", "beats", "sections", "segments", "tatums", "album"];
+            let fullObject = ['id', 'name', 'album_type', 'artists', 'available_markets', 'copyrights', 'external_ids', 'external_urls', 'genres', 'href', 'images', 'label', 'popularity', 'release_date', 'release_date_precision', 'restrictions', 'tracks', 'uri', '_tracks'];
             let propertyPrior = property.split('.')[0];
             if (fullObject.includes(propertyPrior)) {
                 await this.retrieveFullObjects(wrapper);
-            } else if (audioFeatures.includes(propertyPrior)) {
-                await this.retrieveAudioFeatures(wrapper);
-            } else if (audioAnalysis.includes(propertyPrior)) {
-                for (let album in this.items) {
-                    await this.items[album].retrieveAudioAnalysis(wrapper);
-                }
             } else {
                 for (let album in this.items) {
                     if (!(property in this.items[album])) {

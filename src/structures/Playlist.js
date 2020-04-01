@@ -12,7 +12,7 @@ function Playlist(data) {
     try {
         if (typeof(data) == 'string') {
             this.id = data;
-            this._tracks = new Playlist.Tracks();
+            this._tracks = new Album.Tracks();
         } else if (typeof(data) == 'object') {
             this.id = 'id' in data ? data.id : null;
             this.name = 'name' in data ? data.name : null;
@@ -35,7 +35,7 @@ function Playlist(data) {
                     this.loadTracks(data.tracks);
                 }
             }
-        } else if (data instanceof Playlist.Tracks) {
+        } else if (data instanceof Playlist.Tracks()) {
             this._tracks = data;
         } else {
             this._tracks = new Playlist.Tracks();
@@ -60,6 +60,9 @@ Playlist.prototype = {
      */
     play: async (wrapper, options) => {
         try {
+            if (this.id == null) {
+                throw new Error("Playlist.play: Playlist ID not set. Either not created or not provided");
+            }
             let _options = options ? options : {};
             _options.context_uri = 'spotify:playlist:' + this.id;
             return await wrapper.play(_options);
@@ -77,6 +80,9 @@ Playlist.prototype = {
      */
     isFollowed: async (wrapper) => {
         try {
+            if (this.id == null) {
+                throw new Error("Playlist.isFollowed: Playlist ID not set. Either not created or not provided");
+            }
             let userID = await (await wrapper.getMe()).body.id;
             let response = await wrapper.areFollowingPlaylist([this.id], [userID]);
             return response.body[0];
@@ -95,6 +101,9 @@ Playlist.prototype = {
      */
     areFollowing: async (wrapper, userIds) => {
         try {
+            if (this.id == null) {
+                throw new Error("Playlist.areFollowing: Playlist ID not set. Either not created or not provided");
+            }
             let response = await wrapper.areFollowingPlaylist([this.id], userIds);
             return response.body;
         } catch (error) {
@@ -110,6 +119,9 @@ Playlist.prototype = {
      */
     follow: async (wrapper) => {
         try {
+            if (this.id == null) {
+                throw new Error("Playlist.follow: Playlist ID not set. Either not created or not provided");
+            }
             return await wrapper.followPlaylist([this.id]);
         } catch (error) {
             throw error;
@@ -124,6 +136,9 @@ Playlist.prototype = {
      */
     unfollow: async (wrapper) => {
         try {
+            if (this.id == null) {
+                throw new Error("Playlist.unfollow: Playlist ID not set. Either not created or not provided");
+            }
             return await wrapper.unfollowPlaylist([this.id]);
         } catch (error) {
             throw error;
@@ -226,13 +241,12 @@ Playlist.prototype = {
     getCurrentData: () => {
         try {
             let data = { id: this.id, type: 'playlist' };
-            let properties = ["collaborative", "description", "external_urls", "followers", "href", "images", "name", "owner", "public", "snapshot_id", "tracks", "uri"];
+            let properties = ['collaborative', 'description', 'external_urls', 'followers', 'href', 'images', 'name', 'owner', 'public', 'snapshot_id', 'tracks', 'uri', '_tracks'];
             for (let i = 0; i < properties.length; i++) {
                 if (this[properties[i]] != null) {
                     data[properties[i]] = this[properties[i]];
                 }
             }
-            data._tracks = this._tracks;
             return data;
         } catch (error) {
             throw error;
@@ -248,7 +262,9 @@ Playlist.prototype = {
      */
     getTracks: async (wrapper) => {
         try {
-            await this.retrieveTracks(wrapper);
+            if (this.id != null) {
+                await this.retrieveTracks(wrapper);
+            }
             return await this._tracks;
         } catch (error) {
             throw error;
@@ -264,8 +280,172 @@ Playlist.prototype = {
      */
     getArtists: async (wrapper) => {
         try {
-            await this.retrieveTracks(wrapper);
+            if (this.id != null) {
+                await this.retrieveTracks(wrapper);
+            }
             return await this._tracks.getArtists(wrapper);
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Get Playlist Albums
+     * Returns Albums object with all playlist albums. Retrieves if nessisary.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @returns {Albums} Albums instance with all playlist albums.
+     */
+    getAlbums: async (wrapper) => {
+        try {
+            if (this.id != null) {
+                await this.retrieveTracks(wrapper);
+            }
+            return await this._tracks.getAlbums(wrapper);
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Change Playlist Details
+     * Changes an existing playlists base details.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {object} options (Optional) Additional options.
+     */
+    changeDetails: async (wrapper, options) => {
+        try {
+            if (this.id == null) {
+                throw new Error("Playlist.changeDetails: Playlist ID not set. Either not created or not provided");
+            }
+            let _options = {
+                name: 'name' in options ? options.name : this.name,
+                public: 'public' in options ? options.public : this.public,
+                collaborative: 'collaborative' in options ? options.collaborative : this.collaborative,
+                description: 'description' in options ? options.description : this.description,
+            }
+            await wrapper.changePlaylistDetails(this.id, _options);
+            this.name = 'name' in options ? options.name : this.name;
+            this.public = 'public' in options ? options.public : this.public;
+            this.collaborative = 'collaborative' in options ? options.collaborative : this.collaborative;
+            this.description = 'description' in options ? options.description : this.description;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Add tracks
+     * Adds new tracks to a playlist.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Array | string | Track | object} tracks Tracks to be added
+     * @param {object} options (Optional) Additional options.
+     */
+    addTracks: async (wrapper, tracks, options) => {
+        try {
+            if (this.id == null) {
+                throw new Error("Playlist.addTracks: Playlist ID not set. Either not created or not provided");
+            }
+            let tracksClass = new Playlist.Tracks(tracks);
+            let response = await wrapper.addTracksToPlaylist(this.id, await tracksClass.getURIs(), options ? options : {});
+            this.snapshot_id = response.body.snapshot_id;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Remove tracks
+     * Removes tracks from a playlist.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Array | string | Track | object} tracks Tracks to be added
+     */
+    removeTracks: async (wrapper, tracks) => {
+        try {
+            if (this.id == null) {
+                throw new Error("Playlist.removeTracks: Playlist ID not set. Either not created or not provided");
+            }
+            let tracksClass = new Playlist.Tracks(tracks);
+            let response = await wrapper.removeTracksFromPlaylistWithSnapshotId(this.id, await tracksClass.getURIs(), this.snapshot_id);
+            this.snapshot_id = response.body.snapshot_id;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Remove tracks by index
+     * Removes tracks by index from a playlist.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Array} positions Indexes to be removed
+     */
+    removeTrackIndexes: async (wrapper, positions) => {
+        try {
+            if (this.id == null) {
+                throw new Error("Playlist.removeTrackIndexes: Playlist ID not set. Either not created or not provided");
+            }
+            let response = await wrapper.removeTracksFromPlaylistInPositions(this.id, positions, this.snapshot_id);
+            this.snapshot_id = response.body.snapshot_id;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Upload Custom Image
+     * Updates playlist custom cover image.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {string} imageData New image. Base64 encoded JPEG image data, maximum payload size is 256 KB.
+     */
+    uploadCustomPlaylistCoverImage: async (wrapper, imageData) => {
+        try {
+            await wrapper.uploadCustomPlaylistCoverImage(this.id, imageData);
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Replace tracks
+     * Repleaces tracks in a playlist.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Array | string | Track | object} tracks Tracks to be added
+     */
+    replaceTracks: async (wrapper, tracks) => {
+        try {
+            if (this.id == null) {
+                throw new Error("Playlist.replaceTracks: Playlist ID not set. Either not created or not provided");
+            }
+            let tracksClass = new Playlist.Tracks(tracks);
+            let response = await wrapper.replaceTracksInPlaylist(this.id, await tracksClass.getURIs());
+            this.snapshot_id = response.body.snapshot_id;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Replace tracks
+     * Replaces tracks in a playlist.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {number} range_start Where to select
+     * @param {number} insert_before Where to place
+     * @param {object} options (Optional) Additional options.
+     */
+    reorderTracks: async (wrapper, range_start, insert_before, options) => {
+        try {
+            if (this.id == null) {
+                throw new Error("Playlist.reorderTracks: Playlist ID not set. Either not created or not provided");
+            }
+            let response = await wrapper.reorderTracksInPlaylist(this.id, range_start, insert_before, options ? options : {});
+            this.snapshot_id = response.body.snapshot_id;
         } catch (error) {
             throw error;
         }
@@ -279,20 +459,11 @@ Playlist.prototype = {
      */
     retrieveFullObject: async (wrapper) => {
         try {
-            let response = await wrapper.getArtist(this.id);
-            this.collaborative = response.body.collaborative;
-            this.description = response.body.description;
-            this.external_urls = response.body.external_urls;
-            this.followers = response.body.followers;
-            this.href = response.body.href;
-            this.images = response.body.images;
-            this.name = response.body.name;
-            this.owner = response.body.owner;
-            this.public = response.body.public;
-            this.snapshot_id = response.body.snapshot_id;
-            this.uri = response.body.uri;
-            this.tracks = response.body.tracks;
-            await this.loadTracks(response.body.tracks.items);
+            if (this.id == null) {
+                throw new Error("Playlist.retrieveFullObject: Playlist ID not set. Either not created or not provided");
+            }
+            let response = await wrapper.getPlaylist(this.id);
+            await this.loadFullObject(response.body);
         } catch (error) {
             throw error;
         }
@@ -306,6 +477,10 @@ Playlist.prototype = {
      */
     retrieveTracks: async (wrapper) => {
         try {
+            if (this.id == null) {
+                throw new Error("Playlist.retrieveTracks: Playlist ID not set. Either not created or not provided");
+            }
+            this._tracks = new Playlist.Tracks();
             let options = { limit: 50, offset: 0 };
             let response;
             do {
@@ -337,11 +512,13 @@ Playlist.prototype = {
             this.public = data.public;
             this.snapshot_id = data.snapshot_id;
             this.uri = data.uri;
-            this.tracks = data.tracks;
-            if ('items' in data.tracks) {
-                await this.loadTracks(data.tracks.items);
-            } else {
-                await this.loadTracks(data.tracks);
+            if ('tracks' in data) {
+                this.tracks = data.tracks;
+                if ('items' in data.tracks) {
+                    await this.loadTracks(data.tracks.items);
+                } else {
+                    await this.loadTracks(data.tracks);
+                }
             }
         } catch (error) {
             throw error;
@@ -380,24 +557,10 @@ Playlist.prototype = {
      */
     loadTracks: async (tracks) => {
         try {
-            if (tracks instanceof Array) {
-                for (let i = 0; i < tracks.length; i++) {
-                    if (tracks[i] instanceof Playlist.Track) {
-                        this._tracks.add(tracks);
-                    } else if ('added_at' in tracks[i]) {
-                        this._tracks.add(tracks[i].track);
-                    } else {
-                        this._tracks.add(tracks[i]);
-                    }
-                }
+            if (tracks instanceof PLaylist.Tracks || tracks instanceof Array) {
+                this._tracks.concat(tracks);
             } else if (typeof(tracks) == 'object' || typeof(tracks) == 'string') {
-                if (tracks instanceof Playlist.Track) {
-                    this._tracks.add(tracks);
-                } else if ('added_at' in tracks) {
-                    this._tracks.add(tracks.track);
-                } else {
-                    this._tracks.add(tracks);
-                }
+                this._tracks.add(tracks);
             } else {
                 throw new Error("Playlist.loadTracks: Invalid Parameter \"tracks\"");
             }
@@ -405,43 +568,52 @@ Playlist.prototype = {
             throw error;
         }
     },
-
-    // /**
-    //  * Add Tracks
-    //  * Adds tracks to Spotify Playlist
-    //  * 
-    //  * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
-    //  * @param {Tracks | Array | Track | object | string} tracks 
-    //  */
-    // addTracks: async function(wrapper, tracks, position) {
-    //     try {
-    //         if (tracks instanceof Tracks) {
-    //             let uris = tracks.getURIs();
-    //             do {
-    //                 await wrapper.addTracksToPlaylist(this.id, uris.splice(0, 100), { position: position != null ? position : 0 });
-    //             } while (uris.length >= 100);
-    //         } else if (tracks instanceof Array) {
-                
-    //         } else if (tracks instanceof Track || typeof(tracks) == 'object') {
-                
-    //         } else if (typeof(tracks) == 'string') {
-
-    //         } else {
-    //             throw new Error("Playlist.addTracks: Invalid Parameter \"tracks\"");
-    //         }
-    //     } catch (error) {
-    //         throw error;
-    //     }
-    // },
 };
+
+/**
+ * Get Playlist
+ * Returns Playlist object of ID
+ * 
+ * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Array} playlistId Id of playlist.
+ * @returns {Playlist} Playlist from id.
+ */
+Playlist.getPlaylist = async (wrapper, playlistId) => {
+    try {
+        let playlist = new Playlist(playlistId);
+        return await playlist.retrieveFullObjects(wrapper);
+    } catch (error) {
+        throw error;
+    }
+};
+
+/**
+ * Create Playlist
+ * Creates new playlist connected to DAO.
+ * 
+ * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {object} options (Optional) Additional options.
+ */
+Playlist.createPlaylist = async (wrapper, options) => {
+    try {
+        let userID = await (await wrapper.getMe()).body.id;
+        let now = new Date();
+        let _options = {
+            name: 'name' in options ? options.name : "New Playlist: " + (now.getMonth() + 1) + "/" + now.getDate(),
+            public: 'public' in options ? options.public : true,
+            collaborative: 'collaborative' in options ? options.collaborative : false,
+            description: 'description' in options ? options.description : "",
+        }
+        let response = await wrapper.createPlaylist(userID, _options);
+        return new Playlist(response.body);
+    } catch (error) {
+        throw error;
+    }
+},
 
 Playlist.addMethods = addMethods;
 
 Playlist.override = override;
-
-Playlist.getPlaylist = () => {
-    return 0;
-}
 
 // Export
 module.exports = Playlist;
