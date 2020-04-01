@@ -7,6 +7,7 @@ Wrapper.prototype = {
     ...require('spotify-web-api-node').prototype,
     // Missing Endpoints
     ...require('./functions/Shows'),
+    ...require('./functions/Episodes')
 }
 
 module.exports = {

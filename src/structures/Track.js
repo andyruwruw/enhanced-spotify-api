@@ -212,7 +212,7 @@ Track.prototype = {
                 track_number: this.track_number,
                 uri: this.uri,
                 is_local: this.is_local,
-                type: "track",
+                type: 'track',
             };
         } catch (error) {
             throw error;
@@ -417,7 +417,7 @@ Track.prototype = {
     getCurrentData: () => {
         try {
             let data = { id: this.id, type: 'track' };
-            let properties = ['id', 'name', 'album', 'artists', 'available_markets', 'disc_number', 'explicit', 'external_ids', 'external_urls', 'href', 'is_playable', 'linked_from', 'restrictions', 'popularity', 'preview_url', 'track_number', 'uri', 'is_local', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'valence', 'tempo', 'track_href', 'analysis_url', 'bars', 'beats', 'sections', 'segments', 'tatums', 'track'];
+            let properties = ['name', 'album', 'artists', 'available_markets', 'disc_number', 'explicit', 'external_ids', 'external_urls', 'href', 'is_playable', 'linked_from', 'restrictions', 'popularity', 'preview_url', 'track_number', 'uri', 'is_local', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'valence', 'tempo', 'track_href', 'analysis_url', 'bars', 'beats', 'sections', 'segments', 'tatums', 'track'];
             for (let i = 0; i < properties.length; i++) {
                 if (this[properties[i]] != null) {
                     data[properties[i]] = this[properties[i]];
@@ -649,24 +649,7 @@ Track.prototype = {
                 return;
             }
             let response = await wrapper.getTrack(this.id);
-            this.name = response.body.name;
-            this.album = response.body.album;
-            this.artists = response.body.artists;
-            this.available_markets = response.body.available_markets;
-            this.disc_number = response.body.disc_number;
-            this.duration_ms = response.body.duration_ms;
-            this.explicit = response.body.explicit;
-            this.external_ids = response.body.external_ids;
-            this.external_urls = response.body.external_urls;
-            this.href = response.body.href;
-            this.is_playable = response.body.is_playable;
-            this.linked_from = response.body.linked_from;
-            this.restrictions = response.body.restrictions;
-            this.popularity = response.body.popularity;
-            this.preview_url = response.body.preview_url;
-            this.track_number = response.body.track_number;
-            this.uri = response.body.uri;
-            this.is_local = response.body.is_local;
+            await this.loadFullObject(response.body);
         } catch (error) {
             throw error;
         }
@@ -684,22 +667,7 @@ Track.prototype = {
                 return;
             }
             let response = await wrapper.getAudioFeaturesForTrack(this.id);
-            this.duration_ms = response.body.duration_ms;
-            this.key = response.body.key;
-            this.mode = response.body.mode;
-            this.time_signature = response.body.time_signature;
-            this.acousticness = response.body.acousticness;
-            this.danceability = response.body.danceability;
-            this.energy = response.body.energy;
-            this.instrumentalness = response.body.instrumentalness;
-            this.liveness = response.body.liveness;
-            this.loudness = response.body.loudness;
-            this.speechiness = response.body.speechiness;
-            this.valence = response.body.valence;
-            this.tempo = response.body.tempo;
-            this.uri = response.body.url;
-            this.track_href = response.body.track_href;
-            this.analysis_url = response.body.analysis_url;
+            await this.loadAudioFeatures(response.body);
         } catch (error) {
             throw error;
         }
@@ -717,12 +685,7 @@ Track.prototype = {
                 return;
             }
             let response = await wrapper.getAudioAnalysisForTrack(this.id);
-            this.bars = response.body.bars;
-            this.beats = response.body.beats;
-            this.sections = response.body.sections;
-            this.segments = response.body.segments;
-            this.tatums = response.body.tatums;
-            this.track = response.body.track;
+            await this.loadAudioAnalysis(response.body);
         } catch (error) {
             throw error;
         }
@@ -734,7 +697,7 @@ Track.prototype = {
  * Returns Track object of ID
  * 
  * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
- * @param {Array} trackId Id of track.
+ * @param {string} trackId Id of track.
  * @returns {Track} Track from id.
  */
 Track.getTrack = async (wrapper, trackId) => {

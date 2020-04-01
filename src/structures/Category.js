@@ -37,7 +37,6 @@ Category.prototype = {
      * Plays category on user's active device.
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
-     * @param {object} options (Optional) Additional options.
      */
     play: async (wrapper) => {
         try {
@@ -148,9 +147,7 @@ Category.prototype = {
     retrieveFullObject: async(wrapper) => {
         try {
             let response = await wrapper.getCategory(this.id, {});
-            this.name = response.body.name;
-            this.href = response.body.href;
-            this.icons = response.body.icons;
+            this.loadFullObject(response.body);
         } catch (error) {
             throw error;
         }

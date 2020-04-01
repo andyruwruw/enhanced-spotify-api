@@ -86,6 +86,23 @@ Playlist.prototype = {
     },
 
     /**
+     * Are Followed
+     * Returns whether an playlist is followed by a set of users.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {array} userIds User IDs to check if they're following
+     * @returns {boolean} Whether playlist is followed by a set of users.
+     */
+    areFollowing: async (wrapper, userIds) => {
+        try {
+            let response = await wrapper.areFollowingPlaylist([this.id], userIds);
+            return response.body;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
      * Follow Playlist
      * Follows playlist.
      * 

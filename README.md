@@ -6,39 +6,45 @@
 </p>
 <p align="center" style="margin-top: 0px">Object Oriented Spotify API Wrapper with Extended Functionality.<p>
 <p align="center" style="margin: 0 auto; margin-top: 15px; max-width: 600px">
-    <a href="https://melophile.org"><img src="https://img.shields.io/npm/v/enhanced-spotify-api"></a>
-    <a href="#"><img src="https://img.shields.io/npm/dt/enhanced-spotify-api"/></a>
-    <a href="https://melophile.org"><img src="https://img.shields.io/github/issues-raw/andyruwruw/enhanced-spotify-api"></a>
+    <a href="https://melophile.org"><img src="https://img.shields.io/npm/v/enhanced-spotify-api?color=%23d400b0"></a>
+    <a href="#"><img src="https://img.shields.io/npm/dt/enhanced-spotify-api?color=%238514e0"/></a>
+    <a href="https://melophile.org"><img src="https://img.shields.io/github/issues-raw/andyruwruw/enhanced-spotify-api?color=%2300b4d4"></a>
 </p>
 
-Under Development, should be out within a week!
+
 
 # Overview
 
-enhanced-spotify-api is an **object-oriented API wrapper** aimed to **expand available endpoints** for Spotify's API by:
+- No more **Simplified Objects** when you need **Full Objects**
 
-No more *Simplified Objects* when you need *Full Objects*
+- No more **Paging Objects** when you need **All Playlist Tracks**
 
-No more *Paging Objects* when you need *All Playlist Tracks*
+enhanced-spotify-api is an object-oriented API wrapper aimed to expand available endpoints for Spotify's API.
 
 Spend more of your time making something cool, and less time scouring over Spotify's API documentation.
 
-- **Object Oriented** package with Classes for `Track`, `Artist`, `Playlist`, and more.
-    - Member functions for **all endpoints** relevent to each item.
-    - **Automatic loading of the data** you need when you need it. 
-    - Retrieving data in as **few requests as possible**.
+### Unique Features:
 
-- **Grouping relevent requests together** into more complicated requests.
+- Object Oriented package with Classes for `Track`, `Artist`, `Playlist`, and more.
+    - Member functions for all endpoints relevent to each item.
+    - Automatic loading of the data you need when you need it. 
+    - Retrieving data in as few requests as possible.
 
-- **Add and Override Methods!** Complete customization of Classes available for your own uses. 
+- Add and Override Methods! Customize to your hearts content. 
+    - I don't know what you need it for, so do your thing my dude.
 
-- Providing **all the original functionality** of [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node).
+- Grouping relevent requests together into more complicated requests.
+    - *What's the average danceability of my whole library?*
+    - *Re-order my playlist so it increases in energy over time.*
+    - *(If you're gross) Get all my track's artist's album's songs and play them.*
+
+- Providing all the original functionality of [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node).
+    - Added missing endpoints for shows and episodes (Just released 3/2020). 
+        - I sent pull requests to update [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node) and [spotify-web-api-js](https://github.com/JMPerez/spotify-web-api-js).
 
 # Visit the Official Website / Documentation
 
-Under Progress Still
-
-## [enhancedspotifyapi.com](enhancedspotifyapi.com)
+## [enhancedspotifyapi.com](http://enhancedspotifyapi.com)
 
 # Why Use enhanced-spotify-api?
 
@@ -52,7 +58,7 @@ I built these Data Access Classes and realized they could be really useful to th
 
 I had a lot of customizations only relevant to me (Attatching to Mongo Database) so I made it customizable as well!
 
-# Features
+# Detailed Features
 
 ### Data Access Classes:
 
@@ -76,12 +82,12 @@ I had a lot of customizations only relevant to me (Attatching to Mongo Database)
 - Artists (Multiple Artists)
 - Albums (Multiple Albums)
 - Playlists (Multiple Playlists)
+- Shows
 - Episodes (Multiple Episodes)
 - Categories (Multiple Categories)
 
 
 # Coming Features
-- All Functionality of **spotify-web-api**
 - Process User's Entire Library
     - Averages of Audio Features in Library
     - Distribution of Audio Features in Library

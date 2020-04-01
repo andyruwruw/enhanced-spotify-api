@@ -49,7 +49,53 @@ function Show(data) {
     }
 }
 
+Show.Episodes = require('./Episodes');
+
 Show.prototype = {
+    /**
+     * Is Liked
+     * Returns whether a show is saved to the user's library.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @returns {boolean} Whether show is saved to the user's library.
+     */
+    isLiked: async (wrapper) => {
+        try {
+            let response = await wrapper.containsMySavedShows([this.id]);
+            return response.body[0];
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Like Show
+     * Adds show to the user's library.
+     * 
+     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     */
+    like: async (wrapper) => {
+        try {
+            return await wrapper.addToMySavedShows([this.id]);
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+    * Unlike Show
+    * Removes show from the user's library.
+    * 
+    * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+    */
+    unlike: async (wrapper) => {
+        try {
+            return await wrapper.removeFromMySavedShows([this.id]);
+        } catch (error) {
+            throw error;
+        }
+    },
+
     /**
      * Contains Full Object
      * Returns boolean whether full object data is present.
@@ -150,7 +196,7 @@ Show.prototype = {
     getCurrentData: () => {
         try {
             let data = { id: this.id, type: 'album' };
-            let properties = ['id', 'name', 'available_markets', 'copyrights', 'description', 'explicit', 'episodes', 'external_urls', 'href', 'images', 'is_externally_hosted', 'languages', 'media_type', 'publisher', 'uri', '_episodes'];
+            let properties = ['name', 'available_markets', 'copyrights', 'description', 'explicit', 'episodes', 'external_urls', 'href', 'images', 'is_externally_hosted', 'languages', 'media_type', 'publisher', 'uri', '_episodes'];
             for (let i = 0; i < properties.length; i++) {
                 if (this[properties[i]] != null) {
                     data[properties[i]] = this[properties[i]];
@@ -187,27 +233,7 @@ Show.prototype = {
     retrieveFullObject: async (wrapper) => {
         try {
             let response = await wrapper.getShow(this.id);
-            this.name = response.data.name;
-            this.available_markets = response.data.available_markets;
-            this.copyrights = response.data.copyrights;
-            this.description = response.data.description;
-            this.explicit = response.data.explicit;
-            this.episodes = response.data.episodes;
-            this.external_urls = response.data.external_urls;
-            this.href = response.data.href;
-            this.images = response.data.images;
-            this.is_externally_hosted = response.data.is_externally_hosted;
-            this.languages = response.data.languages;
-            this.media_type = response.data.media_type;
-            this.publisher = response.data.publisher;
-            this.uri = response.data.uri;
-            if ('episodes' in response.data) {
-                if ('items' in response.data.episodes) {
-                    this.loadEpisodes(response.data.episodes.items);
-                } else if (response.data.episodes instanceof Array) {
-                    this.loadEpisodes(response.data.episodes);
-                }
-            }
+            await this.loadFullObject(response.body);
         } catch (error) {
             throw error;
         }
@@ -221,7 +247,13 @@ Show.prototype = {
      */
     retrieveEpisodes: async (wrapper) => {
         try {
-            
+            let options = { limit: 50, offset: 0 };
+            let response;
+            do {
+                response = await wrapper.getShowEpisodes(this.id, options);
+                await this.loadEpisodes(response.body.items);
+                options.offset += 50;
+            } while (!(response.body.items.length < 50));
         } catch (error) {
             throw error;
         }

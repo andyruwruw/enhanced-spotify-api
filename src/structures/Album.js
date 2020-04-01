@@ -278,24 +278,7 @@ Album.prototype = {
     retrieveFullObject: async (wrapper) => {
         try {
             let response = await wrapper.getAlbum(this.id);
-            this.name = response.body.name;
-            this.album_type = response.body.album_type;
-            this.artists = response.body.artists;
-            this.available_markets = response.body.available_markets;
-            this.copyrights = response.body.copyrights;
-            this.external_ids = response.body.external_ids;
-            this.external_urls = response.body.external_urls;
-            this.genres = response.body.genres;
-            this.href = response.body.href;
-            this.images = response.body.images;
-            this.label = response.body.label;
-            this.popularity = response.body.popularity;
-            this.release_date = response.body.release_date;
-            this.release_date_precision = response.body.release_date_precision;
-            this.restrictions = response.body.restrictions;
-            this.tracks = response.body.tracks;
-            await this.loadTracks(response.body.tracks.items);
-            this.uri = response.body.uri;
+            await this.loadFullObject(response.body);
         } catch (error) {
             throw error;
         }

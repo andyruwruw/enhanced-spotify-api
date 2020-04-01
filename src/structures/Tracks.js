@@ -8,19 +8,19 @@ var { addMethods, override } = require('./shared');
  * 
  * @param {Array | Track | object | string} data (optional) Data to be preloaded. Single or multiple tracks.
  */
-function Tracks(tracks) {
+function Tracks(data) {
     try {
         this.items = {};
         this.order = [];
-        if (tracks) {
-            if (tracks instanceof Array)  {
-                for (let i = 0; i < tracks.length; i++) {
-                    this.push(tracks[i]);
+        if (data) {
+            if (data instanceof Array)  {
+                for (let i = 0; i < data.length; i++) {
+                    this.push(data[i]);
                 }
-            } else if (tracks instanceof Track || typeof(tracks) == 'string' || typeof(tracks) == 'object') {
-                this.push(tracks);
+            } else if (data instanceof Tracks.Track || typeof(data) == 'string' || typeof(data) == 'object') {
+                this.push(data);
             } else {
-                throw new Error("Tracks.constructor: Invalid Parameter \"tracks\"");
+                throw new Error("Tracks.constructor: Invalid Parameter \"data\"");
             }
         }
     } catch (error) {
@@ -93,11 +93,11 @@ Tracks.prototype = {
     concat: (tracks) => {
         try {
             if (tracks instanceof Tracks) {
-                for (let track in tracks.tracks) {
+                for (let track in tracks.items) {
                     if (!(track in this.items)) {
-                        this.items[track] = tracks.tracks[track];
+                        this.items[track] = tracks.items[track];
                     }
-                    this.order.push(tracks.tracks[track].id);
+                    this.order.push(tracks.items[track].id);
                 }
             } else if (tracks instanceof Array) {
                 for (let i = 0; i < tracks.length; i++) {
@@ -339,7 +339,7 @@ Tracks.prototype = {
 
     /**
      * Reverse
-     * Reverses order of tracks
+     * Reverses order of items
      */
     reverse: () => {
         try {
@@ -351,9 +351,9 @@ Tracks.prototype = {
 
     /**
      * Pop
-     * Removes last track.
+     * Removes last item.
      * 
-     * @returns {Track} Removed Track
+     * @returns {Track} Removed item
      */
     pop: () => {
         try {
@@ -370,9 +370,9 @@ Tracks.prototype = {
 
     /**
      * Shift
-     * Removes first track.
+     * Removes first item.
      * 
-     * @returns {Track} Removed Track
+     * @returns {Track} Removed item
      */
     shift: () => {
         try {
@@ -700,19 +700,20 @@ Tracks.prototype = {
     },
 
     /**
-     * Get All Tracks's Artists
-     * Returns Artists instance with all tracks's artists.
+     * Get All Track's Artists
+     * Returns Artists instance with all track's artists.
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {Artists}  Artists object of all tracks artists.
+     * @returns {Artists} Artists object of all track's artists.
      */
     getArtists: async (wrapper) => {
         try {
-            await this.retrieveFullObjects(wrapper);
+            await this.retrieveFullObjects(wrapper, 'simplified');
             let artists = new Tracks.Artists();
             for (let track in this.items) {
                 await artists.concat(await this.items[track].getArtists(wrapper));
             }
+            return artists;
         } catch (error) {
             throw error;
         }
@@ -723,15 +724,16 @@ Tracks.prototype = {
      * Returns Albums instance with all track's albums.
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {Albums}  Albums object of all track's albums.
+     * @returns {Albums} Albums object of all track's albums.
      */
     getAlbums: async (wrapper) => {
         try {
-            await this.retrieveFullObjects(wrapper);
+            await this.retrieveFullObjects(wrapper, 'simplified');
             let albums = new Tracks.Albums();
             for (let track in this.items) {
                 await albums.add(await this.items[track].getAlbum(wrapper));
             }
+            return albums;
         } catch (error) {
             throw error;
         }
@@ -971,8 +973,7 @@ Tracks.search = async (wrapper, query, options) => {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Tracks.search: Invalid Parameter \"options\"");
         }
-        let _options = (typeof(options) == 'object') ? options : {};
-        let response = await wrapper.searchTracks(query, _options);
+        let response = await wrapper.searchTracks(query, options ? options : {});
         return new Tracks(response.body.tracks.items);
     } catch (error) {
         throw error;
@@ -992,8 +993,7 @@ Tracks.getRecommendations = async (wrapper, options) => {
         if (options == null || typeof(options) != 'object') {
             throw new Error("Tracks.getRecommendations: Invalid Parameter \"options\"");
         }
-        let _options = (typeof(options) == 'object') ? options : {};
-        let response = await wrapper.getRecommendations(_options);
+        let response = await wrapper.getRecommendations(options ? options : {});
         return new Tracks(response.body.tracks);
     } catch (error) {
         throw error;
@@ -1013,8 +1013,7 @@ Tracks.getMyTopTracks = async (wrapper, options) => {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Tracks.getMyTopTracks: Invalid Parameter \"options\"");
         }
-        let _options = (typeof(options) == 'object') ? options : {};
-        let response = await wrapper.getMyTopTracks(_options);
+        let response = await wrapper.getMyTopTracks(options ? options : {});
         return new Tracks(response.body.items);
     } catch (error) {
         throw error;
@@ -1034,8 +1033,7 @@ Tracks.getMyRecentlyPlayedTracks = async (wrapper, options) => {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Tracks.getMyRecentlyPlayedTracks: Invalid Parameter \"options\"");
         }
-        let _options = (typeof(options) == 'object') ? options : {};
-        let response = await wrapper.getMyRecentlyPlayedTracks(_options);
+        let response = await wrapper.getMyRecentlyPlayedTracks(options ? options : {});
         return new Tracks(response.body.items);
     } catch (error) {
         throw error;
@@ -1055,8 +1053,7 @@ Tracks.getMySavedTracks = async (wrapper, options) => {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Tracks.getMySavedTracks: Invalid Parameter \"options\"");
         }
-        let _options = (typeof(options) == 'object') ? options : {};
-        let response = await wrapper.getMySavedTracks(_options);
+        let response = await wrapper.getMySavedTracks(options ? options : {});
         return new Tracks(response.body.items);
     } catch (error) {
         throw error;
@@ -1065,7 +1062,7 @@ Tracks.getMySavedTracks = async (wrapper, options) => {
 
 /**
  * Get All Saved Tracks
- * Returns saved tracks.
+ * Returns all saved tracks.
  * 
  * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
  * @param {object} options (Optional) Additional options.

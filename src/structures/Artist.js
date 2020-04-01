@@ -184,7 +184,7 @@ Artist.prototype = {
     getCurrentData: () => {
         try {
             let data = { id: this.id, type: 'artist' };
-            let properties = ['id', 'name', 'external_urls', 'followers', 'genres', 'href', 'images', 'popularity', 'uri'];
+            let properties = ['name', 'external_urls', 'followers', 'genres', 'href', 'images', 'popularity', 'uri'];
             for (let i = 0; i < properties.length; i++) {
                 if (this[properties[i]] != null) {
                     data[properties[i]] = this[properties[i]];
@@ -201,7 +201,7 @@ Artist.prototype = {
      * Returns Tracks instance with Artist's top Tracks.
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
-     * @param {string} countryCode Options country code.
+     * @param {string} countryCode (Optional) country code.
      * @returns {Tracks} Tracks instance of artist's top Tracks
      */
     getTopTracks: async (wrapper, countryCode) => {
@@ -342,14 +342,7 @@ Artist.prototype = {
     retrieveFullObject: async (wrapper) => {
         try {
             let response = await wrapper.getArtist(this.id);
-            this.name = response.body.name;
-            this.external_urls = response.body.external_urls;
-            this.followers = response.body.followers;
-            this.genres = response.body.genres;
-            this.href = response.body.href;
-            this.images = response.body.images;
-            this.popularity = response.body.popularity;
-            this.uri = response.body.uri;
+            await this.loadFullObject(response.body);
         } catch (error) {
             throw error;
         }
