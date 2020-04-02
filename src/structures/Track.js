@@ -182,7 +182,7 @@ Track.prototype = {
 
     /**
      * Get Full Object
-     * Returns full track data. Retrieves from Spotify API if nessisary.
+     * Returns full track data. Retrieves from Spotify API if necessary.
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Track Full Object Data.
@@ -221,7 +221,7 @@ Track.prototype = {
 
     /**
      * Get Simplified Object
-     * Returns simplified track data. Retrieves from Spotify API if nessisary.
+     * Returns simplified track data. Retrieves from Spotify API if necessary.
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Track Simplified Object Data.
@@ -257,7 +257,7 @@ Track.prototype = {
 
     /**
      * Get Track Link
-     * Returns track link data. Retrieves from Spotify API if nessisary.
+     * Returns track link data. Retrieves from Spotify API if necessary.
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Track Link Data
@@ -281,7 +281,7 @@ Track.prototype = {
 
     /**
      * Get Audio Feature Data
-     * Returns audio feature data. Retrieves from Spotify API if nessisary.
+     * Returns audio feature data. Retrieves from Spotify API if necessary.
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Track Audio Feature Data
@@ -318,7 +318,7 @@ Track.prototype = {
 
     /**
      * Get Audio Analysis Data
-     * Returns audio analysis data. Retrieves from Spotify API if nessisary.
+     * Returns audio analysis data. Retrieves from Spotify API if necessary.
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Track Audio Analysis Data
@@ -344,7 +344,7 @@ Track.prototype = {
 
     /**
      * Get All Data
-     * Returns all data. Retrieves from Spotify API if nessisary.
+     * Returns all data. Retrieves from Spotify API if necessary.
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} All Track's Data
@@ -502,7 +502,7 @@ Track.prototype = {
     getRecommendationWithAudioFeatures: async (wrapper, options) => {
         try {
             if (options != null && typeof(options) != 'object') {
-                throw new Error("Track.getRecommendations: Invalid Parameter \"options\"");
+                throw new Error("Track.getRecommendationWithAudioFeatures: Invalid Parameter \"options\"");
             }
             if (!(await this.containsAudioFeatures())) {
                 await this.retrieveAudioFeatures(wrapper);
@@ -585,6 +585,22 @@ Track.prototype = {
             this.track_number = data.track_number;
             this.uri = data.uri;
             this.is_local = data.is_local;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Load Link Object
+     * Sets link data (outside constructor).
+     * 
+     * @param {object} data Object with track link object data.
+     */
+    loadLinkObject: (data) => {
+        try {
+            this.external_urls = data.external_urls;
+            this.href = data.href;
+            this.uri = data.uri;
         } catch (error) {
             throw error;
         }

@@ -46,6 +46,8 @@ Spend more of your time making something cool, and less time scouring over Spoti
 
 ## [enhancedspotifyapi.com](http://enhancedspotifyapi.com)
 
+Still a work in progress, should be done this week.
+
 # Why Use enhanced-spotify-api?
 
 After months of working with Spotify's API and [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node), I found myself repeating code just to recieve the data I needed.
@@ -151,3 +153,10 @@ I had a lot of customizations only relevant to me (Attatching to Mongo Database)
             - Distribution of Audio Features
             - Timeline of Audio Features (If you listened from start)
         - Playlists Included In
+
+<p align="center">
+    <img width="300px" src="https://media0.giphy.com/media/O1xeZ4AgSaNBS/giphy.gif"/>
+</p>
+<h2 align="center">Hope you make some cool stuff!</h2>
+
+

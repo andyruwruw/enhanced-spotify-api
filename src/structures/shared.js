@@ -2,12 +2,12 @@
  * Add Methods
  * Adds functionality to Class
  * 
- * @param {object} methods Object with methods as properties.
+ * @param {object} methods Object containing new methods to be added as properties.
  */
 let addMethods = (methods) => {
   try {
     for (var method in methods) {
-      if (methods.hasOwnProperty(method)) {
+      if (!this.prototype.hasOwnProperty(method)) {
         this.prototype[method] = methods[method];
       }
     }
@@ -20,13 +20,13 @@ let addMethods = (methods) => {
  * Override
  * Replaces a method within the class.
  * 
- * @param {string} oldMethod Name of the method to replace.
- * @param {function} newMethod Function to replace old method with.
+ * @param {string} name Name of the method to replace.
+ * @param {function} method Function to replace old method with.
  */
-let override = (oldMethod, newMethod) => {
+let override = (name, method) => {
   try {
-    if (this.prototype.hasOwnProperty(oldMethod)) {
-      this.prototype[oldMethod] = newMethod;
+    if (this.prototype.hasOwnProperty(name)) {
+      this.prototype[name] = method;
     }
   } catch (error) {
     throw error;

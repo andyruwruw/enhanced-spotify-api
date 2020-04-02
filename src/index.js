@@ -1,5 +1,7 @@
 'use strict'
 
+var { addMethods, override } = require('./structures/shared');
+
 function Wrapper() {};
 
 Wrapper.prototype = {
@@ -7,8 +9,12 @@ Wrapper.prototype = {
     ...require('spotify-web-api-node').prototype,
     // Missing Endpoints
     ...require('./functions/Shows'),
-    ...require('./functions/Episodes')
+    ...require('./functions/Episodes'),
 }
+
+User.addMethods = addMethods;
+
+User.override = override;
 
 module.exports = {
     Wrapper: Wrapper,
