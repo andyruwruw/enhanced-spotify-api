@@ -1,13 +1,13 @@
-  /**
-   * Get na Episode
-   * Returns data from API for an episode
-   * 
-   * @param {string} episodeId The episode's ID.
-   * @param {Object} [options] The possible options, currently only market.
-   * @param {requestCallback} [callback] Optional callback method to be called instead of the promise.
-   * @returns {Promise|undefined} A promise that if successful, returns an object containing information about the show. 
-   */
-  let getEpisode = (episodeId, options, callback) => {
+/**
+ * Get an Episode
+ * Returns data from API for an episode
+ * 
+ * @param {string} episodeId The episode's ID.
+ * @param {Object} [options] The possible options, currently only market.
+ * @param {requestCallback} [callback] Optional callback method to be called instead of the promise.
+ * @returns {Promise|undefined} A promise that if successful, returns an object containing information about the show. 
+ */
+let getEpisode = (episodeId, options, callback) => {
     var actualCallback, actualOptions;
     if (typeof options === 'function' && !callback) {
         actualCallback = options;

@@ -50,7 +50,7 @@ Episode.prototype = {
      * 
      * @returns {boolean} Whether full object is loaded.
      */
-    containsFullObject: () => {
+    containsFullObject: function() {
         return ((this.name != null) && (this.audio_preview_url != null) && (this.description != null) && (this.duration_ms != null) && (this.explicit != null) && (this.external_urls != null) && (this.href != null) && (this.images != null) && (this.is_externally_hosted != null) && (this.is_playable != null) && (this.language != null) && (this.languages != null) && (this.release_date != null) && (this.release_date_precision != null) && (this.resume_point) && (this.show) && (this.uri != null));
     },
 
@@ -60,7 +60,7 @@ Episode.prototype = {
      * 
      * @returns {boolean} Whether simplified object is loaded.
      */
-    containsSimplifiedObject: () => {
+    containsSimplifiedObject: function() {
         return ((this.name != null) && (this.audio_preview_url != null) && (this.description != null) && (this.duration_ms != null) && (this.explicit != null) && (this.external_urls != null) && (this.href != null) && (this.images != null) && (this.is_externally_hosted != null) && (this.is_playable != null) && (this.language != null) && (this.languages != null) && (this.release_date != null) && (this.release_date_precision != null) && (this.resume_point) && (this.uri != null));
     },
 
@@ -71,7 +71,7 @@ Episode.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Episode Full Object Data.
      */
-    getFullObject: async (wrapper) => {
+    getFullObject: async function(wrapper) {
         try {
             if (!(await this.containsFullObject())) {
                 await this.retrieveFullObject(wrapper);
@@ -109,7 +109,7 @@ Episode.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Episode Simplified Object Data.
      */
-    getSimplifiedObject: async (wrapper) => {
+    getSimplifiedObject: async function(wrapper) {
         try {
             if (!(await this.containsSimplifiedObject())) {
                 await this.retrieveFullObject(wrapper);
@@ -146,7 +146,7 @@ Episode.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Any Track Data.
      */
-    getCurrentData: () => {
+    getCurrentData: function() {
         try {
             let data = { id: this.id, type: 'episode' };
             let properties = ['name', 'audio_preview_url', 'description', 'duration_ms', 'explicit', 'external_urls', 'href', 'images', 'is_externally_hosted', 'is_playable', 'language', 'languages', 'release_date', 'release_date_precision', 'resume_point', 'uri'];
@@ -168,7 +168,7 @@ Episode.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Show} Episode's Show
      */
-    getShow: async (wrapper) => {
+    getShow: async function(wrapper) {
         try {
             if (!(await this.containsFullObject())) {
                 await this.retrieveFullObject(wrapper);
@@ -185,7 +185,7 @@ Episode.prototype = {
      * 
      * @param {object} data Object with episode full object data.
      */
-    loadFullObject: (data) => {
+    loadFullObject: function(data) {
         try {
             this.name = data.name;
             this.audio_preview_url = data.audio_preview_url;
@@ -215,7 +215,7 @@ Episode.prototype = {
      * 
      * @param {object} data Object with episode simplified object data.
      */
-    loadSimplifiedObject: (data) => {
+    loadSimplifiedObject: function(data) {
         try {
             this.name = data.name;
             this.audio_preview_url = data.audio_preview_url;
@@ -244,7 +244,7 @@ Episode.prototype = {
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    retrieveFullObject: async (wrapper) => {
+    retrieveFullObject: async function(wrapper) {
         try {
             if ('is_local' in this && this.is_local) {
                 return;
@@ -265,7 +265,7 @@ Episode.prototype = {
  * @param {Array} episodeId Id of episode.
  * @returns {Episode} Episode from id.
  */
-Episode.getEpisode = async (wrapper, episodeId) => {
+Episode.getEpisode = async function(wrapper, episodeId) {
     try {
         let episode = new Episode(episodeId);
         await episode.retrieveFullObjects(wrapper);

@@ -38,7 +38,7 @@ Category.prototype = {
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    play: async (wrapper) => {
+    play: async function(wrapper) {
         try {
             return await (await (await this.getCategoryPlaylists(wrapper, { limit: 1 })).get(0)).play(wrapper);
         } catch (error) {
@@ -52,7 +52,7 @@ Category.prototype = {
      * 
      * @returns {boolean} Whether full object is loaded.
      */
-    containsFullObject: () => {
+    containsFullObject: function() {
         return ((this.name != null && this.href != null && this.icons != null));
     },
 
@@ -63,7 +63,7 @@ Category.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Category Full Object Data.
      */
-    getFullObject: async(wrapper) => {
+    getFullObject: async function(wrapper) {
         try {
             if (!(await this.containsFullObject())) {
                 await this.retrieveFullObject(wrapper);
@@ -86,7 +86,7 @@ Category.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Any Category Data.
      */
-    getCurrentData: () => {
+    getCurrentData: function() {
         try {
             let data = { id: this.id, type: 'album' };
             let properties = ['id', 'name', 'href', 'icons'];
@@ -109,7 +109,7 @@ Category.prototype = {
      * @param {object} options (Optional) Options to be passed into request.
      * @returns {Playlists} Playlists instance with category playlists.
      */
-    getPlaylists: async (wrapper, options) => {
+    getPlaylists: async function(wrapper, options) {
         try {
             if (options != null && typeof(options) != 'object') {
                 throw new Error("Category.getPlaylists: Invalid Parameter \"options\"");
@@ -128,7 +128,7 @@ Category.prototype = {
      * 
      * @param {object} data Object with category full object data.
      */
-    loadFullObject: (data) => {
+    loadFullObject: function(data) {
         try {
             this.name = data.name;
             this.href = data.href;
@@ -144,7 +144,7 @@ Category.prototype = {
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    retrieveFullObject: async(wrapper) => {
+    retrieveFullObject: async function(wrapper) {
         try {
             let response = await wrapper.getCategory(this.id, {});
             this.loadFullObject(response.body);
@@ -163,7 +163,7 @@ Category.prototype = {
  * @param {object} options (Optional) Options for request.
  * @returns {Category} Category instance for given category
  */
-Category.getCategory = async (wrapper, categoryId, options) => {
+Category.getCategory = async function(wrapper, categoryId, options) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Category.getCategory: Invalid Parameter \"options\"");

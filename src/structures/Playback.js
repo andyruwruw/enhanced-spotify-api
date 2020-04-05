@@ -23,10 +23,10 @@ Playback.prototype = {
      * Get Devices
      * Returns array of devices.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Array} Array of devices.
      */
-    getDevices: async (wrapper) => {
+    getDevices: async function(wrapper) {
         try {
             await this.retrieveMyDevices(wrapper);
             return this.devices;
@@ -39,11 +39,11 @@ Playback.prototype = {
      * Get Current Playback State
      * Returns complete playback state.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options for Playback Request.
      * @returns {object} Playback State information.
      */
-    getCurrentPlaybackState: async (wrapper, options) => {
+    getCurrentPlaybackState: async function(wrapper, options) {
         try {
             await this.retrieveMyCurrentPlaybackState(wrapper, options);
             return this.currentPlayback;
@@ -56,11 +56,11 @@ Playback.prototype = {
      * Get Currently Playing Item
      * Returns Track or Episode instance of playing item.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options for Playback Request.
      * @returns {Track | Episode} Playback State information.
      */
-    getCurrentlyPlaying: async (wrapper, options) => {
+    getCurrentlyPlaying: async function(wrapper, options) {
         try {
             await this.retrieveMyCurrentPlaybackState(wrapper, options);
             if (this.currentPlayback.currently_playing_type == 'track') {
@@ -79,11 +79,11 @@ Playback.prototype = {
      * Get Current Context
      * Returns context of currently playing item.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options for Playback Request.
      * @returns {object} Context object.
      */
-    getCurrentContext: async (wrapper, options) => {
+    getCurrentContext: async function(wrapper, options) {
         try {
             await this.retrieveMyCurrentPlaybackState(wrapper, options);
             return this.currentPlayback.context;
@@ -96,11 +96,11 @@ Playback.prototype = {
      * Get Current Device
      * Returns device currently playing.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options for Playback Request.
      * @returns {object} Device object.
      */
-    getCurrentDevice: async (wrapper, options) => {
+    getCurrentDevice: async function(wrapper, options) {
         try {
             await this.retrieveMyCurrentPlaybackState(wrapper, options);
             return this.currentPlayback.device;
@@ -113,11 +113,11 @@ Playback.prototype = {
      * Get Playing State
      * Returns boolean if item is playing currently.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options for Playback Request.
      * @returns {boolean} Whether something is playing.
      */
-    getPlayingState: async (wrapper, options) => {
+    getPlayingState: async function(wrapper, options) {
         try {
             await this.retrieveMyCurrentPlaybackState(wrapper, options);
             return this.currentPlayback.is_playing;
@@ -130,11 +130,11 @@ Playback.prototype = {
      * Get Shuffle State
      * Returns boolean if shuffle is on or off.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options for Playback Request.
      * @returns {boolean} Whether stuffle is on.
      */
-    getShuffleState: async (wrapper, options) => {
+    getShuffleState: async function(wrapper, options) {
         try {
             await this.retrieveMyCurrentPlaybackState(wrapper, options);
             return this.currentPlayback.shuffle_state;
@@ -147,11 +147,11 @@ Playback.prototype = {
      * Get Repeat State
      * Returns string of current state of repeat.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options for Playback Request.
      * @returns {string} State of Repeat "off", "track", "context"
      */
-    getRepeatState: async (wrapper, options) => {
+    getRepeatState: async function(wrapper, options) {
         try {
             await this.retrieveMyCurrentPlaybackState(wrapper, options);
             return this.currentPlayback.repeat_state;
@@ -164,11 +164,11 @@ Playback.prototype = {
      * Get Progress
      * Returns millisecond progress into item being played.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options for Playback Request.
      * @returns {number} Milliseconds into item.
      */
-    getProgress: async (wrapper, options) => {
+    getProgress: async function(wrapper, options) {
         try {
             await this.retrieveMyCurrentPlaybackState(wrapper, options);
             return this.currentPlayback.progress_ms;
@@ -181,11 +181,11 @@ Playback.prototype = {
      * Get Volume
      * Returns percentage of volume.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options for Playback Request.
      * @returns {number} Percentage of volume
      */
-    getVolume: async (wrapper, options) => {
+    getVolume: async function(wrapper, options) {
         try {
             await this.retrieveMyCurrentPlaybackState(wrapper, options);
             return this.device.volume_percent;
@@ -198,12 +198,12 @@ Playback.prototype = {
      * Transfer Playback
      * Switches Playback to New Device
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {Array} deviceIds Device to be switched to.
      * @param {object} options (Optional) Options for Transfer Request.
      * @returns {number} Percentage of volume
      */
-    transferPlayback: async (wrapper, deviceIds, options) => {
+    transferPlayback: async function(wrapper, deviceIds, options) {
         try {
             return wrapper.transferMyPlayback(deviceIds, options);
         } catch (error) {
@@ -215,10 +215,10 @@ Playback.prototype = {
      * Play
      * Plays item on current playback device.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options for Transfer Request.
      */
-    play: async (wrapper, options) => {
+    play: async function(wrapper, options) {
         try {
             return wrapper.play(options);
         } catch (error) {
@@ -230,10 +230,10 @@ Playback.prototype = {
      * Pause
      * Pauses current playback device.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options for Transfer Request.
      */
-    pause: async (wrapper, options) => {
+    pause: async function(wrapper, options) {
         try {
             return wrapper.pause(options);
         } catch (error) {
@@ -245,10 +245,10 @@ Playback.prototype = {
      * Skip to next
      * Moves Playback to next item.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options for Skip Request.
      */
-    skipToNext: async (wrapper, options) => {
+    skipToNext: async function(wrapper, options) {
         try {
             return wrapper.skipToNext(options);
         } catch (error) {
@@ -260,10 +260,10 @@ Playback.prototype = {
      * Skip to Previous
      * Moves Playback to previous item.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options for Rewind Request.
      */
-    skipToPrevious: async (wrapper, options) => {
+    skipToPrevious: async function(wrapper, options) {
         try {
             return wrapper.skipToPrevious(options);
         } catch (error) {
@@ -275,11 +275,11 @@ Playback.prototype = {
      * Seek
      * Moves Playback to new position in currently playing item.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {number} position Milliseconds in Item
      * @param {object} options (Optional) Options for Seek Request.
      */
-    seek: async (wrapper, position, options) => {
+    seek: async function(wrapper, position, options) {
         try {
             return wrapper.seek(position, options);
         } catch (error) {
@@ -291,11 +291,11 @@ Playback.prototype = {
      * Set Repeat
      * Sets repeat state for current playback device.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {string} state New Repeat state
      * @param {object} options (Optional) Options for repeat Request.
      */
-    setRepeat: async (wrapper, state, options) => {
+    setRepeat: async function(wrapper, state, options) {
         try {
             return wrapper.setRepeat(state, options);
         } catch (error) {
@@ -307,11 +307,11 @@ Playback.prototype = {
      * Set Volume
      * Sets volume for current playback device.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {number} percent New Volume
      * @param {object} options (Optional) Options for volume Request.
      */
-    setVolume: async (wrapper, percent, options) => {
+    setVolume: async function(wrapper, percent, options) {
         try {
             return wrapper.setVolume(percent, options);
         } catch (error) {
@@ -323,11 +323,11 @@ Playback.prototype = {
      * Set Shuffle
      * Sets shuffle state for current playback device.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {boolean} state New shuffle state.
      * @param {object} options (Optional) Options for shuffle Request.
      */
-    setShuffle: async (wrapper, state, options) => {
+    setShuffle: async function(wrapper, state, options) {
         try {
             return wrapper.setShuffle(state, options);
         } catch (error) {
@@ -339,9 +339,9 @@ Playback.prototype = {
      * Retrieve My Devices
      * Retrieves devices from spotify.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      */
-    retrieveMyDevices: async (wrapper) => {
+    retrieveMyDevices: async function(wrapper) {
         try {
             let response = await this.wrapper.getMyDevices();
             this.devices = response.body.devices;
@@ -354,10 +354,10 @@ Playback.prototype = {
      * Retrieve My Current Playback State
      * Retrieves current playback state from spotify.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options for Playback Request.
      */
-    retrieveMyCurrentPlaybackState: async (wrapper, options) => {
+    retrieveMyCurrentPlaybackState: async function(wrapper, options) {
         try {
             let response = await this.wrapper.getMyCurrentPlaybackState();
             this.currentPlayback = response.body;

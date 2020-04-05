@@ -38,7 +38,7 @@ Categories.prototype = {
      * 
      * @param {Category | object | string} category Category Instance, category object or category id to add. 
      */
-    push: (category) => {
+    push: function(category) {
         try {
             if (category instanceof Categories.Category) {
                 if (!(category.id in this.items)) {
@@ -77,7 +77,7 @@ Categories.prototype = {
      * 
      * @param {Categories | array } categories Another Categories instance or array of Category instances, category objects, or category ids to concat.
      */
-    concat: (categories) => {
+    concat: function(categories) {
         try {
             if (categories instanceof Categories) {
                 for (let category in categories.items) {
@@ -104,7 +104,7 @@ Categories.prototype = {
      * 
      * @param { Category | object | string } category Category instance, category data, or category id to remove.
      */
-    remove: (category) => {
+    remove: function(category) {
         try {
             let id = null;
             if (category instanceof Categories.Category || typeof(category) == 'object') {
@@ -129,7 +129,7 @@ Categories.prototype = {
      * 
      * @returns {number} Number of items in manager.
      */
-    size: () => {
+    size: function() {
         try {
             return this.order.length;
         } catch (error) {
@@ -145,7 +145,7 @@ Categories.prototype = {
      * @param {number} startAt Where to start in the list.
      * @returns {number} Index of item.
      */
-    indexOf: (category, startAt) => {
+    indexOf: function(category, startAt) {
         try {
             let id = null;
             if (typeof(category) == 'string') {
@@ -177,7 +177,7 @@ Categories.prototype = {
      * @param {string | object | Category} category Category ID, Category instance or object with `id` properity.
      * @returns {boolean} Whether item is contained.
      */
-    includes: (category) => {
+    includes: function(category) {
         try {
             let id = null;
             if (typeof(category) == 'string') {
@@ -206,7 +206,7 @@ Categories.prototype = {
      * @param {function} method Method to filter by.
      * @returns {Categories} Filtered Categories object.
      */
-    filter: async (method) => {
+    filter: async function(method) {
         try {
             if (typeof(method) != 'function') {
                 throw new Error("Categories.filter: \"method\" is not a function"); 
@@ -230,7 +230,7 @@ Categories.prototype = {
      * @param {number} index Index of the item desired.
      * @returns {Category} Category at a given index
      */
-    get: (index) => {
+    get: function(index)  {
         try {
             if (index > this.order.length - 1 || index < 0) {
                 throw new Error("Categories.get: Index out of range");
@@ -247,7 +247,7 @@ Categories.prototype = {
      * 
      * @returns {Array} Array of IDs
      */
-    getIDs: () => {
+    getIDs: function() {
         return this.order;
     },
 
@@ -257,7 +257,7 @@ Categories.prototype = {
      * 
      * @returns {Array} Array of IDs
      */
-    getIDsNoRepeats: () => {
+    getIDsNoRepeats: function() {
         try {
             let ids = [];
             for (let i = 0; i < this.order.length; i++) {
@@ -277,7 +277,7 @@ Categories.prototype = {
      * 
      * @param {function} method Function to be run on each item.
      */
-    forEach: async (method) => {
+    forEach: async function(method) {
         try {
             if (typeof(method) != 'function') {
                 throw new Error("Categories.forEach: \"method\" is not a function"); 
@@ -294,7 +294,7 @@ Categories.prototype = {
      * Reverse
      * Reverses order of items
      */
-    reverse: () => {
+    reverse: function() {
         try {
             this.order.reverse();
         } catch (error) {
@@ -308,7 +308,7 @@ Categories.prototype = {
      * 
      * @returns {Category} Removed item
      */
-    pop: () => {
+    pop: function() {
         try {
             let id = this.order.pop();
             let item = this.items[id];
@@ -327,7 +327,7 @@ Categories.prototype = {
      * 
      * @returns {Category} Removed item
      */
-    shift: () => {
+    shift: function() {
         try {
             let id = this.order.shift();
             let item = this.items[id];
@@ -348,7 +348,7 @@ Categories.prototype = {
      * @param {number} end End of removal (Exclusive)
      * @returns {Categories} Removed ShCategoriesows.
      */
-    slice: async (start, end) => {
+    slice: async function(start, end) {
         try {
             let stop = (end != null) ? end : this.order.length;
             let ids = this.order.splice(start, stop);
@@ -370,7 +370,7 @@ Categories.prototype = {
      * 
      * @param {function} compareFunction Sorting method.
      */
-    sort: async (compareFunction) => {
+    sort: async function(compareFunction) {
         try {
             let sorted = await (await Object.values(this.items)).sort(compareFunction);
             this.order = await sorted.map((item) => item.id);
@@ -387,7 +387,7 @@ Categories.prototype = {
      * @param {number} order -1 or 1
      * @param {string} property Property to sort by.
      */
-    sortSafe: async (wrapper, order, property) => {
+    sortSafe: async function(wrapper, order, property) {
         try {
             let fullObject = ['id', 'name', 'href', 'icons'];
             let propertyPrior = property.split('.')[0];
@@ -421,7 +421,7 @@ Categories.prototype = {
      * @param {string} field Field to set value to.
      * @param {*} value Value to set.
      */
-    setProperty: (id, field, value) => {
+    setProperty: function(id, field, value) {
         try {
             if (id in this.items) {
                 this.items[id][field] = value;
@@ -440,7 +440,7 @@ Categories.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @param {number} index (Optional) Index of category
      */
-    play: async (wrapper, index) => {
+    play: async function(wrapper, index) {
         try {
             let _index = index != null ? index : 0;
             return await this.item[this.order[_index]].play(wrapper);
@@ -456,7 +456,7 @@ Categories.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Array} Array of Category Full Objects.
      */
-    getFullObjects: async (wrapper) => {
+    getFullObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper);
             let categories = await this.order.map((category) => {
@@ -476,7 +476,7 @@ Categories.prototype = {
      * 
      * @returns {Array} Array of Current Category Data
      */
-    getCurrentData: async () => {
+    getCurrentData: async function() {
         try {
             let categories = await this.order.map((category) => {
                 return this.items[category]; 
@@ -497,7 +497,7 @@ Categories.prototype = {
      * @param {object} options (Optional) Options to be passed into request.
      * @returns {Playlists} Playlists instance with category playlists.
      */
-    getPlaylists: async (wrapper, options) => {
+    getPlaylists: async function(wrapper, options) {
         try {
             if (options != null && typeof(options) != 'object') {
                 throw new Error("Category.getPlaylists: Invalid Parameter \"options\"");
@@ -519,7 +519,7 @@ Categories.prototype = {
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    retrieveFullObjects: async (wrapper) => {
+    retrieveFullObjects: async function(wrapper) {
         try {
             for (let category in this.items) {
                 if (!(await this.items[category].containsFullObject())) {
@@ -540,7 +540,7 @@ Categories.prototype = {
  * @param {object} options (Optional) Options for request.
  * @returns {Categories} Categories instance
  */
-Categories.getCategories = async (wrapper, options) => {
+Categories.getCategories = async function(wrapper, options) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Categories.getCategories: Invalid Parameter \"options\"");

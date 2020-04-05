@@ -38,7 +38,7 @@ Shows.prototype = {
      * 
      * @param { Show | object | string } show Show Instance, show object or show id to add. 
      */
-    push: (show) => {
+    push: function(show) {
         try {
             if (show instanceof Shows.Show) {
                 if (!(show.id in this.items)) {
@@ -80,7 +80,7 @@ Shows.prototype = {
      * 
      * @param {Shows | array } shows Another Shows instance or array of Show instances, show objects, or show ids to concat.
      */
-    concat: (shows) => {
+    concat: function(shows) {
         try {
             if (shows instanceof Shows) {
                 for (let show in shows.items) {
@@ -107,7 +107,7 @@ Shows.prototype = {
      * 
      * @param { Show | object | string } show Show instance, show data, or show id to remove.
      */
-    remove: (show) => {
+    remove: function(show) {
         try {
             let id = null;
             if (show instanceof Shows.Show || typeof(show) == 'object') {
@@ -132,7 +132,7 @@ Shows.prototype = {
      * 
      * @returns {number} Number of items in manager.
      */
-    size: () => {
+    size: function() {
         try {
             return this.order.length;
         } catch (error) {
@@ -148,7 +148,7 @@ Shows.prototype = {
      * @param {number} startAt Where to start in the list.
      * @returns {number} Index of item.
      */
-    indexOf: (show, startAt) => {
+    indexOf: function(show, startAt) {
         try {
             let id = null;
             if (typeof(show) == 'string') {
@@ -180,7 +180,7 @@ Shows.prototype = {
      * @param {string | object | Show} show Show ID, Show instance or object with `id` properity.
      * @returns {boolean} Whether item is contained.
      */
-    includes: (show) => {
+    includes: function(show) {
         try {
             let id = null;
             if (typeof(show) == 'string') {
@@ -209,7 +209,7 @@ Shows.prototype = {
      * @param {function} method Method to filter by.
      * @returns {Shows} Filtered Shows object.
      */
-    filter: async (method) => {
+    filter: async function(method) {
         try {
             if (typeof(method) != 'function') {
                 throw new Error("Shows.filter: \"method\" is not a function"); 
@@ -233,7 +233,7 @@ Shows.prototype = {
      * @param {number} index Index of the item desired.
      * @returns {Show} Show at a given index
      */
-    get: (index) => {
+    get: function(index) {
         try {
             if (index > this.order.length - 1 || index < 0) {
                 throw new Error("Shows.get: Index out of range");
@@ -250,7 +250,7 @@ Shows.prototype = {
      * 
      * @returns {Array} Array of IDs
      */
-    getIDs: () => {
+    getIDs: function() {
         return this.order;
     },
 
@@ -260,7 +260,7 @@ Shows.prototype = {
      * 
      * @returns {Array} Array of IDs
      */
-    getIDsNoRepeats: () => {
+    getIDsNoRepeats: function() {
         try {
             let ids = [];
             for (let i = 0; i < this.order.length; i++) {
@@ -280,7 +280,7 @@ Shows.prototype = {
      * 
      * @returns {Array} Array of URIs
      */
-    getURIs: async () => {
+    getURIs: async function() {
         try {
             return await this.order.map((id) => 'spotify:show' + id);
         } catch (error) {
@@ -294,7 +294,7 @@ Shows.prototype = {
      * 
      * @returns {Array} Array of URIs
      */
-    getURIsNoRepeats: async () => {
+    getURIsNoRepeats: async function() {
         try {
             let uris = [];
             for (let i = 0; i < this.order.length; i++) {
@@ -314,7 +314,7 @@ Shows.prototype = {
      * 
      * @param {function} method Function to be run on each item.
      */
-    forEach: async (method) => {
+    forEach: async function(method) {
         try {
             if (typeof(method) != 'function') {
                 throw new Error("Shows.forEach: \"method\" is not a function"); 
@@ -331,7 +331,7 @@ Shows.prototype = {
      * Reverse
      * Reverses order of items
      */
-    reverse: () => {
+    reverse: function() {
         try {
             this.order.reverse();
         } catch (error) {
@@ -345,7 +345,7 @@ Shows.prototype = {
      * 
      * @returns {Show} Removed item
      */
-    pop: () => {
+    pop: function() {
         try {
             let id = this.order.pop();
             let item = this.items[id];
@@ -364,7 +364,7 @@ Shows.prototype = {
      * 
      * @returns {Show} Removed item
      */
-    shift: () => {
+    shift: function() {
         try {
             let id = this.order.shift();
             let item = this.items[id];
@@ -385,7 +385,7 @@ Shows.prototype = {
      * @param {number} end End of removal (Exclusive)
      * @returns {Shows} Removed Shows.
      */
-    slice: async (start, end) => {
+    slice: async function(start, end) {
         try {
             let stop = (end != null) ? end : this.order.length;
             let ids = this.order.splice(start, stop);
@@ -407,7 +407,7 @@ Shows.prototype = {
      * 
      * @param {function} compareFunction Sorting method.
      */
-    sort: async (compareFunction) => {
+    sort: async function(compareFunction) {
         try {
             let sorted = await (await Object.values(this.items)).sort(compareFunction);
             this.order = await sorted.map((item) => item.id);
@@ -420,11 +420,11 @@ Shows.prototype = {
      * Sort Safe
      * Sorts but ensures properties are present prior to sort.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {number} order -1 or 1
      * @param {string} property Property to sort by.
      */
-    sortSafe: async (wrapper, order, property) => {
+    sortSafe: async function(wrapper, order, property) {
         try {
             let fullObject = ['id', 'name', 'available_markets', 'copyrights', 'description', 'explicit', 'episodes', 'external_urls', 'href', 'images', 'is_externally_hosted', 'languages', 'media_type', 'publisher', 'uri', '_episodes'];
             let propertyPrior = property.split('.')[0];
@@ -458,7 +458,7 @@ Shows.prototype = {
      * @param {string} field Field to set value to.
      * @param {*} value Value to set.
      */
-    setProperty: (id, field, value) => {
+    setProperty: function(id, field, value) {
         try {
             if (id in this.items) {
                 this.items[id][field] = value;
@@ -474,10 +474,10 @@ Shows.prototype = {
      * Are Liked
      * Returns array of booleans whether shows are saved to the user's library.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Booleans Whether show are saved to the user's library.
      */
-    areLiked: async (wrapper) => {
+    areLiked: async function(wrapper) {
         try {
             let shows = await this.order.map((show) => {
                 return this.items[show]; 
@@ -493,9 +493,9 @@ Shows.prototype = {
     * Like Shows
     * Adds shows to the user's library.
     * 
-    * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+    * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
     */
-    likeAll: async (wrapper) => {
+    likeAll: async function(wrapper) {
         try {
             await wrapper.addToMySavedShows(Object.keys(this.items));
         } catch (error) {
@@ -507,9 +507,9 @@ Shows.prototype = {
     * Unlike Shows
     * Removes shows from the user's library.
     * 
-    * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+    * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
     */
-    unlikeAll: async (wrapper) => {
+    unlikeAll: async function(wrapper) {
         try {
             await wrapper.removeFromMySavedShows(Object.keys(this.items));
         } catch (error) {
@@ -521,10 +521,10 @@ Shows.prototype = {
      * Get Full Objects
      * Returns full show data for all shows. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Show Full Objects.
      */
-    getFullObjects: async (wrapper) => {
+    getFullObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'full');
             let shows = await this.order.map((show) => {
@@ -542,10 +542,10 @@ Shows.prototype = {
      * Get Simplified Objects
      * Returns simplified show data for all shows. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Show Simplified Objects.
      */
-    getSimplifiedObjects: async (wrapper) => {
+    getSimplifiedObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
             let shows = await this.order.map((show) => {
@@ -565,7 +565,7 @@ Shows.prototype = {
      * 
      * @returns {array} Array of Current Show Data
      */
-    getCurrentData: async () => {
+    getCurrentData: async function() {
         try {
             let shows = await this.order.map((show) => {
                 return this.items[show]; 
@@ -582,10 +582,10 @@ Shows.prototype = {
      * Get All Show's Episodes
      * Returns Episodes instance with all show's episodes.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Episodes} Episodes object of all show's episodes.
      */
-    getEpisodes: async (wrapper) => {
+    getEpisodes: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper);
             let episodes = new Shows.Episodes();
@@ -602,10 +602,10 @@ Shows.prototype = {
      * Retrieve Full Objects
      * Retrieves full show data for all shows from Spotify API
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {string} objectType Optional | 'simplified', 'link' or 'full', what to check if the show contains.
      */
-    retrieveFullObjects: async (wrapper, objectType) => {
+    retrieveFullObjects: async function(wrapper, objectType) {
         try {
             let ids = [];
             for (let show in this.items) {
@@ -639,12 +639,12 @@ Shows.prototype = {
  * Search for a Shows
  * Returns search results for a query.
  * 
- * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {string} query String to search for.
  * @param {object} options (Optional) Additional options.
  * @returns {Shows} Shows returned from Search.
  */
-Shows.search = async (wrapper, query, options) => {
+Shows.search = async function(wrapper, query, options) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Shows.search: Invalid Parameter \"options\"");
@@ -661,11 +661,11 @@ Shows.search = async (wrapper, query, options) => {
  * Get Shows
  * Returns Shows object of IDs
  * 
- * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {Array} showIds Ids of shows.
  * @returns {Shows} Shows from ids.
  */
-Shows.getShows = async (wrapper, showIds) => {
+Shows.getShows = async function(wrapper, showIds) {
     try {
         let shows = new Shows(showIds);
         await shows.retrieveFullObjects(wrapper);

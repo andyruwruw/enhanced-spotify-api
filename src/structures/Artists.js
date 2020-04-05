@@ -33,7 +33,7 @@ Artists.prototype = {
      * 
      * @param {Artist | object | string } artist Artist Instance, artist object or artist id to add. 
      */
-    push: (artist) => {
+    push: function(artist) {
         try {
             if (artist instanceof Artists.Artist) {
                 if (!(artist.id in this.items)) {
@@ -81,7 +81,7 @@ Artists.prototype = {
      * 
      * @param {Artists | array } artists Another Artists instance or array of Artist instances, artist objects, or artist ids to concat.
      */
-    concat: (artists) => {
+    concat: function(artists) {
         try {
             if (artists instanceof Artists) {
                 for (let artist in artists.items) {
@@ -108,7 +108,7 @@ Artists.prototype = {
      * 
      * @param {Artist | object | string } artist Artist instance, artist data, or artist id to remove.
      */
-    remove: (artist) => {
+    remove: function(artist) {
         try {
             let id = null;
             if (artist instanceof Artists.Artist || typeof(artist) == 'object') {
@@ -133,7 +133,7 @@ Artists.prototype = {
      * 
      * @returns {number} Number of items in manager.
      */
-    size: () => {
+    size: function() {
         try {
             return this.order.length;
         } catch (error) {
@@ -149,7 +149,7 @@ Artists.prototype = {
      * @param {number} startAt Where to start in the list.
      * @returns {number} Index of item.
      */
-    indexOf: (artist, startAt) => {
+    indexOf: function(artist, startAt) {
         try {
             let id = null;
             if (typeof(artist) == 'string') {
@@ -181,7 +181,7 @@ Artists.prototype = {
      * @param {string | object | Artist} artist Artist ID, Artist instance or object with `id` properity.
      * @returns {boolean} Whether item is contained.
      */
-    includes: (artist) => {
+    includes: function(artist) {
         try {
             let id = null;
             if (typeof(artist) == 'string') {
@@ -210,7 +210,7 @@ Artists.prototype = {
      * @param {function} method Method to filter by.
      * @returns {Artists} Filtered Artists object.
      */
-    filter: async (method) => {
+    filter: async function(method) {
         try {
             if (typeof(method) != 'function') {
                 throw new Error("Artists.filter: \"method\" is not a function"); 
@@ -234,7 +234,7 @@ Artists.prototype = {
      * @param {number} index Index of the item desired.
      * @returns {Artist} Artist at a given index
      */
-    get: (index) => {
+    get: function(index) {
         try {
             if (index > this.order.length - 1 || index < 0) {
                 throw new Error("Artists.get: Index out of range");
@@ -251,7 +251,7 @@ Artists.prototype = {
      * 
      * @returns {Array} Array of IDs
      */
-    getIDs: () => {
+    getIDs: function() {
         return this.order;
     },
 
@@ -261,7 +261,7 @@ Artists.prototype = {
      * 
      * @returns {Array} Array of IDs
      */
-    getIDsNoRepeats: () => {
+    getIDsNoRepeats: function() {
         try {
             let ids = [];
             for (let i = 0; i < this.order.length; i++) {
@@ -281,7 +281,7 @@ Artists.prototype = {
      * 
      * @returns {Array} Array of URIs
      */
-    getURIs: async () => {
+    getURIs: async function() {
         try {
             return await this.order.map((id) => 'spotify:artist' + id);
         } catch (error) {
@@ -295,7 +295,7 @@ Artists.prototype = {
      * 
      * @returns {Array} Array of URIs
      */
-    getURIsNoRepeats: async () => {
+    getURIsNoRepeats: async function() {
         try {
             let uris = [];
             for (let i = 0; i < this.order.length; i++) {
@@ -315,7 +315,7 @@ Artists.prototype = {
      * 
      * @param {function} method Function to be run on each item.
      */
-    forEach: async (method) => {
+    forEach: async function(method) {
         try {
             if (typeof(method) != 'function') {
                 throw new Error("Artists.forEach: \"method\" is not a function"); 
@@ -332,7 +332,7 @@ Artists.prototype = {
      * Reverse
      * Reverses order of items
      */
-    reverse: () => {
+    reverse: function() {
         try {
             this.order.reverse();
         } catch (error) {
@@ -346,7 +346,7 @@ Artists.prototype = {
      * 
      * @returns {Artist} Removed item
      */
-    pop: () => {
+    pop: function() {
         try {
             let id = this.order.pop();
             let item = this.items[id];
@@ -365,7 +365,7 @@ Artists.prototype = {
      * 
      * @returns {Artist} Removed item
      */
-    shift: () => {
+    shift: function() {
         try {
             let id = this.order.shift();
             let item = this.items[id];
@@ -386,7 +386,7 @@ Artists.prototype = {
      * @param {number} end End of removal (Exclusive)
      * @returns {Artists} Removed Artists.
      */
-    slice: async (start, end) => {
+    slice: async function(start, end) {
         try {
             let stop = (end != null) ? end : this.order.length;
             let ids = this.order.splice(start, stop);
@@ -408,7 +408,7 @@ Artists.prototype = {
      * 
      * @param {function} compareFunction Sorting method.
      */
-    sort: async (compareFunction) => {
+    sort: async function(compareFunction) {
         try {
             let sorted = await (await Object.values(this.items)).sort(compareFunction);
             this.order = await sorted.map((item) => item.id);
@@ -425,7 +425,7 @@ Artists.prototype = {
      * @param {number} order -1 or 1
      * @param {string} property Property to sort by.
      */
-    sortSafe: async (wrapper, order, property) => {
+    sortSafe: async function(wrapper, order, property) {
         try {
             let fullObject = ['id', 'name', 'external_urls', 'followers', 'genres', 'href', 'images', 'popularity', 'uri'];
             let propertyPrior = property.split('.')[0];
@@ -459,7 +459,7 @@ Artists.prototype = {
      * @param {string} field Field to set value to.
      * @param {*} value Value to set.
      */
-    setProperty: (id, field, value) => {
+    setProperty: function(id, field, value) {
         try {
             if (id in this.items) {
                 this.items[id][field] = value;
@@ -477,7 +477,7 @@ Artists.prototype = {
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    play: async (wrapper, options) => {
+    play: async function(wrapper, options) {
         try {
             let artists = await this.order.map((artist) => {
                 return this.items[artist]; 
@@ -499,7 +499,7 @@ Artists.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Array} Array of booleans of whether artist is followed by user.
      */
-    areFollowed: async (wrapper) => {
+    areFollowed: async function(wrapper) {
         try {
             let response = await wrapper.isFollowingArtists(this.order);
             return response.body;
@@ -514,7 +514,7 @@ Artists.prototype = {
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    follow: async (wrapper) => {
+    follow: async function(wrapper) {
         try {
             return await wrapper.followArtists(Object.keys(this.items));
         } catch (error) {
@@ -528,7 +528,7 @@ Artists.prototype = {
      * 
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      */
-    unfollow: async (wrapper) => {
+    unfollow: async function(wrapper) {
         try {
             return await wrapper.unfollowArtists(Object.keys(this.items));
         } catch (error) {
@@ -692,7 +692,7 @@ Artists.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Artists} Artists instance of related Artists
      */
-    getRelatedArtists: async (wrapper) => {
+    getRelatedArtists: async function(wrapper) {
         try {
             let related = new Artists();
             let artists = await this.order.map((artist) => {
@@ -715,7 +715,7 @@ Artists.prototype = {
      * @param {object} options (Optional) Additional options.
      * @returns {Tracks} Tracks object with recommendations
      */
-    getRecommendations: async (wrapper, options) => {
+    getRecommendations: async function(wrapper, options) {
         try {
             if (options != null && typeof(options) != 'object') {
                 throw new Error("Artists.search: Invalid Parameter \"options\"");
@@ -810,7 +810,7 @@ Artists.search = async function(wrapper, query, options) {
  * @param {Array} artistIds Ids of artists.
  * @returns {Artists} Artists from ids.
  */
-Artists.getArtists = async (wrapper, artistIds) => {
+Artists.getArtists = async function(wrapper, artistIds) {
     try {
         let artists = new Artists(artistIds);
         await artists.retrieveFullObjects(wrapper);
@@ -828,7 +828,7 @@ Artists.getArtists = async (wrapper, artistIds) => {
  * @param {string} artistId Id of artists to find related to.
  * @returns {Artists} Artists related to artistID
  */
-Artists.getRelatedArtists = async (wrapper, artistId) => {
+Artists.getRelatedArtists = async function(wrapper, artistId) {
     try {
         let artists = new Artists(artistId);
         return await artists.getRelatedArtists(wrapper);

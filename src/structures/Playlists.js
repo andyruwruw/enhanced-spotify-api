@@ -40,7 +40,7 @@ Playlists.prototype = {
      * 
      * @param {Playlist | object | string } playlist Playlist Instance, playlist object or playlist id to add. 
      */
-    push: (playlist) => {
+    push: function(playlist) {
         try {
             if (playlist instanceof Playlists.Playlist) {
                 if (!(playlist.id in this.items)) {
@@ -88,7 +88,7 @@ Playlists.prototype = {
      * 
      * @param {Playlists | array } playlists Another Playlists instance or array of Playlist instances, playlist objects, or playlist ids to concat.
      */
-    concat: (playlists) => {
+    concat: function(playlists) {
         try {
             if (playlists instanceof Playlists) {
                 for (let playlist in playlists.items) {
@@ -115,7 +115,7 @@ Playlists.prototype = {
      * 
      * @param {Playlist | object | string } playlist Playlist instance, playlist data, or playlist id to remove.
      */
-    remove: (playlist) => {
+    remove: function(playlist) {
         try {
             let id = null;
             if (playlist instanceof Playlists.Playlist || typeof(playlist) == 'object') {
@@ -140,7 +140,7 @@ Playlists.prototype = {
      * 
      * @returns {number} Number of items in manager.
      */
-    size: () => {
+    size: function() {
         try {
             return this.order.length;
         } catch (error) {
@@ -156,7 +156,7 @@ Playlists.prototype = {
      * @param {number} startAt Where to start in the list.
      * @returns {number} Index of item.
      */
-    indexOf: (playlist, startAt) => {
+    indexOf: function(playlist, startAt) {
         try {
             let id = null;
             if (typeof(playlist) == 'string') {
@@ -188,7 +188,7 @@ Playlists.prototype = {
      * @param {string | object | Playlist} playlist Playlist ID, Playlist instance or object with `id` properity.
      * @returns {boolean} Whether item is contained.
      */
-    includes: (playlist) => {
+    includes: function(playlist) {
         try {
             let id = null;
             if (typeof(playlist) == 'string') {
@@ -217,7 +217,7 @@ Playlists.prototype = {
      * @param {function} method Method to filter by.
      * @returns {Playlists} Filtered Playlists object.
      */
-    filter: async (method) => {
+    filter: async function(method) {
         try {
             if (typeof(method) != 'function') {
                 throw new Error("Playlists.filter: \"method\" is not a function"); 
@@ -241,7 +241,7 @@ Playlists.prototype = {
      * @param {number} index Index of the item desired.
      * @returns {Playlist} Playlist at a given index
      */
-    get: (index) => {
+    get: function(index) {
         try {
             if (index > this.order.length - 1 || index < 0) {
                 throw new Error("Playlists.get: Index out of range");
@@ -258,7 +258,7 @@ Playlists.prototype = {
      * 
      * @returns {Array} Array of IDs
      */
-    getIDs: () => {
+    getIDs: function() {
         return this.order;
     },
 
@@ -268,7 +268,7 @@ Playlists.prototype = {
      * 
      * @returns {Array} Array of IDs
      */
-    getIDsNoRepeats: () => {
+    getIDsNoRepeats: function() {
         try {
             let ids = [];
             for (let i = 0; i < this.order.length; i++) {
@@ -288,7 +288,7 @@ Playlists.prototype = {
      * 
      * @returns {Array} Array of URIs
      */
-    getURIs: async () => {
+    getURIs: async function() {
         try {
             return await this.order.map((id) => 'spotify:playlist' + id);
         } catch (error) {
@@ -302,7 +302,7 @@ Playlists.prototype = {
      * 
      * @returns {Array} Array of URIs
      */
-    getURIsNoRepeats: async () => {
+    getURIsNoRepeats: async function() {
         try {
             let uris = [];
             for (let i = 0; i < this.order.length; i++) {
@@ -322,7 +322,7 @@ Playlists.prototype = {
      * 
      * @param {function} method Function to be run on each item.
      */
-    forEach: async (method) => {
+    forEach: async function(method) {
         try {
             if (typeof(method) != 'function') {
                 throw new Error("Playlists.forEach: \"method\" is not a function"); 
@@ -339,7 +339,7 @@ Playlists.prototype = {
      * Reverse
      * Reverses order of items
      */
-    reverse: () => {
+    reverse: function() {
         try {
             this.order.reverse();
         } catch (error) {
@@ -353,7 +353,7 @@ Playlists.prototype = {
      * 
      * @returns {Playlist} Removed item
      */
-    pop: () => {
+    pop: function() {
         try {
             let id = this.order.pop();
             let item = this.items[id];
@@ -372,7 +372,7 @@ Playlists.prototype = {
      * 
      * @returns {Playlist} Removed item
      */
-    shift: () => {
+    shift: function() {
         try {
             let id = this.order.shift();
             let item = this.items[id];
@@ -393,7 +393,7 @@ Playlists.prototype = {
      * @param {number} end End of removal (Exclusive)
      * @returns {Playlists} Removed Playlists.
      */
-    slice: async (start, end) => {
+    slice: async function(start, end) {
         try {
             let stop = (end != null) ? end : this.order.length;
             let ids = this.order.splice(start, stop);
@@ -415,7 +415,7 @@ Playlists.prototype = {
      * 
      * @param {function} compareFunction Sorting method.
      */
-    sort: async (compareFunction) => {
+    sort: async function(compareFunction) {
         try {
             let sorted = await (await Object.values(this.items)).sort(compareFunction);
             this.order = await sorted.map((item) => item.id);
@@ -428,11 +428,11 @@ Playlists.prototype = {
      * Sort Safe
      * Sorts but ensures properties are present prior to sort.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {number} order -1 or 1
      * @param {string} property Property to sort by.
      */
-    sortSafe: async (wrapper, order, property) => {
+    sortSafe: async function(wrapper, order, property) {
         try {
             let fullObject = ['collaborative', 'description', 'external_urls', 'followers', 'href', 'images', 'name', 'owner', 'public', 'snapshot_id', 'playlists', 'uri', '_tracks'];
             let propertyPrior = property.split('.')[0];
@@ -466,7 +466,7 @@ Playlists.prototype = {
      * @param {string} field Field to set value to.
      * @param {*} value Value to set.
      */
-    setProperty: (id, field, value) => {
+    setProperty: function(id, field, value) {
         try {
             if (id in this.items) {
                 this.items[id][field] = value;
@@ -482,10 +482,10 @@ Playlists.prototype = {
      * Plays Playlists
      * Plays playlists on user's active device.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Additional options.
      */
-    play: async (wrapper, options) => {
+    play: async function(wrapper, options) {
         try {
             let tracks = await this.getTracks(wrapper);
             return await tracks.play(wrapper, options);
@@ -498,10 +498,10 @@ Playlists.prototype = {
      * Are Followed
      * Returns whether playlists are followed by the user.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Array} Array of booleans of whether playlist is followed by user.
      */
-    areFollowing: async (wrapper) => {
+    areFollowing: async function(wrapper) {
         try {
             let following = [];
             let userID = await (await wrapper.getMe()).body.id;
@@ -522,10 +522,10 @@ Playlists.prototype = {
      * Follow Playlists
      * Follows all playlists.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Additional options.
      */
-    follow: async (wrapper, options) => {
+    follow: async function(wrapper, options) {
         try {
             for (let playlist in this.items) {
                 if ('id' in this.items[playlist]) {
@@ -541,9 +541,9 @@ Playlists.prototype = {
      * Unfollow Playlists
      * Unfollows all playlists.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      */
-    unfollow: async (wrapper) => {
+    unfollow: async function(wrapper) {
         try {
             for (let playlist in this.items) {
                 if ('id' in this.items[playlist]) {
@@ -559,16 +559,16 @@ Playlists.prototype = {
      * Get Full Objects
      * Returns full playlist data for all playlists. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Playlist Full Objects.
      */
-    getFullObjects: async (wrapper) => {
+    getFullObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'full');
-            let playlists = await this.order.map((playlist) => {
+            let playlists = await this.order.map(function(playlist) {
                 return this.items[playlist]; 
             });
-            return await Promise.all(await playlists.map(async (playlist) => {
+            return await Promise.all(await playlists.map(async function(playlist) {
                 return await playlist.getFullObject(wrapper);
             }));
         } catch (error) {
@@ -580,16 +580,16 @@ Playlists.prototype = {
      * Get Simplified Objects
      * Returns simplified playlist data for all playlists. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Playlist Simplified Objects.
      */
-    getSimplifiedObjects: async (wrapper) => {
+    getSimplifiedObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
-            let playlists = await this.order.map((playlist) => {
+            let playlists = await this.order.map(function(playlist) {
                 return this.items[playlist]; 
             });
-            return await Promise.all(await playlists.map(async (playlist) => {
+            return await Promise.all(await playlists.map(async function(playlist) {
                 return await playlist.getSimplifiedObject(wrapper);
             }));
         } catch (error) {
@@ -603,12 +603,12 @@ Playlists.prototype = {
      * 
      * @returns {array} Array of Current Playlist Data
      */
-    getCurrentData: async () => {
+    getCurrentData: async function() {
         try {
-            let playlists = await this.order.map((playlist) => {
+            let playlists = await this.order.map(function(playlist) {
                 return this.items[playlist]; 
             });
-            return await Promise.all(await playlists.map(async (playlist) => {
+            return await Promise.all(await playlists.map(async function(playlist) {
                 return await playlist.getCurrentData();
             }));
         } catch (error) {
@@ -620,10 +620,10 @@ Playlists.prototype = {
      * Get All Playlist's Tracks
      * Returns Tracks instance with all playlist's tracks.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Tracks} Tracks object of all playlist's tracks.
      */
-    getTracks: async (wrapper) => {
+    getTracks: async function(wrapper) {
         try {
             let tracks = new Playlists.Tracks();
             for (let playlist in this.items) {
@@ -639,10 +639,10 @@ Playlists.prototype = {
      * Get All Playlist's Artists
      * Returns Artists instance with all playlist's artists.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Artists} Artists object of all playlist's artists.
      */
-    getArtists: async (wrapper) => {
+    getArtists: async function(wrapper) {
         try {
             let artists = new Playlists.Artists();
             for (let playlist in this.items) {
@@ -658,10 +658,10 @@ Playlists.prototype = {
      * Get All Playlist's Albums
      * Returns Albums instance with all playlist's albums.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Albums} Albums object of all playlist's albums.
      */
-    getAlbums: async (wrapper) => {
+    getAlbums: async function(wrapper) {
         try {
             let albums = new Playlists.Albums();
             for (let playlist in this.items) {
@@ -677,10 +677,10 @@ Playlists.prototype = {
      * Retrieve Full Objects
      * Retrieves full playlist data for all playlists from Spotify API
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {string} objectType Optional | 'simplified', 'link' or 'full', what to check if the playlist contains.
      */
-    retrieveFullObjects: async (wrapper, objectType) => {
+    retrieveFullObjects: async function(wrapper, objectType) {
         try {
             for (let playlist in this.items) {
                 if (objectType == 'simplified') {
@@ -703,7 +703,7 @@ Playlists.prototype = {
  * Search for a Playlist
  * Returns search results for a query.
  * 
- * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {string} query String to search for.
  * @param {object} options (Optional) Additional options.
  * @returns {Playlists} Playlists returned from Search.
@@ -724,11 +724,11 @@ Playlists.search = async function(wrapper, query, options) {
  * Get User's Playlists
  * Returns followed and created playlists.
  * 
- * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {object} options (Optional) Additional options.
  * @returns {Playlists} Playlists returned request.
  */
-Playlists.getUserPlaylists = async (wrapper, userId, options) => {
+Playlists.getUserPlaylists = async function(wrapper, userId, options) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Playlists.getUserPlaylists: Invalid Parameter \"options\"");
@@ -744,11 +744,11 @@ Playlists.getUserPlaylists = async (wrapper, userId, options) => {
  * Get All User Playlists
  * Returns all followed and created playlists.
  * 
- * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {object} options (Optional) Additional options.
  * @returns {Playlists} Playlists returned request.
  */
-Playlists.getAllUserPlaylists = async (wrapper, userId) => {
+Playlists.getAllUserPlaylists = async function(wrapper, userId) {
     try {
         let _options = { limit: 50, offset: 0 };
         let playlists = new Playlists();
@@ -768,11 +768,11 @@ Playlists.getAllUserPlaylists = async (wrapper, userId) => {
  * Get My Playlists
  * Returns followed and created playlists.
  * 
- * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {object} options (Optional) Additional options.
  * @returns {Playlists} Playlists returned request.
  */
-Playlists.getMyPlaylists = async (wrapper, options) => {
+Playlists.getMyPlaylists = async function(wrapper, options) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Playlists.getUserPlaylists: Invalid Parameter \"options\"");
@@ -789,11 +789,11 @@ Playlists.getMyPlaylists = async (wrapper, options) => {
  * Get All User Playlists
  * Returns all followed and created playlists.
  * 
- * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {object} options (Optional) Additional options.
  * @returns {Playlists} Playlists returned request.
  */
-Playlists.getAllMyPlaylists = async (wrapper) => {
+Playlists.getAllMyPlaylists = async function(wrapper) {
     try {
         let _options = { limit: 50, offset: 0 };
         let userId = await (await wrapper.getMe()).body.id;
@@ -814,11 +814,11 @@ Playlists.getAllMyPlaylists = async (wrapper) => {
  * Get Featured Playlists
  * Returns list of featured playlists.
  * 
- * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {object} options (Optional) Additional options.
  * @returns {Playlists} Playlists returned request.
  */
-Playlists.getFeaturedPlaylists = async (wrapper) => {
+Playlists.getFeaturedPlaylists = async function(wrapper) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Playlists.getUserPlaylists: Invalid Parameter \"options\"");

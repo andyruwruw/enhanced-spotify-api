@@ -40,7 +40,7 @@ Albums.prototype = {
      * 
      * @param {Album | object | string } album Album Instance, album object or album id to add. 
      */
-    push: (album) => {
+    push: function(album) {
         try {
             if (album instanceof Albums.Album) {
                 if (!(album.id in this.items)) {
@@ -88,7 +88,7 @@ Albums.prototype = {
      * 
      * @param {Albums | array } albums Another Albums instance or array of Album instances, album objects, or album ids to concat.
      */
-    concat: (albums) => {
+    concat: function(albums) {
         try {
             if (albums instanceof Albums) {
                 for (let album in albums.items) {
@@ -115,7 +115,7 @@ Albums.prototype = {
      * 
      * @param {Album | object | string } album Album instance, album data, or album id to remove.
      */
-    remove: (album) => {
+    remove: function(album) {
         try {
             let id = null;
             if (album instanceof Albums.Album || typeof(album) == 'object') {
@@ -140,7 +140,7 @@ Albums.prototype = {
      * 
      * @returns {number} Number of items in manager.
      */
-    size: () => {
+    size: function() {
         try {
             return this.order.length;
         } catch (error) {
@@ -156,7 +156,7 @@ Albums.prototype = {
      * @param {number} startAt Where to start in the list.
      * @returns {number} Index of item.
      */
-    indexOf: (album, startAt) => {
+    indexOf: function(album, startAt) {
         try {
             let id = null;
             if (typeof(album) == 'string') {
@@ -188,7 +188,7 @@ Albums.prototype = {
      * @param {string | object | Album} album Album ID, Album instance or object with `id` properity.
      * @returns {boolean} Whether item is contained.
      */
-    includes: (album) => {
+    includes: function(album) {
         try {
             let id = null;
             if (typeof(album) == 'string') {
@@ -217,7 +217,7 @@ Albums.prototype = {
      * @param {function} method Method to filter by.
      * @returns {Albums} Filtered Albums object.
      */
-    filter: async (method) => {
+    filter: async function(method) {
         try {
             if (typeof(method) != 'function') {
                 throw new Error("Albums.filter: \"method\" is not a function"); 
@@ -241,7 +241,7 @@ Albums.prototype = {
      * @param {number} index Index of the item desired.
      * @returns {Album} Album at a given index
      */
-    get: (index) => {
+    get: function(index) {
         try {
             if (index > this.order.length - 1 || index < 0) {
                 throw new Error("Albums.get: Index out of range");
@@ -258,7 +258,7 @@ Albums.prototype = {
      * 
      * @returns {Array} Array of IDs
      */
-    getIDs: () => {
+    getIDs: function() {
         return this.order;
     },
 
@@ -268,7 +268,7 @@ Albums.prototype = {
      * 
      * @returns {Array} Array of IDs
      */
-    getIDsNoRepeats: () => {
+    getIDsNoRepeats: function() {
         try {
             let ids = [];
             for (let i = 0; i < this.order.length; i++) {
@@ -288,7 +288,7 @@ Albums.prototype = {
      * 
      * @returns {Array} Array of URIs
      */
-    getURIs: async () => {
+    getURIs: async function() {
         try {
             return await this.order.map((id) => 'spotify:album' + id);
         } catch (error) {
@@ -302,7 +302,7 @@ Albums.prototype = {
      * 
      * @returns {Array} Array of URIs
      */
-    getURIsNoRepeats: async () => {
+    getURIsNoRepeats: async function() {
         try {
             let uris = [];
             for (let i = 0; i < this.order.length; i++) {
@@ -322,7 +322,7 @@ Albums.prototype = {
      * 
      * @param {function} method Function to be run on each item.
      */
-    forEach: async (method) => {
+    forEach: async function(method) {
         try {
             if (typeof(method) != 'function') {
                 throw new Error("Albums.forEach: \"method\" is not a function"); 
@@ -339,7 +339,7 @@ Albums.prototype = {
      * Reverse
      * Reverses order of items
      */
-    reverse: () => {
+    reverse: function() {
         try {
             this.order.reverse();
         } catch (error) {
@@ -353,7 +353,7 @@ Albums.prototype = {
      * 
      * @returns {Album} Removed item
      */
-    pop: () => {
+    pop: function() {
         try {
             let id = this.order.pop();
             let item = this.items[id];
@@ -372,7 +372,7 @@ Albums.prototype = {
      * 
      * @returns {Album} Removed item
      */
-    shift: () => {
+    shift: function() {
         try {
             let id = this.order.shift();
             let item = this.items[id];
@@ -393,7 +393,7 @@ Albums.prototype = {
      * @param {number} end End of removal (Exclusive)
      * @returns {Albums} Removed Albums.
      */
-    slice: async (start, end) => {
+    slice: async function(start, end) {
         try {
             let stop = (end != null) ? end : this.order.length;
             let ids = this.order.splice(start, stop);
@@ -415,7 +415,7 @@ Albums.prototype = {
      * 
      * @param {function} compareFunction Sorting method.
      */
-    sort: async (compareFunction) => {
+    sort: async function(compareFunction) {
         try {
             let sorted = await (await Object.values(this.items)).sort(compareFunction);
             this.order = await sorted.map((item) => item.id);
@@ -432,7 +432,7 @@ Albums.prototype = {
      * @param {number} order -1 or 1
      * @param {string} property Property to sort by.
      */
-    sortSafe: async (wrapper, order, property) => {
+    sortSafe: async function(wrapper, order, property) {
         try {
             let fullObject = ['id', 'name', 'album_type', 'artists', 'available_markets', 'copyrights', 'external_ids', 'external_urls', 'genres', 'href', 'images', 'label', 'popularity', 'release_date', 'release_date_precision', 'restrictions', 'tracks', 'uri', '_tracks'];
             let propertyPrior = property.split('.')[0];
@@ -466,7 +466,7 @@ Albums.prototype = {
      * @param {string} field Field to set value to.
      * @param {*} value Value to set.
      */
-    setProperty: (id, field, value) => {
+    setProperty: function(id, field, value) {
         try {
             if (id in this.items) {
                 this.items[id][field] = value;
@@ -485,7 +485,7 @@ Albums.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Additional options.
      */
-    play: async (wrapper, options) => {
+    play: async function(wrapper, options) {
         try {
             let tracks = await this.getTracks(wrapper);
             return await tracks.play(wrapper, options);
@@ -501,7 +501,7 @@ Albums.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Booleans Whether album are saved to the user's library.
      */
-    areLiked: async (wrapper) => {
+    areLiked: async function(wrapper) {
         try {
             let response = await wrapper.containsMySavedAlbums(this.order);
             return response.body;
@@ -516,7 +516,7 @@ Albums.prototype = {
     * 
     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
     */
-    likeAll: async (wrapper) => {
+    likeAll: async function(wrapper) {
         try {
             await wrapper.Constr.addToMySavedAlbums(Object.keys(this.items));
         } catch (error) {
@@ -530,7 +530,7 @@ Albums.prototype = {
     * 
     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
     */
-    unlikeAll: async (wrapper) => {
+    unlikeAll: async function(wrapper) {
         try {
             await wrapper.removeFromMySavedAlbums(Object.keys(this.items));
         } catch (error) {
@@ -545,7 +545,7 @@ Albums.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Album Full Objects.
      */
-    getFullObjects: async (wrapper) => {
+    getFullObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'full');
             let albums = await this.order.map((album) => {
@@ -566,7 +566,7 @@ Albums.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Album Simplified Objects.
      */
-    getSimplifiedObjects: async (wrapper) => {
+    getSimplifiedObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
             let albums = await this.order.map((album) => {
@@ -586,7 +586,7 @@ Albums.prototype = {
      * 
      * @returns {array} Array of Current Album Data
      */
-    getCurrentData: async () => {
+    getCurrentData: async function() {
         try {
             let albums = await this.order.map((album) => {
                 return this.items[album]; 
@@ -606,7 +606,7 @@ Albums.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Artists} Artists object of all album's artists.
      */
-    getArtists: async (wrapper) => {
+    getArtists: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
             let artists = new Albums.Artists();
@@ -626,7 +626,7 @@ Albums.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Tracks} Tracks object of all album's tracks.
      */
-    getTracks: async (wrapper) => {
+    getTracks: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
             let tracks = new Albums.Tracks();
@@ -646,7 +646,7 @@ Albums.prototype = {
      * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
      * @param {string} objectType Optional | 'simplified', 'link' or 'full', what to check if the album contains.
      */
-    retrieveFullObjects: async (wrapper, objectType) => {
+    retrieveFullObjects: async function(wrapper, objectType) {
         try {
             let ids = [];
             for (let album in this.items) {
@@ -685,7 +685,7 @@ Albums.prototype = {
  * @param {object} options (Optional) Additional options.
  * @returns {Albums} Albums returned from Search.
  */
-Albums.search = async (wrapper, query, options) => {
+Albums.search = async function(wrapper, query, options) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Albums.search: Invalid Parameter \"options\"");
@@ -706,7 +706,7 @@ Albums.search = async (wrapper, query, options) => {
  * @param {object} options (Optional) Additional options.
  * @returns {Albums} Albums returned request.
  */
-Albums.getMySavedAlbums = async (wrapper, options) => {
+Albums.getMySavedAlbums = async function(wrapper, options) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Albums.getMySavedAlbums: Invalid Parameter \"options\"");
@@ -727,7 +727,7 @@ Albums.getMySavedAlbums = async (wrapper, options) => {
  * @param {object} options (Optional) Additional options.
  * @returns {Albums} Albums returned request.
  */
-Albums.getAllMySavedAlbums = async (wrapper) => {
+Albums.getAllMySavedAlbums = async function(wrapper) {
     try {
         let _options = { limit: 50, offset: 0 };
         let albums = new Albums();
@@ -751,7 +751,7 @@ Albums.getAllMySavedAlbums = async (wrapper) => {
  * @param {Array} albumIds Ids of albums.
  * @returns {Albums} Albums from ids.
  */
-Albums.getAlbums = async (wrapper, albumIds) => {
+Albums.getAlbums = async function(wrapper, albumIds) {
     try {
         let albums = new Albums(albumIds);
         await albums.retrieveFullObjects(wrapper);
@@ -769,7 +769,7 @@ Albums.getAlbums = async (wrapper, albumIds) => {
  * @param {string} id ID for artist
  * @returns {Albums} Albums of all Artist's Albums.
  */
-Albums.getArtistAlbums = async (wrapper, id) => {
+Albums.getArtistAlbums = async function(wrapper, id) {
     try {
         let artist = new Albums.Artist(id);
         return await artist.getAlbums(wrapper);

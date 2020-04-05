@@ -12,9 +12,9 @@ Wrapper.prototype = {
     ...require('./functions/Episodes'),
 }
 
-User.addMethods = addMethods;
+Wrapper.addMethods = addMethods;
 
-User.override = override;
+Wrapper.override = override;
 
 module.exports = {
     Wrapper: Wrapper,

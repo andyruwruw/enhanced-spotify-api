@@ -56,10 +56,10 @@ Show.prototype = {
      * Is Liked
      * Returns whether a show is saved to the user's library.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {boolean} Whether show is saved to the user's library.
      */
-    isLiked: async (wrapper) => {
+    isLiked: async function(wrapper) {
         try {
             let response = await wrapper.containsMySavedShows([this.id]);
             return response.body[0];
@@ -72,9 +72,9 @@ Show.prototype = {
      * Like Show
      * Adds show to the user's library.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      */
-    like: async (wrapper) => {
+    like: async function(wrapper) {
         try {
             return await wrapper.addToMySavedShows([this.id]);
         } catch (error) {
@@ -86,9 +86,9 @@ Show.prototype = {
     * Unlike Show
     * Removes show from the user's library.
     * 
-    * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+    * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
     */
-    unlike: async (wrapper) => {
+    unlike: async function(wrapper) {
         try {
             return await wrapper.removeFromMySavedShows([this.id]);
         } catch (error) {
@@ -102,7 +102,7 @@ Show.prototype = {
      * 
      * @returns {boolean} Whether full object is loaded.
      */
-    containsFullObject: () => {
+    containsFullObject: function() {
         return ((this.name != null) && (this.available_markets != null) && (this.copyrights) && (this.description != null) && (this.explicit != null) && (this.episodes) && (this.external_urls != null) && (this.href != null) && (this.images != null) && (this.is_externally_hosted != null) && (this.languages != null) && (this.media_type != null) && (this.publisher != null) && (this.uri != null));
     },
 
@@ -112,7 +112,7 @@ Show.prototype = {
      * 
      * @returns {boolean} Whether simplified object is loaded.
      */
-    containsSimplifiedObject: () => {
+    containsSimplifiedObject: function() {
         return ((this.name != null) && (this.available_markets != null) && (this.copyrights) && (this.description != null) && (this.explicit != null) && (this.external_urls != null) && (this.href != null) && (this.images != null) && (this.is_externally_hosted != null) && (this.languages != null) && (this.media_type != null) && (this.publisher != null) && (this.uri != null));
     },
 
@@ -120,10 +120,10 @@ Show.prototype = {
      * Get Full Object
      * Returns full show data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Show Full Object Data.
      */
-    getFullObject: async (wrapper) => {
+    getFullObject: async function(wrapper) {
         try {
             if (!(await this.containsFullObject())) {
                 await this.retrieveFullObject(wrapper);
@@ -155,10 +155,10 @@ Show.prototype = {
      * Get Simplified Object
      * Returns simplified show data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Show Simplified Object Data.
      */
-    getSimplifiedObject: async (wrapper) => {
+    getSimplifiedObject: async function(wrapper) {
         try {
             if (!(await this.containsSimplifiedObject())) {
                 await this.retrieveFullObject(wrapper);
@@ -190,10 +190,10 @@ Show.prototype = {
      * Get Current Data
      * Just returns whatever the show object currently holds
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Any Show Data.
      */
-    getCurrentData: () => {
+    getCurrentData: function() {
         try {
             let data = { id: this.id, type: 'album' };
             let properties = ['name', 'available_markets', 'copyrights', 'description', 'explicit', 'episodes', 'external_urls', 'href', 'images', 'is_externally_hosted', 'languages', 'media_type', 'publisher', 'uri', '_episodes'];
@@ -209,13 +209,13 @@ Show.prototype = {
     },
 
     /**
-     * Get Show Episodes
-     * Returns Episodes object of show's episodes.
+     * Get All Show Episodes
+     * Returns Episodes object of all show's episodes.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Episodes} Episodes instance with all show's episodes.
      */ 
-    getEpisodes: async (wrapper) => {
+    getAllEpisodes: async function(wrapper) {
         try {
             await this.retrieveEpisodes(wrapper);
             return this._episodes;
@@ -225,12 +225,34 @@ Show.prototype = {
     },
 
     /**
+     * Get Show Episodes
+     * Returns Episodes object of show's episodes.
+     * 
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {object} options (Optional) Additional Options
+     * @returns {Episodes} Episodes instance with all show's episodes.
+     */ 
+    getEpisodes: async function(wrapper, options) {
+        try {
+            if (options != null && typeof(options) != 'object') {
+                throw new Error("Show.getEpisodes: Invalid Parameter \"options\"");
+            }
+            let response = await wrapper.getShowEpisodes(this.id, options ? options : {});
+            let episodes = new Show.Episodes(response.body.items);
+            await this.loadEpisodes(episodes);
+            return episodes;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
      * Retrieve Full Object
      * Retrieves full show data from Spotify API
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      */
-    retrieveFullObject: async (wrapper) => {
+    retrieveFullObject: async function(wrapper) {
         try {
             let response = await wrapper.getShow(this.id);
             await this.loadFullObject(response.body);
@@ -243,9 +265,9 @@ Show.prototype = {
      * Retrieve Show Episodes
      * Retrieves all episodes in show from Spotify API
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      */
-    retrieveEpisodes: async (wrapper) => {
+    retrieveEpisodes: async function(wrapper) {
         try {
             let options = { limit: 50, offset: 0 };
             let response;
@@ -265,7 +287,7 @@ Show.prototype = {
      * 
      * @param {object} data Object with show full object data.
      */
-    loadFullObject: async (data) => {
+    loadFullObject: async function(data) {
         try {
             this.name = data.name;
             this.available_markets = data.available_markets;
@@ -299,7 +321,7 @@ Show.prototype = {
      * 
      * @param {object} data Object with show simplified object data.
      */
-    loadSimplifiedObject: async (data) => {
+    loadSimplifiedObject: async function(data) {
         try {
             this.name = data.name;
             this.available_markets = data.available_markets;
@@ -325,7 +347,7 @@ Show.prototype = {
      * 
      * @param {Array | Episode | object | string} episodes 
      */
-    loadEpisodes: async (episodes) => {
+    loadEpisodes: async function(episodes) {
         try {
             if (episodes instanceof Show.Episodes || episodes instanceof Array) {
                 this._episodes.concat(episodes);
@@ -344,14 +366,15 @@ Show.prototype = {
  * Get Show
  * Returns Show object of ID
  * 
- * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {Array} showID Id of show.
  * @returns {Show} Show from id.
  */
-Show.getShow = async (wrapper, showID) => {
+Show.getShow = async function(wrapper, showID) {
     try {
         let show = new Show(showID);
-        return await show.retrieveFullObjects(wrapper);
+        await show.retrieveFullObjects(wrapper);
+        return show;
     } catch (error) {
         throw error;
     }
