@@ -2,6 +2,9 @@
 
 var { addMethods, override } = require('./shared');
 
+var Tracks = require('./Tracks.js');
+var Artists = require('./Artists.js');
+
  /**
  * Album Constructor
  * Creates a new Album Instance for a given album.
@@ -12,7 +15,7 @@ function Album(data) {
     try {
         if (typeof(data) == 'string') {
             this.id = data;
-            this._tracks = new Album.Tracks();
+            this._tracks = new Tracks();
         } else if (typeof(data) == 'object') {
             if ('id' in data) {
                 this.id = data.id; 
@@ -37,7 +40,7 @@ function Album(data) {
             this.tracks = 'tracks' in data ? data.tracks : null;
             this.uri = 'uri' in data ? data.uri : null;
             this.album_group = 'album_group' in data ? data.album_group : null;
-            this._tracks = '_tracks' in data ? data._tracks : new Album.Tracks();
+            this._tracks = '_tracks' in data ? data._tracks : new Tracks();
             if ('tracks' in data) {
                 if ('items' in data.tracks) {
                     this.loadTracks(data.tracks.items);
@@ -52,9 +55,6 @@ function Album(data) {
         throw error;
     }
 }
-
-Album.Tracks = require('./Tracks.js');
-Album.Artists = require('./Artists.js');
 
 Album.prototype = {
     /**
@@ -260,7 +260,7 @@ Album.prototype = {
             if (!(await this.containsSimplifiedObject())) {
                 await this.retrieveFullObject(wrapper);
             }
-            return new Album.Artists(this.artists);
+            return new Artists(this.artists);
         } catch (error) {
             throw error;
         }

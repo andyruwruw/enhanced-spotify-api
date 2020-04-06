@@ -383,7 +383,7 @@ Categories.prototype = {
      * Sort Safe
      * Sorts but ensures properties are present prior to sort.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {number} order -1 or 1
      * @param {string} property Property to sort by.
      */
@@ -437,7 +437,7 @@ Categories.prototype = {
      * Play Categories
      * Plays category on user's active device.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {number} index (Optional) Index of category
      */
     play: async function(wrapper, index) {
@@ -453,7 +453,7 @@ Categories.prototype = {
      * Get Full Objects
      * Returns full category data for all categories. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Array} Array of Category Full Objects.
      */
     getFullObjects: async function(wrapper) {
@@ -493,7 +493,7 @@ Categories.prototype = {
      * Get Categories Playlists
      * Returns Playlists instance with Categories playlists.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options to be passed into request.
      * @returns {Playlists} Playlists instance with category playlists.
      */
@@ -517,7 +517,7 @@ Categories.prototype = {
      * Retrieve Full Objects
      * Retrieves full category data for all Categories from Spotify API
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      */
     retrieveFullObjects: async function(wrapper) {
         try {
@@ -536,7 +536,7 @@ Categories.prototype = {
  * Get a List of Categories
  * Returns Categories instance.
  * 
- * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {object} options (Optional) Options for request.
  * @returns {Categories} Categories instance
  */

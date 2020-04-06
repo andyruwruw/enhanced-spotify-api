@@ -68,7 +68,7 @@ Episode.prototype = {
      * Get Full Object
      * Returns full episode data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Episode Full Object Data.
      */
     getFullObject: async function(wrapper) {
@@ -106,7 +106,7 @@ Episode.prototype = {
      * Get Simplified Object
      * Returns simplified episode data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Episode Simplified Object Data.
      */
     getSimplifiedObject: async function(wrapper) {
@@ -143,7 +143,7 @@ Episode.prototype = {
      * Get Current Data
      * Just returns whatever the track object currently holds
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Any Track Data.
      */
     getCurrentData: function() {
@@ -165,7 +165,7 @@ Episode.prototype = {
      * Get Episode Show
      * Returns Show Object of episode's show..
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Show} Episode's Show
      */
     getShow: async function(wrapper) {
@@ -242,7 +242,7 @@ Episode.prototype = {
      * Retrieve Full Object
      * Retrieves full episode data from Spotify API
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      */
     retrieveFullObject: async function(wrapper) {
         try {
@@ -261,7 +261,7 @@ Episode.prototype = {
  * Get Episode
  * Returns Episode object of ID
  * 
- * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {Array} episodeId Id of episode.
  * @returns {Episode} Episode from id.
  */

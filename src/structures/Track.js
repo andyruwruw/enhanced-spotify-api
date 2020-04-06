@@ -2,6 +2,10 @@
 
 var { addMethods, override } = require('./shared');
 
+var Tracks = require('./Tracks');
+var Artists = require('./Artists');
+var Album = require('./Album');
+
  /**
  * Track Constructor
  * Creates a new Track Instance for a given track.
@@ -62,11 +66,7 @@ function Track(data) {
     } catch (error) {
         throw error;
     }
-}
-
-Track.Tracks = require('./Tracks');
-Track.Artists = require('./Artists');
-Track.Album = require('./Album');
+};
 
 Track.prototype = {
     /**
@@ -467,7 +467,7 @@ Track.prototype = {
             if (!(this.artists != null)) {
                 await this.retrieveFullObject(wrapper);
             }
-            return new Track.Artists(this.artists);
+            return new Artists(this.artists);
         } catch (error) {
             throw error;
         }
@@ -484,7 +484,7 @@ Track.prototype = {
             if (!this.album) {
                 await this.retrieveFullObject(wrapper);
             }
-            return new Track.Album(this.album);
+            return new Album(this.album);
         } catch (error) {
             throw error;
         }
@@ -512,7 +512,7 @@ Track.prototype = {
             }
             _options.seed_tracks = this.id;
             let response = await wrapper.getRecommendations(_options);
-            return new Track.Tracks(response.body.tracks);
+            return new Tracks(response.body.tracks);
         } catch (error) {
             throw error;
         }
@@ -552,7 +552,7 @@ Track.prototype = {
             _options.target_tempo = this.tempo;
             _options.target_valence = this.valence;
             let response = await wrapper.getRecommendations(_options);
-            return new Track.Tracks(response.body.tracks);
+            return new Tracks(response.body.tracks);
         } catch (error) {
             throw error;
         }

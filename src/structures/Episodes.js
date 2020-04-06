@@ -409,7 +409,7 @@ Episodes.prototype = {
      * Sort Safe
      * Sorts but ensures properties are present prior to sort.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {number} order -1 or 1
      * @param {string} property Property to sort by.
      */
@@ -463,7 +463,7 @@ Episodes.prototype = {
      * Get Full Objects
      * Returns full episode data for all episodes. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Episode Full Objects.
      */
     getFullObjects: async function(wrapper) {
@@ -484,7 +484,7 @@ Episodes.prototype = {
      * Get Simplified Objects
      * Returns simplified episode data for all episodes. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {array} Array of Episode Simplified Objects.
      */
     getSimplifiedObjects: async function(wrapper) {
@@ -524,7 +524,7 @@ Episodes.prototype = {
      * Get All Episode's Shows
      * Returns Shows instance with all episode's shows.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Shows} Shows object of all episode's episshowsodes.
      */
     getShows: async function(wrapper) {
@@ -544,7 +544,7 @@ Episodes.prototype = {
      * Retrieve Full Objects
      * Retrieves full episode data for all episodes from Spotify API
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {string} objectType Optional | 'simplified', 'link' or 'full', what to check if the episode contains.
      */
     retrieveFullObjects: async function(wrapper, objectType) {
@@ -581,7 +581,7 @@ Episodes.prototype = {
  * Search for a Episodes
  * Returns search results for a query.
  * 
- * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {string} query String to search for.
  * @param {object} options (Optional) Additional options.
  * @returns {Episodes} Episodes returned from Search.
@@ -603,7 +603,7 @@ Episodes.search = async function(wrapper, query, options) {
  * Get Episodes
  * Returns Episodes object of IDs
  * 
- * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {Array} episodeIds Ids of episodes.
  * @returns {Episodes} Episodes from ids.
  */

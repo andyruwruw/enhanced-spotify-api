@@ -2,6 +2,10 @@
 
 var { addMethods, override } = require('./shared');
 
+var Tracks = require('./Tracks');
+var Artists = require('./Artists');
+var Albums = require('./Albums');
+
  /**
  * Playlist Constructor
  * Creates a new Playlist Instance for a given playlist.
@@ -12,7 +16,7 @@ function Playlist(data) {
     try {
         if (typeof(data) == 'string') {
             this.id = data;
-            this._tracks = new Playlist.Tracks();
+            this._tracks = new Tracks();
         } else if (typeof(data) == 'object') {
             if (data.hasOwnProperty('id')) {
                 this.id = data.id;
@@ -31,7 +35,7 @@ function Playlist(data) {
             this.snapshot_id = 'snapshot_id' in data ? data.snapshot_id : null;
             this.tracks = 'tracks' in data ? data.tracks : null;
             this.uri = 'uri' in data ? data.uri : null;
-            this._tracks = '_tracks' in data ? data._tracks : new Playlist.Tracks();
+            this._tracks = '_tracks' in data ? data._tracks : new Tracks();
             if ('tracks' in data) {
                 if ('items' in data.tracks) {
                     this.loadTracks(data.tracks.items);
@@ -42,16 +46,11 @@ function Playlist(data) {
         } else {
             throw new Error("Playlist.constructor: Invalid Parameter \"data\"");
         }
-        this.changes = [];
+        this.retrieved = false;
     } catch (error) {
         throw error;
     }
 }
-
-Playlist.Tracks = require('./Tracks');
-Playlist.Artists = require('./Artists');
-Playlist.Albums = require('./Albums');
-Playlist.Playlists = require('./Playlists');
 
 Playlist.prototype = {
     /**
@@ -83,7 +82,7 @@ Playlist.prototype = {
     isFollowed: async function(wrapper) {
         try {
             let userID = await (await wrapper.getMe()).body.id;
-            let response = await wrapper.areFollowingPlaylist([this.id], [userID]);
+            let response = await wrapper.areFollowingPlaylist(this.id, [userID]);
             return response.body[0];
         } catch (error) {
             throw error;
@@ -99,7 +98,7 @@ Playlist.prototype = {
      */
     areFollowing: async function(wrapper, userIds) {
         try {
-            let response = await wrapper.areFollowingPlaylist([this.id], userIds);
+            let response = await wrapper.areFollowingPlaylist(this.id, userIds);
             return response.body;
         } catch (error) {
             throw error;
@@ -114,7 +113,7 @@ Playlist.prototype = {
      */
     follow: async function(wrapper) {
         try {
-            return await wrapper.followPlaylist([this.id]);
+            return await wrapper.followPlaylist(this.id);
         } catch (error) {
             throw error;
         }
@@ -128,7 +127,7 @@ Playlist.prototype = {
      */
     unfollow: async function(wrapper) {
         try {
-            return await wrapper.unfollowPlaylist([this.id]);
+            return await wrapper.unfollowPlaylist(this.id);
         } catch (error) {
             throw error;
         }
@@ -311,7 +310,7 @@ Playlist.prototype = {
      */
     push: async function(wrapper, track) {
         try {
-            return await this.addTracks(wrapper, track);
+            return await this.addTracks(wrapper, [track]);
         } catch (error) {
             throw error;
         }
@@ -335,11 +334,11 @@ Playlist.prototype = {
      * Remove
      * Removes an item from the Manager Object.
      * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @param {Track | object | string } track Track instance, track data, or track id to remove.
+     * @param {Track | Object | String } track Track instance, track data, or track id to remove.
      */
     remove: async function(wrapper, track) {
         try {
-            return await this.removeTracks(wrapper, track);
+            return await this.removeTracks(wrapper, [track]);
         } catch (error) {
             throw error;
         }
@@ -353,7 +352,9 @@ Playlist.prototype = {
      */
     size: async function(wrapper) {
         try {
-            await this.retrieveTracks(wrapper);
+            if (!this.retrieved) {
+                await this.retrieveTracks(wrapper);
+            }
             return await this._tracks.size();
         } catch (error) {
             throw error;
@@ -370,7 +371,9 @@ Playlist.prototype = {
      */
     indexOf: async function(wrapper, track, startAt) {
         try {
-            await this.retrieveTracks(wrapper);
+            if (!this.retrieved) {
+                await this.retrieveTracks(wrapper);
+            }
             return await this._tracks.indexOf(track);
         } catch (error) {
             throw error;
@@ -386,7 +389,9 @@ Playlist.prototype = {
      */
     includes: async function(wrapper, track) {
         try {
-            await this.retrieveTracks(wrapper);
+            if (!this.retrieved) {
+                await this.retrieveTracks(wrapper);
+            }
             return this._tracks.includes(track);
         } catch (error) {
             throw error;
@@ -402,7 +407,9 @@ Playlist.prototype = {
      */
     get: async function(wrapper, index) {
         try {
-            await this.retrieveTracks(wrapper);
+            if (!this.retrieved) {
+                await this.retrieveTracks(wrapper);
+            }
             return this._tracks.get(index);
         } catch (error) {
             throw error;
@@ -415,9 +422,11 @@ Playlist.prototype = {
      * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Array} Array of IDs
      */
-    getIDs: function(wrapper) {
+    getIDs: async function(wrapper) {
         try {
-            await this.retrieveTracks(wrapper);
+            if (!this.retrieved) {
+                await this.retrieveTracks(wrapper);
+            }
             return this._tracks.getIDs();
         } catch (error) {
             throw error;
@@ -430,9 +439,11 @@ Playlist.prototype = {
      * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {Array} Array of IDs
      */
-    getIDsNoRepeats: function(wrapper) {
+    getIDsNoRepeats: async function(wrapper) {
         try {
-            await this.retrieveTracks(wrapper);
+            if (!this.retrieved) {
+                await this.retrieveTracks(wrapper);
+            }
             return this._tracks.getIDsNoRepeats();
         } catch (error) {
             throw error;
@@ -447,7 +458,9 @@ Playlist.prototype = {
      */
     getURIs: async function(wrapper) {
         try {
-            await this.retrieveTracks(wrapper);
+            if (!this.retrieved) {
+                await this.retrieveTracks(wrapper);
+            }
             return this._tracks.getURIs();
         } catch (error) {
             throw error;
@@ -462,7 +475,9 @@ Playlist.prototype = {
      */
     getURIsNoRepeats: async function(wrapper) {
         try {
-            await this.retrieveTracks(wrapper);
+            if (!this.retrieved) {
+                await this.retrieveTracks(wrapper);
+            }
             return this._tracks.getURIsNoRepeats();
         } catch (error) {
             throw error;
@@ -473,9 +488,8 @@ Playlist.prototype = {
      * Reverse
      * Reverses order of items
      */
-    reverse: function(wrapper) {
+    reverse: async function(wrapper) {
         try {
-            await this.retrieveTracks(wrapper);
             await this._tracks.reverse();
             return await this.replaceTracks(wrapper, this._tracks.getIDs());
         } catch (error) {
@@ -489,9 +503,11 @@ Playlist.prototype = {
      * 
      * @returns {Track} Removed item
      */
-    pop: function() {
+    pop: async function() {
         try {
-            await this.retrieveTracks(wrapper);
+            if (!this.retrieved) {
+                await this.retrieveTracks(wrapper);
+            }
         } catch (error) {
             throw error;
         }
@@ -503,9 +519,11 @@ Playlist.prototype = {
      * 
      * @returns {Track} Removed item
      */
-    shift: function() {
+    shift: async function() {
         try {
-            await this.retrieveTracks(wrapper);
+            if (!this.retrieved) {
+                await this.retrieveTracks(wrapper);
+            }
             let track = this._tracks.pop();
         } catch (error) {
             throw error;
@@ -546,6 +564,15 @@ Playlist.prototype = {
                 throw new Error("Playlist.addTracks: Invalid Parameter \"tracks\"");
             }
             let response = await wrapper.addTracksToPlaylist(this.id, uris, options ? options : {});
+            if (this.retrieved) {
+                this._tracks.concat(tracks);
+                if (options && options.hasOwnProperty('position')) {
+                    let order = this._tracks.getIDs();
+                    order.splice(options.position, 0, ...order.splice(order.length - uris.length + 1, order.length));
+                    this._tracks.order = order;
+                }
+            }
+            
             this.snapshot_id = response.body.snapshot_id;
             return response;
         } catch (error) {
@@ -585,6 +612,7 @@ Playlist.prototype = {
                 throw new Error("Playlist.addTracks: Invalid Parameter \"tracks\"");
             }
             let response = await wrapper.replaceTracksInPlaylist(this.id, uris);
+            this._tracks = new Tracks(tracks);
             this.snapshot_id = response.body.snapshot_id;
             return response;
         } catch (error) {
@@ -596,15 +624,29 @@ Playlist.prototype = {
      * Reorder tracks
      * Reorders tracks in a playlist.
      * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @param {number} range_start Where to select
-     * @param {number} insert_before Where to place
-     * @param {object} options (Optional) Additional options.
+     * @param {Number} range_start Where to select
+     * @param {Number} insert_before Where to place
+     * @param {Object} options (Optional) Additional options.
      * @returns {Object} Response to Request
      * options.range_length: {Number} The amount of tracks to be reordered (Default 1)
      */
     reorderTracks: async function(wrapper, range_start, insert_before, options) {
         try {
             let response = await wrapper.reorderTracksInPlaylist(this.id, range_start, insert_before, options ? options : {}, this.snapshot_id);
+            if (this.retrieved) {
+                let order = this._tracks.getIDs();
+                let range_length = (options && options.hasOwnProperty('range_length') ? options.range_length : 1);
+                let selection = order.filter((item, index) => {
+                    return (index >= range_start && index < range_start +  range_length);
+                });
+                order.splice(insert_before, 0, ...selection);
+                if (insert_before > range_start) {
+                    order.splice(range_start, range_length);
+                } else {
+                    order.splice(range_start + range_length, range_length);
+                }
+                this._tracks.order = order;
+            }
             this.snapshot_id = response.body.snapshot_id;
             return response;
         } catch (error) {
@@ -631,7 +673,11 @@ Playlist.prototype = {
                     } else if (((tracks[i] instanceof Track || typeof(tracks[i]) == 'object')) && tracks[i].hasOwnProperty('id')) {
                         uris.push('spotify:track:' + tracks[i].id);
                     } else if (typeof(tracks[i]) == 'string') {
-                        uris.push('spotify:track:' + tracks[i]);
+                        if (tracks[i].substring(0, 7) == 'spotify') {
+                            uris.push(tracks[i]);
+                        } else {
+                            uris.push('spotify:track:' + tracks[i]);
+                        }
                     }
                 }
             } else if (typeof(tracks) == 'object' && tracks[i].hasOwnProperty('uri')) {
@@ -639,11 +685,31 @@ Playlist.prototype = {
             } else if ((tracks instanceof Track || typeof(tracks) == 'object') && tracks.hasOwnProperty('id')) {
                 uris.push('spotify:track:' + tracks.id);
             } else if (typeof(tracks) == 'string') {
-                uris = ['spotify:track:' + tracks];
+                if (tracks.substring(0, 7) == 'spotify') {
+                    uris.push(tracks);
+                } else {
+                    uris.push('spotify:track:' + tracks);
+                }
             } else {
                 throw new Error("Playlist.addTracks: Invalid Parameter \"tracks\"");
             }
             let response = await wrapper.removeTracksFromPlaylistWithSnapshotId(this.id, uris, this.snapshot_id);
+            if (this.retrieved) {
+                if (!(uris instanceof Array)) {
+                    uris = [uris];
+                }
+                for (let i = 0; i < uris.length; i++) {
+                    if (typeof(uris[i]) == 'object' && uris[i].hasOwnProperty('uri')) {
+                        if (uris[i].hasOwnProperty('positions')) {
+                            await this._tracks.removeIndexes(uris[i].positions);
+                        } else {
+                            await this._tracks.remove(uris[i].uri.substring(14, uris[i].uri.length));
+                        }
+                    } else {
+                        await this._tracks.remove(uris[i].substring(14, uris[i].length));
+                    }
+                }
+            }
             this.snapshot_id = response.body.snapshot_id;
             return response;
         } catch (error) {
@@ -654,7 +720,6 @@ Playlist.prototype = {
     /**
      * Remove tracks by index
      * Removes tracks by index from a playlist.
-     * 
      * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {Array} positions Indexes to be removed
      * @returns {Object} Response to Request
@@ -662,6 +727,13 @@ Playlist.prototype = {
     removeTrackIndexes: async function(wrapper, positions) {
         try {
             let response = await wrapper.removeTracksFromPlaylistInPositions(this.id, positions instanceof Array ? positions : [positions], this.snapshot_id);
+            if (this.retrieved) {
+                if (positions instanceof Array) {
+                    await this._tracks.removeIndexes(positions);
+                } else {
+                    await this._tracks.removeIndexes([positions]);
+                }
+            }
             this.snapshot_id = response.body.snapshot_id;
             return response;
         } catch (error) {
@@ -704,14 +776,15 @@ Playlist.prototype = {
      */
     retrieveTracks: async function(wrapper) {
         try {
-            this._tracks = new Playlist.Tracks();
+            this._tracks = new Tracks();
             let options = { offset: 0 };
             let response;
             do {
                 response = await wrapper.getPlaylistTracks(this.id, options);
                 await this.loadTracks(response.body.items);
                 options.offset += 100;
-            } while (!(response.body.items.length < 100))
+            } while (!(response.body.items.length < 100));
+            this.retrieved = true;
         } catch (error) {
             throw error;
         }
@@ -778,7 +851,7 @@ Playlist.prototype = {
      */
     loadTracks: async function(tracks) {
         try {
-            if (tracks instanceof PLaylist.Tracks || tracks instanceof Array) {
+            if (tracks instanceof Tracks || tracks instanceof Array) {
                 this._tracks.concat(tracks);
             } else if (typeof(tracks) == 'object' || typeof(tracks) == 'string') {
                 this._tracks.add(tracks);

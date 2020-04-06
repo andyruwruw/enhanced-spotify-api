@@ -36,7 +36,7 @@ Category.prototype = {
      * Play Category
      * Plays category on user's active device.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      */
     play: async function(wrapper) {
         try {
@@ -60,7 +60,7 @@ Category.prototype = {
      * Get Full Object
      * Returns full category data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Category Full Object Data.
      */
     getFullObject: async function(wrapper) {
@@ -83,7 +83,7 @@ Category.prototype = {
      * Get Current Data
      * Just returns whatever the category object currently holds
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @returns {object} Any Category Data.
      */
     getCurrentData: function() {
@@ -105,7 +105,7 @@ Category.prototype = {
      * Get Category Playlists
      * Returns Playlists instance with category playlists.
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      * @param {object} options (Optional) Options to be passed into request.
      * @returns {Playlists} Playlists instance with category playlists.
      */
@@ -142,7 +142,7 @@ Category.prototype = {
      * Retrieve Full Object
      * Retrieves full category data from Spotify API
      * 
-     * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
      */
     retrieveFullObject: async function(wrapper) {
         try {
@@ -158,7 +158,7 @@ Category.prototype = {
  * Get Category
  * Returns Category instance for a given category
  * 
- * @param {enhanced-spotify-api} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {string} categoryId ID for category desired.
  * @param {object} options (Optional) Options for request.
  * @returns {Category} Category instance for given category

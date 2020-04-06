@@ -2,6 +2,11 @@
 
 var { addMethods, override } = require('./shared');
 
+var Playlist = require('./Playlist');
+var Playlists = require('./playlists');
+var Artists = require('./Artists');
+var Albums = require('./Albums');
+
  /**
  * Constructor
  * Creates a new Playlists Instance.
@@ -17,7 +22,7 @@ function Playlists(playlists) {
                 for (let i = 0; i < data.length; i++) {
                     this.push(data[i]);
                 }
-            } else if (data instanceof Playlists.Playlist || typeof(data) == 'string' || typeof(data) == 'object') {
+            } else if (data instanceof Playlist || typeof(data) == 'string' || typeof(data) == 'object') {
                 this.push(data);
             } else {
                 throw new Error("Playlists.constructor: Invalid Parameter \"data\"");
@@ -28,11 +33,6 @@ function Playlists(playlists) {
     }
 }
 
-Playlists.Playlist = require('./Playlist');
-Playlists.playlists = require('./playlists');
-Playlists.Artists = require('./Artists');
-Playlists.Albums = require('./Albums');
-
 Playlists.prototype = {
 /**
      * Push
@@ -42,7 +42,7 @@ Playlists.prototype = {
      */
     push: function(playlist) {
         try {
-            if (playlist instanceof Playlists.Playlist) {
+            if (playlist instanceof Playlist) {
                 if (!(playlist.id in this.items)) {
                     this.items[playlist.id] = playlist;
                 }
@@ -50,7 +50,7 @@ Playlists.prototype = {
             } else if (typeof(playlist) == 'object') {
                 if ('playlist' in playlist) {
                     if (!(playlist.playlist.id in this.items)) {
-                        this.items[playlist.playlist.id] = new Playlists.Playlist(playlist.playlist);
+                        this.items[playlist.playlist.id] = new Playlist(playlist.playlist);
                         if ('is_local' in playlist) {
                             this.items[playlist.playlist.id].is_local = playlist.is_local;
                         }
@@ -64,14 +64,14 @@ Playlists.prototype = {
                     this.order.push(playlist.playlist.id);
                 } else {
                     if (!(playlist.id in this.items)) {
-                        this.items[playlist.id] = new Playlists.Playlist(playlist);
+                        this.items[playlist.id] = new Playlist(playlist);
                     }
                     this.order.push(playlist.id);
                 }
 
             } else if (typeof(playlist) == 'string') {
                 if (!(playlist in this.items)) {
-                    this.items[playlist] = new Playlists.Playlist(playlist);
+                    this.items[playlist] = new Playlist(playlist);
                 }
                 this.order.push(playlist);
             } else {
@@ -118,7 +118,7 @@ Playlists.prototype = {
     remove: function(playlist) {
         try {
             let id = null;
-            if (playlist instanceof Playlists.Playlist || typeof(playlist) == 'object') {
+            if (playlist instanceof Playlist || typeof(playlist) == 'object') {
                 id = playlist.id;
             } else if (typeof(playlist) == 'string') {
                 id = playlist;
@@ -161,7 +161,7 @@ Playlists.prototype = {
             let id = null;
             if (typeof(playlist) == 'string') {
                 id = playlist;
-            } else if (playlist instanceof Playlists.Playlist || typeof(playlist) == 'object') {
+            } else if (playlist instanceof Playlist || typeof(playlist) == 'object') {
                 id = playlist.id;  
             } 
             if (playlist == null) {
@@ -193,7 +193,7 @@ Playlists.prototype = {
             let id = null;
             if (typeof(playlist) == 'string') {
                 id = playlist;
-            } else if (playlist instanceof Playlists.Playlist || typeof(playlist) == 'object') {
+            } else if (playlist instanceof Playlist || typeof(playlist) == 'object') {
                 id = playlist.id;  
             } 
             if (playlist == null) {
@@ -644,7 +644,7 @@ Playlists.prototype = {
      */
     getArtists: async function(wrapper) {
         try {
-            let artists = new Playlists.Artists();
+            let artists = new Artists();
             for (let playlist in this.items) {
                 await artists.concat(await this.items[playlist].getArtists(wrapper));
             }
@@ -663,7 +663,7 @@ Playlists.prototype = {
      */
     getAlbums: async function(wrapper) {
         try {
-            let albums = new Playlists.Albums();
+            let albums = new Albums();
             for (let playlist in this.items) {
                 await albums.concat(await this.items[playlist].getAlbums(wrapper));
             }

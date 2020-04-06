@@ -2,6 +2,10 @@
 
 var { addMethods, override } = require('./shared');
 
+var Track = require('./Track');
+var Artists = require('./Artists');
+var Albums = require('./Albums');
+
  /**
  * Constructor
  * Creates a new Tracks Instance.
@@ -17,7 +21,7 @@ function Tracks(data) {
                 for (let i = 0; i < data.length; i++) {
                     this.push(data[i]);
                 }
-            } else if (data instanceof Tracks.Track || typeof(data) == 'string' || typeof(data) == 'object') {
+            } else if (data instanceof Track || typeof(data) == 'string' || typeof(data) == 'object') {
                 this.push(data);
             } else {
                 throw new Error("Tracks.constructor: Invalid Parameter \"data\"");
@@ -28,13 +32,6 @@ function Tracks(data) {
     }
 }
 
-Tracks.Track = require('./Track');
-Tracks.Artist = require('./Artist');
-Tracks.Artists = require('./Artists');
-Tracks.Album = require('./Album');
-Tracks.Albums = require('./Albums');
-Tracks.Playlist = require('./Playlist');
-
 Tracks.prototype = {
     /**
      * Push
@@ -44,7 +41,8 @@ Tracks.prototype = {
      */
     push: function(track) {
         try {
-            if (track instanceof Tracks.Track) {
+            console.log(Track);
+            if (track instanceof Track) {
                 if (!(track.id in this.items)) {
                     this.items[track.id] = track;
                 }
@@ -52,7 +50,7 @@ Tracks.prototype = {
             } else if (typeof(track) == 'object') {
                 if ('track' in track) {
                     if (!(track.track.id in this.items)) {
-                        this.items[track.track.id] = new Tracks.Track(track.track);
+                        this.items[track.track.id] = new Track(track.track);
                         if ('is_local' in track) {
                             this.items[track.track.id].is_local = track.is_local;
                         }
@@ -66,14 +64,14 @@ Tracks.prototype = {
                     this.order.push(track.track.id);
                 } else {
                     if (!(track.id in this.items)) {
-                        this.items[track.id] = new Tracks.Track(track);
+                        this.items[track.id] = new Track(track);
                     }
                     this.order.push(track.id);
                 }
 
             } else if (typeof(track) == 'string') {
                 if (!(track in this.items)) {
-                    this.items[track] = new Tracks.Track(track);
+                    this.items[track] = new Track(track);
                 }
                 this.order.push(track);
             } else {
@@ -114,13 +112,12 @@ Tracks.prototype = {
     /**
      * Remove
      * Removes an item from the Manager Object.
-     * 
-     * @param {Track | object | string } track Track instance, track data, or track id to remove.
+     * @param {Track | Object | String } track Track instance, track data, or track id to remove.
      */
     remove: function(track) {
         try {
             let id = null;
-            if (track instanceof Tracks.Track || typeof(track) == 'object') {
+            if (track instanceof Track || typeof(track) == 'object') {
                 id = track.id;
             } else if (typeof(track) == 'string') {
                 id = track;
@@ -131,6 +128,26 @@ Tracks.prototype = {
                 return item != id;
             });
             delete this.items[id];
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Remove Indexes
+     * Removes multiple items by index from the manager Object.
+     * @param {Array} indexes Indexes to be removed.
+     */
+    removeIndexes: function(indexes) {
+        try {
+            let sorted = indexes.sort((a, b) => b - a);
+            for (let i = 0; i < sorted.length; i++) {
+                let id = this.order[sorted[i]];
+                this.order.splice(sorted[i], 1);
+                if (!this.order.includes(id)) {
+                    delete this.items[id];
+                }
+            }
         } catch (error) {
             throw error;
         }
@@ -163,7 +180,7 @@ Tracks.prototype = {
             let id = null;
             if (typeof(track) == 'string') {
                 id = track;
-            } else if (track instanceof Tracks.Track || typeof(track) == 'object') {
+            } else if (track instanceof Track || typeof(track) == 'object') {
                 id = track.id;  
             } 
             if (track == null) {
@@ -195,7 +212,7 @@ Tracks.prototype = {
             let id = null;
             if (typeof(track) == 'string') {
                 id = track;
-            } else if (track instanceof Tracks.Track || typeof(track) == 'object') {
+            } else if (track instanceof Track || typeof(track) == 'object') {
                 id = track.id;  
             } 
             if (track == null) {
@@ -712,7 +729,7 @@ Tracks.prototype = {
     getArtists: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
-            let artists = new Tracks.Artists();
+            let artists = new Artists();
             for (let track in this.items) {
                 await artists.concat(await this.items[track].getArtists(wrapper));
             }
@@ -732,7 +749,7 @@ Tracks.prototype = {
     getAlbums: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
-            let albums = new Tracks.Albums();
+            let albums = new Albums();
             for (let track in this.items) {
                 await albums.add(await this.items[track].getAlbum(wrapper));
             }

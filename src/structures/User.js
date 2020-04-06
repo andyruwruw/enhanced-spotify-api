@@ -2,6 +2,9 @@
 
 var { addMethods, override } = require('./shared');
 
+var Playlists = require('./Playlists');
+var Playlist = require('./Playlist');
+
  /**
  * User Constructor
  * Creates a new User Instance for a given user.
@@ -35,9 +38,6 @@ function User(data) {
         throw error;
     }
 }
-
-User.Playlists = require('./Playlists');
-User.Playlist = require('./Playlist');
 
 User.prototype = {
     /**
@@ -130,7 +130,7 @@ User.prototype = {
      */
     areFollowingPlaylist: async function(wrapper, playlistId) {
         try {
-            let playlist = new User.Playlist(playlistId);
+            let playlist = new Playlist(playlistId);
             let response = await playlist.areFollowing(wrapper, [this.id]);
             return response[0];
         } catch (error) {
@@ -228,7 +228,7 @@ User.prototype = {
      */
     getPlaylists: async function(wrapper, options) {
         try {
-            return await User.Playlists.getUserPlaylists(wrapper, this.id, options);
+            return await Playlists.getUserPlaylists(wrapper, this.id, options);
         } catch (error) {
             throw error;
         }
@@ -244,7 +244,7 @@ User.prototype = {
      */
     getAllPlaylists: async function(wrapper, options) {
         try {
-            return await User.Playlists.getAllUserPlaylists(wrapper, this.id, options);
+            return await Playlists.getAllUserPlaylists(wrapper, this.id, options);
         } catch (error) {
             throw error;
         }
