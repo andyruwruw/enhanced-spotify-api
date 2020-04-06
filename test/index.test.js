@@ -1,38 +1,6 @@
 const { Track, Tracks, Artist, Artists, Album, Albums, Playlist, Playlists } = require('../src/index');
 const { generateSpotifyWebAPI, generateWrapper } = require('./TestFunctions');
 
-test('Importing Track from index.js', () => {
-    expect(Track).toStrictEqual(require('../src/structures/Track'));
-});
-
-test('Importing Tracks from index.js', () => {
-    expect(Tracks).toStrictEqual(require('../src/structures/Tracks'));
-});
-
-test('Importing Artist from index.js', () => {
-    expect(Artist).toStrictEqual(require('../src/structures/Artist'));
-});
-
-test('Importing Artists from index.js', () => {
-    expect(Artists).toStrictEqual(require('../src/structures/Artists'));
-});
-
-test('Importing Album from index.js', () => {
-    expect(Album).toStrictEqual(require('../src/structures/Album'));
-});
-
-test('Importing Albums from index.js', () => {
-    expect(Albums).toStrictEqual(require('../src/structures/Albums'));
-});
-
-test('Importing Playlist from index.js', () => {
-    expect(Playlist).toStrictEqual(require('../src/structures/Playlist'));
-});
-
-test('Importing Playlists from index.js', () => {
-    expect(Playlists).toStrictEqual(require('../src/structures/Playlists'));
-});
-
 test('Testing Wrapper.getMe()', async () => {
     let wrapper = await generateWrapper();
     let spotifyWebAPI = await generateSpotifyWebAPI();
