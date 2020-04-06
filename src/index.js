@@ -827,7 +827,6 @@ Tracks.prototype = {
      */
     push: function(track) {
         try {
-            console.log(Track);
             if (track instanceof Track) {
                 if (!(track.id in this.items)) {
                     this.items[track.id] = track;
@@ -1537,7 +1536,7 @@ Tracks.prototype = {
             await this.retrieveFullObjects(wrapper, 'simplified');
             let albums = new Albums();
             for (let track in this.items) {
-                await albums.add(await this.items[track].getAlbum(wrapper));
+                await albums.push(await this.items[track].getAlbum(wrapper));
             }
             return albums;
         } catch (error) {
@@ -1705,9 +1704,9 @@ Tracks.prototype = {
                 let response;
                 do {
                     response = await wrapper.getTracks(ids.splice(0, 50));
-                    for (let i = 0; i < response.data.tracks.length; i++) {
-                        if (response.data.tracks[i] == null) continue;
-                        this.items[response.data.tracks[i].id].loadFullObject(response.data.tracks[i]);
+                    for (let i = 0; i < response.body.tracks.length; i++) {
+                        if (response.body.tracks[i] == null) continue;
+                        this.items[response.body.tracks[i].id].loadFullObject(response.body.tracks[i]);
                     }
                 } while (ids.length > 0);
             }
@@ -1734,9 +1733,9 @@ Tracks.prototype = {
                 let response;
                 do {
                     response = await wrapper.getAudioFeaturesForTracks(ids.splice(0, 50));
-                    for (let i = 0; i < response.data.tracks.length; i++) {
-                        if (response.data.tracks[i] == null) continue;
-                        this.items[response.data.tracks[i].id].loadAudioFeatures(response.data.tracks[i]);
+                    for (let i = 0; i < response.body.tracks.length; i++) {
+                        if (response.body.tracks[i] == null) continue;
+                        this.items[response.body.tracks[i].id].loadAudioFeatures(response.body.tracks[i]);
                     }
                 } while (ids.length > 0);
             }
@@ -1756,7 +1755,7 @@ Tracks.prototype = {
             for (let track in this.items) {
                 if (!(await this.items[track].containsAudioAnalysis())) {
                     response = await wrapper.getAudioAnalysisForTrack(track);
-                    this.items[track].loadAudioAnalysis(response.data);
+                    this.items[track].loadAudioAnalysis(response.body);
                 }
             }
         } catch (error) {
@@ -2330,7 +2329,7 @@ Album.prototype = {
             if (tracks instanceof Tracks || tracks instanceof Array) {
                 this._tracks.concat(tracks);
             } else if (typeof(tracks) == 'object' || typeof(tracks) == 'string') {
-                this._tracks.add(tracks);
+                this._tracks.push(tracks);
             } else {
                 throw new Error("Album.loadTracks: Invalid Parameter \"tracks\"");
             }
@@ -3018,9 +3017,9 @@ Albums.prototype = {
                 let response;
                 do {
                     response = await wrapper.getAlbums(ids.splice(0, 50));
-                    for (let i = 0; i < response.data.albums.length; i++) {
-                        if (response.data.albums[i] == null) continue;
-                        this.items[response.data.albums[i].id].loadFullObject(response.data.albums[i]);
+                    for (let i = 0; i < response.body.albums.length; i++) {
+                        if (response.body.albums[i] == null) continue;
+                        this.items[response.body.albums[i].id].loadFullObject(response.body.albums[i]);
                     }
                 } while (ids.length > 0);
             }
@@ -4285,9 +4284,9 @@ Artists.prototype = {
                 let response;
                 do {
                     response = await wrapper.getArtists(ids.splice(0, 50));
-                    for (let i = 0; i < response.data.artists.length; i++) {
-                        if (response.data.artists[i] == null) continue;
-                        this.items[response.data.artists[i].id].loadFullObject(response.data.artists[i]);
+                    for (let i = 0; i < response.body.artists.length; i++) {
+                        if (response.body.artists[i] == null) continue;
+                        this.items[response.body.artists[i].id].loadFullObject(response.body.artists[i]);
                     }
                 } while (ids.length > 0);
             }
@@ -5888,8 +5887,8 @@ Episodes.prototype = {
         try {
             await this.retrieveFullObjects(wrapper);
             let shows = new Shows();
-            for (let episode in this.items) {
-                await shows.add(await this.items[show].getShow(wrapper));
+            for (show in this.items) {
+                await shows.push(await this.items[show].getShow(wrapper));
             }
             return shows;
         } catch (error) {
@@ -5922,9 +5921,9 @@ Episodes.prototype = {
                 let response;
                 do {
                     response = await wrapper.getEpisodes(ids.splice(0, 50));
-                    for (let i = 0; i < response.data.episodes.length; i++) {
-                        if (response.data.episodes[i] == null) continue;
-                        this.items[response.data.episodes[i].id].loadFullObject(response.data.episodes[i]);
+                    for (let i = 0; i < response.body.episodes.length; i++) {
+                        if (response.body.episodes[i] == null) continue;
+                        this.items[response.body.episodes[i].id].loadFullObject(response.body.episodes[i]);
                     }
                 } while (ids.length > 0);
             }
@@ -7192,7 +7191,7 @@ Playlist.prototype = {
             if (tracks instanceof Tracks || tracks instanceof Array) {
                 this._tracks.concat(tracks);
             } else if (typeof(tracks) == 'object' || typeof(tracks) == 'string') {
-                this._tracks.add(tracks);
+                this._tracks.push(tracks);
             } else {
                 throw new Error("Playlist.loadTracks: Invalid Parameter \"tracks\"");
             }
@@ -8420,7 +8419,7 @@ Show.prototype = {
             if (episodes instanceof Episodes || episodes instanceof Array) {
                 this._episodes.concat(episodes);
             } else if (typeof(tracks) == 'object' || typeof(tracks) == 'string') {
-                this._episodes.add(episodes);
+                this._episodes.push(episodes);
             } else {
                 throw new Error("Show.loadEpisodes: Invalid Parameter \"episodes\"");
             }
@@ -9070,9 +9069,9 @@ Shows.prototype = {
                 let response;
                 do {
                     response = await wrapper.getShows(ids.splice(0, 50));
-                    for (let i = 0; i < response.data.shows.length; i++) {
-                        if (response.data.shows[i] == null) continue;
-                        this.items[response.data.shows[i].id].loadFullObject(response.data.shows[i]);
+                    for (let i = 0; i < response.body.shows.length; i++) {
+                        if (response.body.shows[i] == null) continue;
+                        this.items[response.body.shows[i].id].loadFullObject(response.body.shows[i]);
                     }
                 } while (ids.length > 0);
             }
