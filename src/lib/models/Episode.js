@@ -1,12 +1,11 @@
 'use strict';
 
-var { addMethods, override } = require('./shared');
+var Models = require('../../index');
 
  /**
  * Episode Constructor
  * Creates a new Episode Instance for a given episode.
- * 
- * @param {object | string} data Data to be preloaded. Must either be a string of the episode ID or contain an `id` property.
+ * @param {Object | String} data Data to be preloaded. Must either be a string of the episode ID or contain an `id` property.
  */
 function Episode(data) {
     try {
@@ -47,36 +46,33 @@ Episode.prototype = {
     /**
      * Contains Full Object
      * Returns boolean whether full object data is present.
-     * 
-     * @returns {boolean} Whether full object is loaded.
+     * @returns {Boolean} Whether full object is loaded.
      */
     containsFullObject: function() {
-        return ((this.name != null) && (this.audio_preview_url != null) && (this.description != null) && (this.duration_ms != null) && (this.explicit != null) && (this.external_urls != null) && (this.href != null) && (this.images != null) && (this.is_externally_hosted != null) && (this.is_playable != null) && (this.language != null) && (this.languages != null) && (this.release_date != null) && (this.release_date_precision != null) && (this.resume_point) && (this.show) && (this.uri != null));
+        return ((this.name != null) && (this.audio_preview_url != null) && (this.description != null) && (this.duration_ms != null) && (this.explicit != null) && (this.external_urls != null) && (this.href != null) && (this.images != null) && (this.is_externally_hosted != null) && (this.is_playable != null) && (this.languages != null) && (this.release_date != null) && (this.release_date_precision != null) && (this.show) && (this.uri != null));
     },
 
     /**
      * Contains Simplified Object
      * Returns boolean whether simplified object data is present.
-     * 
-     * @returns {boolean} Whether simplified object is loaded.
+     * @returns {Boolean} Whether simplified object is loaded.
      */
     containsSimplifiedObject: function() {
-        return ((this.name != null) && (this.audio_preview_url != null) && (this.description != null) && (this.duration_ms != null) && (this.explicit != null) && (this.external_urls != null) && (this.href != null) && (this.images != null) && (this.is_externally_hosted != null) && (this.is_playable != null) && (this.language != null) && (this.languages != null) && (this.release_date != null) && (this.release_date_precision != null) && (this.resume_point) && (this.uri != null));
+        return ((this.name != null) && (this.audio_preview_url != null) && (this.description != null) && (this.duration_ms != null) && (this.explicit != null) && (this.external_urls != null) && (this.href != null) && (this.images != null) && (this.is_externally_hosted != null) && (this.is_playable != null) && (this.languages != null) && (this.release_date != null) && (this.release_date_precision != null) && (this.uri != null));
     },
 
     /**
      * Get Full Object
      * Returns full episode data. Retrieves from Spotify API if nessisary.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} Episode Full Object Data.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Episode Full Object Data.
      */
     getFullObject: async function(wrapper) {
         try {
             if (!(await this.containsFullObject())) {
                 await this.retrieveFullObject(wrapper);
             }
-            return {
+            let result = {
                 id: this.id,
                 name: this.name,
                 audio_preview_url: this.audio_preview_url,
@@ -88,15 +84,20 @@ Episode.prototype = {
                 images: this.images,
                 is_externally_hosted: this.is_externally_hosted,
                 is_playable: this.is_playable,
-                language: this.language,
                 languages: this.languages,
                 release_date: this.release_date,
                 release_date_precision: this.release_date_precision,
-                resume_point: this.resume_point,
                 show: this.show,
                 uri: this.uri,
                 type: "episode",
             };
+            if (this.resume_point != null) {
+                result.resume_point = this.resume_point;
+            }
+            if (this.language != null) {
+                result.language = this.language;
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -106,15 +107,15 @@ Episode.prototype = {
      * Get Simplified Object
      * Returns simplified episode data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} Episode Simplified Object Data.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Episode Simplified Object Data.
      */
     getSimplifiedObject: async function(wrapper) {
         try {
             if (!(await this.containsSimplifiedObject())) {
                 await this.retrieveFullObject(wrapper);
             }
-            return {
+            let result = {
                 id: this.id,
                 name: this.name,
                 audio_preview_url: this.audio_preview_url,
@@ -126,14 +127,19 @@ Episode.prototype = {
                 images: this.images,
                 is_externally_hosted: this.is_externally_hosted,
                 is_playable: this.is_playable,
-                language: this.language,
                 languages: this.languages,
                 release_date: this.release_date,
                 release_date_precision: this.release_date_precision,
-                resume_point: this.resume_point,
                 uri: this.uri,
                 type: 'episode',
             };
+            if (this.resume_point != null) {
+                result.resume_point = this.resume_point;
+            }
+            if (this.language != null) {
+                result.language = this.language;
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -142,9 +148,8 @@ Episode.prototype = {
     /**
      * Get Current Data
      * Just returns whatever the track object currently holds
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} Any Track Data.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Any Track Data.
      */
     getCurrentData: function() {
         try {
@@ -164,8 +169,7 @@ Episode.prototype = {
     /**
      * Get Episode Show
      * Returns Show Object of episode's show..
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Show} Episode's Show
      */
     getShow: async function(wrapper) {
@@ -173,7 +177,7 @@ Episode.prototype = {
             if (!(await this.containsFullObject())) {
                 await this.retrieveFullObject(wrapper);
             }
-            return new Episode.Show(this.show);
+            return new Models.Show(this.show);
         } catch (error) {
             throw error;
         }
@@ -182,8 +186,7 @@ Episode.prototype = {
     /**
      * Load Full Object
      * Sets full data (outside constructor).
-     * 
-     * @param {object} data Object with episode full object data.
+     * @param {Object} data Object with episode full object data.
      */
     loadFullObject: function(data) {
         try {
@@ -212,8 +215,7 @@ Episode.prototype = {
     /**
      * Load Simplified Object
      * Sets simplified data (outside constructor).
-     * 
-     * @param {object} data Object with episode simplified object data.
+     * @param {Object} data Object with episode simplified object data.
      */
     loadSimplifiedObject: function(data) {
         try {
@@ -241,14 +243,10 @@ Episode.prototype = {
     /**
      * Retrieve Full Object
      * Retrieves full episode data from Spotify API
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
     retrieveFullObject: async function(wrapper) {
         try {
-            if ('is_local' in this && this.is_local) {
-                return;
-            }
             let response = await wrapper.getEpisode(this.id);
             await this.loadFullObject(response.body);
         } catch (error) {
@@ -260,9 +258,8 @@ Episode.prototype = {
 /**
  * Get Episode
  * Returns Episode object of ID
- * 
- * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
- * @param {Array} episodeId Id of episode.
+ * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+ * @param {String} episodeId Id of episode.
  * @returns {Episode} Episode from id.
  */
 Episode.getEpisode = async function(wrapper, episodeId) {
@@ -275,8 +272,29 @@ Episode.getEpisode = async function(wrapper, episodeId) {
     }
 };
 
-Episode.addMethods = addMethods;
+/**
+ * Add Methods
+ * Adds functionality to Class
+ * @param {Object} methods Object containing new methods to be added as properties.
+ */
+Episode.addMethods = function(methods) {
+    for (let method in methods) {
+        this.prototype[method] = methods[method];
+    }
+};
 
-Episode.override = override;
+/**
+ * Override
+ * Replaces a method within the Class.
+ * @param {String} name Name of the method to replace.
+ * @param {Function} method Function to replace with.
+ */
+Episode.override = function(name, method) {
+    if (this.prototype.hasOwnProperty(name)) {
+        this.prototype[name] = method;
+    } else {
+        throw new Error("Episode.override: \"name\" does not exist.");
+    }
+}
 
 module.exports = Episode;

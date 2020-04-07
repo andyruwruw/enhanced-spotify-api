@@ -1,53 +1,26 @@
 'use strict';
 
-var { addMethods, override } = require('./shared');
-
-var Tracks = require('./Tracks.js');
-var Artists = require('./Artists.js');
+// Associated Models
+var Models = require('../../index');
 
  /**
  * Album Constructor
  * Creates a new Album Instance for a given album.
- * 
  * @param {Object | String} data Data to be preloaded. Must either be a string of the album ID or contain an `id` property.
  */
 function Album(data) {
     try {
         if (typeof(data) == 'string') {
             this.id = data;
-            this._tracks = new Tracks();
+            this._tracks = new Models.Tracks();
         } else if (typeof(data) == 'object') {
-            if ('id' in data) {
+            if (data.hasOwnProperty('id')) {
                 this.id = data.id; 
             } else {
                 throw new Error("Album.constructor: No ID Provided");
             }
-            this.name = 'name' in data ? data.name : null;
-            this.album_type = 'album_type' in data ? data.album_type : null;
-            this.artists = 'artists' in data ? data.artists : null;
-            this.available_markets = 'available_markets' in data ? data.available_markets : null;
-            this.copyrights = 'copyrights' in data ? data.copyrights : null;
-            this.external_ids = 'external_ids' in data ? data.external_ids : null;
-            this.external_urls = 'external_urls' in data ? data.external_urls : null;
-            this.genres = 'genres' in data ? data.genres : null;
-            this.href = 'href' in data ? data.href : null;
-            this.images = 'images' in data ? data.images : null;
-            this.label = 'label' in data ? data.label : null;
-            this.popularity = 'popularity' in data ? data.popularity : null;
-            this.release_date = 'release_date' in data ? data.release_date : null;
-            this.release_date_precision = 'release_date_precision' in data ? data.release_date_precision : null;
-            this.restrictions = 'restrictions' in data ? data.restrictions : null;
-            this.tracks = 'tracks' in data ? data.tracks : null;
-            this.uri = 'uri' in data ? data.uri : null;
-            this.album_group = 'album_group' in data ? data.album_group : null;
-            this._tracks = '_tracks' in data ? data._tracks : new Tracks();
-            if ('tracks' in data) {
-                if ('items' in data.tracks) {
-                    this.loadTracks(data.tracks.items);
-                } else if (data.tracks instanceof Array) {
-                    this.loadTracks(data.tracks);
-                }
-            }
+            this._tracks = '_tracks' in data ? data._tracks : new Models.Tracks();
+            this.loadConditionally(data);
         } else {
             throw new Error("Album.constructor: Invalid Data");
         }
@@ -60,8 +33,13 @@ Album.prototype = {
     /**
      * Play Album
      * Plays album on user's active device.
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @param {object} options (Optional) Additional options.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @param {Object} options (Optional) Additional options.
+     * @returns {Object} Response from request.
+     * options.offset: {Object} Where from the context to play (Only valid with albums and playlists).
+     * options.offset.position: {Number} Index of item to start with in context.
+     * options.offset.uri: {String} URI of item to start with in context.
+     * options.position_ms: {Number} Millisecond to start with in track.
      */
     play: async function(wrapper, options) {
         try {
@@ -76,8 +54,8 @@ Album.prototype = {
     /**
      * Is Liked
      * Returns whether an album is saved to the user's library.
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {boolean} Whether album is saved to the user's library.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Boolean} Whether album is saved to the user's library.
      */
     isLiked: async function(wrapper) {
         try {
@@ -91,8 +69,8 @@ Album.prototype = {
     /**
      * Like Album
      * Adds album to the user's library.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Response from request.
      */
     like: async function(wrapper) {
         try {
@@ -105,8 +83,8 @@ Album.prototype = {
     /**
     * Unlike Album
     * Removes album from the user's library.
-    * 
-    * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+    * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+    * @returns {Object} Response from request.
     */
     unlike: async function(wrapper) {
         try {
@@ -119,8 +97,7 @@ Album.prototype = {
     /**
      * Contains Full Object
      * Returns boolean whether full object data is present.
-     * 
-     * @returns {boolean} Whether full object is loaded.
+     * @returns {Boolean} Whether full object is loaded.
      */
     containsFullObject: function() {
         return ((this.name != null) && (this.album_type != null) && (this.artists != null) && (this.available_markets != null) && (this.copyrights != null) && (this.external_ids) && (this.external_urls) && (this.genres != null) && (this.href != null) && (this.images != null) && (this.label != null) && (this.popularity != null) && (this.release_date != null) && (this.release_date_precision != null) && (this.restrictions) && (this.tracks != null) && (this.uri != null) );
@@ -129,8 +106,7 @@ Album.prototype = {
     /**
      * Contains Simplified Object
      * Returns boolean whether simplified object data is present.
-     * 
-     * @returns {boolean} Whether simplified object is loaded.
+     * @returns {Boolean} Whether simplified object is loaded.
      */
     containsSimplifiedObject: function() {
         return ((this.name != null) && (this.album_type != null) && (this.artists != null) && (this.available_markets != null) && (this.external_urls) && (this.href != null) && (this.images != null) && (this.release_date != null) && (this.release_date_precision != null) && (this.restrictions) && (this.uri != null));
@@ -139,9 +115,8 @@ Album.prototype = {
     /**
      * Get Full Object
      * Returns full album data. Retrieves from Spotify API if nessisary.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} Album Full Object Data.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Album Full Object Data.
      */
     getFullObject: async function(wrapper) {
         try {
@@ -177,9 +152,8 @@ Album.prototype = {
     /**
      * Get Simplified Object
      * Returns simplified album data. Retrieves from Spotify API if nessisary.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} Album Simplified Object Data.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Album Simplified Object Data.
      */
     getSimplifiedObject: async function(wrapper) {
         try {
@@ -213,9 +187,8 @@ Album.prototype = {
     /**
      * Get Current Data
      * Just returns whatever the album object currently holds
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} Any Album Data.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Any Album Data.
      */
     getCurrentData: function() {
         try {
@@ -235,8 +208,7 @@ Album.prototype = {
     /**
      * Get Album Tracks
      * Returns Tracks object of album tracks.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Tracks} Tracks instance with all album tracks.
      */
     getTracks: async function(wrapper) {
@@ -251,8 +223,7 @@ Album.prototype = {
     /**
      * Get Album Artists
      * Returns Artists object of album artists.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Artists} Artists instance with all album artists.
      */
     getArtists: async function(wrapper) {
@@ -260,7 +231,7 @@ Album.prototype = {
             if (!(await this.containsSimplifiedObject())) {
                 await this.retrieveFullObject(wrapper);
             }
-            return new Artists(this.artists);
+            return new Models.Artists(this.artists);
         } catch (error) {
             throw error;
         }
@@ -269,8 +240,7 @@ Album.prototype = {
     /**
      * Retrieve Full Object
      * Retrieves full album data from Spotify API
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
     retrieveFullObject: async function(wrapper) {
         try {
@@ -284,8 +254,7 @@ Album.prototype = {
     /**
      * Retrieve Album Tracks
      * Retrieves all tracks in album from Spotify API
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
     retrieveTracks: async function(wrapper) {
         try {
@@ -304,8 +273,7 @@ Album.prototype = {
     /**
      * Load Full Object
      * Sets full data (outside constructor).
-     * 
-     * @param {object} data Object with album full object data.
+     * @param {Object} data Object with album full object data.
      */
     loadFullObject: async function(data) {
         try {
@@ -339,8 +307,7 @@ Album.prototype = {
     /**
      * Load Simplified Object
      * Sets simplified data (outside constructor).
-     * 
-     * @param {object} data Object with album simplified object data.
+     * @param {Object} data Object with album simplified object data.
      */
     loadSimplifiedObject: async function(data) {
         try {
@@ -362,14 +329,38 @@ Album.prototype = {
     },
 
     /**
+     * Load Conditionally
+     * Sets all data conditionally.
+     * @param {Object} data Object with album data.
+     */
+    loadConditionally: function(data) {
+        try {
+            let properties = ['name', 'album_type', 'artists', 'available_markets', 'copyrights', 'external_ids', 'external_urls', 'genres', 'href', 'images', 'label', 'popularity', 'release_date', 'release_date_precision', 'restrictions', 'tracks', 'uri', 'album_group'];
+            for (let i = 0; i < properties.length; i++) {
+                if (data.hasOwnProperty(properties[i])) {
+                    this[properties[i]] = data[properties[i]];
+                }
+            }
+            if ('tracks' in data) {
+                if ('items' in data.tracks) {
+                    this.loadTracks(data.tracks.items);
+                } else if (data.tracks instanceof Array) {
+                    this.loadTracks(data.tracks);
+                }
+            }
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
      * Load Track
      * Helper method to add tracks to album's internal Tracks item.
-     * 
      * @param {Tracks | Array | Track | object | string} tracks 
      */
     loadTracks: async function(tracks) {
         try {
-            if (tracks instanceof Tracks || tracks instanceof Array) {
+            if (tracks instanceof Models.Tracks || tracks instanceof Array) {
                 this._tracks.concat(tracks);
             } else if (typeof(tracks) == 'object' || typeof(tracks) == 'string') {
                 this._tracks.add(tracks);
@@ -380,27 +371,49 @@ Album.prototype = {
             throw error;
         }
     },
-}
+};
 
 /**
  * Get Album
  * Returns Album object of ID
- * 
- * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+ * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
  * @param {String} albumId Id of album.
+ * @param {Object} options (Optional) Additional options.
  * @returns {Album} Album from id.
+ * options.market: {String} Country code.
  */
-Album.getAlbum = async function(wrapper, albumId) {
+Album.getAlbum = async function(wrapper, albumId, options) {
     try {
-        let album = new Album(albumID);
-        return await album.retrieveFullObjects(wrapper);
+        let response = await wrapper.getAlbum(albumId, options ? options : {});
+        return new Album(response.body);
     } catch (error) {
         throw error;
     }
 };
 
-Album.addMethods = addMethods;
+/**
+ * Add Methods
+ * Adds functionality to Class
+ * @param {Object} methods Object containing new methods to be added as properties.
+ */
+Album.addMethods = function(methods) {
+    for (let method in methods) {
+        this.prototype[method] = methods[method];
+    }
+};
 
-Album.override = override;
+/**
+ * Override
+ * Replaces a method within the Class.
+ * @param {String} name Name of the method to replace.
+ * @param {Function} method Function to replace with.
+ */
+Album.override = function(name, method) {
+    if (this.prototype.hasOwnProperty(name)) {
+        this.prototype[name] = method;
+    } else {
+        throw new Error("Album.override: \"name\" does not exist.");
+    }
+}
 
 module.exports = Album;

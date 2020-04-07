@@ -1,16 +1,12 @@
 'use strict';
 
-var { addMethods, override } = require('./shared');
-
-var Tracks = require('./Tracks');
-var Artists = require('./Artists');
-var Album = require('./Album');
+// Associated Models
+var Models = require('../../index');
 
  /**
  * Track Constructor
  * Creates a new Track Instance for a given track.
- * 
- * @param {object | string} data Data to be preloaded. Must either be a string of the track ID or contain an `id` property.
+ * @param {Object | String} data Data to be preloaded. Must either be a string of the track ID or contain an `id` property.
  */
 function Track(data) {
     try {
@@ -22,59 +18,23 @@ function Track(data) {
             } else {
                 throw new Error("Track.constructor: No ID Provided");
             }
-            this.name = 'name' in data ? data.name : null;
-            this.album = 'album' in data ? data.album : null;
-            this.artists = 'artists' in data ? data.artists : null;
-            this.available_markets = 'available_markets' in data ? data.available_markets : null;
-            this.disc_number = 'disc_number' in data ? data.disc_number : null;
-            this.duration_ms = 'duration_ms' in data ? data.duration_ms : null;
-            this.explicit = 'explicit' in data ? data.explicit : null;
-            this.external_ids = 'external_ids' in data ? data.external_ids : null;
-            this.external_urls = 'external_urls' in data ? data.external_urls : null;
-            this.href = 'href' in data ? data.href : null;
-            this.is_playable = 'is_playable' in data ? data.is_playable : null;
-            this.linked_from = 'linked_from' in data ? data.linked_from : null;
-            this.restrictions = 'restrictions' in data ? data.restrictions : null;
-            this.popularity = 'popularity' in data ? data.popularity : null;
-            this.preview_url = 'preview_url' in data ? data.preview_url : null;
-            this.track_number = 'track_number' in data ? data.track_number : null;
-            this.uri = 'uri' in data ? data.uri : null;
-            this.is_local = 'is_local' in data ? data.is_local : null;
-            this.key = 'key' in data ? data.key : null;
-            this.mode = 'mode' in data ? data.mode : null;
-            this.time_signature = 'time_signature' in data ? data.time_signature : null;
-            this.acousticness = 'acousticness' in data ? data.acousticness : null;
-            this.danceability = 'danceability' in data ? data.danceability : null;
-            this.energy = 'energy' in data ? data.energy : null;
-            this.instrumentalness = 'instrumentalness' in data ? data.instrumentalness : null;
-            this.liveness = 'liveness' in data ? data.liveness : null;
-            this.loudness = 'loudness' in data ? data.loudness : null;
-            this.speechiness = 'speechiness' in data ? data.speechiness : null;
-            this.valence = 'valence' in data ? data.valence : null;
-            this.tempo = 'tempo' in data ? data.tempo : null;
-            this.track_href = 'track_href' in data ? data.track_href : null;
-            this.analysis_url = 'analysis_url' in data ? data.analysis_url : null;
-            this.bars = 'bars' in data ? data.bars : null;
-            this.beats = 'beats' in data ? data.beats : null;
-            this.sections = 'sections' in data ? data.sections : null;
-            this.segments = 'segments' in data ? data.segments : null;
-            this.tatums = 'tatums' in data ? data.tatums : null;
-            this.track = 'track' in data ? data.track : null;
+            this.loadConditionally(data);
         } else {
             throw new Error("Track.constructor: Invalid Data");
         }
     } catch (error) {
         throw error;
     }
-};
+}
 
 Track.prototype = {
     /**
      * Play Track
      * Plays track on user's active device.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @param {object} options (Optional) Additional options.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @param {Object} options (Optional) Additional options.
+     * @returns {Object} Response from request.
+     * options.position_ms: {Number} Position to start playback (Milliseconds)
      */
     play: async function(wrapper, options) {
         try {
@@ -88,10 +48,9 @@ Track.prototype = {
 
     /**
      * Is Liked
-     * Returns whether a track is saved to the user's library.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {boolean} Whether track is saved to the user's library.
+     * Returns whether this track is saved to the user's library.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Boolean} Whether this track is saved to the user's library.
      */
     isLiked: async function(wrapper) {
         try {
@@ -104,9 +63,9 @@ Track.prototype = {
 
     /**
      * Like Track
-     * Adds track to the user's library.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * Adds this track to the user's library.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Response from request.
      */
     like: async function(wrapper) {
         try {
@@ -118,9 +77,9 @@ Track.prototype = {
 
     /**
     * Unlike Track
-    * Removes track from the user's library.
-    * 
-    * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+    * Removes this track from the user's library.
+    * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+    * @returns {Object} Response from request.
     */
     unlike: async function(wrapper) {
         try {
@@ -133,8 +92,7 @@ Track.prototype = {
     /**
      * Contains Full Object
      * Returns boolean whether full object data is present.
-     * 
-     * @returns {boolean} Whether full object is loaded.
+     * @returns {Boolean} Whether full object is loaded.
      */
     containsFullObject: function() {
         return ((this.name != null) && (this.album) && (this.artists != null) && (this.available_markets != null) && (this.disc_number != null) && (this.duration_ms != null) && (this.explicit != null) && (this.external_ids) && (this.external_urls) && (this.href != null) && (this.is_playable != null) && (this.linked_from) && (this.restrictions) && (this.popularity != null) && (this.preview_url != null) && (this.track_number != null) && (this.uri != null) && (this.is_local != null));
@@ -143,8 +101,7 @@ Track.prototype = {
     /**
      * Contains Simplified Object
      * Returns boolean whether simplified object data is present.
-     * 
-     * @returns {boolean} Whether simplified object is loaded.
+     * @returns {Boolean} Whether simplified object is loaded.
      */
     containsSimplifiedObject: function() {
         return ((this.name != null) && (this.artists != null) && (this.available_markets != null) && (this.disc_number != null) && (this.duration_ms != null) && (this.explicit != null) && (this.external_urls) && (this.href != null) && (this.is_playable != null) && (this.linked_from) && (this.restrictions) && (this.preview_url != null) && (this.track_number != null) && (this.uri != null) && (this.is_local != null));
@@ -153,8 +110,7 @@ Track.prototype = {
     /**
      * Contains Link Object
      * Returns boolean whether link object data is present.
-     * 
-     * @returns {boolean} Whether link object is loaded.
+     * @returns {Boolean} Whether link object is loaded.
      */
     containsLinkObject: function() {
         return ((this.external_urls) && (this.href != null) && (this.uri != null));
@@ -163,8 +119,7 @@ Track.prototype = {
     /**
      * Contains Audio Features
      * Returns boolean whether audio feature data is present.
-     * 
-     * @returns {boolean} Whether audio features data is loaded.
+     * @returns {Boolean} Whether audio features data is loaded.
      */
     containsAudioFeatures: function() {
         return ((this.duration_ms != null) && (this.key != null) && (this.mode != null) && (this.time_signature != null) && (this.acousticness != null) && (this.danceability != null) && (this.energy != null) && (this.instrumentalness != null) && (this.liveness != null) && (this.loudness != null) && (this.speechiness != null) && (this.valence != null) && (this.tempo != null) && (this.uri != null) && (this.track_href != null) && (this.analysis_url != null));
@@ -173,8 +128,7 @@ Track.prototype = {
     /**
      * Contains Audio Analysis
      * Returns boolean whether audio analysis data is present.
-     * 
-     * @returns {boolean} Whether audio analysis data is loaded.
+     * @returns {Boolean} Whether audio analysis data is loaded.
      */
     containsAudioAnalysis: function() {
         return ((this.bars != null) && (this.beats != null) && (this.sections != null) && (this.segments != null) && (this.tatums != null) && (this.track != null));
@@ -183,9 +137,8 @@ Track.prototype = {
     /**
      * Get Full Object
      * Returns full track data. Retrieves from Spotify API if necessary.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} Track Full Object Data.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Track Full Object Data.
      */
     getFullObject: async function(wrapper) {
         try {
@@ -229,9 +182,8 @@ Track.prototype = {
     /**
      * Get Simplified Object
      * Returns simplified track data. Retrieves from Spotify API if necessary.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} Track Simplified Object Data.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Track Simplified Object Data.
      */
     getSimplifiedObject: async function(wrapper) {
         try {
@@ -272,9 +224,8 @@ Track.prototype = {
     /**
      * Get Track Link
      * Returns track link data. Retrieves from Spotify API if necessary.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} Track Link Data
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Track Link Data
      */
     getLinkObject: async function(wrapper) {
         try {
@@ -296,9 +247,8 @@ Track.prototype = {
     /**
      * Get Audio Feature Data
      * Returns audio feature data. Retrieves from Spotify API if necessary.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} Track Audio Feature Data
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Track Audio Feature Data
      */
     getAudioFeatures: async function(wrapper) {
         try {
@@ -333,8 +283,7 @@ Track.prototype = {
     /**
      * Get Audio Analysis Data
      * Returns audio analysis data. Retrieves from Spotify API if necessary.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {object} Track Audio Analysis Data
      */
     getAudioAnalysis: async function(wrapper) {
@@ -362,9 +311,8 @@ Track.prototype = {
     /**
      * Get All Data
      * Returns all data. Retrieves from Spotify API if necessary.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} All Track's Data
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} All Track's Data
      */
     getAllData: async function(wrapper) {
         try {
@@ -436,15 +384,13 @@ Track.prototype = {
 
     /**
      * Get Current Data
-     * Just returns whatever the track object currently holds
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} Any Track Data.
+     * Just returns whatever the track object currently hold.
+     * @returns {Object} Any Track Data.
      */
     getCurrentData: function() {
         try {
             let data = { id: this.id, type: 'track' };
-            let properties = ['name', 'album', 'artists', 'available_markets', 'disc_number', 'explicit', 'external_ids', 'external_urls', 'href', 'is_playable', 'linked_from', 'restrictions', 'popularity', 'preview_url', 'track_number', 'uri', 'is_local', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'valence', 'tempo', 'track_href', 'analysis_url', 'bars', 'beats', 'sections', 'segments', 'tatums', 'track'];
+            let properties = ['name', 'album', 'artists', 'available_markets', 'disc_number', 'explicit', 'external_ids', 'external_urls', 'href', 'is_playable', 'linked_from', 'restrictions', 'popularity', 'preview_url', 'track_number', 'uri', 'is_local', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'valence', 'tempo', 'track_href', 'analysis_url', 'bars', 'beats', 'sections', 'segments', 'tatums', 'track', 'meta'];
             for (let i = 0; i < properties.length; i++) {
                 if (this[properties[i]] != null) {
                     data[properties[i]] = this[properties[i]];
@@ -458,16 +404,15 @@ Track.prototype = {
 
     /**
      * Get Track Artists
-     * Returns Artists Object with artists.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * Returns Artists Object with track's artists.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
     getArtists: async function(wrapper) {
         try {
             if (!(this.artists != null)) {
                 await this.retrieveFullObject(wrapper);
             }
-            return new Artists(this.artists);
+            return new Models.Artists(this.artists);
         } catch (error) {
             throw error;
         }
@@ -475,16 +420,15 @@ Track.prototype = {
 
     /**
      * Get Track Album
-     * Returns Album Object for track album.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * Returns Album Object for track's album.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
     getAlbum: async function(wrapper) {
         try {
             if (!this.album) {
                 await this.retrieveFullObject(wrapper);
             }
-            return new Album(this.album);
+            return new Models.Album(this.album);
         } catch (error) {
             throw error;
         }
@@ -493,26 +437,29 @@ Track.prototype = {
     /**
      * Get Recommendations
      * Returns recommendations for track.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @param {object} options Optional additional options.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @param {Object} options (Optional) Additional options.
      * @returns {Tracks} Track Instance with recommended tracks.
+     * options.limit: {Number} Number of tracks to Retrieve (Default 20).
+     * options.target_[audio_feature]: {Number} Value to target for specific audio feature.
+     * options.min_[audio_feature]: {Number} Minimum value for specific audio feature.
+     * options.max_[audio_feature]: {Number} Maximum value for specific audio feature.
      */
-    getRecommendations: async function(wrapper, limit, options) {
+    getRecommendations: async function(wrapper, options) {
         try {
             if (options != null && typeof(options) != 'object') {
                 throw new Error("Track.getRecommendations: Invalid Parameter \"options\"");
             }
             let _options = options ? options : {};
-            if ('seed_artists' in _options) {
+            if (_options.hasOwnProperty('seed_artists')) {
                 delete _options.seed_artists;
             }
-            if ('seed_genres' in _options) {
+            if (_options.hasOwnProperty('seed_genres')) {
                 delete _options.seed_artists;
             }
             _options.seed_tracks = this.id;
             let response = await wrapper.getRecommendations(_options);
-            return new Tracks(response.body.tracks);
+            return new Models.Tracks(response.body.tracks);
         } catch (error) {
             throw error;
         }
@@ -521,10 +468,10 @@ Track.prototype = {
     /**
      * Get Recommendations with Audio Features
      * Returns recommendations for track with added target on audio feature values.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @param {object} options Optional additional options.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @param {Object} options (Optional) Additional options.
      * @returns {Tracks} Track Instance with recommended tracks.
+     * options.limit: {Number} Number of tracks to Retrieve (Default 20).
      */
     getRecommendationWithAudioFeatures: async function(wrapper, options) {
         try {
@@ -535,10 +482,10 @@ Track.prototype = {
                 await this.retrieveAudioFeatures(wrapper);
             }
             let _options = options ? options : {};
-            if ('seed_artists' in _options) {
+            if (_options.hasOwnProperty('seed_artists')) {
                 delete _options.seed_artists;
             }
-            if ('seed_genres' in _options) {
+            if (_options.hasOwnProperty('seed_genres')) {
                 delete _options.seed_artists;
             }
             _options.seed_tracks = this.id;
@@ -552,7 +499,7 @@ Track.prototype = {
             _options.target_tempo = this.tempo;
             _options.target_valence = this.valence;
             let response = await wrapper.getRecommendations(_options);
-            return new Tracks(response.body.tracks);
+            return new Models.Tracks(response.body.tracks);
         } catch (error) {
             throw error;
         }
@@ -561,29 +508,29 @@ Track.prototype = {
     /**
      * Load Full Object
      * Sets full data (outside constructor).
-     * 
-     * @param {object} data Object with track full object data.
+     * @param {Object} data Object with track full object data.
      */
     loadFullObject: function(data) {
         try {
-            this.name = 'name' in data ? data.name : null;
-            this.album = 'album' in data ? data.album : null;
-            this.artists = 'artists' in data ? data.artists : null;
-            this.available_markets = 'available_markets' in data ? data.available_markets : null;
-            this.disc_number = 'disc_number' in data ? data.disc_number : null;
-            this.duration_ms = 'duration_ms' in data ? data.duration_ms : null;
-            this.explicit = 'explicit' in data ? data.explicit : null;
-            this.external_ids = 'external_ids' in data ? data.external_ids : null;
-            this.external_urls = 'external_urls' in data ? data.external_urls : null;
-            this.href = 'href' in data ? data.href : null;
-            this.is_playable = 'is_playable' in data ? data.is_playable : null;
-            this.linked_from = 'linked_from' in data ? data.linked_from : null;
-            this.restrictions = 'restrictions' in data ? data.restrictions : null;
-            this.popularity = 'popularity' in data ? data.popularity : null;
-            this.preview_url = 'preview_url' in data ? data.preview_url : null;
-            this.track_number = 'track_number' in data ? data.track_number : null;
-            this.uri = 'uri' in data ? data.uri : null;
-            this.is_local = 'is_local' in data ? data.is_local : null;
+            this.name = data.name;
+            this.name = data.name;
+            this.album = data.album;
+            this.artists = data.artists;
+            this.available_markets = data.available_markets;
+            this.disc_number = data.disc_number;
+            this.duration_ms = data.duration_ms;
+            this.explicit = data.explicit;
+            this.external_ids = data.external_ids;
+            this.external_urls = data.external_urls;
+            this.href = data.href;
+            this.is_playable = data.is_playable;
+            this.linked_from = data.linked_from;
+            this.restrictions = data.restrictions;
+            this.popularity = data.popularity;
+            this.preview_url = data.preview_url;
+            this.track_number = data.track_number;
+            this.uri = data.uri;
+            this.is_local = data.is_local;
         } catch (error) {
             throw error;
         }
@@ -592,8 +539,7 @@ Track.prototype = {
     /**
      * Load Simplified Object
      * Sets simplified data (outside constructor).
-     * 
-     * @param {object} data Object with track simplified object data.
+     * @param {Object} data Object with track simplified object data.
      */
     loadSimplifiedObject: function(data) {
         try {
@@ -620,8 +566,7 @@ Track.prototype = {
     /**
      * Load Link Object
      * Sets link data (outside constructor).
-     * 
-     * @param {object} data Object with track link object data.
+     * @param {Object} data Object with track link object data.
      */
     loadLinkObject: function(data) {
         try {
@@ -636,8 +581,7 @@ Track.prototype = {
     /**
      * Load Audio Features
      * Sets audio feature data (outside constructor).
-     * 
-     * @param {object} data Object with track audio feature data.
+     * @param {Object} data Object with track audio feature data.
      */
     loadAudioFeatures: function(data) {
         try {
@@ -665,8 +609,7 @@ Track.prototype = {
     /**
      * Load Audio Analysis
      * Sets audio analysis data (outside constructor).
-     * 
-     * @param {object} data Object with track audio analysis data.
+     * @param {Object} data Object with track audio analysis data.
      */
     loadAudioAnalysis: function(data) {
         try {
@@ -685,14 +628,31 @@ Track.prototype = {
     },
 
     /**
+     * Load Conditionally
+     * Sets all data conditionally.
+     * @param {Object} data Object with track data.
+     */
+    loadConditionally: function(data) {
+        try {
+            let properties = ['name', 'album', 'artists', 'available_markets', 'disc_number', 'duration_ms', 'explicit', 'external_ids', 'external_urls', 'href', 'is_playable', 'linked_from', 'restrictions', 'popularity', 'preview_url', 'track_number', 'uri', 'is_local', 'key', 'mode', 'time_signature', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'valence', 'tempo', 'track_href', 'analysis_url', 'bars', 'beats', 'sections', 'segments', 'tatums', 'track', 'meta'];
+            for (let i = 0; i < properties.length; i++) {
+                if (data.hasOwnProperty(properties[i])) {
+                    this[properties[i]] = data[properties[i]];
+                }
+            }
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
      * Retrieve Full Object
      * Retrieves full track data from Spotify API
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
     retrieveFullObject: async function(wrapper) {
         try {
-            if ('is_local' in this && this.is_local) {
+            if (this.hasOwnProperty('is_local') && this.is_local) {
                 return;
             }
             let response = await wrapper.getTrack(this.id);
@@ -705,12 +665,11 @@ Track.prototype = {
     /**
      * Retrieve Audio Features
      * Retrieves audio feature data from Spotify API
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
     retrieveAudioFeatures: async function(wrapper) {
         try {
-            if ('is_local' in this && this.is_local) {
+            if (this.hasOwnProperty('is_local') && this.is_local) {
                 return;
             }
             let response = await wrapper.getAudioFeaturesForTrack(this.id);
@@ -723,12 +682,11 @@ Track.prototype = {
      /**
      * Retrieve Audio Analysis
      * Retrieves audio analysis data from Spotify API
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
     retrieveAudioAnalysis: async function(wrapper) {
         try {
-            if ('is_local' in this && this.is_local) {
+            if (this.hasOwnProperty('is_local') && this.is_local) {
                 return;
             }
             let response = await wrapper.getAudioAnalysisForTrack(this.id);
@@ -742,7 +700,6 @@ Track.prototype = {
 /**
  * Get Track
  * Returns Track object of ID
- * 
  * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
  * @param {string} trackId Id of track.
  * @returns {Track} Track from id.
@@ -757,8 +714,29 @@ Track.getTrack = async function(wrapper, trackId) {
     }
 };
 
-Track.addMethods = addMethods;
+/**
+ * Add Methods
+ * Adds functionality to Class
+ * @param {Object} methods Object containing new methods to be added as properties.
+ */
+Track.addMethods = function(methods) {
+    for (let method in methods) {
+        this.prototype[method] = methods[method];
+    }
+};
 
-Track.override = override;
+/**
+ * Override
+ * Replaces a method within the Class.
+ * @param {String} name Name of the method to replace.
+ * @param {Function} method Function to replace with.
+ */
+Track.override = function(name, method) {
+    if (this.prototype.hasOwnProperty(name)) {
+        this.prototype[name] = method;
+    } else {
+        throw new Error("Track.override: \"name\" does not exist.");
+    }
+}
 
 module.exports = Track;

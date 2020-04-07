@@ -1,36 +1,24 @@
 'use strict';
 
-var { addMethods, override } = require('./shared');
-
-var Playlists = require('./Playlists');
-var Playlist = require('./Playlist');
+// Associated Models
+var Models = require('../../index');
 
  /**
  * User Constructor
  * Creates a new User Instance for a given user.
- * 
- * @param {object | string} data Data to be preloaded. Must either be a string of the user ID or contain an `id` property.
+ * @param {Object | String} data Data to be preloaded. Must either be a string of the user ID or contain an `id` property.
  */
 function User(data) {
     try {
         if (typeof(data) == 'string') {
             this.id = data;
         } else if (typeof(data) == 'object') {
-            if ('id' in data) {
+            if (data.hasOwnProperty('id')) {
                 this.id = data.id; 
             } else {
                 throw new Error("User.constructor: No ID Provided");
             }
-            this.display_name = 'display_name' in data ? data.display_name : null;
-            this.external_urls = 'external_urls' in data ? data.external_urls : null;
-            this.followers = 'followers' in data ? data.followers : null;
-            this.href = 'href' in data ? data.href : null;
-            this.images = 'images' in data ? data.images : null;
-            this.uri = 'uri' in data ? data.uri : null;
-            // Current User
-            this.country = 'country' in data ? data.country : null;
-            this.email = 'email' in data ? data.email : null;
-            this.product = 'product' in data ? data.product : null;
+            this.loadConditionally(data);
         } else {
             throw new Error("User.constructor: Invalid Data");
         }
@@ -42,10 +30,9 @@ function User(data) {
 User.prototype = {
     /**
      * Is Me
-     * Returns whether user object is current logged in user.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {boolean} Whether user is current logged in user.
+     * Returns whether this user is the current logged in user.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Boolean} Whether user is current logged in user.
      */
     isMe: async function(wrapper) {
         try {
@@ -58,10 +45,9 @@ User.prototype = {
 
     /**
      * Is Followed
-     * Returns whether a user is followed by the user.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {boolean} Whether user is followed by user.
+     * Returns whether this user is followed by the current user.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {boolean} Whether this user is followed by the current user.
      */
     isFollowed: async function(wrapper) {
         try {
@@ -74,9 +60,9 @@ User.prototype = {
 
     /**
      * Follow User
-     * Follows user.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * Follows this user.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Response from request.
      */
     follow: async function(wrapper) {
         try {
@@ -88,9 +74,9 @@ User.prototype = {
 
     /**
      * Unfollow User
-     * Unfollows user.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * Unfollows this user.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Response from request.
      */
     unfollow: async function(wrapper) {
         try {
@@ -103,8 +89,7 @@ User.prototype = {
     /**
      * Contains Private Object
      * Returns boolean whether private object data is present.
-     * 
-     * @returns {boolean} Whether private object is loaded.
+     * @returns {Boolean} Whether private object is loaded.
      */
     containsPrivateObject: function() {
         return ((this.country != null) && (this.email != null) && (this.product != null) && (this.display_name != null) && (this.external_urls) && (this.followers) && (this.href != null) && (this.images != null) && (this.uri != null));
@@ -113,8 +98,7 @@ User.prototype = {
     /**
      * Contains Public Object
      * Returns boolean whether public object data is present.
-     * 
-     * @returns {boolean} Whether public object is loaded.
+     * @returns {Boolean} Whether public object is loaded.
      */
     containsPublicObject: function() {
         return ((this.display_name != null) && (this.external_urls) && (this.followers) && (this.href != null) && (this.images != null) && (this.uri != null));
@@ -122,11 +106,10 @@ User.prototype = {
 
     /**
      * Are Following Playlist
-     * Returns boolean whether user is following a playlist.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @param {string} playlistId ID of Playlist
-     * @returns {boolean} Whether user is following a playlist
+     * Returns boolean whether this user is following a playlist.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @param {String} playlistId ID of Playlist
+     * @returns {Boolean} Whether user is following a playlist
      */
     areFollowingPlaylist: async function(wrapper, playlistId) {
         try {
@@ -141,15 +124,11 @@ User.prototype = {
     /**
      * Get Private Object
      * Returns private user data. Retrieves from Spotify API if nessisary.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} User Private Object Data.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} User Private Object Data.
      */
     getPrivateObject: async function(wrapper) {
         try {
-            if (!await this.isMe(wrapper)) {
-                throw new Error("User.getPrivateObject: Cannot Retrieve Private Data for Non-Current User");
-            }
             if (!(await this.containsPrivateObject())) {
                 await this.retrievePrivateObject(wrapper);
             }
@@ -174,7 +153,7 @@ User.prototype = {
      * Get Public Object
      * Returns public user data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {object} User Public Object Data.
      */
     getPublicObject: async function(wrapper) {
@@ -199,9 +178,8 @@ User.prototype = {
     /**
      * Get Current Data
      * Just returns whatever the user object currently holds
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} Any User Data.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Any User Data.
      */
     getCurrentData: function() {
         try {
@@ -221,9 +199,8 @@ User.prototype = {
     /**
      * Get User's Playlists
      * Returns Playlists object of user's playlists
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @param {object} options Additional Options to request.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @param {Object} options (Optional) Additional options
      * @returns {Playlist} Playlist Object with User Playlists
      */
     getPlaylists: async function(wrapper, options) {
@@ -238,13 +215,13 @@ User.prototype = {
      * Get All User's Playlists
      * Returns Playlists object of all user's playlists
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @param {object} options Additional Options to request.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @param {Object} options (Optional) Additional options
      * @returns {Playlist} Playlist Object with All User Playlists
      */
     getAllPlaylists: async function(wrapper, options) {
         try {
-            return await Playlists.getAllUserPlaylists(wrapper, this.id, options);
+            return await Models.Playlists.getAllUserPlaylists(wrapper, this.id, options);
         } catch (error) {
             throw error;
         }
@@ -253,8 +230,7 @@ User.prototype = {
     /**
      * Load Private Object
      * Sets private data (outside constructor).
-     * 
-     * @param {object} data Object with user private object data.
+     * @param {Object} data Object with user private object data.
      */
     loadPrivateObject: function(data) {
         try {
@@ -276,8 +252,7 @@ User.prototype = {
     /**
      * Load Public Object
      * Sets public data (outside constructor).
-     * 
-     * @param {object} data Object with user public object data.
+     * @param {Object} data Object with user public object data.
      */
     loadPublicObject: function(data) {
         try {
@@ -293,14 +268,34 @@ User.prototype = {
     },
 
     /**
+     * Load Conditionally
+     * Sets all data conditionally.
+     * @param {Object} data Object with user data.
+     */
+    loadConditionally: function(data) {
+        try {
+            let properties = ['display_name', 'external_urls', 'followers', 'href', 'images', 'uri', 'country', 'email', 'product'];
+            for (let i = 0; i < properties.length; i++) {
+                if (data.hasOwnProperty(properties[i])) {
+                    this[properties[i]] = data[properties[i]];
+                }
+            }
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
      * Retrieve Private Object
      * Retrieves private user data from Spotify API
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
     retrievePrivateObject: async function(wrapper) {
         try {
             let response = await wrapper.getMe();
+            if (response.body.id != this.id) {
+                throw new Error("User.retrievePrivateObject: Cannot Retrieve Private Data for Non-Current User")
+            }
             await this.loadPrivateObject(response.body);
         } catch (error) {
             throw error;
@@ -310,8 +305,7 @@ User.prototype = {
     /**
      * Retrieve Public Object
      * Retrieves public user data from Spotify API
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
     retrievePublicObject: async function(wrapper) {
         try {
@@ -321,45 +315,31 @@ User.prototype = {
             throw error;
         }
     },
-};
+}
 
 /**
- * Get User
- * Returns User object of ID
- * 
- * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
- * @param {string} userId Id of user.
- * @returns {User} User from id.
+ * Add Methods
+ * Adds functionality to Class
+ * @param {Object} methods Object containing new methods to be added as properties.
  */
-User.getUser = async function(wrapper, userId) {
-    try {
-        let user = new User(userId);
-        await user.retrievePublicObject(wrapper);
-        return user;
-    } catch (error) {
-        throw error;
+User.addMethods = function(methods) {
+    for (let method in methods) {
+        this.prototype[method] = methods[method];
     }
 };
 
 /**
- * Get Me
- * Returns User object of Current User
- * 
- * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
- * @returns {User} User of current user.
+ * Override
+ * Replaces a method within the Class.
+ * @param {String} name Name of the method to replace.
+ * @param {Function} method Function to replace with.
  */
-User.getMe = async function(wrapper) {
-    try {
-        let response = await wrapper.getMe();
-        let user = new User(response.body);
-        return user;
-    } catch (error) {
-        throw error;
+User.override = function(name, method) {
+    if (this.prototype.hasOwnProperty(name)) {
+        this.prototype[name] = method;
+    } else {
+        throw new Error("User.override: \"name\" does not exist.");
     }
-};
-
-User.addMethods = addMethods;
-
-User.override = override;
+}
 
 module.exports = User;

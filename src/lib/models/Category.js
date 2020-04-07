@@ -1,12 +1,11 @@
 'use strict';
 
-var { addMethods, override } = require('./shared');
+var Models = require('../../index');
 
  /**
  * Category Constructor
  * Creates a new Category Instance for a given category.
- * 
- * @param {object | string} data Data to be preloaded. Must either be a string of the category ID or contain an `id` property.
+ * @param {Object | String} data Data to be preloaded. Must either be a string of the category ID or contain an `id` property.
  */
 function Category(data) {
     try {
@@ -18,9 +17,7 @@ function Category(data) {
             } else {
                 throw new Error("Category.constructor: No ID Provided");
             }
-            this.name = 'name' in data ? data.name : null;
-            this.href = 'href' in data ? data.href : null;
-            this.icons = 'icons' in data ? data.icons : null;
+            this.loadConditionally(data);
         } else {
             throw new Error("Category.constructor: Invalid Data");
         }
@@ -29,14 +26,12 @@ function Category(data) {
     }
 }
 
-Category.Playlists = require('./Playlists');
-
 Category.prototype = {
     /**
      * Play Category
      * Plays category on user's active device.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Response from request.
      */
     play: async function(wrapper) {
         try {
@@ -49,7 +44,6 @@ Category.prototype = {
     /**
      * Contains Full Object
      * Returns boolean whether full object data is present.
-     * 
      * @returns {boolean} Whether full object is loaded.
      */
     containsFullObject: function() {
@@ -59,9 +53,8 @@ Category.prototype = {
     /**
      * Get Full Object
      * Returns full category data. Retrieves from Spotify API if nessisary.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} Category Full Object Data.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Category Full Object Data.
      */
     getFullObject: async function(wrapper) {
         try {
@@ -82,9 +75,8 @@ Category.prototype = {
     /**
      * Get Current Data
      * Just returns whatever the category object currently holds
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @returns {object} Any Category Data.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @returns {Object} Any Category Data.
      */
     getCurrentData: function() {
         try {
@@ -104,10 +96,12 @@ Category.prototype = {
     /**
      * Get Category Playlists
      * Returns Playlists instance with category playlists.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
-     * @param {object} options (Optional) Options to be passed into request.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+     * @param {Object} options (Optional) Additional options.
      * @returns {Playlists} Playlists instance with category playlists.
+     * options.country: {String} Country Code.
+     * options.limit: {Number} Maximum number of items to return (Default: 20, Max: 50).
+     * options.offset: {Number} Index of first item to return (Default: 0).
      */
     getPlaylists: async function(wrapper, options) {
         try {
@@ -116,7 +110,7 @@ Category.prototype = {
             }
             let _options = options ? options : {};
             let response = await wrapper.getCategoryPlaylists(this.id, _options);
-            return new Category.Playlists(response.body.playlists);
+            return new Models.Playlists(response.body.playlists);
         } catch (error) {
             throw error;
         }
@@ -125,8 +119,7 @@ Category.prototype = {
     /**
      * Load Full Object
      * Sets full data (outside constructor).
-     * 
-     * @param {object} data Object with category full object data.
+     * @param {Object} data Object with category full object data.
      */
     loadFullObject: function(data) {
         try {
@@ -139,15 +132,32 @@ Category.prototype = {
     },
 
     /**
+     * Load Conditionally
+     * Sets all data conditionally.
+     * @param {Object} data Object with category data.
+     */
+    loadConditionally: function(data) {
+        try {
+            let properties = ['name', 'href', 'icons'];
+            for (let i = 0; i < properties.length; i++) {
+                if (data.hasOwnProperty(properties[i])) {
+                    this[properties[i]] = data[properties[i]];
+                }
+            }
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
      * Retrieve Full Object
      * Retrieves full category data from Spotify API
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
     retrieveFullObject: async function(wrapper) {
         try {
             let response = await wrapper.getCategory(this.id, {});
-            this.loadFullObject(response.body);
+            await this.loadFullObject(response.body);
         } catch (error) {
             throw error;
         }
@@ -157,27 +167,48 @@ Category.prototype = {
 /**
  * Get Category
  * Returns Category instance for a given category
- * 
- * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
- * @param {string} categoryId ID for category desired.
- * @param {object} options (Optional) Options for request.
- * @returns {Category} Category instance for given category
+ * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+ * @param {String} categoryId ID for category desired.
+ * @param {Object} options (Optional) Additional options
+ * @returns {Category} Category instance for given category.
+ * options.country: {String} Country Code.
+ * options.locale: {String} Desired Language.
  */
 Category.getCategory = async function(wrapper, categoryId, options) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Category.getCategory: Invalid Parameter \"options\"");
         }
-        let _options = options ? options : {};
-        let response = await wrapper.getCategory(categoryId, _options);
+        let response = await wrapper.getCategory(categoryId, options ? options : {});
         return new Category(response.body);
     } catch (error) {
         throw error;
     }
 }
 
-Category.addMethods = addMethods;
+/**
+ * Add Methods
+ * Adds functionality to Class
+ * @param {Object} methods Object containing new methods to be added as properties.
+ */
+Category.addMethods = function(methods) {
+    for (let method in methods) {
+        this.prototype[method] = methods[method];
+    }
+};
 
-Category.override = override;
+/**
+ * Override
+ * Replaces a method within the Class.
+ * @param {String} name Name of the method to replace.
+ * @param {Function} method Function to replace with.
+ */
+Category.override = function(name, method) {
+    if (this.prototype.hasOwnProperty('property')) {
+        this.prototype[property] = method;
+    } else {
+        throw new Error("Category.override: \"property\" does not exist.");
+    }
+}
 
 module.exports = Category;
