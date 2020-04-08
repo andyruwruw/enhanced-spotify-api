@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Get an Episode
  * Returns data from API for an episode
@@ -7,7 +9,7 @@
  * @param {requestCallback} [callback] Optional callback method to be called instead of the promise.
  * @returns {Promise|undefined} A promise that if successful, returns an object containing information about the show. 
  */
-let getEpisode = (episodeId, options, callback) => {
+let getEpisode = function(episodeId, options, callback) {
     var actualCallback, actualOptions;
     if (typeof options === 'function' && !callback) {
         actualCallback = options;
@@ -33,7 +35,7 @@ let getEpisode = (episodeId, options, callback) => {
  * @param {requestCallback} [callback] Optional callback method to be called instead of the promise.
  * @returns {Promise|undefined} A promise that if successful, returns an object containing information about the shows. 
  */
-let getEpisodes = (episodeIDs, options, callback) => {
+let getEpisodes = function(episodeIDs, options, callback) {
     var actualCallback, actualOptions;
     if (typeof options === 'function' && !callback) {
         actualCallback = options;
@@ -63,7 +65,7 @@ let getEpisodes = (episodeIDs, options, callback) => {
  *          search results. The result is paginated. If the promise is rejected,
  *          it contains an error object. Not returned if a callback is given.
  */
-let searchEpisodes = (query, options, callback) => {
+let searchEpisodes = function(query, options, callback) {
     return this.search(query, ['episode'], options, callback);
 };
 
@@ -71,4 +73,4 @@ module.exports = {
     getEpisode: getEpisode,
     getEpisodes: getEpisodes,
     searchEpisodes: searchEpisodes,
-}
+};

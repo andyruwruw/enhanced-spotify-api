@@ -9,10 +9,14 @@ var Models = require('../../index');
  * @param {Array | Playlist | object | string} data (optional) Data to be preloaded. Single or multiple playlists.
  */
 function Playlists(items) {
-    this.name = 'Playlists';
-    this.type = 'Playlist';
-    this.uri_type = 'playlist';
-    Models.Manager.call(this, items);
+    try {
+        this.name = 'Playlists';
+        this.type = 'Playlist';
+        this.uri_type = 'playlist';
+        Models.Manager.call(this, items);
+    } catch (error) {
+        throw error;
+    }
 }
 
 Playlists.prototype = {

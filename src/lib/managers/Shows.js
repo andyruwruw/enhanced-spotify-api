@@ -9,10 +9,14 @@ var Models = require('../../index');
  * @param {Array | Show | object | string} data (optional) Data to be preloaded. Single or multiple shows.
  */
 function Shows(items) {
-    this.name = 'Shows';
-    this.type = 'Show';
-    this.uri_type = 'show';
-    Models.Manager.call(this, items);
+    try {
+        this.name = 'Shows';
+        this.type = 'Show';
+        this.uri_type = 'show';
+        Models.Manager.call(this, items);
+    } catch (error) {
+        throw error;
+    }
 }
 
 Shows.prototype = {
@@ -171,9 +175,9 @@ Shows.prototype = {
                 let response;
                 do {
                     response = await wrapper.getShows(ids.splice(0, 50));
-                    for (let i = 0; i < response.data.shows.length; i++) {
-                        if (response.data.shows[i] == null) continue;
-                        this.items[response.data.shows[i].id].loadFullObject(response.data.shows[i]);
+                    for (let i = 0; i < response.body.shows.length; i++) {
+                        if (response.body.shows[i] == null) continue;
+                        this.items[response.body.shows[i].id].loadFullObject(response.body.shows[i]);
                     }
                 } while (ids.length > 0);
             }

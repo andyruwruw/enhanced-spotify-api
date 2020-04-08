@@ -9,10 +9,14 @@ var Models = require('../../index');
  * @param {Array | Episode | object | string} data (optional) Data to be preloaded. Single or multiple episodes.
  */
 function Episodes(items) {
-    this.name = 'Episodes';
-    this.type = 'Episode';
-    this.uri_type = 'episode';
-    Models.Manager.call(this, items);
+    try {
+        this.name = 'Episodes';
+        this.type = 'Episode';
+        this.uri_type = 'episode';
+        Models.Manager.call(this, items);
+    } catch (error) {
+        throw error;
+    }
 }
 
 Episodes.prototype = {
@@ -124,9 +128,9 @@ Episodes.prototype = {
                 let response;
                 do {
                     response = await wrapper.getEpisodes(ids.splice(0, 50));
-                    for (let i = 0; i < response.data.episodes.length; i++) {
-                        if (response.data.episodes[i] == null) continue;
-                        this.items[response.data.episodes[i].id].loadFullObject(response.data.episodes[i]);
+                    for (let i = 0; i < response.body.episodes.length; i++) {
+                        if (response.body.episodes[i] == null) continue;
+                        this.items[response.body.episodes[i].id].loadFullObject(response.body.episodes[i]);
                     }
                 } while (ids.length > 0);
             }

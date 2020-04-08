@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Get a Show
  * Returns data from API for a show
@@ -7,7 +9,7 @@
  * @param {requestCallback} [callback] Optional callback method to be called instead of the promise.
  * @returns {Promise|undefined} A promise that if successful, returns an object containing information about the show. 
  */
-let getShow = (showID, options, callback) => {
+let getShow = function(showID, options, callback) {
     var actualCallback, actualOptions;
     if (typeof options === 'function' && !callback) {
         actualCallback = options;
@@ -30,7 +32,7 @@ let getShow = (showID, options, callback) => {
  * @param {requestCallback} [callback] Optional callback method to be called instead of the promise.
  * @returns {Promise|undefined} A promise that if successful, returns an object containing information about the shows. 
  */
-let getShows = (showIds, options, callback) => {
+let getShows = function(showIds, options, callback) {
     var actualCallback, actualOptions;
     if (typeof options === 'function' && !callback) {
         actualCallback = options;
@@ -53,7 +55,7 @@ let getShows = (showIds, options, callback) => {
  * The boolean value of true indicates that the track is part of the user's library, otherwise false.
  * Not returned if a callback is given.
  */
-let containsMySavedShows = (showIds, callback) => {
+let containsMySavedShows = function(showIds, callback) {
     return WebApiRequest.builder(this.getAccessToken()).withPath('/v1/me/shows/contains')
     .withQueryParameters({ ids: showIds.join(',') }).build()
     .execute(HttpManager.get, callback);
@@ -66,7 +68,7 @@ let containsMySavedShows = (showIds, callback) => {
  * @returns {Promise|undefined} A promise that if successful returns null, otherwise an error.
  * Not returned if a callback is given.
  */
-let removeFromMySavedShows = (showIds, callback) => {
+let removeFromMySavedShows = function(showIds, callback) {
     return WebApiRequest.builder(this.getAccessToken()).withPath('/v1/me/shows')
     .withHeaders({ 'Content-Type': 'application/json' }).withBodyParameters({ ids: showIds }).build()
     .execute(HttpManager.del, callback);
@@ -78,7 +80,7 @@ let removeFromMySavedShows = (showIds, callback) => {
  * @param {requestCallback} [callback] Optional callback method to be called instead of the promise.
  * @returns {Promise|undefined} A promise that if successful returns null, otherwise an error. Not returned if a callback is given.
  */
-let addToMySavedShows = (showIds, callback) => {
+let addToMySavedShows = function(showIds, callback) {
     return WebApiRequest.builder(this.getAccessToken())
     .withPath('/v1/me/shows').withHeaders({ 'Content-Type': 'application/json' })
     .withBodyParameters({ ids: showIds }).build()
@@ -92,7 +94,7 @@ let addToMySavedShows = (showIds, callback) => {
  * @returns {Promise|undefined} A promise that if successful, resolves to an object containing a paging object which in turn contains
  *          playlist show objects. Not returned if a callback is given.
  */
-let getMySavedShows = (options, callback) => {
+let getMySavedShows = function(options, callback) {
     return WebApiRequest.builder(this.getAccessToken()).withPath('/v1/me/shows')
     .withQueryParameters(options).build()
     .execute(HttpManager.get, callback);
@@ -105,7 +107,7 @@ let getMySavedShows = (options, callback) => {
  * @param {requestCallback} [callback] Optional callback method to be called instead of the promise.
  * @returns {Promise|undefined} A promise that if successful
  */
-let getShowEpisodes = (showId, options, callback) => {
+let getShowEpisodes = function(showId, options, callback) {
     return WebApiRequest.builder(this.getAccessToken())
     .withPath('/v1/shows/' + showId + '/episodes').withQueryParameters(options).build()
     .execute(HttpManager.get, callback);
@@ -120,7 +122,7 @@ let getShowEpisodes = (showId, options, callback) => {
  *          search results. The result is paginated. If the promise is rejected,
  *          it contains an error object. Not returned if a callback is given.
  */
-let searchShows = (query, options, callback) => {
+let searchShows = function(query, options, callback) {
     return this.search(query, ['show'], options, callback);
 };
 
@@ -133,4 +135,4 @@ module.exports = {
     getMySavedShows: getMySavedShows,
     getShowEpisodes: getShowEpisodes,
     searchShows: searchShows,
-}
+};

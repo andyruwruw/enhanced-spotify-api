@@ -6,13 +6,17 @@ var Models = require('../../index');
  /**
  * Constructor
  * Creates a new Albums Manager Instance.
- * @param {Array | Album | object | string} data (optional) Data to be preloaded. Single or multiple albums.
+ * @param {Array | Album | object | string} items (optional) Data to be preloaded. Single or multiple albums.
  */
-function Albums() {
-    this.name = 'Albums';
-    this.type = 'Album';
-    this.uri_type = 'album';
-    Models.Manager.call(this, items);
+function Albums(items) {
+    try {
+        this.name = 'Albums';
+        this.type = 'Album';
+        this.uri_type = 'album';
+        Models.Manager.call(this, items);
+    } catch (error) {
+        throw error;
+    }
 }
 
 Albums.prototype = {
@@ -22,11 +26,21 @@ Albums.prototype = {
      * Plays Albums
      * Plays albums on user's active device.
      * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
-     * @param {object} options (Optional) Additional options.
+     * @param {Object} options (Optional) Additional options.
+     * @returns {Object} Response from request.
+     * options.album_index: {Number} Which album to start with (Default: 0).
+     * options.offset: {Object} Where from the album to play.
+     * options.offset.position: {Number} Index of item to start with in context.
+     * options.offset.uri: {String} URI of item to start with in context.
+     * options.position_ms: {Number} Millisecond to start with in track.
      */
     play: async function(wrapper, options) {
         try {
-            let tracks = await this.getTracks(wrapper);
+            let _album_index = (options && typeof(options) == 'object' && options.hasOwnProperty('album_index')) ? options.album_index : 0;
+            let tracks = new Models.Tracks();
+            for (let i = 0; i < this.order.length; i++) {
+                await tracks.concat(await this.items[this.order[(i + _album_index) % this.order.length]].getTracks(wrapper));
+            }
             return await tracks.play(wrapper, options);
         } catch (error) {
             throw error;
@@ -37,7 +51,7 @@ Albums.prototype = {
      * Are Liked
      * Returns array of booleans whether albums are saved to the user's library.
      * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
-     * @returns {array} Array of Booleans Whether album are saved to the user's library.
+     * @returns {Array} Array of Booleans Whether album are saved to the user's library.
      */
     areLiked: async function(wrapper) {
         try {
@@ -52,10 +66,11 @@ Albums.prototype = {
     * Like Albums
     * Adds albums to the user's library.
     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+    * @returns {Object} Response from request.
     */
     likeAll: async function(wrapper) {
         try {
-            await wrapper.Constr.addToMySavedAlbums(Object.keys(this.items));
+            return await wrapper.addToMySavedAlbums(Object.keys(this.items));
         } catch (error) {
             throw error;
         }
@@ -65,10 +80,11 @@ Albums.prototype = {
     * Unlike Album
     * Removes albums from the user's library.
     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+    * @returns {Object} Response from request.
     */
     unlikeAll: async function(wrapper) {
         try {
-            await wrapper.removeFromMySavedAlbums(Object.keys(this.items));
+            return await wrapper.removeFromMySavedAlbums(Object.keys(this.items));
         } catch (error) {
             throw error;
         }
@@ -78,17 +94,16 @@ Albums.prototype = {
      * Get Full Objects
      * Returns full album data for all albums. Retrieves from Spotify API if nessisary.
      * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
-     * @returns {array} Array of Album Full Objects.
+     * @returns {Array} Array of Album Full Objects.
      */
     getFullObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'full');
-            let albums = await this.order.map((album) => {
-                return this.items[album]; 
-            });
-            return await Promise.all(await albums.map(async (album) => {
-                return await album.getFullObject(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getFullObject(wrapper))
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -98,17 +113,16 @@ Albums.prototype = {
      * Get Simplified Objects
      * Returns simplified album data for all albums. Retrieves from Spotify API if nessisary.
      * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
-     * @returns {array} Array of Album Simplified Objects.
+     * @returns {Array} Array of Album Simplified Objects.
      */
     getSimplifiedObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
-            let albums = await this.order.map((album) => {
-                return this.items[album]; 
-            });
-            return await Promise.all(await albums.map(async (album) => {
-                return await album.getSimplifiedObject(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getSimplifiedObject(wrapper))
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -117,16 +131,15 @@ Albums.prototype = {
     /**
      * Get Albums Current Data
      * Just returns whatever the album objects currently hold.
-     * @returns {array} Array of Current Album Data
+     * @returns {Array} Array of Current Album Data
      */
     getCurrentData: async function() {
         try {
-            let albums = await this.order.map((album) => {
-                return this.items[album]; 
-            });
-            return await Promise.all(await albums.map(async (album) => {
-                return await album.getCurrentData();
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getCurrentData(wrapper))
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -141,7 +154,7 @@ Albums.prototype = {
     getArtists: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
-            let artists = new Artists();
+            let artists = new Models.Artists();
             for (let album in this.items) {
                 await artists.concat(await this.items[album].getArtists(wrapper));
             }
@@ -159,10 +172,9 @@ Albums.prototype = {
      */
     getTracks: async function(wrapper) {
         try {
-            await this.retrieveFullObjects(wrapper, 'simplified');
-            let tracks = new Tracks();
-            for (let album in this.items) {
-                await tracks.concat(await this.items[album].getTracks(wrapper));
+            let tracks = new Models.Tracks();
+            for (let i = 0; i < this.order.length; i++) {
+                await tracks.concat(await this.items[this.order[i]].getTracks(wrapper));
             }
             return tracks;
         } catch (error) {
@@ -174,7 +186,7 @@ Albums.prototype = {
      * Retrieve Full Objects
      * Retrieves full album data for all albums from Spotify API
      * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
-     * @param {string} objectType Optional | 'simplified', 'link' or 'full', what to check if the album contains.
+     * @param {String} objectType Optional | 'simplified', 'link' or 'full', what to check if the album contains.
      */
     retrieveFullObjects: async function(wrapper, objectType) {
         try {
@@ -194,9 +206,9 @@ Albums.prototype = {
                 let response;
                 do {
                     response = await wrapper.getAlbums(ids.splice(0, 50));
-                    for (let i = 0; i < response.data.albums.length; i++) {
-                        if (response.data.albums[i] == null) continue;
-                        this.items[response.data.albums[i].id].loadFullObject(response.data.albums[i]);
+                    for (let i = 0; i < response.body.albums.length; i++) {
+                        if (response.body.albums[i] == null) continue;
+                        this.items[response.body.albums[i].id].loadFullObject(response.body.albums[i]);
                     }
                 } while (ids.length > 0);
             }
@@ -210,18 +222,21 @@ Albums.prototype = {
  * Search for an Album
  * Returns search results for a query.
  * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
- * @param {string} query String to search for.
- * @param {object} options (Optional) Additional options.
+ * @param {String} query String to search for.
+ * @param {Object} options (Optional) Additional options.
  * @returns {Albums} Albums returned from Search.
+ * options.limit: {Number} Max number of results to return.
+ * options.offset: {Number} Index of first result to return.
+ * options.market: {String} Country code.
+ * options.include_external: {String} "audio" includes any relevant audio content that is hosted externally.
  */
 Albums.search = async function(wrapper, query, options) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Albums.search: Invalid Parameter \"options\"");
         }
-        let _options = (typeof(options) == 'object') ? options : {};
-        let response = await wrapper.searchAlbums(query, _options);
-        return new Albums(response.body.albums.items);
+        let response = await wrapper.searchAlbums(query, options ? options : {});
+        return new Models.Albums(response.body.albums.items);
     } catch (error) {
         throw error;
     }
@@ -231,17 +246,19 @@ Albums.search = async function(wrapper, query, options) {
  * Get Saved Albums
  * Returns saved albums.
  * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
- * @param {object} options (Optional) Additional options.
+ * @param {Object} options (Optional) Additional options.
  * @returns {Albums} Albums returned request.
+ * options.limit: {Number} Max number of results to return.
+ * options.offset: {Number} Index of first result to return.
+ * options.market: {String} Country code.
  */
 Albums.getMySavedAlbums = async function(wrapper, options) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Albums.getMySavedAlbums: Invalid Parameter \"options\"");
         }
-        let _options = (typeof(options) == 'object') ? options : {};
-        let response = await wrapper.getMySavedAlbums(_options);
-        return new Albums(response.body.items);
+        let response = await wrapper.getMySavedAlbums(options ? options : {});
+        return new Models.Albums(response.body.items);
     } catch (error) {
         throw error;
     }
@@ -249,15 +266,14 @@ Albums.getMySavedAlbums = async function(wrapper, options) {
 
 /**
  * Get All Saved Albums
- * Returns all saved albums.
+ * Returns all current user's saved albums.
  * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
- * @param {object} options (Optional) Additional options.
  * @returns {Albums} Albums returned request.
  */
 Albums.getAllMySavedAlbums = async function(wrapper) {
     try {
         let _options = { limit: 50, offset: 0 };
-        let albums = new Albums();
+        let albums = new Models.Albums();
         let response;
         do {
             response = await wrapper.getMySavedAlbums(_options);
@@ -274,12 +290,12 @@ Albums.getAllMySavedAlbums = async function(wrapper) {
  * Get Albums
  * Returns Albums object of IDs
  * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
- * @param {Array} albumIds Ids of albums.
+ * @param {Array} albumIDs Ids of albums.
  * @returns {Albums} Albums from ids.
  */
-Albums.getAlbums = async function(wrapper, albumIds) {
+Albums.getAlbums = async function(wrapper, albumIDs) {
     try {
-        let albums = new Albums(albumIds);
+        let albums = new Models.Albums(albumIDs);
         await albums.retrieveFullObjects(wrapper);
         return albums;
     } catch (error) {
@@ -291,33 +307,35 @@ Albums.getAlbums = async function(wrapper, albumIds) {
  * Get Artist's Albums
  * Returns Artist's Albums.
  * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
- * @param {string} id ID for artist
+ * @param {String} artistID ID for artist
  * @returns {Albums} Albums of all Artist's Albums.
  */
-Albums.getArtistAlbums = async function(wrapper, id) {
+Albums.getArtistAlbums = async function(wrapper, artistID) {
     try {
-        let artist = new Artist(id);
-        return await artist.getAlbums(wrapper);
+        let artist = new Models.Artist(artistID);
+        return await artist.getAllAlbums(wrapper);
     } catch (error) {
         throw error;
     }
 };
 
 /**
- * Get Albums
+ * Get New Releases
  * Returns Albums object with user saved albums.
  * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
- * @param {object} options (Optional) Additional options.
+ * @param {Object} options (Optional) Additional options.
  * @returns {Albums} Albums of user saved albums.
+ * options.limit: {Number} Max number of results to return.
+ * options.offset: {Number} Index of first result to return.
+ * options.market: {String} Country code.
  */
 Albums.getNewReleases = async function(wrapper, options) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Albums.getNewReleases: Invalid Parameter \"options\"");
         }
-        let _options = (typeof(options) == 'object') ? options : {};
-        let response = await wrapper.getNewReleases(_options);
-        return new Albums(response.body.albums);
+        let response = await wrapper.getNewReleases(options ? options : {});
+        return new Models.Albums(response.body.albums.items);
     } catch (error) {
         throw error;
     }

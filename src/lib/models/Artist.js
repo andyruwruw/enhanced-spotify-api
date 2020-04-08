@@ -187,7 +187,7 @@ Artist.prototype = {
      * @param {String} countryCode Country Code.
      * @returns {Tracks} Tracks instance of artist's top Tracks
      */
-    getTopTracks: async (wrapper, countryCode) => {
+    getTopTracks: async function(wrapper, countryCode) {
         try {
             let response =  await wrapper.getArtistTopTracks(this.id, countryCode ? countryCode : "US");
             return new Models.Tracks(response.body.tracks);
@@ -210,7 +210,7 @@ Artist.prototype = {
             do {
                 response = await wrapper.getArtistAlbums(this.id, options);
                 let albums = new Models.Albums(response.body.items);
-                await tracks.concat(await albums.getAllTracks(wrapper));
+                await tracks.concat(await albums.getTracks(wrapper));
                 options.offset += 50;
             } while (!(response.body.items.length < 50));
             return tracks;
@@ -230,7 +230,7 @@ Artist.prototype = {
      * options.limit: {Number} Number of items to return.
      * options.offset: {Number} Index of first item to return.
      */
-    getAlbums: async (wrapper, options) => {
+    getAlbums: async function(wrapper, options) {
         try {
             if (options != null && typeof(options) != 'object') {
                 throw new Error("Artist.getAlbums: Invalid Parameter \"options\"");
@@ -284,7 +284,7 @@ Artist.prototype = {
      * Sets full data (outside constructor).
      * @param {Object} data Object with artist full object data.
      */
-    loadFullObject: (data) => {
+    loadFullObject: function(data) {
         try {
             this.name = data.name;
             this.external_urls = data.external_urls;
@@ -304,7 +304,7 @@ Artist.prototype = {
      * Sets simplified data (outside constructor).
      * @param {Object} data Object with artist simplified object data.
      */
-    loadSimplifiedObject: (data) => {
+    loadSimplifiedObject: function(data) {
         try {
             this.name = data.name;
             this.external_urls = data.external_urls;
@@ -355,7 +355,7 @@ Artist.prototype = {
  * @param {String} artistID Id of artist.
  * @returns {Artist} Artist from id.
  */
-Artist.getArtist = async (wrapper, artistID) => {
+Artist.getArtist = async function(wrapper, artistID) {
     try {
         let response = await wrapper.getArtist(artistID);
         return new Artist(response.body);

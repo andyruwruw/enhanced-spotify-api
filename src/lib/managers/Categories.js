@@ -9,9 +9,13 @@ var Models = require('../../index');
  * @param {Array | Category | object | string} data (optional) Data to be preloaded. Single or multiple categories.
  */
 function Categories(items) {
-    this.name = 'Categories';
-    this.type = 'Category';
-    Models.Manager.call(this, items);
+    try {
+        this.name = 'Categories';
+        this.type = 'Category';
+        Models.Manager.call(this, items);
+    } catch (error) {
+        throw error;
+    }
 }
 
 Categories.prototype = {

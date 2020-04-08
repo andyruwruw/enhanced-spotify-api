@@ -34,7 +34,7 @@ Track.prototype = {
      * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Object} options (Optional) Additional options.
      * @returns {Object} Response from request.
-     * options.position_ms: {Number} Position to start playback (Milliseconds)
+     * options.position_ms: {Number} Position to start playback (Milliseconds) (Depreciated? spotify-web-api-node?)
      */
     play: async function(wrapper, options) {
         try {
@@ -95,7 +95,7 @@ Track.prototype = {
      * @returns {Boolean} Whether full object is loaded.
      */
     containsFullObject: function() {
-        return ((this.name != null) && (this.album) && (this.artists != null) && (this.available_markets != null) && (this.disc_number != null) && (this.duration_ms != null) && (this.explicit != null) && (this.external_ids) && (this.external_urls) && (this.href != null) && (this.is_playable != null) && (this.linked_from) && (this.restrictions) && (this.popularity != null) && (this.preview_url != null) && (this.track_number != null) && (this.uri != null) && (this.is_local != null));
+        return ((this.name != null) && (this.album) && (this.artists != null) && (this.available_markets != null) && (this.disc_number != null) && (this.duration_ms != null) && (this.explicit != null) && (this.external_ids) && (this.external_urls) && (this.href != null) && (this.popularity != null) && (this.preview_url != null) && (this.track_number != null) && (this.uri != null) && (this.is_local != null));
     },
 
     /**
@@ -104,7 +104,7 @@ Track.prototype = {
      * @returns {Boolean} Whether simplified object is loaded.
      */
     containsSimplifiedObject: function() {
-        return ((this.name != null) && (this.artists != null) && (this.available_markets != null) && (this.disc_number != null) && (this.duration_ms != null) && (this.explicit != null) && (this.external_urls) && (this.href != null) && (this.is_playable != null) && (this.linked_from) && (this.restrictions) && (this.preview_url != null) && (this.track_number != null) && (this.uri != null) && (this.is_local != null));
+        return ((this.name != null) && (this.artists != null) && (this.available_markets != null) && (this.disc_number != null) && (this.duration_ms != null) && (this.explicit != null) && (this.external_urls) && (this.href != null) && (this.preview_url != null) && (this.track_number != null) && (this.uri != null) && (this.is_local != null));
     },
 
     /**
@@ -113,7 +113,7 @@ Track.prototype = {
      * @returns {Boolean} Whether link object is loaded.
      */
     containsLinkObject: function() {
-        return ((this.external_urls) && (this.href != null) && (this.uri != null));
+        return ((this.external_urls != null) && (this.href != null) && (this.uri != null));
     },
 
     /**
@@ -512,7 +512,6 @@ Track.prototype = {
      */
     loadFullObject: function(data) {
         try {
-            this.name = data.name;
             this.name = data.name;
             this.album = data.album;
             this.artists = data.artists;

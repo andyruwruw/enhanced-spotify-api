@@ -2,20 +2,29 @@ const { Track } = require('../../src/index');
 const { generateSpotifyWebAPI, generateWrapper } = require('../TestFunctions');
 
 test('Track: Test Playback', async () => {
+    try {
     let wrapper = await generateWrapper();
     let track = new Track("0No1Mcz6DJ9HlPAICTqI2v");
     let response = await track.play(wrapper);
     expect(response.statusCode).toBe(204);
+    } catch (error) {
+        throw error;
+    }
 });
 
 test('Track: Is Liked', async () => {
+    try {
     let wrapper = await generateWrapper();
     let track = new Track("0No1Mcz6DJ9HlPAICTqI2v");
     let response = await track.isLiked(wrapper);
     expect(typeof(response)).toBe('boolean');
+    } catch (error) {
+        throw error;
+    }
 });
 
 test('Track: Liking / Unliking', async () => {
+    try {
     let wrapper = await generateWrapper();
     let track = new Track("0No1Mcz6DJ9HlPAICTqI2v");
     let isLiked = await track.isLiked(wrapper);
@@ -33,9 +42,13 @@ test('Track: Liking / Unliking', async () => {
     let returned = await track.isLiked(wrapper);
     let result = (isLiked == returned && isLiked != after);
     expect(result).toBe(true);
+    } catch (error) {
+        throw error;
+    }
 });
 
 test('Track: Contains', async () => {
+    try {
     let emptyTrack = new Track("FILLER");
     let fullTrack = new Track({
         id: "FILLER",
@@ -118,33 +131,49 @@ test('Track: Contains', async () => {
     let audioAnalysisResult = (!audioAnalysisTrack.containsFullObject() && !audioAnalysisTrack.containsSimplifiedObject() && !audioAnalysisTrack.containsLinkObject() && !audioAnalysisTrack.containsAudioFeatures() && audioAnalysisTrack.containsAudioAnalysis());
     let result = (emptyResult && fullResult && simplifiedResult && linkResult && audioFeaturesResult && audioAnalysisResult);
     expect(result).toBe(true);
+    } catch (error) {
+        throw error;
+    }
 });
 
 test('Track: Get Full Object', async () => {
+    try {
     let wrapper = await generateWrapper();
     let spotifyWebAPI = await generateSpotifyWebAPI();
     let trackId = "0No1Mcz6DJ9HlPAICTqI2v";
     let track = new Track(trackId);
     expect(await track.getFullObject(wrapper)).toStrictEqual((await spotifyWebAPI.getTrack(trackId)).body);
+    } catch (error) {
+        throw error;
+    }
 });
 
 test('Track: Get Audio Features', async () => {
+    try {
     let wrapper = await generateWrapper();
     let spotifyWebAPI = await generateSpotifyWebAPI();
     let trackId = "0No1Mcz6DJ9HlPAICTqI2v";
     let track = new Track(trackId);
     expect(await track.getAudioFeatures(wrapper)).toStrictEqual((await spotifyWebAPI.getAudioFeaturesForTrack(trackId)).body);
+    } catch (error) {
+        throw error;
+    }
 });
 
 test('Track: Get Audio Analysis', async () => {
+    try {
     let wrapper = await generateWrapper();
     let spotifyWebAPI = await generateSpotifyWebAPI();
     let trackId = "0No1Mcz6DJ9HlPAICTqI2v";
     let track = new Track(trackId);
     expect(await track.getAudioAnalysis(wrapper)).toStrictEqual((await spotifyWebAPI.getAudioAnalysisForTrack(trackId)).body);
+    } catch (error) {
+        throw error;
+    }
 });
 
 test('Track: Get All', async () => {
+    try {
     let wrapper = await generateWrapper();
     let spotifyWebAPI = await generateSpotifyWebAPI();
     let trackId = "0No1Mcz6DJ9HlPAICTqI2v";
@@ -167,9 +196,13 @@ test('Track: Get All', async () => {
         }
     }
     expect(Object.keys(full).sort()).toStrictEqual(Object.keys(await track.getAllData(wrapper)).sort());
+    } catch (error) {
+        throw error;
+    }
 });
 
 test('Track: Get Current', async () => {
+    try {
     let data = {
         id: "0No1Mcz6DJ9HlPAICTqI2v",
         name: "Stranger",
@@ -178,4 +211,7 @@ test('Track: Get Current', async () => {
     }
     let track = new Track(data);
     expect(track.getCurrentData()).toStrictEqual(data);
+    } catch (error) {
+        throw error;
+    }
 });

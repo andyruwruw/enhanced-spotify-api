@@ -6,13 +6,17 @@ var Models = require('../../index');
  /**
  * Constructor
  * Creates a new Tracks Manager Instance.
- * @param {Array | Track | object | string} data (optional) Data to be preloaded. Single or multiple tracks.
+ * @param {Array | Track | Object | String} data (optional) Data to be preloaded. Single or multiple tracks.
  */
 function Tracks(items) {
-    this.name = 'Tracks';
-    this.type = 'Track';
-    this.uri_type = 'track';
-    Models.Manager.call(this, items);
+    try {
+        this.name = 'Tracks';
+        this.type = 'Track';
+        this.uri_type = 'track';
+        Models.Manager.call(this, items);
+    } catch (error) {
+        throw error;
+    }
 }
 
 Tracks.prototype = {
@@ -30,10 +34,28 @@ Tracks.prototype = {
      */
     play: async function(wrapper, options) {
         try {
+            if (options != null && typeof(options) != 'object') {
+                throw new Error("Tracks.search: Invalid Parameter \"options\"");
+            }
             let _options = options ? options : {};
-            _options.uris = await this.order.map((track) => 'spotify:track:' + this.items[track].id);
+            _options.uris = [];
+            let offset = 0;
+            if (offset.hasOwnProperty('offset')) {
+                if (offset.hasOwnProperty('position')) {
+                    offset = options.offset.position;
+                } else if (offset.hasOwnProperty('uri') && typeof(offset.uri) == 'string') {
+                    let index = this.order.indexOf(options.offset.uri);
+                    if (index != -1) {
+                        offset = this.order.indexOf(options.offset.uri);
+                    }
+                }
+            }
+            for (let i = 0; i < this.order.length && i < 25; i++) {
+                _options.uris.push('spotify:track:' + this.order[(i + offset) % this.order.length]);
+            }
             return await wrapper.play(_options);
         } catch (error) {
+            console.log(error);
             throw error;
         }
     },
@@ -46,10 +68,7 @@ Tracks.prototype = {
      */
     areLiked: async function(wrapper) {
         try {
-            let tracks = await this.order.map((track) => {
-                return this.items[track]; 
-            });
-            let response = await wrapper.containsMySavedTracks(await tracks.map((track) => track.id));
+            let response = await wrapper.containsMySavedTracks(this.order);
             return response.body;
         } catch (error) {
             throw error;
@@ -93,12 +112,11 @@ Tracks.prototype = {
     getFullObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'full');
-            let tracks = await this.order.map((track) => {
-                return this.items[track]; 
-            });
-            return await Promise.all(await tracks.map(async (track) => {
-                return await track.getFullObject(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getFullObject(wrapper));
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -113,12 +131,11 @@ Tracks.prototype = {
     getSimplifiedObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
-            let tracks = await this.order.map((track) => {
-                return this.items[track]; 
-            });
-            return await Promise.all(await tracks.map(async (track) => {
-                return await track.getSimplifiedObject(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getSimplifiedObject(wrapper));
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -133,12 +150,11 @@ Tracks.prototype = {
     getLinkObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'link');
-            let tracks = await this.order.map((track) => {
-                return this.items[track]; 
-            });
-            return await Promise.all(await tracks.map(async (track) => {
-                return await track.getLinkObject(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getLinkObject(wrapper));
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -153,12 +169,11 @@ Tracks.prototype = {
     getAudioFeatures: async function(wrapper) {
         try {
             await this.retrieveAudioFeatures(wrapper);
-            let tracks = await this.order.map((track) => {
-                return this.items[track]; 
-            });
-            return await Promise.all(await tracks.map(async (track) => {
-                return await track.getAudioFeatures(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getAudioFeatures(wrapper));
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -172,13 +187,11 @@ Tracks.prototype = {
      */
     getAudioAnalysis: async function(wrapper) {
         try {
-            await this.retrieveAudioAnalysis(wrapper);
-            let tracks = await this.order.map((track) => {
-                return this.items[track]; 
-            });
-            return await Promise.all(await tracks.map(async (track) => {
-                return await track.getAudioAnalysis(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getAudioAnalysis(wrapper));
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -195,12 +208,11 @@ Tracks.prototype = {
             await this.retrieveFullObjects(wrapper, 'full');
             await this.retrieveAudioFeatures(wrapper);
             await this.retrieveAudioAnalysis(wrapper);
-            let tracks = await this.order.map((track) => {
-                return this.items[track]; 
-            });
-            return await Promise.all(await tracks.map(async (track) => {
-                return await track.getAllData(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getAllData(wrapper));
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -213,12 +225,11 @@ Tracks.prototype = {
      */
     getCurrentData: async function() {
         try {
-            let tracks = await this.order.map((track) => {
-                return this.items[track]; 
-            });
-            return await Promise.all(await tracks.map(async (track) => {
-                return await track.getCurrentData();
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getCurrentData());
+            }
+            return result;
         } catch (error) {
             throw error;
         }
