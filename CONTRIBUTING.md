@@ -1,9 +1,11 @@
 # Contributing to Enhanced Spotify API
 
-If you have any suggestions, bugs or enhancements you'd like to bring up, please feel free to contact me!
-andrew@youngshome.com
+## For Bugs or Suggestions
+- Send a pull request
+  - Make sure your additions are documented!
+- Email me at andrew@youngshome.com
 
-Pull requests are very welcomed.
-Make sure your additions are documented and try to add testing where you can!
+## To help maintain / work on the library
+- Email me!
 
 Thanks for making this library better!
