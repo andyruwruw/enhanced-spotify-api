@@ -358,7 +358,7 @@ Artist.prototype = {
 Artist.getArtist = async function(wrapper, artistID) {
     try {
         let response = await wrapper.getArtist(artistID);
-        return new Artist(response.body);
+        return new Models.Artist(response.body);
     } catch (error) {
         throw error;
     }

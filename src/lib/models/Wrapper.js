@@ -14,6 +14,8 @@ Wrapper.prototype = {
     ...require('../functions/Episodes'),
 }
 
+Wrapper.prototype.play = require('../functions/Broken').play;
+
 /**
  * Add Methods
  * Adds functionality to Class

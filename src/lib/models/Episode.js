@@ -264,9 +264,8 @@ Episode.prototype = {
  */
 Episode.getEpisode = async function(wrapper, episodeId) {
     try {
-        let episode = new Episode(episodeId);
-        await episode.retrieveFullObjects(wrapper);
-        return episode;
+        let response = await wrapper.getEpisode(episodeId);
+        return new Models.Episode(response.body);
     } catch (error) {
         throw error;
     }

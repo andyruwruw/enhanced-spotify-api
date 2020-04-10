@@ -12,7 +12,7 @@ function Playlist(data) {
     try {
         if (typeof(data) == 'string') {
             this.id = data;
-            this._tracks = new Tracks();
+            this._tracks = new Models.Tracks();
         } else if (typeof(data) == 'object') {
             if (data.hasOwnProperty('id')) {
                 this.id = data.id;
@@ -342,15 +342,15 @@ Playlist.prototype = {
      * Find index of an track
      * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {String | Object | Track} track Track ID, Track instance or object with `id` properity.
-     * @param {Number} startAt Where to start in the list.
+     * @param {Number} start Where to start in the list.
      * @returns {Number} Index of item.
      */
-    indexOf: async function(wrapper, track, startAt) {
+    indexOf: async function(wrapper, track, start) {
         try {
             if (!this.retrieved) {
                 await this.retrieveTracks(wrapper);
             }
-            return await this._tracks.indexOf(track);
+            return await this._tracks.indexOf(track, start);
         } catch (error) {
             throw error;
         }
@@ -463,9 +463,13 @@ Playlist.prototype = {
     /**
      * Reverse
      * Reverses order of items
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
     reverse: async function(wrapper) {
         try {
+            if (!this.retrieved) {
+                await this.retrieveTracks(wrapper);
+            }
             await this._tracks.reverse();
             return await this.replaceTracks(wrapper, this._tracks.getIDs());
         } catch (error) {
@@ -476,13 +480,17 @@ Playlist.prototype = {
     /**
      * Pop
      * Removes last item.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Track} Removed item
      */
-    pop: async function() {
+    pop: async function(wrapper) {
         try {
             if (!this.retrieved) {
                 await this.retrieveTracks(wrapper);
             }
+            await this.removeTrackIndexes(wrapper, [(await this.size(wrapper)) - 1]);
+            let track = await this._tracks.pop();
+            return track;
         } catch (error) {
             throw error;
         }
@@ -491,14 +499,17 @@ Playlist.prototype = {
     /**
      * Shift
      * Removes first item.
+     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Track} Removed item
      */
-    shift: async function() {
+    shift: async function(wrapper) {
         try {
             if (!this.retrieved) {
                 await this.retrieveTracks(wrapper);
             }
-            let track = this._tracks.pop();
+            let track = await this._tracks.shift();
+            await this.removeTrackIndexes(wrapper, [0]);
+            return track;
         } catch (error) {
             throw error;
         }
@@ -515,18 +526,18 @@ Playlist.prototype = {
      */
     addTracks: async function(wrapper, tracks, options) {
         try {
-            let uris;
-            if (tracks instanceof Tracks) {
+            let uris = [];
+            if (tracks instanceof Models.Tracks) {
                 uris = await tracks.getURIs();
             } else if (tracks instanceof Array) {
                 for (let i = 0; i < tracks.length; i++) {
-                    if (((tracks[i] instanceof Track || typeof(tracks[i]) == 'object')) && tracks[i].hasOwnProperty('id')) {
+                    if (((tracks[i] instanceof Models.Track || typeof(tracks[i]) == 'object')) && tracks[i].hasOwnProperty('id')) {
                         uris.push('spotify:track:' + tracks[i].id);
                     } else if (typeof(tracks[i]) == 'string') {
                         uris.push('spotify:track:' + tracks[i]);
                     }
                 }
-            } else if (tracks instanceof Track || typeof(tracks) == 'object') {
+            } else if (tracks instanceof Models.Track || typeof(tracks) == 'object') {
                 if (tracks.hasOwnProperty('id')) {
                     uris = ['spotify:track:' + tracks.id];
                 } else {
@@ -563,30 +574,30 @@ Playlist.prototype = {
      */
     replaceTracks: async function(wrapper, tracks) {
         try {
-            let uris;
-            if (tracks instanceof Tracks) {
+            let uris = [];
+            if (tracks instanceof Models.Tracks) {
                 uris = await tracks.getURIs();
             } else if (tracks instanceof Array) {
                 for (let i = 0; i < tracks.length; i++) {
-                    if (((tracks[i] instanceof Track || typeof(tracks[i]) == 'object')) && tracks[i].hasOwnProperty('id')) {
+                    if (((tracks[i] instanceof Models.Track || typeof(tracks[i]) == 'object')) && tracks[i].hasOwnProperty('id')) {
                         uris.push('spotify:track:' + tracks[i].id);
                     } else if (typeof(tracks[i]) == 'string') {
                         uris.push('spotify:track:' + tracks[i]);
                     }
                 }
-            } else if (tracks instanceof Track || typeof(tracks) == 'object') {
+            } else if (tracks instanceof Models.Track || typeof(tracks) == 'object') {
                 if (tracks.hasOwnProperty('id')) {
                     uris = ['spotify:track:' + tracks.id];
                 } else {
-                    throw new Error("Playlist.addTracks: Invalid Parameter \"tracks\"");
+                    throw new Error("Playlist.replaceTracks: Invalid Parameter \"tracks\"");
                 }
             } else if (typeof(tracks) == 'string') {
                 uris = ['spotify:track:' + tracks];
             } else {
-                throw new Error("Playlist.addTracks: Invalid Parameter \"tracks\"");
+                throw new Error("Playlist.replaceTracks: Invalid Parameter \"tracks\"");
             }
             let response = await wrapper.replaceTracksInPlaylist(this.id, uris);
-            this._tracks = new Tracks(tracks);
+            this._tracks = new Models.Tracks(tracks);
             this.snapshot_id = response.body.snapshot_id;
             return response;
         } catch (error) {
@@ -638,13 +649,13 @@ Playlist.prototype = {
     removeTracks: async function(wrapper, tracks) {
         try {
             let uris = [];
-            if (tracks instanceof Tracks) {
+            if (tracks instanceof Models.Tracks) {
                 uris = await tracks.getURIs();
             } else if (tracks instanceof Array) {
                 for (let i = 0; i < tracks.length; i++) {
                     if (typeof(tracks[i]) == 'object' && tracks[i].hasOwnProperty('uri')) {
                         uris.push(tracks[i]);
-                    } else if (((tracks[i] instanceof Track || typeof(tracks[i]) == 'object')) && tracks[i].hasOwnProperty('id')) {
+                    } else if (((tracks[i] instanceof Models.Track || typeof(tracks[i]) == 'object')) && tracks[i].hasOwnProperty('id')) {
                         uris.push('spotify:track:' + tracks[i].id);
                     } else if (typeof(tracks[i]) == 'string') {
                         if (tracks[i].substring(0, 7) == 'spotify') {
@@ -656,7 +667,7 @@ Playlist.prototype = {
                 }
             } else if (typeof(tracks) == 'object' && tracks[i].hasOwnProperty('uri')) {
                 uris.push(tracks)
-            } else if ((tracks instanceof Track || typeof(tracks) == 'object') && tracks.hasOwnProperty('id')) {
+            } else if ((tracks instanceof Models.Track || typeof(tracks) == 'object') && tracks.hasOwnProperty('id')) {
                 uris.push('spotify:track:' + tracks.id);
             } else if (typeof(tracks) == 'string') {
                 if (tracks.substring(0, 7) == 'spotify') {
@@ -700,7 +711,10 @@ Playlist.prototype = {
      */
     removeTrackIndexes: async function(wrapper, positions) {
         try {
-            let response = await wrapper.removeTracksFromPlaylistInPositions(this.id, positions instanceof Array ? positions : [positions], this.snapshot_id);
+            if (this.snapshot_id == null) {
+                await this.retrieveFullObject(wrapper);
+            }
+            let response = await wrapper.removeTracksFromPlaylistByPosition(this.id, positions instanceof Array ? positions : [positions], this.snapshot_id);
             if (this.retrieved) {
                 if (positions instanceof Array) {
                     await this._tracks.removeIndexes(positions);
@@ -750,7 +764,7 @@ Playlist.prototype = {
      */
     retrieveTracks: async function(wrapper) {
         try {
-            this._tracks = new Tracks();
+            this._tracks = new Models.Tracks();
             let options = { offset: 0 };
             let response;
             do {
@@ -825,7 +839,7 @@ Playlist.prototype = {
      */
     loadTracks: async function(tracks) {
         try {
-            if (tracks instanceof Tracks || tracks instanceof Array) {
+            if (tracks instanceof Models.Tracks || tracks instanceof Array) {
                 this._tracks.concat(tracks);
             } else if (typeof(tracks) == 'object' || typeof(tracks) == 'string') {
                 this._tracks.add(tracks);
@@ -850,7 +864,7 @@ Playlist.prototype = {
                     this[properties[i]] = data[properties[i]];
                 }
             }
-            this._tracks = '_tracks' in data ? data._tracks : new Tracks();
+            this._tracks = '_tracks' in data ? data._tracks : new Models.Tracks();
             if ('tracks' in data) {
                 if ('items' in data.tracks) {
                     this.loadTracks(data.tracks.items);
@@ -862,6 +876,22 @@ Playlist.prototype = {
             throw error;
         }
     },
+};
+
+/**
+ * Get Playlist
+ * Returns Playlist object of ID
+ * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+ * @param {String} playlistID Id of Playlist.
+ * @returns {Playlist} Playlist from id.
+ */
+Playlist.getPlaylist = async function(wrapper, playlistID) {
+    try {
+        let response = await wrapper.getPlaylist(playlistID);
+        return new Models.Playlist(response.body);
+    } catch (error) {
+        throw error;
+    }
 };
 
 /**

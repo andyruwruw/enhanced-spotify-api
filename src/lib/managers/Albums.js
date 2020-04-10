@@ -6,7 +6,7 @@ var Models = require('../../index');
  /**
  * Constructor
  * Creates a new Albums Manager Instance.
- * @param {Array | Album | object | string} items (optional) Data to be preloaded. Single or multiple albums.
+ * @param {Array | Album | Object | String} items (optional) Data to be preloaded. Single or multiple albums.
  */
 function Albums(items) {
     try {

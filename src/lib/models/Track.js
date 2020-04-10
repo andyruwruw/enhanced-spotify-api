@@ -705,7 +705,7 @@ Track.prototype = {
  */
 Track.getTrack = async function(wrapper, trackId) {
     try {
-        let track = new Track(trackId);
+        let track = new Models.Track(trackId);
         await track.retrieveFullObjects(wrapper);
         return track;
     } catch (error) {

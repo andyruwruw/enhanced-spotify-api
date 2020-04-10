@@ -51,12 +51,11 @@ Categories.prototype = {
     getFullObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper);
-            let categories = await this.order.map((category) => {
-                return this.items[category]; 
-            });
-            return await Promise.all(await categories.map(async (category) => {
-                return await category.getFullObject(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order].getFullObject(wrapper));
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -70,12 +69,11 @@ Categories.prototype = {
      */
     getCurrentData: async function() {
         try {
-            let categories = await this.order.map((category) => {
-                return this.items[category]; 
-            });
-            return await Promise.all(await categories.map(async (category) => {
-                return await category.getCurrentData();
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order].getCurrentData());
+            }
+            return result;
         } catch (error) {
             throw error;
         }

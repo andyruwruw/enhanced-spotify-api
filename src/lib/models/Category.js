@@ -180,7 +180,7 @@ Category.getCategory = async function(wrapper, categoryId, options) {
             throw new Error("Category.getCategory: Invalid Parameter \"options\"");
         }
         let response = await wrapper.getCategory(categoryId, options ? options : {});
-        return new Category(response.body);
+        return new Models.Category(response.body);
     } catch (error) {
         throw error;
     }

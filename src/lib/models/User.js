@@ -318,6 +318,37 @@ User.prototype = {
 }
 
 /**
+ * Get Me
+ * Returns User object of current user.
+ * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+ * @returns {User} Current User
+ */
+User.getMe = async function(wrapper) {
+    try {
+        let response = await wrapper.getMe();
+        return new Models.User(response.body);
+    } catch (error) {
+        throw error;
+    }
+};
+
+/**
+ * Get User
+ * Returns User object of ID
+ * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+ * @param {String} userID Id of user.
+ * @returns {User} User from id.
+ */
+User.getUser = async function(wrapper, userID) {
+    try {
+        let response = await wrapper.getUser(userID);
+        return new Models.User(response.body);
+    } catch (error) {
+        throw error;
+    }
+};
+
+/**
  * Add Methods
  * Adds functionality to Class
  * @param {Object} methods Object containing new methods to be added as properties.

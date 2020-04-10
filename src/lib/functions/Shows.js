@@ -1,5 +1,8 @@
 'use strict';
 
+var WebApiRequest = require('./webapi-request');
+var HttpManager = require('./http-manager');
+
 /**
  * Get a Show
  * Returns data from API for a show

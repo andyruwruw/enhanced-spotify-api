@@ -244,7 +244,7 @@ Tracks.prototype = {
     getArtists: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
-            let artists = new Artists();
+            let artists = new Models.Artists();
             for (let track in this.items) {
                 await artists.concat(await this.items[track].getArtists(wrapper));
             }
@@ -263,9 +263,9 @@ Tracks.prototype = {
     getAlbums: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
-            let albums = new Albums();
+            let albums = new Models.Albums();
             for (let track in this.items) {
-                await albums.add(await this.items[track].getAlbum(wrapper));
+                await albums.push(await this.items[track].getAlbum(wrapper));
             }
             return albums;
         } catch (error) {
@@ -395,7 +395,7 @@ Tracks.prototype = {
             }
             _options.seed_tracks = seeds.join(",");
             let response = await wrapper.getRecommendations(_options);
-            return new Tracks(response.body.tracks);
+            return new Models.Tracks(response.body.tracks);
         } catch (error) {
             throw error;
         }
@@ -501,7 +501,7 @@ Tracks.search = async function(wrapper, query, options) {
             throw new Error("Tracks.search: Invalid Parameter \"options\"");
         }
         let response = await wrapper.searchTracks(query, options ? options : {});
-        return new Tracks(response.body.tracks.items);
+        return new Models.Tracks(response.body.tracks.items);
     } catch (error) {
         throw error;
     }
@@ -521,7 +521,7 @@ Tracks.getRecommendations = async function(wrapper, options) {
             throw new Error("Tracks.getRecommendations: Invalid Parameter \"options\"");
         }
         let response = await wrapper.getRecommendations(options ? options : {});
-        return new Tracks(response.body.tracks);
+        return new Models.Tracks(response.body.tracks);
     } catch (error) {
         throw error;
     }
@@ -541,7 +541,7 @@ Tracks.getMyTopTracks = async function(wrapper, options) {
             throw new Error("Tracks.getMyTopTracks: Invalid Parameter \"options\"");
         }
         let response = await wrapper.getMyTopTracks(options ? options : {});
-        return new Tracks(response.body.items);
+        return new Models.Tracks(response.body.items);
     } catch (error) {
         throw error;
     }
@@ -561,7 +561,7 @@ Tracks.getMyRecentlyPlayedTracks = async function(wrapper, options) {
             throw new Error("Tracks.getMyRecentlyPlayedTracks: Invalid Parameter \"options\"");
         }
         let response = await wrapper.getMyRecentlyPlayedTracks(options ? options : {});
-        return new Tracks(response.body.items);
+        return new Models.Tracks(response.body.items);
     } catch (error) {
         throw error;
     }
@@ -581,7 +581,7 @@ Tracks.getMySavedTracks = async function(wrapper, options) {
             throw new Error("Tracks.getMySavedTracks: Invalid Parameter \"options\"");
         }
         let response = await wrapper.getMySavedTracks(options ? options : {});
-        return new Tracks(response.body.items);
+        return new Models.Tracks(response.body.items);
     } catch (error) {
         throw error;
     }
@@ -598,7 +598,7 @@ Tracks.getMySavedTracks = async function(wrapper, options) {
 Tracks.getAllMySavedTracks = async function(wrapper) {
     try {
         let _options = { limit: 50, offset: 0 };
-        let tracks = new Tracks();
+        let tracks = new Models.Tracks();
         let response;
         do {
             response = await wrapper.getMySavedTracks(_options);
@@ -621,7 +621,7 @@ Tracks.getAllMySavedTracks = async function(wrapper) {
  */
 Tracks.getPlaylistTracks = async function(wrapper, id) {
     try {
-        let playlist = new Tracks.Playlist(id);
+        let playlist = new Models.Playlist(id);
         return await playlist.getTracks(wrapper);
     } catch (error) {
         throw error;
@@ -638,7 +638,7 @@ Tracks.getPlaylistTracks = async function(wrapper, id) {
  */
 Tracks.getAlbumTracks = async function(wrapper, id) {
     try {
-        let album = new Tracks.Album(id);
+        let album = new Models.Album(id);
         return await album.getTracks(wrapper);
     } catch (error) {
         throw error;
@@ -655,7 +655,7 @@ Tracks.getAlbumTracks = async function(wrapper, id) {
  */
 Tracks.getTracks = async function(wrapper, trackIds) {
     try {
-        let tracks = new Tracks(trackIds);
+        let tracks = new Models.Tracks(trackIds);
         await tracks.retrieveFullObjects(wrapper);
         return tracks;
     } catch (error) {
@@ -673,7 +673,7 @@ Tracks.getTracks = async function(wrapper, trackIds) {
  */
 Tracks.getArtistTopTracks = async function(wrapper, id) {
     try {
-        let artist = new Tracks.Artist(id);
+        let artist = new Models.Artist(id);
         return await artist.getTopTracks(wrapper);
     } catch (error) {
         throw error;

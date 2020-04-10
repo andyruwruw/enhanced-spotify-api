@@ -355,6 +355,22 @@ Show.prototype = {
 }
 
 /**
+ * Get Show
+ * Returns Show object of ID
+ * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+ * @param {String} showID Id of Show.
+ * @returns {Show} Show from id.
+ */
+Show.getShow = async function(wrapper, showID) {
+    try {
+        let response = await wrapper.getShow(showID);
+        return new Models.Show(response.body);
+    } catch (error) {
+        throw error;
+    }
+};
+
+/**
  * Add Methods
  * Adds functionality to Class
  * @param {Object} methods Object containing new methods to be added as properties.

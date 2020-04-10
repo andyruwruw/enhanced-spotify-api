@@ -169,7 +169,7 @@ Playlists.prototype = {
      */
     getTracks: async function(wrapper) {
         try {
-            let tracks = new Playlists.Tracks();
+            let tracks = new Models.Tracks();
             for (let playlist in this.items) {
                 await tracks.concat(await this.items[playlist].getTracks(wrapper));
             }
@@ -188,7 +188,7 @@ Playlists.prototype = {
      */
     getArtists: async function(wrapper) {
         try {
-            let artists = new Artists();
+            let artists = new Models.Artists();
             for (let playlist in this.items) {
                 await artists.concat(await this.items[playlist].getArtists(wrapper));
             }
@@ -207,7 +207,7 @@ Playlists.prototype = {
      */
     getAlbums: async function(wrapper) {
         try {
-            let albums = new Albums();
+            let albums = new Models.Albums();
             for (let playlist in this.items) {
                 await albums.concat(await this.items[playlist].getAlbums(wrapper));
             }
@@ -258,7 +258,7 @@ Playlists.search = async function(wrapper, query, options) {
             throw new Error("Playlists.search: Invalid Parameter \"options\"");
         }
         let response = await wrapper.searchPlaylists(query, options ? options : {});
-        return new Playlists(response.body.playlists.items);
+        return new Models.Playlists(response.body.playlists.items);
     } catch (error) {
         throw error;
     }
@@ -278,7 +278,7 @@ Playlists.getUserPlaylists = async function(wrapper, userId, options) {
             throw new Error("Playlists.getUserPlaylists: Invalid Parameter \"options\"");
         }
         let response = await wrapper.getUserPlaylists(userId, options ? options : {});
-        return new Playlists(response.body.items);
+        return new Models.Playlists(response.body.items);
     } catch (error) {
         throw error;
     }
@@ -295,7 +295,7 @@ Playlists.getUserPlaylists = async function(wrapper, userId, options) {
 Playlists.getAllUserPlaylists = async function(wrapper, userId) {
     try {
         let _options = { limit: 50, offset: 0 };
-        let playlists = new Playlists();
+        let playlists = new Models.Playlists();
         let response;
         do {
             response = await wrapper.getUserPlaylists(userId, _options);
@@ -323,7 +323,7 @@ Playlists.getMyPlaylists = async function(wrapper, options) {
         }
         let userId = await (await wrapper.getMe()).body.id;
         let response = await wrapper.getUserPlaylists(userId , options ? options : {});
-        return new Playlists(response.body.items);
+        return new Models.Playlists(response.body.items);
     } catch (error) {
         throw error;
     }
@@ -341,7 +341,7 @@ Playlists.getAllMyPlaylists = async function(wrapper) {
     try {
         let _options = { limit: 50, offset: 0 };
         let userId = await (await wrapper.getMe()).body.id;
-        let playlists = new Playlists();
+        let playlists = new Models.Playlists();
         let response;
         do {
             response = await wrapper.getUserPlaylists(userId, _options);
@@ -368,7 +368,7 @@ Playlists.getFeaturedPlaylists = async function(wrapper) {
             throw new Error("Playlists.getUserPlaylists: Invalid Parameter \"options\"");
         }
         let response = await wrapper.getFeaturedPlaylists(userId, options ? options : {});
-        return new Playlists(response.body.playlists.items);
+        return new Models.Playlists(response.body.playlists.items);
     } catch (error) {
         throw error;
     }

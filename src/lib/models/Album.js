@@ -385,7 +385,7 @@ Album.prototype = {
 Album.getAlbum = async function(wrapper, albumId, options) {
     try {
         let response = await wrapper.getAlbum(albumId, options ? options : {});
-        return new Album(response.body);
+        return new Models.Album(response.body);
     } catch (error) {
         throw error;
     }
