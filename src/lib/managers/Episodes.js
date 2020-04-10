@@ -32,12 +32,11 @@ Episodes.prototype = {
     getFullObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'full');
-            let episodes = await this.order.map((episode) => {
-                return this.items[episode]; 
-            });
-            return await Promise.all(await episodes.map(async (episode) => {
-                return await episode.getFullObject(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getFullObject(wrapper));
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -53,12 +52,11 @@ Episodes.prototype = {
     getSimplifiedObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
-            let episodes = await this.order.map((episode) => {
-                return this.items[episode]; 
-            });
-            return await Promise.all(await episodes.map(async (episode) => {
-                return await episode.getSimplifiedObject(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getSimplifiedObject(wrapper));
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -72,12 +70,11 @@ Episodes.prototype = {
      */
     getCurrentData: async function() {
         try {
-            let episodes = await this.order.map((episode) => {
-                return this.items[episode]; 
-            });
-            return await Promise.all(await episodes.map(async (episode) => {
-                return await episode.getCurrentData();
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getCurrentData());
+            }
+            return result;
         } catch (error) {
             throw error;
         }

@@ -1,6 +1,6 @@
 {
   "name": "enhanced-spotify-api",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Object-oriented library to work with Spotify's API. Includes wrapper for regular endpoints and additional functionality and grouping of requests.",
   "main": "src/index.js",
   "scripts": {

@@ -99,12 +99,11 @@ Artists.prototype = {
     getFullObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'full');
-            let artists = await this.order.map((artist) => {
-                return this.items[artist]; 
-            });
-            return await Promise.all(await artists.map(async (artist) => {
-                return await artist.getFullObject(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getFullObject(wrapper));
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -120,12 +119,11 @@ Artists.prototype = {
     getSimplifiedObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
-            let artists = await this.order.map((artist) => {
-                return this.items[artist]; 
-            });
-            return await Promise.all(await artists.map(async (artist) => {
-                return await artist.getSimplifiedObject(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getSimplifiedObject(wrapper));
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -139,12 +137,11 @@ Artists.prototype = {
      */
     getCurrentData: async function() {
         try {
-            let artists = await this.order.map((artist) => {
-                return this.items[artist]; 
-            });
-            return await Promise.all(await artists.map(async (artist) => {
-                return await artist.getCurrentData();
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getCurrentData());
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -248,11 +245,8 @@ Artists.prototype = {
     getRelatedArtists: async function(wrapper) {
         try {
             let related = new Models.Artists();
-            let artists = await this.order.map((artist) => {
-                return this.items[artist]; 
-            });
-            for (let i = 0; i < artists.length; i++) {
-                await related.concat(await artists[i].getRelatedArtists(wrapper));
+            for (let i = 0; i < this.order.length; i++) {
+                await related.concat(await this.items[this.order[i]].getRelatedArtists(wrapper));
             }
             return related;
         } catch (error) {

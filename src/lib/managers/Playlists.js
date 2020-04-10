@@ -109,12 +109,11 @@ Playlists.prototype = {
     getFullObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'full');
-            let playlists = await this.order.map(function(playlist) {
-                return this.items[playlist]; 
-            });
-            return await Promise.all(await playlists.map(async function(playlist) {
-                return await playlist.getFullObject(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getFullObject(wrapper));
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -130,12 +129,11 @@ Playlists.prototype = {
     getSimplifiedObjects: async function(wrapper) {
         try {
             await this.retrieveFullObjects(wrapper, 'simplified');
-            let playlists = await this.order.map(function(playlist) {
-                return this.items[playlist]; 
-            });
-            return await Promise.all(await playlists.map(async function(playlist) {
-                return await playlist.getSimplifiedObject(wrapper);
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getSimplifiedObject(wrapper));
+            }
+            return result;
         } catch (error) {
             throw error;
         }
@@ -149,12 +147,11 @@ Playlists.prototype = {
      */
     getCurrentData: async function() {
         try {
-            let playlists = await this.order.map(function(playlist) {
-                return this.items[playlist]; 
-            });
-            return await Promise.all(await playlists.map(async function(playlist) {
-                return await playlist.getCurrentData();
-            }));
+            let result = [];
+            for (let i = 0; i < this.order.length; i++) {
+                await result.push(await this.items[this.order[i]].getCurrentData());
+            }
+            return result;
         } catch (error) {
             throw error;
         }
