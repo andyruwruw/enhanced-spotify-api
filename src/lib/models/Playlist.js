@@ -895,6 +895,29 @@ Playlist.getPlaylist = async function(wrapper, playlistID) {
 };
 
 /**
+ * Create Playlist
+ * Creates a playlist and returns its Playlist Instance
+ * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+ * @param {String} name Name of new playlist.
+ * @param {Object} options (Optional) Additional Options.
+ * @returns {Playlist} Playlist.
+ */
+Playlist.create = async function(wrapper, name, options) {
+    try {
+        if (options != null && typeof(options != 'object')) {
+            throw new Error("Playlist.create: Invalid Parameter \"options\"");
+        }
+        let userID = await (await wrapper.getMe()).body.id;
+        let _options = options ? options : {};
+        _options.name = name;
+        let response = await wrapper.createPlaylist(userID, _options);
+        return new Models.Playlist(response.body);
+    } catch (error) {
+        throw error;
+    }
+};
+
+/**
  * Add Methods
  * Adds functionality to Class
  * @param {Object} methods Object containing new methods to be added as properties.
