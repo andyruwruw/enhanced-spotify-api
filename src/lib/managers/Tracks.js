@@ -180,12 +180,12 @@ Tracks.prototype = {
     },
 
     /**
-     * Get Tracks Audio Analysis
+     * Get Tracks Audio Analyses
      * Returns audio analysis data for all tracks. Retrieves from Spotify API if nessisary.
      * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Array} Array of Track Audio Analysis Data.
      */
-    getAudioAnalysis: async function(wrapper) {
+    getAudioAnalyses: async function(wrapper) {
         try {
             let result = [];
             for (let i = 0; i < this.order.length; i++) {

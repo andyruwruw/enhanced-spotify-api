@@ -309,9 +309,9 @@ Manager.prototype = {
             this.order = this.order.filter((item) => {
                 return item != id;
             });
-            let item = this.items[id];
+            let deletedItem = this.items[id];
             delete this.items[id];
-            return item;
+            return deletedItem;
         } catch (error) {
             throw error;
         }

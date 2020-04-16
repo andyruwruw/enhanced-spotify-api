@@ -36,8 +36,11 @@ User.prototype = {
      */
     isMe: async function(wrapper) {
         try {
-            let response = await wrapper.getMe();
-            return (response.body.id == this.id);
+            if (this.meStatus == null) {
+                let response = await wrapper.getMe();
+                this.meStatus = (response.body.id == this.id);
+            } 
+            return this.meStatus;
         } catch (error) {
             throw error;
         }
@@ -102,23 +105,6 @@ User.prototype = {
      */
     containsPublicObject: function() {
         return ((this.display_name != null) && (this.external_urls) && (this.followers) && (this.href != null) && (this.images != null) && (this.uri != null));
-    },
-
-    /**
-     * Are Following Playlist
-     * Returns boolean whether this user is following a playlist.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
-     * @param {String} playlistId ID of Playlist
-     * @returns {Boolean} Whether user is following a playlist
-     */
-    areFollowingPlaylist: async function(wrapper, playlistId) {
-        try {
-            let playlist = new Playlist(playlistId);
-            let response = await playlist.areFollowing(wrapper, [this.id]);
-            return response[0];
-        } catch (error) {
-            throw error;
-        }
     },
 
     /**
@@ -205,7 +191,7 @@ User.prototype = {
      */
     getPlaylists: async function(wrapper, options) {
         try {
-            return await Playlists.getUserPlaylists(wrapper, this.id, options);
+            return await Models.Playlists.getUserPlaylists(wrapper, this.id, options);
         } catch (error) {
             throw error;
         }
@@ -216,12 +202,11 @@ User.prototype = {
      * Returns Playlists object of all user's playlists
      * 
      * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
-     * @param {Object} options (Optional) Additional options
      * @returns {Playlist} Playlist Object with All User Playlists
      */
-    getAllPlaylists: async function(wrapper, options) {
+    getAllPlaylists: async function(wrapper) {
         try {
-            return await Models.Playlists.getAllUserPlaylists(wrapper, this.id, options);
+            return await Models.Playlists.getAllUserPlaylists(wrapper, this.id);
         } catch (error) {
             throw error;
         }

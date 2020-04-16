@@ -308,7 +308,6 @@ Playlists.getAllUserPlaylists = async function(wrapper, userId) {
 /**
  * Get My Playlists
  * Returns followed and created playlists.
- * 
  * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
  * @param {object} options (Optional) Additional options.
  * @returns {Playlists} Playlists returned request.

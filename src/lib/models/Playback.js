@@ -163,7 +163,7 @@ Playback.prototype = {
      * Returns millisecond progress into item being played.
      * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Object} options (Optional) Additional options
-     * @returns {number} Milliseconds into item.
+     * @returns {Number} Milliseconds into item.
      * options.market: {String} Country Code.
      * options.additional_types: {String} Comma-separated lists of item types (track, episode) (Default: track).
      */
