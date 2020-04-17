@@ -4,7 +4,7 @@
 <p align="center" style="margin-bottom: 0px;">
     <img width="500px" src="https://raw.githubusercontent.com/andyruwruw/enhanced-spotify-api/master/documentation/title.svg?sanitize=true"/>
 </p>
-<p align="center" style="margin-top: 0px">Object Oriented Spotify API Wrapper with Extended Functionality.<p>
+<p align="center" style="margin-top: 0px">Object-Oriented Spotify API Wrapper with Extended Functionality.<p>
 <p align="center" style="margin: 0 auto; margin-top: 15px; max-width: 600px">
     <a href="https://melophile.org"><img src="https://img.shields.io/npm/v/enhanced-spotify-api?color=%23d400b0"></a>
     <a href="#"><img src="https://img.shields.io/npm/dt/enhanced-spotify-api?color=%238514e0"/></a>
@@ -15,13 +15,15 @@
 
 # Overview
 
-- No more **Simplified Objects** when you need **Full Objects**
+## [Visit the Official Website / Documentation](http://enhancedspotifyapi.com)
 
-- No more **Paging Objects** when you need **All Playlist Tracks**
+No more **Simplified Objects** when you need **Full Objects**
 
-enhanced-spotify-api is an object-oriented API wrapper aimed to expand available endpoints for Spotify's API.
+No more **Paging Objects** when you need **All Playlist Tracks**
 
-Spend more of your time making something cool, and less time scouring over Spotify's API documentation.
+enhanced-spotify-api is an Object-Oriented API Wrapper aimed to make Spotify's API development fun and painless, and to expand available endpoints.
+
+Spend more of your time coding something cool, and less time scouring over documentation.
 
 ### Unique Features:
 
@@ -41,12 +43,6 @@ Spend more of your time making something cool, and less time scouring over Spoti
 - Providing all the original functionality of [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node).
     - Added missing endpoints for shows and episodes (Just released 3/2020). 
         - I sent pull requests to update [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node) and [spotify-web-api-js](https://github.com/JMPerez/spotify-web-api-js).
-
-# Visit the Official Website / Documentation
-
-## [enhancedspotifyapi.com](http://enhancedspotifyapi.com)
-
-Still a work in progress, should be done this week.
 
 # Why Use enhanced-spotify-api?
 
