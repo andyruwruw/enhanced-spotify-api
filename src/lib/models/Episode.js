@@ -64,13 +64,12 @@ Episode.prototype = {
     /**
      * Get Full Object
      * Returns full episode data. Retrieves from Spotify API if nessisary.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Episode Full Object Data.
      */
-    getFullObject: async function(wrapper) {
+    getFullObject: async function() {
         try {
             if (!(await this.containsFullObject())) {
-                await this.retrieveFullObject(wrapper);
+                await this.retrieveFullObject();
             }
             let result = {
                 id: this.id,
@@ -107,13 +106,12 @@ Episode.prototype = {
      * Get Simplified Object
      * Returns simplified episode data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Episode Simplified Object Data.
      */
-    getSimplifiedObject: async function(wrapper) {
+    getSimplifiedObject: async function() {
         try {
             if (!(await this.containsSimplifiedObject())) {
-                await this.retrieveFullObject(wrapper);
+                await this.retrieveFullObject();
             }
             let result = {
                 id: this.id,
@@ -148,7 +146,6 @@ Episode.prototype = {
     /**
      * Get Current Data
      * Just returns whatever the track object currently holds
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Any Track Data.
      */
     getCurrentData: function() {
@@ -169,13 +166,12 @@ Episode.prototype = {
     /**
      * Get Episode Show
      * Returns Show Object of episode's show..
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Show} Episode's Show
      */
-    getShow: async function(wrapper) {
+    getShow: async function() {
         try {
             if (!(await this.containsFullObject())) {
-                await this.retrieveFullObject(wrapper);
+                await this.retrieveFullObject();
             }
             return new Models.Show(this.show);
         } catch (error) {
@@ -243,11 +239,10 @@ Episode.prototype = {
     /**
      * Retrieve Full Object
      * Retrieves full episode data from Spotify API
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
-    retrieveFullObject: async function(wrapper) {
+    retrieveFullObject: async function() {
         try {
-            let response = await wrapper.getEpisode(this.id);
+            let response = await Models.wrapperInstance.getEpisode(this.id);
             await this.loadFullObject(response.body);
         } catch (error) {
             throw error;
@@ -262,9 +257,9 @@ Episode.prototype = {
  * @param {String} episodeId Id of episode.
  * @returns {Episode} Episode from id.
  */
-Episode.getEpisode = async function(wrapper, episodeId) {
+Episode.getEpisode = async function(episodeId) {
     try {
-        let response = await wrapper.getEpisode(episodeId);
+        let response = await Models.wrapperInstance.getEpisode(episodeId);
         return new Models.Episode(response.body);
     } catch (error) {
         throw error;
@@ -294,6 +289,78 @@ Episode.override = function(name, method) {
     } else {
         throw new Error("Episode.override: \"name\" does not exist.");
     }
-}
+};
+
+Episode.setCredentials = function(credentials) {
+    Models.wrapperInstance.setCredentials(credentials);
+};
+
+Episode.getCredentials = function() {
+    return Models.wrapperInstance.getCredentials();
+};
+
+Episode.resetCredentials = function() {
+    Models.wrapperInstance.resetCredentials();
+};
+
+Episode.setClientId = function(clientId) {
+    Models.wrapperInstance.setClientId(clientId);
+};
+
+Episode.setClientSecret = function(clientSecret) {
+    Models.wrapperInstance.setClientSecret(clientSecret);
+};
+
+Episode.setAccessToken = function(accessToken) {
+    Models.wrapperInstance.setAccessToken(accessToken);
+};
+
+Episode.setRefreshToken = function(refreshToken) {
+    Models.wrapperInstance.setRefreshToken(refreshToken);
+};
+
+Episode.setRedirectURI = function(redirectUri) {
+    Models.wrapperInstance.setRedirectURI(redirectUri);
+};
+
+Episode.getRedirectURI = function() {
+    return Models.wrapperInstance.getRedirectURI();
+};
+
+Episode.getClientId = function() {
+    return Models.wrapperInstance.getClientId();
+};
+
+Episode.getClientSecret = function() {
+    return Models.wrapperInstance.getClientSecret();
+};
+
+Episode.getAccessToken = function() {
+    return Models.wrapperInstance.getAccessToken();
+};
+
+Episode.getRefreshToken = function() {
+    return Models.wrapperInstance.getRefreshToken();
+};
+
+Episode.resetClientId = function() {
+    return Models.wrapperInstance.resetClientId();
+};
+
+Episode.resetClientSecret = function() {
+    return Models.wrapperInstance.resetClientSecret();
+};
+
+Episode.resetAccessToken = function() {
+    return Models.wrapperInstance.resetAccessToken();
+};
+
+Episode.resetRefreshToken = function() {
+    return Models.wrapperInstance.resetRefreshToken();
+};
+
+Episode.resetRedirectURI = function() {
+    return Models.wrapperInstance.resetRedirectURI();
+};
 
 module.exports = Episode;

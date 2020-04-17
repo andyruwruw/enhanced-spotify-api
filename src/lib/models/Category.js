@@ -30,12 +30,11 @@ Category.prototype = {
     /**
      * Play Category
      * Plays category on user's active device.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Response from request.
      */
-    play: async function(wrapper) {
+    play: async function() {
         try {
-            return await (await (await this.getCategoryPlaylists(wrapper, { limit: 1 })).get(0)).play(wrapper);
+            return await (await (await this.getCategoryPlaylists({ limit: 1 })).get(0)).play();
         } catch (error) {
             throw error;
         }
@@ -53,13 +52,12 @@ Category.prototype = {
     /**
      * Get Full Object
      * Returns full category data. Retrieves from Spotify API if nessisary.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Category Full Object Data.
      */
-    getFullObject: async function(wrapper) {
+    getFullObject: async function() {
         try {
             if (!(await this.containsFullObject())) {
-                await this.retrieveFullObject(wrapper);
+                await this.retrieveFullObject();
             }
             return {
                 id: this.id,
@@ -75,7 +73,6 @@ Category.prototype = {
     /**
      * Get Current Data
      * Just returns whatever the category object currently holds
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Any Category Data.
      */
     getCurrentData: function() {
@@ -96,20 +93,19 @@ Category.prototype = {
     /**
      * Get Category Playlists
      * Returns Playlists instance with category playlists.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Object} options (Optional) Additional options.
      * @returns {Playlists} Playlists instance with category playlists.
      * options.country: {String} Country Code.
      * options.limit: {Number} Maximum number of items to return (Default: 20, Max: 50).
      * options.offset: {Number} Index of first item to return (Default: 0).
      */
-    getPlaylists: async function(wrapper, options) {
+    getPlaylists: async function(options) {
         try {
             if (options != null && typeof(options) != 'object') {
                 throw new Error("Category.getPlaylists: Invalid Parameter \"options\"");
             }
             let _options = options ? options : {};
-            let response = await wrapper.getCategoryPlaylists(this.id, _options);
+            let response = await Models.wrapperInstance.getCategoryPlaylists(this.id, _options);
             return new Models.Playlists(response.body.playlists);
         } catch (error) {
             throw error;
@@ -152,11 +148,10 @@ Category.prototype = {
     /**
      * Retrieve Full Object
      * Retrieves full category data from Spotify API
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
-    retrieveFullObject: async function(wrapper) {
+    retrieveFullObject: async function() {
         try {
-            let response = await wrapper.getCategory(this.id, {});
+            let response = await Models.wrapperInstance.getCategory(this.id, {});
             await this.loadFullObject(response.body);
         } catch (error) {
             throw error;
@@ -174,12 +169,12 @@ Category.prototype = {
  * options.country: {String} Country Code.
  * options.locale: {String} Desired Language.
  */
-Category.getCategory = async function(wrapper, categoryId, options) {
+Category.getCategory = async function(categoryId, options) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Category.getCategory: Invalid Parameter \"options\"");
         }
-        let response = await wrapper.getCategory(categoryId, options ? options : {});
+        let response = await Models.wrapperInstance.getCategory(categoryId, options ? options : {});
         return new Models.Category(response.body);
     } catch (error) {
         throw error;
@@ -209,6 +204,78 @@ Category.override = function(name, method) {
     } else {
         throw new Error("Category.override: \"property\" does not exist.");
     }
-}
+};
+
+Category.setCredentials = function(credentials) {
+    Models.wrapperInstance.setCredentials(credentials);
+};
+
+Category.getCredentials = function() {
+    return Models.wrapperInstance.getCredentials();
+};
+
+Category.resetCredentials = function() {
+    Models.wrapperInstance.resetCredentials();
+};
+
+Category.setClientId = function(clientId) {
+    Models.wrapperInstance.setClientId(clientId);
+};
+
+Category.setClientSecret = function(clientSecret) {
+    Models.wrapperInstance.setClientSecret(clientSecret);
+};
+
+Category.setAccessToken = function(accessToken) {
+    Models.wrapperInstance.setAccessToken(accessToken);
+};
+
+Category.setRefreshToken = function(refreshToken) {
+    Models.wrapperInstance.setRefreshToken(refreshToken);
+};
+
+Category.setRedirectURI = function(redirectUri) {
+    Models.wrapperInstance.setRedirectURI(redirectUri);
+};
+
+Category.getRedirectURI = function() {
+    return Models.wrapperInstance.getRedirectURI();
+};
+
+Category.getClientId = function() {
+    return Models.wrapperInstance.getClientId();
+};
+
+Category.getClientSecret = function() {
+    return Models.wrapperInstance.getClientSecret();
+};
+
+Category.getAccessToken = function() {
+    return Models.wrapperInstance.getAccessToken();
+};
+
+Category.getRefreshToken = function() {
+    return Models.wrapperInstance.getRefreshToken();
+};
+
+Category.resetClientId = function() {
+    return Models.wrapperInstance.resetClientId();
+};
+
+Category.resetClientSecret = function() {
+    return Models.wrapperInstance.resetClientSecret();
+};
+
+Category.resetAccessToken = function() {
+    return Models.wrapperInstance.resetAccessToken();
+};
+
+Category.resetRefreshToken = function() {
+    return Models.wrapperInstance.resetRefreshToken();
+};
+
+Category.resetRedirectURI = function() {
+    return Models.wrapperInstance.resetRedirectURI();
+};
 
 module.exports = Category;

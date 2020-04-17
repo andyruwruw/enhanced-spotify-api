@@ -25,16 +25,14 @@ Episodes.prototype = {
     /**
      * Get Full Objects
      * Returns full episode data for all episodes. Retrieves from Spotify API if nessisary.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {array} Array of Episode Full Objects.
      */
-    getFullObjects: async function(wrapper) {
+    getFullObjects: async function() {
         try {
-            await this.retrieveFullObjects(wrapper, 'full');
+            await this.retrieveFullObjects('full');
             let result = [];
             for (let i = 0; i < this.order.length; i++) {
-                await result.push(await this.items[this.order[i]].getFullObject(wrapper));
+                await result.push(await this.items[this.order[i]].getFullObject());
             }
             return result;
         } catch (error) {
@@ -45,16 +43,14 @@ Episodes.prototype = {
     /**
      * Get Simplified Objects
      * Returns simplified episode data for all episodes. Retrieves from Spotify API if nessisary.
-     * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {array} Array of Episode Simplified Objects.
      */
-    getSimplifiedObjects: async function(wrapper) {
+    getSimplifiedObjects: async function() {
         try {
-            await this.retrieveFullObjects(wrapper, 'simplified');
+            await this.retrieveFullObjects('simplified');
             let result = [];
             for (let i = 0; i < this.order.length; i++) {
-                await result.push(await this.items[this.order[i]].getSimplifiedObject(wrapper));
+                await result.push(await this.items[this.order[i]].getSimplifiedObject());
             }
             return result;
         } catch (error) {
@@ -65,7 +61,6 @@ Episodes.prototype = {
     /**
      * Get Episodes Current Data
      * Just returns whatever the episode objects currently hold.
-     * 
      * @returns {array} Array of Current Episode Data
      */
     getCurrentData: async function() {
@@ -84,15 +79,14 @@ Episodes.prototype = {
      * Get All Episode's Shows
      * Returns Shows instance with all episode's shows.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Shows} Shows object of all episode's episshowsodes.
      */
-    getShows: async function(wrapper) {
+    getShows: async function() {
         try {
-            await this.retrieveFullObjects(wrapper);
+            await this.retrieveFullObjects();
             let shows = new Episodes.Shows();
             for (let episode in this.items) {
-                await shows.add(await this.items[show].getShow(wrapper));
+                await shows.add(await this.items[episode].getShow());
             }
             return shows;
         } catch (error) {
@@ -104,10 +98,9 @@ Episodes.prototype = {
      * Retrieve Full Objects
      * Retrieves full episode data for all episodes from Spotify API
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {string} objectType Optional | 'simplified', 'link' or 'full', what to check if the episode contains.
      */
-    retrieveFullObjects: async function(wrapper, objectType) {
+    retrieveFullObjects: async function(objectType) {
         try {
             let ids = [];
             for (let episode in this.items) {
@@ -124,7 +117,7 @@ Episodes.prototype = {
             if (ids.length) {
                 let response;
                 do {
-                    response = await wrapper.getEpisodes(ids.splice(0, 50));
+                    response = await Models.wrapperInstance.getEpisodes(ids.splice(0, 50));
                     for (let i = 0; i < response.body.episodes.length; i++) {
                         if (response.body.episodes[i] == null) continue;
                         this.items[response.body.episodes[i].id].loadFullObject(response.body.episodes[i]);
@@ -141,18 +134,17 @@ Episodes.prototype = {
  * Search for a Episodes
  * Returns search results for a query.
  * 
- * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
  * @param {string} query String to search for.
  * @param {object} options (Optional) Additional options.
  * @returns {Episodes} Episodes returned from Search.
  */
-Episodes.search = async function(wrapper, query, options) {
+Episodes.search = async function(query, options) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Episodes.search: Invalid Parameter \"options\"");
         }
         let _options = (typeof(options) == 'object') ? options : {};
-        let response = await wrapper.searchEpisodes(query, _options);
+        let response = await Models.wrapperInstance.searchEpisodes(query, _options);
         return new Episodes(response.body.episodes.items);
     } catch (error) {
         throw error;
@@ -163,14 +155,13 @@ Episodes.search = async function(wrapper, query, options) {
  * Get Episodes
  * Returns Episodes object of IDs
  * 
- * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
  * @param {Array} episodeIds Ids of episodes.
  * @returns {Episodes} Episodes from ids.
  */
-Episodes.getEpisodes = async function(wrapper, showIds) {
+Episodes.getEpisodes = async function(showIds) {
     try {
         let episodes = new Episodes(episodeIds);
-        await episodes.retrieveFullObjects(wrapper);
+        await episodes.retrieveFullObjects();
         return episodes;
     } catch (error) {
         throw error;
@@ -200,6 +191,78 @@ Episodes.override = function(name, method) {
     } else {
         throw new Error("Episodes.override: \"name\" does not exist.");
     }
-}
+};
+
+Episodes.setCredentials = function(credentials) {
+    Models.wrapperInstance.setCredentials(credentials);
+};
+
+Episodes.getCredentials = function() {
+    return Models.wrapperInstance.getCredentials();
+};
+
+Episodes.resetCredentials = function() {
+    Models.wrapperInstance.resetCredentials();
+};
+
+Episodes.setClientId = function(clientId) {
+    Models.wrapperInstance.setClientId(clientId);
+};
+
+Episodes.setClientSecret = function(clientSecret) {
+    Models.wrapperInstance.setClientSecret(clientSecret);
+};
+
+Episodes.setAccessToken = function(accessToken) {
+    Models.wrapperInstance.setAccessToken(accessToken);
+};
+
+Episodes.setRefreshToken = function(refreshToken) {
+    Models.wrapperInstance.setRefreshToken(refreshToken);
+};
+
+Episodes.setRedirectURI = function(redirectUri) {
+    Models.wrapperInstance.setRedirectURI(redirectUri);
+};
+
+Episodes.getRedirectURI = function() {
+    return Models.wrapperInstance.getRedirectURI();
+};
+
+Episodes.getClientId = function() {
+    return Models.wrapperInstance.getClientId();
+};
+
+Episodes.getClientSecret = function() {
+    return Models.wrapperInstance.getClientSecret();
+};
+
+Episodes.getAccessToken = function() {
+    return Models.wrapperInstance.getAccessToken();
+};
+
+Episodes.getRefreshToken = function() {
+    return Models.wrapperInstance.getRefreshToken();
+};
+
+Episodes.resetClientId = function() {
+    return Models.wrapperInstance.resetClientId();
+};
+
+Episodes.resetClientSecret = function() {
+    return Models.wrapperInstance.resetClientSecret();
+};
+
+Episodes.resetAccessToken = function() {
+    return Models.wrapperInstance.resetAccessToken();
+};
+
+Episodes.resetRefreshToken = function() {
+    return Models.wrapperInstance.resetRefreshToken();
+};
+
+Episodes.resetRedirectURI = function() {
+    return Models.wrapperInstance.resetRedirectURI();
+};
 
 module.exports = Episodes;

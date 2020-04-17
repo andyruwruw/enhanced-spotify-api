@@ -25,11 +25,11 @@ Artists.prototype = {
     /**
      * Play Artists
      * Plays artist on user's active device.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+
      * @param {Object} options (Optional) Additional options.
      * @returns {Object} Response from request.
      */
-    play: async function(wrapper, options) {
+    play: async function(options) {
         try {
             let _options = options ? options : {};
             let artists = await this.order.map((artist) => {
@@ -37,9 +37,9 @@ Artists.prototype = {
             });
             let tracks = new Models.Tracks();
             for (let i = 0; i < artists.length; i++) {
-                await tracks.push(await (await artists[i].getTopTracks(wrapper)).get(0));
+                await tracks.push(await (await artists[i].getTopTracks()).get(0));
             }   
-            return await tracks.play(wrapper, options);
+            return await tracks.play(options);
         } catch (error) {
             throw error;
         }
@@ -49,12 +49,12 @@ Artists.prototype = {
      * Are Followed
      * Returns whether artists are followed by the user.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+
      * @returns {Array} Array of booleans of whether artist is followed by user.
      */
-    areFollowed: async function(wrapper) {
+    areFollowed: async function() {
         try {
-            let response = await wrapper.isFollowingArtists(this.order);
+            let response = await Models.wrapperInstance.isFollowingArtists(this.order);
             return response.body;
         } catch (error) {
             throw error;
@@ -65,11 +65,11 @@ Artists.prototype = {
      * Follow Artist
      * Follows artist.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+
      */
-    follow: async function(wrapper) {
+    follow: async function() {
         try {
-            return await wrapper.followArtists(Object.keys(this.items));
+            return await Models.wrapperInstance.followArtists(Object.keys(this.items));
         } catch (error) {
             throw error;
         }
@@ -79,11 +79,11 @@ Artists.prototype = {
      * Unfollow Artist
      * Unfollows artist.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+
      */
-    unfollow: async function(wrapper) {
+    unfollow: async function() {
         try {
-            return await wrapper.unfollowArtists(Object.keys(this.items));
+            return await Models.wrapperInstance.unfollowArtists(Object.keys(this.items));
         } catch (error) {
             throw error;
         }
@@ -93,15 +93,15 @@ Artists.prototype = {
      * Get Full Objects
      * Returns full artist data for all artists. Retrieves from Spotify API if nessisary.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+
      * @returns {Array} Array of Artist Full Objects.
      */
-    getFullObjects: async function(wrapper) {
+    getFullObjects: async function() {
         try {
-            await this.retrieveFullObjects(wrapper, 'full');
+            await this.retrieveFullObjects('full');
             let result = [];
             for (let i = 0; i < this.order.length; i++) {
-                await result.push(await this.items[this.order[i]].getFullObject(wrapper));
+                await result.push(await this.items[this.order[i]].getFullObject());
             }
             return result;
         } catch (error) {
@@ -113,15 +113,15 @@ Artists.prototype = {
      * Get Simplified Objects
      * Returns simplified artist data for all artists. Retrieves from Spotify API if nessisary.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+
      * @returns {array} Array of Artist Simplified Objects.
      */
-    getSimplifiedObjects: async function(wrapper) {
+    getSimplifiedObjects: async function() {
         try {
-            await this.retrieveFullObjects(wrapper, 'simplified');
+            await this.retrieveFullObjects('simplified');
             let result = [];
             for (let i = 0; i < this.order.length; i++) {
-                await result.push(await this.items[this.order[i]].getSimplifiedObject(wrapper));
+                await result.push(await this.items[this.order[i]].getSimplifiedObject());
             }
             return result;
         } catch (error) {
@@ -151,18 +151,18 @@ Artists.prototype = {
      * Get All Artist's Top Tracks
      * Returns Tracks instance with all artist's top tracks.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+
      * @param {string} countryCode (Optional) country code.
      * @returns {Tracks}  Tracks object of artist's tracks top tracks.
      */
-    getTopTracks: async function(wrapper, countryCode) {
+    getTopTracks: async function(countryCode) {
         try {
             let tracks = new Models.Tracks();
             let artists = await this.order.map((artist) => {
                 return this.items[artist]; 
             });
             for (let i = 0; i < artists.length; i++) {
-                await tracks.concat(await artists[i].getTopTracks(wrapper, countryCode));
+                await tracks.concat(await artists[i].getTopTracks(countryCode));
             }
             return tracks;
         } catch (error) {
@@ -174,17 +174,17 @@ Artists.prototype = {
      * Get All Artist's Tracks
      * Returns Tracks instance with all artist's tracks.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+
      * @returns {Tracks}  Tracks object of all artist's tracks.
      */
-    getAllTracks: async function(wrapper) {
+    getAllTracks: async function() {
         try {
             let tracks = new Models.Tracks();
             let artists = await this.order.map((artist) => {
                 return this.items[artist]; 
             });
             for (let i = 0; i < artists.length; i++) {
-                await tracks.concat(await artists[i].getAllTracks(wrapper));
+                await tracks.concat(await artists[i].getAllTracks());
             }
             return tracks;
         } catch (error) {
@@ -196,18 +196,18 @@ Artists.prototype = {
      * Get Artists's Albums
      * Returns Albums instance with artists's albums.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+
      * @param {Object} options (Optional) Options to be passed into each request.
      * @returns {Albums}  Albums object of artist's albums.
      */
-    getAlbums: async function(wrapper, options) {
+    getAlbums: async function(options) {
         try {
             let albums = new Models.Albums();
             let artists = await this.order.map((artist) => {
                 return this.items[artist]; 
             });
             for (let i = 0; i < artists.length; i++) {
-                await albums.concat(await artists[i].getAlbums(wrapper, options));
+                await albums.concat(await artists[i].getAlbums(options));
             }
         } catch (error) {
             throw error;
@@ -218,17 +218,17 @@ Artists.prototype = {
      * Get All Artists's Albums
      * Returns Albums instance with all artists's albums.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+
      * @returns {Albums}  Albums object of all artist's albums.
      */
-    getAllAlbums: async function(wrapper) {
+    getAllAlbums: async function() {
         try {
             let albums = new Models.Albums();
             let artists = await this.order.map((artist) => {
                 return this.items[artist]; 
             });
             for (let i = 0; i < artists.length; i++) {
-                await albums.concat(await artists[i].getAllAlbums(wrapper));
+                await albums.concat(await artists[i].getAllAlbums());
             }
         } catch (error) {
             throw error;
@@ -239,14 +239,14 @@ Artists.prototype = {
      * Get Related Artists
      * Returns Artists instance with Artist's Related Artists.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+
      * @returns {Artists} Artists instance of related Artists
      */
-    getRelatedArtists: async function(wrapper) {
+    getRelatedArtists: async function() {
         try {
             let related = new Models.Artists();
             for (let i = 0; i < this.order.length; i++) {
-                await related.concat(await this.items[this.order[i]].getRelatedArtists(wrapper));
+                await related.concat(await this.items[this.order[i]].getRelatedArtists());
             }
             return related;
         } catch (error) {
@@ -258,11 +258,11 @@ Artists.prototype = {
      * Get Recommendations
      * Retrieves suggests for a random 5 of these artists.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+
      * @param {Object} options (Optional) Additional options.
      * @returns {Tracks} Tracks object with recommendations
      */
-    getRecommendations: async function(wrapper, options) {
+    getRecommendations: async function(options) {
         try {
             if (options != null && typeof(options) != 'object') {
                 throw new Error("Artists.search: Invalid Parameter \"options\"");
@@ -284,7 +284,7 @@ Artists.prototype = {
                 delete _options.seed_artists;
             }
             _options.seed_artists = seeds.join(",");
-            let response = await wrapper.getRecommendations(_options);
+            let response = await Models.wrapperInstance.getRecommendations(_options);
             return new Models.Tracks(response.body.tracks);
         } catch (error) {
             throw error;
@@ -295,10 +295,10 @@ Artists.prototype = {
      * Retrieve Full Objects
      * Retrieves full artist data for all artists from Spotify API
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+
      * @param {string} objectType Optional | 'simplified', 'link' or 'full', what to check if the artist contains.
      */
-    retrieveFullObjects: async function(wrapper, objectType) {
+    retrieveFullObjects: async function(objectType) {
         try {
             let ids = [];
             for (let artist in this.items) {
@@ -315,7 +315,7 @@ Artists.prototype = {
             if (ids.length) {
                 let response;
                 do {
-                    response = await wrapper.getArtists(ids.splice(0, 50));
+                    response = await Models.wrapperInstance.getArtists(ids.splice(0, 50));
                     for (let i = 0; i < response.body.artists.length; i++) {
                         if (response.body.artists[i] == null) continue;
                         this.items[response.body.artists[i].id].loadFullObject(response.body.artists[i]);
@@ -331,7 +331,6 @@ Artists.prototype = {
 /**
  * Search for an Artist
  * Returns search results for a query.
- * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
  * @param {string} query String to search for.
  * @param {Object} options (Optional) Additional options.
  * @returns {Artists} Artists returned from Search.
@@ -339,12 +338,12 @@ Artists.prototype = {
  * options.offset: {Number} Index of first result to return.
  * options.market: {String} Country code.
  */
-Artists.search = async function(wrapper, query, options) {
+Artists.search = async function(query, options) {
     try {
         if (options != null && typeof(options) != 'object') {
             throw new Error("Artists.search: Invalid Parameter \"options\"");
         }
-        let response = await wrapper.searchArtists(query, options ? options : {});
+        let response = await Models.wrapperInstance.searchArtists(query, options ? options : {});
         return new Models.Artists(response.body.artists.items);
     } catch (error) {
         throw error;
@@ -354,14 +353,13 @@ Artists.search = async function(wrapper, query, options) {
 /**
  * Get Artists
  * Returns Artists object of IDs
- * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
  * @param {Array} artistIds Ids of artists.
  * @returns {Artists} Artists from ids.
  */
-Artists.getArtists = async function(wrapper, artistIds) {
+Artists.getArtists = async function(artistIds) {
     try {
         let artists = new Models.Artists(artistIds);
-        await artists.retrieveFullObjects(wrapper);
+        await artists.retrieveFullObjects();
         return artists;
     } catch (error) {
         throw error;
@@ -371,14 +369,13 @@ Artists.getArtists = async function(wrapper, artistIds) {
 /**
  * Get Related Artists
  * Returns Artists object artists related to a given id
- * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
  * @param {string} artistId Id of artists to find related to.
  * @returns {Artists} Artists related to artistID
  */
-Artists.getRelatedArtists = async function(wrapper, artistId) {
+Artists.getRelatedArtists = async function(artistId) {
     try {
         let artists = new Models.Artists(artistId);
-        return await artists.getRelatedArtists(wrapper);
+        return await artists.getRelatedArtists();
     } catch (error) {
         throw error;
     }
@@ -407,6 +404,78 @@ Artists.override = function(name, method) {
     } else {
         throw new Error("Artists.override: \"name\" does not exist.");
     }
-}
+};
+
+Artists.setCredentials = function(credentials) {
+    Models.wrapperInstance.setCredentials(credentials);
+};
+
+Artists.getCredentials = function() {
+    return Models.wrapperInstance.getCredentials();
+};
+
+Artists.resetCredentials = function() {
+    Models.wrapperInstance.resetCredentials();
+};
+
+Artists.setClientId = function(clientId) {
+    Models.wrapperInstance.setClientId(clientId);
+};
+
+Artists.setClientSecret = function(clientSecret) {
+    Models.wrapperInstance.setClientSecret(clientSecret);
+};
+
+Artists.setAccessToken = function(accessToken) {
+    Models.wrapperInstance.setAccessToken(accessToken);
+};
+
+Artists.setRefreshToken = function(refreshToken) {
+    Models.wrapperInstance.setRefreshToken(refreshToken);
+};
+
+Artists.setRedirectURI = function(redirectUri) {
+    Models.wrapperInstance.setRedirectURI(redirectUri);
+};
+
+Artists.getRedirectURI = function() {
+    return Models.wrapperInstance.getRedirectURI();
+};
+
+Artists.getClientId = function() {
+    return Models.wrapperInstance.getClientId();
+};
+
+Artists.getClientSecret = function() {
+    return Models.wrapperInstance.getClientSecret();
+};
+
+Artists.getAccessToken = function() {
+    return Models.wrapperInstance.getAccessToken();
+};
+
+Artists.getRefreshToken = function() {
+    return Models.wrapperInstance.getRefreshToken();
+};
+
+Artists.resetClientId = function() {
+    return Models.wrapperInstance.resetClientId();
+};
+
+Artists.resetClientSecret = function() {
+    return Models.wrapperInstance.resetClientSecret();
+};
+
+Artists.resetAccessToken = function() {
+    return Models.wrapperInstance.resetAccessToken();
+};
+
+Artists.resetRefreshToken = function() {
+    return Models.wrapperInstance.resetRefreshToken();
+};
+
+Artists.resetRedirectURI = function() {
+    return Models.wrapperInstance.resetRedirectURI();
+};
 
 module.exports = Artists;

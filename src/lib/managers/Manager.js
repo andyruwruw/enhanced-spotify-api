@@ -454,6 +454,6 @@ Manager.override = function(name, method) {
     } else {
         throw new Error("Manager.override: \"name\" does not exist.");
     }
-}
+};
 
 module.exports = Manager;

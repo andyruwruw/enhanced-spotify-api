@@ -1,5 +1,7 @@
-const { Track, Tracks, Artist, Artists, Album, Albums, Playlist, Playlists } = require('../src/index');
-const { generateSpotifyWebAPI, generateWrapper } = require('./TestFunctions');
+var EnhancedSpotifyAPI = require('../src/index');
+const authToken = require('./authentication.json').authToken;
+EnhancedSpotifyAPI.setAccessToken(authToken);
+const { Track, Tracks, Artist, Artists, Album, Albums, Playlist, Playlists } = EnhancedSpotifyAPI;
 
 test('Testing Wrapper.getMe()', async () => {
     let wrapper = await generateWrapper();

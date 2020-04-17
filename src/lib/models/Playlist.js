@@ -33,18 +33,17 @@ Playlist.prototype = {
     /**
      * Play Playlist
      * Plays playlist on user's active device.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Object} options (Optional) Additional options.
      * @returns {Object} Result from Request.
      * options.offset.position: {Number} (Optional) Index of track to begin with.
      * options.offset.uri: {String} (Optional) Track URI to begin with.
      * options.position_ms: {Number} Position to start playback (Milliseconds)
      */
-    play: async function(wrapper, options)  {
+    play: async function(options)  {
         try {
             let _options = options ? options : {};
             _options.context_uri = 'spotify:playlist:' + this.id;
-            return await wrapper.play(_options);
+            return await Models.wrapperInstance.play(_options);
         } catch (error) {
             throw error;
         }
@@ -53,13 +52,12 @@ Playlist.prototype = {
     /**
      * Is Followed
      * Returns whether an playlist is followed by the user.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Boolean} Whether playlist is followed by user.
      */
-    isFollowed: async function(wrapper) {
+    isFollowed: async function() {
         try {
-            let userID = await (await wrapper.getMe()).body.id;
-            let response = await wrapper.areFollowingPlaylist(this.id, [userID]);
+            let userID = await (await Models.wrapperInstance.getMe()).body.id;
+            let response = await Models.wrapperInstance.areFollowingPlaylist(this.id, [userID]);
             return response.body[0];
         } catch (error) {
             throw error;
@@ -69,13 +67,12 @@ Playlist.prototype = {
     /**
      * Are Following
      * Returns whether an playlist is followed by a set of users.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Array} userIds User IDs to check if they're following
      * @returns {Boolean} Whether playlist is followed by a set of users.
      */
-    areFollowing: async function(wrapper, userIds) {
+    areFollowing: async function(userIds) {
         try {
-            let response = await wrapper.areFollowingPlaylist(this.id, userIds);
+            let response = await Models.wrapperInstance.areFollowingPlaylist(this.id, userIds);
             return response.body;
         } catch (error) {
             throw error;
@@ -85,12 +82,11 @@ Playlist.prototype = {
     /**
      * Follow Playlist
      * Follows playlist.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Result from Request.
      */
-    follow: async function(wrapper) {
+    follow: async function() {
         try {
-            return await wrapper.followPlaylist(this.id);
+            return await Models.wrapperInstance.followPlaylist(this.id);
         } catch (error) {
             throw error;
         }
@@ -99,12 +95,11 @@ Playlist.prototype = {
     /**
      * Unfollow Playlist
      * Unfollows playlist.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Result from Request.
      */
-    unfollow: async function(wrapper) {
+    unfollow: async function() {
         try {
-            return await wrapper.unfollowPlaylist(this.id);
+            return await Models.wrapperInstance.unfollowPlaylist(this.id);
         } catch (error) {
             throw error;
         }
@@ -131,13 +126,12 @@ Playlist.prototype = {
     /**
      * Get Full Object
      * Returns full playlist data. Retrieves from Spotify API if nessisary.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Playlist Full Object Data.
      */
-    getFullObject: async function(wrapper) {
+    getFullObject: async function() {
         try {
             if (!(await this.containsFullObject())) {
-                await this.retrieveFullObject(wrapper);
+                await this.retrieveFullObject();
             }
             return {
                 id: this.id,
@@ -163,13 +157,12 @@ Playlist.prototype = {
     /**
      * Get Simplified Object
      * Returns simplified playlist data. Retrieves from Spotify API if nessisary.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Playlist Simplified Object Data.
      */
-    getSimplifiedObject: async function(wrapper) {
+    getSimplifiedObject: async function() {
         try {
             if (!(await this.containsSimplifiedObject())) {
-                await this.retrieveFullObject(wrapper);
+                await this.retrieveFullObject();
             }
             let data = {
                 id: this.id,
@@ -195,7 +188,6 @@ Playlist.prototype = {
      /**
      * Get Current Data
      * Just returns whatever the playlist object currently holds
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Any Playlist Data.
      */
     getCurrentData: function() {
@@ -217,12 +209,11 @@ Playlist.prototype = {
     /**
      * Get Playlist Tracks
      * Returns Tracks object with all playlist tracks. Retrieves if nessisary.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Tracks} Tracks instance with all playlist tracks.
      */
-    getTracks: async function(wrapper) {
+    getTracks: async function() {
         try {
-            await this.retrieveTracks(wrapper);
+            await this.retrieveTracks();
             return await this._tracks;
         } catch (error) {
             throw error;
@@ -232,13 +223,12 @@ Playlist.prototype = {
     /**
      * Get Playlist Artists
      * Returns Artists object with all playlist artists. Retrieves if nessisary.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Artists} Artists instance with all playlist artists.
      */
-    getArtists: async function(wrapper) {
+    getArtists: async function() {
         try {
-            await this.retrieveTracks(wrapper);
-            return await this._tracks.getArtists(wrapper);
+            await this.retrieveTracks();
+            return await this._tracks.getArtists();
         } catch (error) {
             throw error;
         }
@@ -247,13 +237,12 @@ Playlist.prototype = {
     /**
      * Get Playlist Albums
      * Returns Albums object with all playlist albums. Retrieves if nessisary.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Albums} Albums instance with all playlist albums.
      */
-    getAlbums: async function(wrapper) {
+    getAlbums: async function() {
         try {
-            await this.retrieveTracks(wrapper);
-            return await this._tracks.getAlbums(wrapper);
+            await this.retrieveTracks();
+            return await this._tracks.getAlbums();
         } catch (error) {
             throw error;
         }
@@ -262,7 +251,6 @@ Playlist.prototype = {
     /**
      * Change Playlist Details
      * Saves any detail changes to Playlist on Spotify
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Object} options (Optional) Details to be changed.
      * @returns {Object} Response to Request
      * options.name: {String} (Optional) Name of Playlist
@@ -270,9 +258,9 @@ Playlist.prototype = {
      * options.public: {Boolean} (Optional) Public status of Playlist
      * options.collaborative: {Boolean} (Optional) Collaborative status of Playlist
      */
-    changeDetails: async function(wrapper, options) {
+    changeDetails: async function(options) {
         try {
-            return await wrapper.changePlaylistDetails(this.id, options);
+            return await Models.wrapperInstance.changePlaylistDetails(this.id, options);
         } catch (error) {
             throw error;
         }
@@ -281,12 +269,11 @@ Playlist.prototype = {
     /**
      * Push
      * Appends tracks to playlist.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Track | Object | String } track Track Instance, track object or track id to add. 
      */
-    push: async function(wrapper, track) {
+    push: async function(track) {
         try {
-            return await this.addTracks(wrapper, [track]);
+            return await this.addTracks([track]);
         } catch (error) {
             throw error;
         }
@@ -295,12 +282,11 @@ Playlist.prototype = {
     /**
      * Concat
      * Adds tracks to Playlist.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Tracks | Array } tracks Another Tracks instance or array of Track instances, track objects, or track ids to concat.
      */
-    concat: async function(wrapper, tracks) {
+    concat: async function(tracks) {
         try {
-            return await this.addTracks(wrapper, tracks);
+            return await this.addTracks(tracks);
         } catch (error) {
             throw error;
         }
@@ -309,12 +295,11 @@ Playlist.prototype = {
     /**
      * Remove
      * Removes an item from the Manager Object.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Track | Object | String } track Track instance, track data, or track id to remove.
      */
-    remove: async function(wrapper, track) {
+    remove: async function(track) {
         try {
-            return await this.removeTracks(wrapper, [track]);
+            return await this.removeTracks([track]);
         } catch (error) {
             throw error;
         }
@@ -323,13 +308,12 @@ Playlist.prototype = {
     /**
      * Get Size
      * Returns number of tracks in Playlist
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Number} Number of items in manager.
      */
-    size: async function(wrapper) {
+    size: async function() {
         try {
             if (!this.retrieved) {
-                await this.retrieveTracks(wrapper);
+                await this.retrieveTracks();
             }
             return await this._tracks.size();
         } catch (error) {
@@ -340,15 +324,14 @@ Playlist.prototype = {
     /** 
      * Index Of
      * Find index of an track
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {String | Object | Track} track Track ID, Track instance or object with `id` properity.
      * @param {Number} start Where to start in the list.
      * @returns {Number} Index of item.
      */
-    indexOf: async function(wrapper, track, start) {
+    indexOf: async function(track, start) {
         try {
             if (!this.retrieved) {
-                await this.retrieveTracks(wrapper);
+                await this.retrieveTracks();
             }
             return await this._tracks.indexOf(track, start);
         } catch (error) {
@@ -359,14 +342,13 @@ Playlist.prototype = {
     /** 
      * Includes Item
      * Returns boolean if item is contained.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {string | Object | Track} track Track ID, Track instance or object with `id` properity.
      * @returns {Boolean} Whether item is contained.
      */
-    includes: async function(wrapper, track) {
+    includes: async function(track) {
         try {
             if (!this.retrieved) {
-                await this.retrieveTracks(wrapper);
+                await this.retrieveTracks();
             }
             return this._tracks.includes(track);
         } catch (error) {
@@ -377,14 +359,13 @@ Playlist.prototype = {
     /**
      * Get by Index
      * Returns track object at a given index
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {number} index Index of the item desired.
      * @returns {Track} Track at a given index
      */
-    get: async function(wrapper, index) {
+    get: async function(index) {
         try {
             if (!this.retrieved) {
-                await this.retrieveTracks(wrapper);
+                await this.retrieveTracks();
             }
             return this._tracks.get(index);
         } catch (error) {
@@ -395,13 +376,12 @@ Playlist.prototype = {
     /**
      * Get IDs
      * Returns array of IDs in order.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Array} Array of IDs
      */
-    getIDs: async function(wrapper) {
+    getIDs: async function() {
         try {
             if (!this.retrieved) {
-                await this.retrieveTracks(wrapper);
+                await this.retrieveTracks();
             }
             return this._tracks.getIDs();
         } catch (error) {
@@ -412,13 +392,12 @@ Playlist.prototype = {
     /**
      * Get IDs
      * Returns array of IDs in order with no repeats.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Array} Array of IDs
      */
-    getIDsNoRepeats: async function(wrapper) {
+    getIDsNoRepeats: async function() {
         try {
             if (!this.retrieved) {
-                await this.retrieveTracks(wrapper);
+                await this.retrieveTracks();
             }
             return this._tracks.getIDsNoRepeats();
         } catch (error) {
@@ -429,13 +408,12 @@ Playlist.prototype = {
     /**
      * Get URIs
      * Returns array of URIs in order.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Array} Array of URIs
      */
-    getURIs: async function(wrapper) {
+    getURIs: async function() {
         try {
             if (!this.retrieved) {
-                await this.retrieveTracks(wrapper);
+                await this.retrieveTracks();
             }
             return this._tracks.getURIs();
         } catch (error) {
@@ -446,13 +424,12 @@ Playlist.prototype = {
     /**
      * Get URIs No Repeats
      * Returns array of URIs with no repeats.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Array} Array of URIs
      */
-    getURIsNoRepeats: async function(wrapper) {
+    getURIsNoRepeats: async function() {
         try {
             if (!this.retrieved) {
-                await this.retrieveTracks(wrapper);
+                await this.retrieveTracks();
             }
             return this._tracks.getURIsNoRepeats();
         } catch (error) {
@@ -463,15 +440,14 @@ Playlist.prototype = {
     /**
      * Reverse
      * Reverses order of items
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
-    reverse: async function(wrapper) {
+    reverse: async function() {
         try {
             if (!this.retrieved) {
-                await this.retrieveTracks(wrapper);
+                await this.retrieveTracks();
             }
             await this._tracks.reverse();
-            return await this.replaceTracks(wrapper, this._tracks.getIDs());
+            return await this.replaceTracks(this._tracks.getIDs());
         } catch (error) {
             throw error;
         }
@@ -480,15 +456,14 @@ Playlist.prototype = {
     /**
      * Pop
      * Removes last item.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Track} Removed item
      */
-    pop: async function(wrapper) {
+    pop: async function() {
         try {
             if (!this.retrieved) {
-                await this.retrieveTracks(wrapper);
+                await this.retrieveTracks();
             }
-            await this.removeTrackIndexes(wrapper, [(await this.size(wrapper)) - 1]);
+            await this.removeTrackIndexes([(await this.size()) - 1]);
             let track = await this._tracks.pop();
             return track;
         } catch (error) {
@@ -499,16 +474,15 @@ Playlist.prototype = {
     /**
      * Shift
      * Removes first item.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Track} Removed item
      */
-    shift: async function(wrapper) {
+    shift: async function() {
         try {
             if (!this.retrieved) {
-                await this.retrieveTracks(wrapper);
+                await this.retrieveTracks();
             }
             let track = await this._tracks.shift();
-            await this.removeTrackIndexes(wrapper, [0]);
+            await this.removeTrackIndexes([0]);
             return track;
         } catch (error) {
             throw error;
@@ -518,13 +492,12 @@ Playlist.prototype = {
     /**
      * Add tracks
      * Adds new tracks to a playlist.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Array | String | Track | Object} tracks Tracks to be added
      * @param {object} options (Optional) Additional options.
      * @returns {Object} Response to Request
      * options.position: {Number} Position to insert the tracks (0 based index) (Default: Append)
      */
-    addTracks: async function(wrapper, tracks, options) {
+    addTracks: async function(tracks, options) {
         try {
             let uris = [];
             if (tracks instanceof Models.Tracks) {
@@ -548,7 +521,7 @@ Playlist.prototype = {
             } else {
                 throw new Error("Playlist.addTracks: Invalid Parameter \"tracks\"");
             }
-            let response = await wrapper.addTracksToPlaylist(this.id, uris, options ? options : {});
+            let response = await Models.wrapperInstance.addTracksToPlaylist(this.id, uris, options ? options : {});
             if (this.retrieved) {
                 this._tracks.concat(tracks);
                 if (options && options.hasOwnProperty('position')) {
@@ -572,7 +545,7 @@ Playlist.prototype = {
      * @param {Array | String | Track | Object} tracks 
      * @returns {Object} Response to Request
      */
-    replaceTracks: async function(wrapper, tracks) {
+    replaceTracks: async function(tracks) {
         try {
             let uris = [];
             if (tracks instanceof Models.Tracks) {
@@ -596,7 +569,7 @@ Playlist.prototype = {
             } else {
                 throw new Error("Playlist.replaceTracks: Invalid Parameter \"tracks\"");
             }
-            let response = await wrapper.replaceTracksInPlaylist(this.id, uris);
+            let response = await Models.wrapperInstance.replaceTracksInPlaylist(this.id, uris);
             this._tracks = new Models.Tracks(tracks);
             this.snapshot_id = response.body.snapshot_id;
             return response;
@@ -608,16 +581,15 @@ Playlist.prototype = {
     /**
      * Reorder tracks
      * Reorders tracks in a playlist.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Number} range_start Where to select
      * @param {Number} insert_before Where to place
      * @param {Object} options (Optional) Additional options.
      * @returns {Object} Response to Request
      * options.range_length: {Number} The amount of tracks to be reordered (Default 1)
      */
-    reorderTracks: async function(wrapper, range_start, insert_before, options) {
+    reorderTracks: async function(range_start, insert_before, options) {
         try {
-            let response = await wrapper.reorderTracksInPlaylist(this.id, range_start, insert_before, options ? options : {}, this.snapshot_id);
+            let response = await Models.wrapperInstance.reorderTracksInPlaylist(this.id, range_start, insert_before, options ? options : {}, this.snapshot_id);
             if (this.retrieved) {
                 let order = this._tracks.getIDs();
                 let range_length = (options && options.hasOwnProperty('range_length') ? options.range_length : 1);
@@ -642,11 +614,10 @@ Playlist.prototype = {
     /**
      * Remove tracks
      * Removes tracks from a playlist.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Array | String | Track | Object} tracks Tracks to be added
      * @returns {Object} Response to Request
      */
-    removeTracks: async function(wrapper, tracks) {
+    removeTracks: async function(tracks) {
         try {
             let uris = [];
             if (tracks instanceof Models.Tracks) {
@@ -678,7 +649,7 @@ Playlist.prototype = {
             } else {
                 throw new Error("Playlist.addTracks: Invalid Parameter \"tracks\"");
             }
-            let response = await wrapper.removeTracksFromPlaylistWithSnapshotId(this.id, uris, this.snapshot_id);
+            let response = await Models.wrapperInstance.removeTracksFromPlaylistWithSnapshotId(this.id, uris, this.snapshot_id);
             if (this.retrieved) {
                 if (!(uris instanceof Array)) {
                     uris = [uris];
@@ -705,16 +676,15 @@ Playlist.prototype = {
     /**
      * Remove tracks by index
      * Removes tracks by index from a playlist.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Array} positions Indexes to be removed
      * @returns {Object} Response to Request
      */
-    removeTrackIndexes: async function(wrapper, positions) {
+    removeTrackIndexes: async function(positions) {
         try {
             if (this.snapshot_id == null) {
-                await this.retrieveFullObject(wrapper);
+                await this.retrieveFullObject();
             }
-            let response = await wrapper.removeTracksFromPlaylistByPosition(this.id, positions instanceof Array ? positions : [positions], this.snapshot_id);
+            let response = await Models.wrapperInstance.removeTracksFromPlaylistByPosition(this.id, positions instanceof Array ? positions : [positions], this.snapshot_id);
             if (this.retrieved) {
                 if (positions instanceof Array) {
                     await this._tracks.removeIndexes(positions);
@@ -732,12 +702,11 @@ Playlist.prototype = {
     /**
      * Upload Custom Image
      * Updates playlist custom cover image.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {String} imageData New image. Base64 encoded JPEG image data, maximum payload size is 256 KB.
      */
-    uploadCoverImage: async function(wrapper, imageData) {
+    uploadCoverImage: async function(imageData) {
         try {
-            return await wrapper.uploadCustomPlaylistCoverImage(this.id, imageData);
+            return await Models.wrapperInstance.uploadCustomPlaylistCoverImage(this.id, imageData);
         } catch (error) {
             throw error;
         }
@@ -746,11 +715,10 @@ Playlist.prototype = {
     /**
      * Retrieve Full Object
      * Retrieves full playlist data from Spotify API
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
-    retrieveFullObject: async function(wrapper) {
+    retrieveFullObject: async function() {
         try {
-            let response = await wrapper.getPlaylist(this.id);
+            let response = await Models.wrapperInstance.getPlaylist(this.id);
             await this.loadFullObject(response.body);
         } catch (error) {
             throw error;
@@ -760,15 +728,14 @@ Playlist.prototype = {
     /**
      * Retrieve Playlist Tracks
      * Retrieves all tracks in playlist from Spotify API
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
-    retrieveTracks: async function(wrapper) {
+    retrieveTracks: async function() {
         try {
             this._tracks = new Models.Tracks();
             let options = { offset: 0 };
             let response;
             do {
-                response = await wrapper.getPlaylistTracks(this.id, options);
+                response = await Models.wrapperInstance.getPlaylistTracks(this.id, options);
                 await this.loadTracks(response.body.items);
                 options.offset += 100;
             } while (!(response.body.items.length < 100));
@@ -885,9 +852,9 @@ Playlist.prototype = {
  * @param {String} playlistID Id of Playlist.
  * @returns {Playlist} Playlist from id.
  */
-Playlist.getPlaylist = async function(wrapper, playlistID) {
+Playlist.getPlaylist = async function(playlistID) {
     try {
-        let response = await wrapper.getPlaylist(playlistID);
+        let response = await Models.wrapperInstance.getPlaylist(playlistID);
         return new Models.Playlist(response.body);
     } catch (error) {
         throw error;
@@ -902,15 +869,15 @@ Playlist.getPlaylist = async function(wrapper, playlistID) {
  * @param {Object} options (Optional) Additional Options.
  * @returns {Playlist} Playlist.
  */
-Playlist.create = async function(wrapper, name, options) {
+Playlist.create = async function(name, options) {
     try {
         if (options != null && typeof(options != 'object')) {
             throw new Error("Playlist.create: Invalid Parameter \"options\"");
         }
-        let userID = await (await wrapper.getMe()).body.id;
+        let userID = await (await Models.wrapperInstance.getMe()).body.id;
         let _options = options ? options : {};
         _options.name = name;
-        let response = await wrapper.createPlaylist(userID, _options);
+        let response = await Models.wrapperInstance.createPlaylist(userID, _options);
         return new Models.Playlist(response.body);
     } catch (error) {
         throw error;
@@ -940,6 +907,78 @@ Playlist.override = function(name, method) {
     } else {
         throw new Error("Playlist.override: \"name\" does not exist.");
     }
-}
+};
+
+Playlist.setCredentials = function(credentials) {
+    Models.wrapperInstance.setCredentials(credentials);
+};
+
+Playlist.getCredentials = function() {
+    return Models.wrapperInstance.getCredentials();
+};
+
+Playlist.resetCredentials = function() {
+    Models.wrapperInstance.resetCredentials();
+};
+
+Playlist.setClientId = function(clientId) {
+    Models.wrapperInstance.setClientId(clientId);
+};
+
+Playlist.setClientSecret = function(clientSecret) {
+    Models.wrapperInstance.setClientSecret(clientSecret);
+};
+
+Playlist.setAccessToken = function(accessToken) {
+    Models.wrapperInstance.setAccessToken(accessToken);
+};
+
+Playlist.setRefreshToken = function(refreshToken) {
+    Models.wrapperInstance.setRefreshToken(refreshToken);
+};
+
+Playlist.setRedirectURI = function(redirectUri) {
+    Models.wrapperInstance.setRedirectURI(redirectUri);
+};
+
+Playlist.getRedirectURI = function() {
+    return Models.wrapperInstance.getRedirectURI();
+};
+
+Playlist.getClientId = function() {
+    return Models.wrapperInstance.getClientId();
+};
+
+Playlist.getClientSecret = function() {
+    return Models.wrapperInstance.getClientSecret();
+};
+
+Playlist.getAccessToken = function() {
+    return Models.wrapperInstance.getAccessToken();
+};
+
+Playlist.getRefreshToken = function() {
+    return Models.wrapperInstance.getRefreshToken();
+};
+
+Playlist.resetClientId = function() {
+    return Models.wrapperInstance.resetClientId();
+};
+
+Playlist.resetClientSecret = function() {
+    return Models.wrapperInstance.resetClientSecret();
+};
+
+Playlist.resetAccessToken = function() {
+    return Models.wrapperInstance.resetAccessToken();
+};
+
+Playlist.resetRefreshToken = function() {
+    return Models.wrapperInstance.resetRefreshToken();
+};
+
+Playlist.resetRedirectURI = function() {
+    return Models.wrapperInstance.resetRedirectURI();
+};
 
 module.exports = Playlist;

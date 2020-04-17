@@ -32,12 +32,11 @@ Show.prototype = {
     /**
      * Is Liked
      * Returns whether a show is saved to the user's library.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Boolean} Whether show is saved to the user's library.
      */
-    isLiked: async function(wrapper) {
+    isLiked: async function() {
         try {
-            let response = await wrapper.containsMySavedShows([this.id]);
+            let response = await Models.wrapperInstance.containsMySavedShows([this.id]);
             return response.body[0];
         } catch (error) {
             throw error;
@@ -47,12 +46,11 @@ Show.prototype = {
     /**
      * Like Show
      * Adds show to the user's library.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Response to request.
      */
-    like: async function(wrapper) {
+    like: async function() {
         try {
-            return await wrapper.addToMySavedShows([this.id]);
+            return await Models.wrapperInstance.addToMySavedShows([this.id]);
         } catch (error) {
             throw error;
         }
@@ -64,9 +62,9 @@ Show.prototype = {
     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
     * @returns {Object} Response to request.
     */
-    unlike: async function(wrapper) {
+    unlike: async function() {
         try {
-            return await wrapper.removeFromMySavedShows([this.id]);
+            return await Models.wrapperInstance.removeFromMySavedShows([this.id]);
         } catch (error) {
             throw error;
         }
@@ -93,13 +91,12 @@ Show.prototype = {
     /**
      * Get Full Object
      * Returns full show data. Retrieves from Spotify API if nessisary.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Show Full Object Data.
      */
-    getFullObject: async function(wrapper) {
+    getFullObject: async function() {
         try {
             if (!(await this.containsFullObject())) {
-                await this.retrieveFullObject(wrapper);
+                await this.retrieveFullObject();
             }
             return {
                 id: this.id,
@@ -127,13 +124,12 @@ Show.prototype = {
     /**
      * Get Simplified Object
      * Returns simplified show data. Retrieves from Spotify API if nessisary.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Show Simplified Object Data.
      */
-    getSimplifiedObject: async function(wrapper) {
+    getSimplifiedObject: async function() {
         try {
             if (!(await this.containsSimplifiedObject())) {
-                await this.retrieveFullObject(wrapper);
+                await this.retrieveFullObject();
             }
             let data = {
                 id: this.id,
@@ -161,7 +157,6 @@ Show.prototype = {
     /**
      * Get Current Data
      * Just returns whatever the show object currently holds
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Any Show Data.
      */
     getCurrentData: function() {
@@ -182,12 +177,11 @@ Show.prototype = {
     /**
      * Get All Show Episodes
      * Returns Episodes object of all show's episodes.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Episodes} Episodes instance with all show's episodes.
      */ 
-    getAllEpisodes: async function(wrapper) {
+    getAllEpisodes: async function() {
         try {
-            await this.retrieveEpisodes(wrapper);
+            await this.retrieveEpisodes();
             return this._episodes;
         } catch (error) {
             throw error;
@@ -197,19 +191,18 @@ Show.prototype = {
     /**
      * Get Show Episodes
      * Returns Episodes object of show's episodes.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Object} options (Optional) Additional Options
      * @returns {Episodes} Episodes instance with all show's episodes.
      * options.limit: {Number} Maximum number of episodes to return (Default: 20, Max: 50).
      * options.offset: {Number} The index of the first episode to return (Default: 0).
      * options.market: {String} Country code.
      */ 
-    getEpisodes: async function(wrapper, options) {
+    getEpisodes: async function(options) {
         try {
             if (options != null && typeof(options) != 'object') {
                 throw new Error("Show.getEpisodes: Invalid Parameter \"options\"");
             }
-            let response = await wrapper.getShowEpisodes(this.id, options ? options : {});
+            let response = await Models.wrapperInstance.getShowEpisodes(this.id, options ? options : {});
             let episodes = new Models.Episodes(response.body.items);
             await this.loadEpisodes(episodes);
             return episodes;
@@ -221,11 +214,10 @@ Show.prototype = {
     /**
      * Retrieve Full Object
      * Retrieves full show data from Spotify API
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
-    retrieveFullObject: async function(wrapper) {
+    retrieveFullObject: async function() {
         try {
-            let response = await wrapper.getShow(this.id);
+            let response = await Models.wrapperInstance.getShow(this.id);
             await this.loadFullObject(response.body);
         } catch (error) {
             throw error;
@@ -235,14 +227,13 @@ Show.prototype = {
     /**
      * Retrieve Show Episodes
      * Retrieves all episodes in show from Spotify API
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
-    retrieveEpisodes: async function(wrapper) {
+    retrieveEpisodes: async function() {
         try {
             let options = { limit: 50, offset: 0 };
             let response;
             do {
-                response = await wrapper.getShowEpisodes(this.id, options);
+                response = await Models.wrapperInstance.getShowEpisodes(this.id, options);
                 await this.loadEpisodes(response.body.items);
                 options.offset += 50;
             } while (!(response.body.items.length < 50));
@@ -361,9 +352,9 @@ Show.prototype = {
  * @param {String} showID Id of Show.
  * @returns {Show} Show from id.
  */
-Show.getShow = async function(wrapper, showID) {
+Show.getShow = async function(showID) {
     try {
-        let response = await wrapper.getShow(showID);
+        let response = await Models.wrapperInstance.getShow(showID);
         return new Models.Show(response.body);
     } catch (error) {
         throw error;
@@ -393,6 +384,78 @@ Show.override = function(name, method) {
     } else {
         throw new Error("Show.override: \"name\" does not exist.");
     }
-}
+};
+
+Show.setCredentials = function(credentials) {
+    Models.wrapperInstance.setCredentials(credentials);
+};
+
+Show.getCredentials = function() {
+    return Models.wrapperInstance.getCredentials();
+};
+
+Show.resetCredentials = function() {
+    Models.wrapperInstance.resetCredentials();
+};
+
+Show.setClientId = function(clientId) {
+    Models.wrapperInstance.setClientId(clientId);
+};
+
+Show.setClientSecret = function(clientSecret) {
+    Models.wrapperInstance.setClientSecret(clientSecret);
+};
+
+Show.setAccessToken = function(accessToken) {
+    Models.wrapperInstance.setAccessToken(accessToken);
+};
+
+Show.setRefreshToken = function(refreshToken) {
+    Models.wrapperInstance.setRefreshToken(refreshToken);
+};
+
+Show.setRedirectURI = function(redirectUri) {
+    Models.wrapperInstance.setRedirectURI(redirectUri);
+};
+
+Show.getRedirectURI = function() {
+    return Models.wrapperInstance.getRedirectURI();
+};
+
+Show.getClientId = function() {
+    return Models.wrapperInstance.getClientId();
+};
+
+Show.getClientSecret = function() {
+    return Models.wrapperInstance.getClientSecret();
+};
+
+Show.getAccessToken = function() {
+    return Models.wrapperInstance.getAccessToken();
+};
+
+Show.getRefreshToken = function() {
+    return Models.wrapperInstance.getRefreshToken();
+};
+
+Show.resetClientId = function() {
+    return Models.wrapperInstance.resetClientId();
+};
+
+Show.resetClientSecret = function() {
+    return Models.wrapperInstance.resetClientSecret();
+};
+
+Show.resetAccessToken = function() {
+    return Models.wrapperInstance.resetAccessToken();
+};
+
+Show.resetRefreshToken = function() {
+    return Models.wrapperInstance.resetRefreshToken();
+};
+
+Show.resetRedirectURI = function() {
+    return Models.wrapperInstance.resetRedirectURI();
+};
 
 module.exports = Show;

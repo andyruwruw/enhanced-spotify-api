@@ -31,13 +31,12 @@ User.prototype = {
     /**
      * Is Me
      * Returns whether this user is the current logged in user.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Boolean} Whether user is current logged in user.
      */
-    isMe: async function(wrapper) {
+    isMe: async function() {
         try {
             if (this.meStatus == null) {
-                let response = await wrapper.getMe();
+                let response = await Models.wrapperInstance.getMe();
                 this.meStatus = (response.body.id == this.id);
             } 
             return this.meStatus;
@@ -49,12 +48,11 @@ User.prototype = {
     /**
      * Is Followed
      * Returns whether this user is followed by the current user.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {boolean} Whether this user is followed by the current user.
      */
-    isFollowed: async function(wrapper) {
+    isFollowed: async function() {
         try {
-            let response = await wrapper.isFollowingUsers([this.id]);
+            let response = await Models.wrapperInstance.isFollowingUsers([this.id]);
             return response.body[0];
         } catch (error) {
             throw error;
@@ -64,12 +62,11 @@ User.prototype = {
     /**
      * Follow User
      * Follows this user.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Response from request.
      */
-    follow: async function(wrapper) {
+    follow: async function() {
         try {
-            return await wrapper.followUsers([this.id]);
+            return await Models.wrapperInstance.followUsers([this.id]);
         } catch (error) {
             throw error;
         }
@@ -78,12 +75,11 @@ User.prototype = {
     /**
      * Unfollow User
      * Unfollows this user.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Response from request.
      */
-    unfollow: async function(wrapper) {
+    unfollow: async function() {
         try {
-            return await wrapper.unfollowUsers([this.id]);
+            return await Models.wrapperInstance.unfollowUsers([this.id]);
         } catch (error) {
             throw error;
         }
@@ -110,13 +106,12 @@ User.prototype = {
     /**
      * Get Private Object
      * Returns private user data. Retrieves from Spotify API if nessisary.
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} User Private Object Data.
      */
-    getPrivateObject: async function(wrapper) {
+    getPrivateObject: async function() {
         try {
             if (!(await this.containsPrivateObject())) {
-                await this.retrievePrivateObject(wrapper);
+                await this.retrievePrivateObject();
             }
             return {
                 display_name: data.display_name,
@@ -139,13 +134,12 @@ User.prototype = {
      * Get Public Object
      * Returns public user data. Retrieves from Spotify API if nessisary.
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {object} User Public Object Data.
      */
-    getPublicObject: async function(wrapper) {
+    getPublicObject: async function() {
         try {
             if (!(await this.containsPublicObject())) {
-                await this.retrievePublicObject(wrapper);
+                await this.retrievePublicObject();
             }
             return {
                 display_name: data.display_name,
@@ -164,7 +158,6 @@ User.prototype = {
     /**
      * Get Current Data
      * Just returns whatever the user object currently holds
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Object} Any User Data.
      */
     getCurrentData: function() {
@@ -185,13 +178,12 @@ User.prototype = {
     /**
      * Get User's Playlists
      * Returns Playlists object of user's playlists
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @param {Object} options (Optional) Additional options
      * @returns {Playlist} Playlist Object with User Playlists
      */
-    getPlaylists: async function(wrapper, options) {
+    getPlaylists: async function(options) {
         try {
-            return await Models.Playlists.getUserPlaylists(wrapper, this.id, options);
+            return await Models.Playlists.getUserPlaylists(this.id, options);
         } catch (error) {
             throw error;
         }
@@ -201,12 +193,11 @@ User.prototype = {
      * Get All User's Playlists
      * Returns Playlists object of all user's playlists
      * 
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      * @returns {Playlist} Playlist Object with All User Playlists
      */
-    getAllPlaylists: async function(wrapper) {
+    getAllPlaylists: async function() {
         try {
-            return await Models.Playlists.getAllUserPlaylists(wrapper, this.id);
+            return await Models.Playlists.getAllUserPlaylists(this.id);
         } catch (error) {
             throw error;
         }
@@ -273,11 +264,10 @@ User.prototype = {
     /**
      * Retrieve Private Object
      * Retrieves private user data from Spotify API
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
-    retrievePrivateObject: async function(wrapper) {
+    retrievePrivateObject: async function() {
         try {
-            let response = await wrapper.getMe();
+            let response = await Models.wrapperInstance.getMe();
             if (response.body.id != this.id) {
                 throw new Error("User.retrievePrivateObject: Cannot Retrieve Private Data for Non-Current User")
             }
@@ -290,11 +280,10 @@ User.prototype = {
     /**
      * Retrieve Public Object
      * Retrieves public user data from Spotify API
-     * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
      */
-    retrievePublicObject: async function(wrapper) {
+    retrievePublicObject: async function() {
         try {
-            let response = await wrapper.getUser(this.id);
+            let response = await Models.wrapperInstance.getUser(this.id);
             await this.loadPublicObject(response.body);
         } catch (error) {
             throw error;
@@ -308,9 +297,9 @@ User.prototype = {
  * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
  * @returns {User} Current User
  */
-User.getMe = async function(wrapper) {
+User.getMe = async function() {
     try {
-        let response = await wrapper.getMe();
+        let response = await Models.wrapperInstance.getMe();
         return new Models.User(response.body);
     } catch (error) {
         throw error;
@@ -324,9 +313,9 @@ User.getMe = async function(wrapper) {
  * @param {String} userID Id of user.
  * @returns {User} User from id.
  */
-User.getUser = async function(wrapper, userID) {
+User.getUser = async function(userID) {
     try {
-        let response = await wrapper.getUser(userID);
+        let response = await Models.wrapperInstance.getUser(userID);
         return new Models.User(response.body);
     } catch (error) {
         throw error;
@@ -356,6 +345,78 @@ User.override = function(name, method) {
     } else {
         throw new Error("User.override: \"name\" does not exist.");
     }
-}
+};
+
+User.setCredentials = function(credentials) {
+    Models.wrapperInstance.setCredentials(credentials);
+};
+
+User.getCredentials = function() {
+    return Models.wrapperInstance.getCredentials();
+};
+
+User.resetCredentials = function() {
+    Models.wrapperInstance.resetCredentials();
+};
+
+User.setClientId = function(clientId) {
+    Models.wrapperInstance.setClientId(clientId);
+};
+
+User.setClientSecret = function(clientSecret) {
+    Models.wrapperInstance.setClientSecret(clientSecret);
+};
+
+User.setAccessToken = function(accessToken) {
+    Models.wrapperInstance.setAccessToken(accessToken);
+};
+
+User.setRefreshToken = function(refreshToken) {
+    Models.wrapperInstance.setRefreshToken(refreshToken);
+};
+
+User.setRedirectURI = function(redirectUri) {
+    Models.wrapperInstance.setRedirectURI(redirectUri);
+};
+
+User.getRedirectURI = function() {
+    return Models.wrapperInstance.getRedirectURI();
+};
+
+User.getClientId = function() {
+    return Models.wrapperInstance.getClientId();
+};
+
+User.getClientSecret = function() {
+    return Models.wrapperInstance.getClientSecret();
+};
+
+User.getAccessToken = function() {
+    return Models.wrapperInstance.getAccessToken();
+};
+
+User.getRefreshToken = function() {
+    return Models.wrapperInstance.getRefreshToken();
+};
+
+User.resetClientId = function() {
+    return Models.wrapperInstance.resetClientId();
+};
+
+User.resetClientSecret = function() {
+    return Models.wrapperInstance.resetClientSecret();
+};
+
+User.resetAccessToken = function() {
+    return Models.wrapperInstance.resetAccessToken();
+};
+
+User.resetRefreshToken = function() {
+    return Models.wrapperInstance.resetRefreshToken();
+};
+
+User.resetRedirectURI = function() {
+    return Models.wrapperInstance.resetRedirectURI();
+};
 
 module.exports = User;
