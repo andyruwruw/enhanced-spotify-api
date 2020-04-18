@@ -17,23 +17,7 @@ function Episode(data) {
             } else {
                 throw new Error("Episode.constructor: No ID Provided");
             }
-            this.name = 'name' in data ? data.name : null;
-            this.audio_preview_url = 'audio_preview_url' in data ? data.audio_preview_url : null;
-            this.description = 'description' in data ? data.description : null;
-            this.duration_ms = 'duration_ms' in data ? data.duration_ms : null;
-            this.explicit = 'explicit' in data ? data.explicit : null;
-            this.external_urls = 'external_urls' in data ? data.external_urls : null;
-            this.href = 'href' in data ? data.href : null;
-            this.images = 'images' in data ? data.images : null;
-            this.is_externally_hosted = 'is_externally_hosted' in data ? data.is_externally_hosted : null;
-            this.is_playable = 'is_playable' in data ? data.is_playable : null;
-            this.language = 'language' in data ? data.language : null;
-            this.languages = 'languages' in data ? data.languages : null;
-            this.release_date = 'release_date' in data ? data.release_date : null;
-            this.release_date_precision = 'release_date_precision' in data ? data.release_date_precision : null;
-            this.resume_point = 'resume_point' in data ? data.resume_point : null;
-            this.show = 'show' in data ? data.show : null;
-            this.uri = 'uri' in data ? data.uri : null;
+            this.loadConditionally(data);
         } else {
             throw new Error("Episode.constructor: Invalid Data");
         }
@@ -43,6 +27,23 @@ function Episode(data) {
 }
 
 Episode.prototype = {
+    /**
+     * Play Episode
+     * Plays episode on user's active device.
+     * @param {Object} options (Optional) Additional options.
+     * @returns {Object} Response from request.
+     * options.position_ms: {Number} Position to start playback (Milliseconds)
+     */
+    play: async function(options) {
+        try {
+            let _options = options ? options : {};
+            _options.uris = [ 'spotify:episode:' + this.id ];
+            return await Models.wrapperInstance.play(_options);
+        } catch (error) {
+            throw error;
+        }
+    },
+
     /**
      * Contains Full Object
      * Returns boolean whether full object data is present.
@@ -231,6 +232,24 @@ Episode.prototype = {
             this.release_date_precision = data.release_date_precision;
             this.resume_point = data.resume_point;
             this.uri = data.uri;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Load Conditionally
+     * Sets all data conditionally.
+     * @param {Object} data Object with episode data.
+     */
+    loadConditionally: function(data) {
+        try {
+            let properties = ["name", "audio_preview_url", "description", "duration_ms", "explicit", "external_urls", "href", "images", "is_externally_hosted", "is_playable", "language", "languages", "release_date", "release_date_precision", "resume_point", "show", "uri"];
+            for (let i = 0; i < properties.length; i++) {
+                if (data.hasOwnProperty(properties[i])) {
+                    this[properties[i]] = data[properties[i]];
+                }
+            }
         } catch (error) {
             throw error;
         }

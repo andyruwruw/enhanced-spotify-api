@@ -4,7 +4,6 @@ var WebApiRequest = require('./webapi-request');
 var HttpManager = require('./http-manager');
 
 let play = function(options, callback) {
-    /*jshint camelcase: false */
     var _options = options || {};
     var queryParams = _options.device_id
         ? { device_id: _options.device_id }

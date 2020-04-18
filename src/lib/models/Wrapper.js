@@ -14,7 +14,7 @@ Wrapper.prototype = {
     ...require('../functions/Episodes'),
 }
 
-Wrapper.prototype.play = require('../functions/Broken').play;
+Wrapper.prototype.play = require('../functions/Fixed').play;
 
 /**
  * Add Methods
@@ -39,6 +39,6 @@ Wrapper.override = function(name, method) {
     } else {
         throw new Error("Wrapper.override: \"name\" does not exist.");
     }
-}
+};
 
 module.exports = Wrapper;

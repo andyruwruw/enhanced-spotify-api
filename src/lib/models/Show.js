@@ -30,6 +30,25 @@ function Show(data) {
 
 Show.prototype = {
     /**
+     * Play Show
+     * Plays show on user's active device.
+     * @param {Object} options (Optional) Additional options.
+     * @returns {Object} Response from request.
+     * options.offset: {Object} Where from the context to play (Only valid with albums and playlists).
+     * options.offset.position: {Number} Index of item to start with in context.
+     * options.offset.uri: {String} URI of item to start with in context.
+     */
+    play: async function(options) {
+        try {
+            let _options = options ? options : {};
+            _options.context_uri = 'spotify:show:' + this.id;
+            return await Models.wrapperInstance.play(_options);
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
      * Is Liked
      * Returns whether a show is saved to the user's library.
      * @returns {Boolean} Whether show is saved to the user's library.

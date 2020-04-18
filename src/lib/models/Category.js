@@ -30,11 +30,12 @@ Category.prototype = {
     /**
      * Play Category
      * Plays category on user's active device.
+     * @param {Object} options (Optional) Additional options.
      * @returns {Object} Response from request.
      */
-    play: async function() {
+    play: async function(options) {
         try {
-            return await (await (await this.getCategoryPlaylists({ limit: 1 })).get(0)).play();
+            return await (await (await this.getCategoryPlaylists({ limit: 1 })).get(0)).play(options);
         } catch (error) {
             throw error;
         }
@@ -77,7 +78,7 @@ Category.prototype = {
      */
     getCurrentData: function() {
         try {
-            let data = { id: this.id, type: 'album' };
+            let data = { id: this.id };
             let properties = ['id', 'name', 'href', 'icons'];
             for (let i = 0; i < properties.length; i++) {
                 if (this[properties[i]] != null) {

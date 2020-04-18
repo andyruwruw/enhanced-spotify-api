@@ -23,6 +23,43 @@ Episodes.prototype = {
     ...Models.Manager.prototype,
 
     /**
+     * Plays Episodes
+     * Plays episodes on user's active deviceI
+     * @param {Object} options (Optional) Additional options.
+     * @returns {Object} Response from request.
+     * options.offset.position: {Number} (Optional) Index of track to begin with.
+     * options.offset.uri: {String} (Optional) Track URI to begin with.
+     * options.position_ms: {Number} Position to start playback (Milliseconds)
+     */
+    play: async function(options) {
+        try {
+            if (options != null && typeof(options) != 'object') {
+                throw new Error("Episodes.search: Invalid Parameter \"options\"");
+            }
+            let _options = options ? options : {};
+            _options.uris = [];
+            let offset = 0;
+            if (offset.hasOwnProperty('offset')) {
+                if (offset.hasOwnProperty('position')) {
+                    offset = options.offset.position;
+                } else if (offset.hasOwnProperty('uri') && typeof(offset.uri) == 'string') {
+                    let index = this.order.indexOf(options.offset.uri);
+                    if (index != -1) {
+                        offset = this.order.indexOf(options.offset.uri);
+                    }
+                }
+            }
+            for (let i = 0; i < this.order.length && i < 25; i++) {
+                _options.uris.push('spotify:episode:' + this.order[(i + offset) % this.order.length]);
+            }
+            return await Models.wrapperInstance.play(_options);
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    },
+
+    /**
      * Get Full Objects
      * Returns full episode data for all episodes. Retrieves from Spotify API if nessisary.
      * @returns {array} Array of Episode Full Objects.

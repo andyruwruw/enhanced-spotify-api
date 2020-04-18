@@ -342,7 +342,7 @@ Playlist.prototype = {
     /** 
      * Includes Item
      * Returns boolean if item is contained.
-     * @param {string | Object | Track} track Track ID, Track instance or object with `id` properity.
+     * @param {String | Object | Track} track Track ID, Track instance or object with `id` properity.
      * @returns {Boolean} Whether item is contained.
      */
     includes: async function(track) {
@@ -359,7 +359,7 @@ Playlist.prototype = {
     /**
      * Get by Index
      * Returns track object at a given index
-     * @param {number} index Index of the item desired.
+     * @param {Number} index Index of the item desired.
      * @returns {Track} Track at a given index
      */
     get: async function(index) {
@@ -530,7 +530,6 @@ Playlist.prototype = {
                     this._tracks.order = order;
                 }
             }
-            
             this.snapshot_id = response.body.snapshot_id;
             return response;
         } catch (error) {
@@ -541,7 +540,6 @@ Playlist.prototype = {
     /**
      * Replace Tracks
      * Replaces all tracks of playlist with new tracks.
-     * @param {Wrapper} wrapper 
      * @param {Array | String | Track | Object} tracks 
      * @returns {Object} Response to Request
      */
@@ -571,6 +569,7 @@ Playlist.prototype = {
             }
             let response = await Models.wrapperInstance.replaceTracksInPlaylist(this.id, uris);
             this._tracks = new Models.Tracks(tracks);
+            this.retrieved = true;
             this.snapshot_id = response.body.snapshot_id;
             return response;
         } catch (error) {
@@ -703,6 +702,7 @@ Playlist.prototype = {
      * Upload Custom Image
      * Updates playlist custom cover image.
      * @param {String} imageData New image. Base64 encoded JPEG image data, maximum payload size is 256 KB.
+     * @returns {Object} Response to Request
      */
     uploadCoverImage: async function(imageData) {
         try {
@@ -847,8 +847,7 @@ Playlist.prototype = {
 
 /**
  * Get Playlist
- * Returns Playlist object of ID
- * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+ * Returns Playlist object of IEnhanced Spotify API Wrapper instance for API calls.
  * @param {String} playlistID Id of Playlist.
  * @returns {Playlist} Playlist from id.
  */
@@ -863,8 +862,7 @@ Playlist.getPlaylist = async function(playlistID) {
 
 /**
  * Create Playlist
- * Creates a playlist and returns its Playlist Instance
- * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
+ * Creates a playlist and returns its Playlist InstancEnhanced Spotify API Wrapper instance for API calls.
  * @param {String} name Name of new playlist.
  * @param {Object} options (Optional) Additional Options.
  * @returns {Playlist} Playlist.

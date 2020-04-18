@@ -23,6 +23,30 @@ Shows.prototype = {
     ...Models.Manager.prototype,
 
     /**
+     * Plays Shows
+     * Plays shows on user's active device.
+     * @param {Object} options (Optional) Additional options.
+     * @returns {Object} Response from request.
+     * options.show_index: {Number} Which album to start with (Default: 0).
+     * options.offset: {Object} Where from the album to play.
+     * options.offset.position: {Number} Index of item to start with in context.
+     * options.offset.uri: {String} URI of item to start with in context.
+     * options.position_ms: {Number} Millisecond to start with in track.
+     */
+    play: async function(options) {
+        try {
+            let _show_index = (options && typeof(options) == 'object' && options.hasOwnProperty('show_index')) ? options.show_index : 0;
+            let episodes = new Models.Episodes();
+            for (let i = 0; i < this.order.length; i++) {
+                await episodes.concat(await this.items[this.order[(i + _show_index) % this.order.length]].getEpisodes());
+            }
+            return await episodes.play(options);
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
      * Are Liked
      * Returns array of booleans whether shows are saved to the user's library.
      * @returns {array} Array of Booleans Whether show are saved to the user's library.

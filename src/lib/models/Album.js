@@ -24,6 +24,7 @@ function Album(data) {
         } else {
             throw new Error("Album.constructor: Invalid Data");
         }
+        this.tracksRetrieved = false;
     } catch (error) {
         throw error;
     }
@@ -206,7 +207,9 @@ Album.prototype = {
      */
     getTracks: async function() {
         try {
-            await this.retrieveTracks();
+            if (!this.tracksRetrieved) {
+                await this.retrieveTracks();
+            }
             return this._tracks;
         } catch (error) {
             throw error;
@@ -254,7 +257,8 @@ Album.prototype = {
                 response = await Models.wrapperInstance.getAlbumTracks(this.id, options);
                 await this.loadTracks(response.body.items);
                 options.offset += 50;
-            } while (!(response.body.items.length < 50))
+            } while (!(response.body.items.length < 50));
+            this.tracksRetrieved = true;
         } catch (error) {
             throw error;
         }
@@ -367,14 +371,14 @@ Album.prototype = {
  * Get Album
  * Returns Album object of ID
  * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
- * @param {String} albumId Id of album.
+ * @param {String} albumID Id of album.
  * @param {Object} options (Optional) Additional options.
  * @returns {Album} Album from id.
  * options.market: {String} Country code.
  */
-Album.getAlbum = async function(albumId, options) {
+Album.getAlbum = async function(albumID, options) {
     try {
-        let response = await Models.wrapperInstance.getAlbum(albumId, options ? options : {});
+        let response = await Models.wrapperInstance.getAlbum(albumID, options ? options : {});
         return new Models.Album(response.body);
     } catch (error) {
         throw error;

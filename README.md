@@ -11,8 +11,6 @@
     <a href="https://melophile.org"><img src="https://img.shields.io/github/issues-raw/andyruwruw/enhanced-spotify-api?color=%2300b4d4"></a>
 </p>
 
-
-
 # Overview
 
 ## [Visit the Official Website / Documentation](http://enhancedspotifyapi.com)
@@ -21,28 +19,28 @@ No more **Simplified Objects** when you need **Full Objects**
 
 No more **Paging Objects** when you need **All Playlist Tracks**
 
-enhanced-spotify-api is an Object-Oriented API Wrapper aimed to make Spotify's API development fun and painless, and to expand available endpoints.
+enhanced-spotify-api is an **Object-Oriented API Wrapper** aimed to make Spotify's API development fun and painless, and to expand available endpoints.
 
 Spend more of your time coding something cool, and less time scouring over documentation.
 
 ### Unique Features:
 
-- Object Oriented package with Classes for `Track`, `Artist`, `Playlist`, and more.
+- Object Oriented Wrapper with Classes for `Track`, `Artist`, `Playlist`, and more.
     - Member functions for all endpoints relevent to each item.
     - Automatic loading of the data you need when you need it. 
     - Retrieving data in as few requests as possible.
 
-- Add and Override Methods! Customize to your hearts content. 
+- Add and Override Methods! Customize to your hearts content.
     - I don't know what you need it for, so do your thing my dude.
 
-- Grouping relevent requests together into more complicated requests.
+- Providing all the original functionality of [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node).
+    - Added missing endpoints for shows and episodes (Just released 3/2020).
+    - Fixed known bugs
+
+- Grouping relevent requests together into more complicated requests. (Coming Soon)
     - *What's the average danceability of my whole library?*
     - *Re-order my playlist so it increases in energy over time.*
     - *(If you're gross) Get all my track's artist's album's songs and play them.*
-
-- Providing all the original functionality of [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node).
-    - Added missing endpoints for shows and episodes (Just released 3/2020). 
-        - I sent pull requests to update [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node) and [spotify-web-api-js](https://github.com/JMPerez/spotify-web-api-js).
 
 # Why Use enhanced-spotify-api?
 
