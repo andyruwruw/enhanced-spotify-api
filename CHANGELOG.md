@@ -7,6 +7,14 @@
 > - :memo:       [Documentation]
 > - :nail_care:  [Polish]
 
+## v1.1.3 (4/20/2020)
+#### :bug: [Bug Fix]
+- `User Class`
+    - Fixed broken get data methods.
+#### :nail_care: [Polish]
+- `Playlists Container`
+    - Utilizes both `Get My Playlists` and `Get User's Playlists`.
+
 ## v1.1.2 (4/20/2020)
 #### :rocket: [New Feature]
 -  `Playlist Class`
@@ -44,7 +52,7 @@
 - `User Class`
     - Added `areFollowingPlaylist` method.
 #### :bug: [Bug Fix]
-- `Containers`
+- `Container Classes`
     - Fixed issue of reused variable.
 #### :nail_care: [Polish]
 - `Tracks Container`
@@ -52,7 +60,7 @@
 
 ## v1.0.6 (4/10/2020)
 #### :nail_care: [Polish]
-- `Containers`
+- `Container Classes`
     - Replaced array methods with for loops for improved efficiency.
 
 ## v1.0.5 (4/10/2020)
@@ -64,7 +72,6 @@
     - Fixed references to related classes
     - Depreciated method `add`, bumped to `push`
     - Fixed static `get` methods to request from Spotify, then construct
-
 #### :nail_care: [Polish]
 - `CONTRIBUTING.md`
     - Added Contribution notes.
@@ -73,7 +80,7 @@
 #### :boom: [Breaking Change]
 - `Playlist Class`
     - Remodeled to Commit Changes as made.
-- `Containers`
+- `Container Classes`
     - All containers now inherit from a `Container` class.
 #### :bug: [Bug Fix]
 - `Wrapper Class`
@@ -81,7 +88,7 @@
 - `Various Containers`
     - Fixed references to related classes
 #### :nail_care: [Polish]
-- `Containers`
+- `Container Classes`
     - Replaced array methods with for loops for improved efficiency.
 
 ## v1.0.3 (4/7/2020)

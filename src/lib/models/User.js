@@ -114,15 +114,16 @@ User.prototype = {
                 await this.retrievePrivateObject();
             }
             return {
-                display_name: data.display_name,
-                external_urls: data.external_urls,
-                followers: data.followers,
-                href: data.href,
-                images: data.images,
-                uri: data.uri,
-                country: data.country,
-                email: data.email,
-                product: data.product,
+                id: this.id,
+                display_name: this.display_name,
+                external_urls: this.external_urls,
+                followers: this.followers,
+                href: this.href,
+                images: this.images,
+                uri: this.uri,
+                country: this.country,
+                email: this.email,
+                product: this.product,
                 type: 'user',
             };
         } catch (error) {
@@ -142,12 +143,13 @@ User.prototype = {
                 await this.retrievePublicObject();
             }
             return {
-                display_name: data.display_name,
-                external_urls: data.external_urls,
-                followers: data.followers,
-                href: data.href,
-                images: data.images,
-                uri: data.uri,
+                id: this.id,
+                display_name: this.display_name,
+                external_urls: this.external_urls,
+                followers: this.followers,
+                href: this.href,
+                images: this.images,
+                uri: this.uri,
                 type: 'user',
             };
         } catch (error) {
@@ -183,7 +185,11 @@ User.prototype = {
      */
     getPlaylists: async function(options) {
         try {
-            return await Models.Playlists.getUserPlaylists(this.id, options);
+            if (await this.isMe()) {
+                return await Models.Playlists.getMyPlaylists(options);
+            } else {
+                return await Models.Playlists.getUserPlaylists(this.id, options);
+            }
         } catch (error) {
             throw error;
         }
@@ -197,7 +203,11 @@ User.prototype = {
      */
     getAllPlaylists: async function() {
         try {
-            return await Models.Playlists.getAllUserPlaylists(this.id);
+            if (await this.isMe()) {
+                return await Models.Playlists.getAllMyPlaylists();
+            } else {
+                return await Models.Playlists.getAllUserPlaylists(this.id);
+            }
         } catch (error) {
             throw error;
         }
@@ -294,7 +304,6 @@ User.prototype = {
 /**
  * Get Me
  * Returns User object of current user.
- * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
  * @returns {User} Current User
  */
 User.getMe = async function() {
@@ -309,7 +318,6 @@ User.getMe = async function() {
 /**
  * Get User
  * Returns User object of ID
- * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
  * @param {String} userID Id of user.
  * @returns {User} User from id.
  */
