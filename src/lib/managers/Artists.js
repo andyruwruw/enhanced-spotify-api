@@ -5,7 +5,7 @@ var Models = require('../../index');
 
  /**
  * Constructor
- * Creates a new Artists Manager Instance.
+ * Creates a new Artists Container Instance.
  * @param {Array | Artist | object | string} data (optional) Data to be preloaded. Single or multiple artists.
  */
 function Artists(items) {
@@ -13,31 +13,26 @@ function Artists(items) {
         this.name = 'Artists';
         this.type = 'Artist';
         this.uri_type = 'artist';
-        Models.Manager.call(this, items);
+        Models.Container.call(this, items);
     } catch (error) {
         throw error;
     }
 }
 
 Artists.prototype = {
-    ...Models.Manager.prototype,
+    ...Models.Container.prototype,
 
     /**
      * Play Artists
      * Plays artist on user's active device.
-
      * @param {Object} options (Optional) Additional options.
      * @returns {Object} Response from request.
      */
     play: async function(options) {
         try {
-            let _options = options ? options : {};
-            let artists = await this.order.map((artist) => {
-                return this.items[artist]; 
-            });
             let tracks = new Models.Tracks();
-            for (let i = 0; i < artists.length; i++) {
-                await tracks.push(await (await artists[i].getTopTracks()).get(0));
+            for (let i = 0; i < this.order.length; i++) {
+                await tracks.push(await (await this.items[this.order[i]].getTopTracks()).get(0));
             }   
             return await tracks.play(options);
         } catch (error) {
@@ -48,8 +43,6 @@ Artists.prototype = {
     /**
      * Are Followed
      * Returns whether artists are followed by the user.
-     * 
-
      * @returns {Array} Array of booleans of whether artist is followed by user.
      */
     areFollowed: async function() {
@@ -64,8 +57,6 @@ Artists.prototype = {
     /**
      * Follow Artist
      * Follows artist.
-     * 
-
      */
     follow: async function() {
         try {
@@ -78,8 +69,6 @@ Artists.prototype = {
     /**
      * Unfollow Artist
      * Unfollows artist.
-     * 
-
      */
     unfollow: async function() {
         try {

@@ -5,7 +5,7 @@ var Models = require('../../index');
 
  /**
  * Constructor
- * Creates a new Albums Manager Instance.
+ * Creates a new Albums Container Instance.
  * @param {Array | Album | Object | String} items (optional) Data to be preloaded. Single or multiple albums.
  */
 function Albums(items) {
@@ -13,14 +13,14 @@ function Albums(items) {
         this.name = 'Albums';
         this.type = 'Album';
         this.uri_type = 'album';
-        Models.Manager.call(this, items);
+        Models.Container.call(this, items);
     } catch (error) {
         throw error;
     }
 }
 
 Albums.prototype = {
-    ...Models.Manager.prototype,
+    ...Models.Container.prototype,
 
     /**
      * Plays Albums

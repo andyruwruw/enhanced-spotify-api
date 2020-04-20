@@ -4,10 +4,10 @@ var Models = require('../../index');
 
  /**
  * Constructor
- * Creates a new Manager Instance.
+ * Creates a new Container Instance.
  * @param {Array | Item | Object | String} data (optional) Data to be preloaded. Single or multiple items.
  */
-function Manager(items) {
+function Container(items) {
     try {
         this.items = {};
         this.order = [];
@@ -25,10 +25,10 @@ function Manager(items) {
     }
 }
 
-Manager.prototype = {
+Container.prototype = {
     /**
      * Push
-     * Adds new item to Manager Object.
+     * Adds new item to Container Object.
      * @param {Item | Object | String } item Item Instance, item object or item ID to add. 
      */
     push: function(item) {
@@ -39,25 +39,23 @@ Manager.prototype = {
                 }
                 this.order.push(item.id);
             } else if (typeof(item) == 'object') {
-                if (item.hasOwnProperty('track')) {
-                    if (!this.items.hasOwnProperty(item.track.id)) {
-                        this.items[item.track.id] = new Models[this.type](item.track);
-                        if (item.hasOwnProperty('is_local')) {
-                            this.items[item.track.id].is_local = item.is_local;
-                        }
-                        if (item.hasOwnProperty('added_at')) {
-                            this.items[item.track.id].added_at = item.added_at;
-                        }
-                        if (item.hasOwnProperty('added_by')) {
-                            this.items[item.track.id].added_by = item.added_by;
-                        }
-                    }
-                    this.order.push(item.track.id);
-                } else {
+                if (item.hasOwnProperty('id')) {
                     if (!this.items.hasOwnProperty(item.id)) {
                         this.items[item.id] = new Models[this.type](item);
                     }
                     this.order.push(item.id);
+                } else if (item.hasOwnProperty(this.uri_type)) {
+                    if (!this.items.hasOwnProperty(item[this.uri_type].id)) {
+                        this.items[item[this.uri_type].id] = new Models[this.type](item[this.uri_type]);
+                        for (let key in item) {
+                            if (key != this.uri_type) {
+                                this.items[item[this.uri_type].id][key] = item[key];
+                            }
+                        }
+                    }
+                    this.order.push(item.track.id);
+                } else {
+                    throw new Error(this.name + ".push: Invalid Parameter \"item\"");
                 }
             } else if (typeof(item) == 'string') {
                 if (!this.items.hasOwnProperty(item)) {
@@ -74,7 +72,7 @@ Manager.prototype = {
 
     /**
      * Concat
-     * Adds new items to Manager Object.
+     * Adds new items to Container Object.
      * @param {Items | Array } items Another Items instance or array of Item instances, item objects, or item IDs to concat.
      */
     concat: function(items) {
@@ -100,8 +98,8 @@ Manager.prototype = {
 
     /**
      * Get Size
-     * Returns number of items in manager.
-     * @returns {Number} Number of items in manager.
+     * Returns number of items in Container.
+     * @returns {Number} Number of items in Container.
      */
     size: function() {
         try {
@@ -292,7 +290,7 @@ Manager.prototype = {
 
     /**
      * Remove
-     * Removes an item from the Manager Object.
+     * Removes an item from the Container Object.
      * @param {Item | Object | String } item Item instance, item data, or item ID to remove.
      * @returns {Item} Deleted item.
      */
@@ -319,7 +317,7 @@ Manager.prototype = {
 
     /**
      * Remove Indexes
-     * Removes multiple items by index from the manager Object.
+     * Removes multiple items by index from the Container Object.
      * @param {Array} indexes Indexes to be removed.
      * @returns {Items} Deleted items.
      */
@@ -370,13 +368,13 @@ Manager.prototype = {
      */
     filter: async function(method, thisArg) {
         try {
-            let newManager = new Models[this.name]();
+            let newContainer = new Models[this.name]();
             let items = await this.order.map((item) => {
                 return this.items[item];
             });
             let filteredItems = await Promise.all(await items.filter(method, thisArg ? thisArg: this));
-            await newManager.concat(filteredItems);
-            return newManager;
+            await newContainer.concat(filteredItems);
+            return newContainer;
         } catch (error) {
             throw error;
         }
@@ -436,7 +434,7 @@ Manager.prototype = {
  * Adds functionality to Class
  * @param {Object} methods Object containing new methods to be added as properties.
  */
-Manager.addMethods = function(methods) {
+Container.addMethods = function(methods) {
     for (let method in methods) {
         this.prototype[method] = methods[method];
     }
@@ -448,12 +446,12 @@ Manager.addMethods = function(methods) {
  * @param {String} name Name of the method to replace.
  * @param {Function} method Function to replace with.
  */
-Manager.override = function(name, method) {
+Container.override = function(name, method) {
     if (this.prototype.hasOwnProperty(name)) {
         this.prototype[name] = method;
     } else {
-        throw new Error("Manager.override: \"name\" does not exist.");
+        throw new Error("Container.override: \"name\" does not exist.");
     }
 };
 
-module.exports = Manager;
+module.exports = Container;

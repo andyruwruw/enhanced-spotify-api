@@ -5,7 +5,7 @@ var Models = require('../../index');
 
  /**
  * Constructor
- * Creates a new Tracks Manager Instance.
+ * Creates a new Tracks Container Instance.
  * @param {Array | Track | Object | String} data (optional) Data to be preloaded. Single or multiple tracks.
  */
 function Tracks(items) {
@@ -13,14 +13,14 @@ function Tracks(items) {
         this.name = 'Tracks';
         this.type = 'Track';
         this.uri_type = 'track';
-        Models.Manager.call(this, items);
+        Models.Container.call(this, items);
     } catch (error) {
         throw error;
     }
 }
 
 Tracks.prototype = {
-    ...Models.Manager.prototype,
+    ...Models.Container.prototype,
 
     /**
      * Plays Tracks

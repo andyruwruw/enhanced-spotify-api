@@ -5,7 +5,7 @@ var Models = require('../../index');
 
  /**
  * Constructor
- * Creates a new Playlists Manager Instance.
+ * Creates a new Playlists Container Instance.
  * @param {Array | Playlist | object | string} data (optional) Data to be preloaded. Single or multiple playlists.
  */
 function Playlists(items) {
@@ -13,14 +13,14 @@ function Playlists(items) {
         this.name = 'Playlists';
         this.type = 'Playlist';
         this.uri_type = 'playlist';
-        Models.Manager.call(this, items);
+        Models.Container.call(this, items);
     } catch (error) {
         throw error;
     }
 }
 
 Playlists.prototype = {
-    ...Models.Manager.prototype,
+    ...Models.Container.prototype,
 
     /**
      * Plays Playlists

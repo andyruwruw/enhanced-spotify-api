@@ -5,7 +5,7 @@ var Models = require('../../index');
 
  /**
  * Constructor
- * Creates a new Shows Manager Instance.
+ * Creates a new Shows Container Instance.
  * @param {Array | Show | object | string} data (optional) Data to be preloaded. Single or multiple shows.
  */
 function Shows(items) {
@@ -13,14 +13,14 @@ function Shows(items) {
         this.name = 'Shows';
         this.type = 'Show';
         this.uri_type = 'show';
-        Models.Manager.call(this, items);
+        Models.Container.call(this, items);
     } catch (error) {
         throw error;
     }
 }
 
 Shows.prototype = {
-    ...Models.Manager.prototype,
+    ...Models.Container.prototype,
 
     /**
      * Plays Shows

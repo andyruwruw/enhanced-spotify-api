@@ -5,21 +5,21 @@ var Models = require('../../index');
 
  /**
  * Constructor
- * Creates a new Categories Manager Instance.
+ * Creates a new Categories Container Instance.
  * @param {Array | Category | object | string} data (optional) Data to be preloaded. Single or multiple categories.
  */
 function Categories(items) {
     try {
         this.name = 'Categories';
         this.type = 'Category';
-        Models.Manager.call(this, items);
+        Models.Container.call(this, items);
     } catch (error) {
         throw error;
     }
 }
 
 Categories.prototype = {
-    ...Models.Manager.prototype,
+    ...Models.Container.prototype,
 
     getURIs: null,
 

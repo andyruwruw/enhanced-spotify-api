@@ -7,10 +7,24 @@
 > - :memo:       [Documentation]
 > - :nail_care:  [Polish]
 
+## v1.1.2 (4/20/2020)
+#### :rocket: [New Feature]
+-  `Playlist Class`
+    - Added `sort` method to playlist class!
+    - Added `filter` method to playlist class!
+- `Playback Class`
+    - Added Get Recently Played Method.
+#### :nail_care: [Polish]
+- `Container Class`
+    - Now supports all types for arrays of nested objects with additional details.
+
 ## v1.1.1 (4/18/2020)
 #### :boom: [Breaking Change]
 - `Playback Class`
     - Made all methods static. Due to the constantly changing state of the user's playback and the lack of a need for multiple instances, methods were moved to being static. Giving them the same access to make requests through prior authentication, but removing the need to create instances or pass them around.
+#### :rocket: [New Feature]
+-  `Episode and Show Classes`
+    - Added `play` methods which are undocumented by Spotify but work!
 #### :nail_care: [Polish]
 - `Various Classes`
     - Added Missing `loadConditionally` methods.

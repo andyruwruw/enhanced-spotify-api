@@ -213,7 +213,9 @@ Playlist.prototype = {
      */
     getTracks: async function() {
         try {
-            await this.retrieveTracks();
+            if (!this.retrieved) {
+                await this.retrieveTracks();
+            }
             return await this._tracks;
         } catch (error) {
             throw error;
@@ -227,7 +229,9 @@ Playlist.prototype = {
      */
     getArtists: async function() {
         try {
-            await this.retrieveTracks();
+            if (!this.retrieved) {
+                await this.retrieveTracks();
+            }
             return await this._tracks.getArtists();
         } catch (error) {
             throw error;
@@ -241,7 +245,9 @@ Playlist.prototype = {
      */
     getAlbums: async function() {
         try {
-            await this.retrieveTracks();
+            if (!this.retrieved) {
+                await this.retrieveTracks();
+            }
             return await this._tracks.getAlbums();
         } catch (error) {
             throw error;
@@ -454,6 +460,23 @@ Playlist.prototype = {
     },
 
     /**
+     * Sort
+     * Sort Items
+     * @param {Function} compareFunction Sorting method.
+     */
+    sort: async function(compareFunction) {
+        try {
+            if (!this.retrieved) {
+                await this.retrieveTracks();
+            }
+            await this._tracks.sort(compareFunction);
+            return await this.replaceTracks(this._tracks.getIDs());
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
      * Pop
      * Removes last item.
      * @returns {Track} Removed item
@@ -484,6 +507,25 @@ Playlist.prototype = {
             let track = await this._tracks.shift();
             await this.removeTrackIndexes([0]);
             return track;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Filter
+     * Filters tracks based on method privdied
+     * @param {Function} method Method to filter by.
+     * @param {Function} thisArg Value to use as "this" when executing callback.
+     * @returns {Object} Response from Request
+     */
+    filter: async function(method, thisArg) {
+        try {
+            if (!this.retrieved) {
+                await this.retrieveTracks();
+            }
+            this._tracks = await this._tracks.filter(method, thisArg);
+            return await this.replaceTracks(this._tracks);
         } catch (error) {
             throw error;
         }
@@ -540,7 +582,7 @@ Playlist.prototype = {
     /**
      * Replace Tracks
      * Replaces all tracks of playlist with new tracks.
-     * @param {Array | String | Track | Object} tracks 
+     * @param { Tracks | Array | Track | Object | String } tracks 
      * @returns {Object} Response to Request
      */
     replaceTracks: async function(tracks) {

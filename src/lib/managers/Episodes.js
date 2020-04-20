@@ -5,7 +5,7 @@ var Models = require('../../index');
 
  /**
  * Constructor
- * Creates a new Episodes Manager Instance.
+ * Creates a new Episodes Container Instance.
  * @param {Array | Episode | object | string} data (optional) Data to be preloaded. Single or multiple episodes.
  */
 function Episodes(items) {
@@ -13,14 +13,14 @@ function Episodes(items) {
         this.name = 'Episodes';
         this.type = 'Episode';
         this.uri_type = 'episode';
-        Models.Manager.call(this, items);
+        Models.Container.call(this, items);
     } catch (error) {
         throw error;
     }
 }
 
 Episodes.prototype = {
-    ...Models.Manager.prototype,
+    ...Models.Container.prototype,
 
     /**
      * Plays Episodes

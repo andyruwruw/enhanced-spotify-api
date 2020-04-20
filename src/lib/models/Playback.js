@@ -81,14 +81,16 @@ Playback.getCurrentlyPlayingContext = async function(options) {
 /**
  * Transfer Playback
  * Switches Playback to New Device
- * @param {Array} deviceIds Device to be switched to.
+ * @param {String} deviceID Device to be switched to.
  * @param {Object} options (Optional) Additional options
  * @returns {Object} Response from request.
  * options.play: {Boolean} Ensure playback happens on new device.
  */
-Playback.transferPlayback = async function(deviceIds, options) {
+Playback.transferPlayback = async function(deviceID, options) {
     try {
-        return await Models.wrapperInstance.transferMyPlayback(deviceIds, options);
+        let _options = options ? options : {};
+        _options.deviceIDs = [deviceID];
+        return await Models.wrapperInstance.transferMyPlayback(_options);
     } catch (error) {
         throw error;
     }
@@ -249,6 +251,24 @@ Playback.getCurrentPlaybackState = async function(options) {
     try {
         let response = await Models.wrapperInstance.getMyCurrentPlaybackState(options != null ? options : {});
         return response.body;
+    } catch (error) {
+        throw error;
+    }
+};
+
+/**
+ * Get Recently Played Tracks
+ * Returns a Tracks instance of recently played tracks.
+ * @param {Object} options (Optional) Additional options
+ * @returns {Tracks} Recently Played Tracks
+ * options.limit: {Number} Number of items to return.
+ * options.after: {Number} Unix timestamp. Returns tracks played after. (Don't use before).
+ * options.before: {Number} Unix timestamp. Returns tracks played before. (Don't use after).
+ */
+Playback.getRecentlyPlayedTracks = async function(options) {
+    try {
+        let response = await Models.wrapperInstance.getMyRecentlyPlayedTracks(options != null ? options : {});
+        return new Models.Tracks(response.body.items);
     } catch (error) {
         throw error;
     }
