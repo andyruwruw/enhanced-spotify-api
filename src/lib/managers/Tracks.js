@@ -199,7 +199,7 @@ Tracks.prototype = {
         try {
             await this.retrieveFullObjects('full');
             await this.retrieveAudioFeatures();
-            await this.retrieveAudioAnalysis();
+            await this.retrieveAudioAnalyses();
             let result = [];
             for (let i = 0; i < this.order.length; i++) {
                 await result.push(await this.items[this.order[i]].getAllData());
@@ -441,7 +441,7 @@ Tracks.prototype = {
             if (ids.length) {
                 let response;
                 do {
-                    response = await Models.wrapperInstance.getAudioFeaturesForTracks(ids.splice(0, 50));
+                    response = await Models.wrapperInstance.getAudioFeaturesForTracks(ids.splice(0, 100));
                     for (let i = 0; i < response.body.tracks.length; i++) {
                         if (response.body.tracks[i] == null) continue;
                         this.items[response.body.tracks[i].id].loadAudioFeatures(response.body.tracks[i]);
@@ -457,7 +457,7 @@ Tracks.prototype = {
      * Retrieve Audio Analysis
      * Retrieves audio analysis data for all tracks from Spotify API
      */
-    retrieveAudioAnalysis: async function() {
+    retrieveAudioAnalyses: async function() {
         try {
             for (let track in this.items) {
                 if (!(await this.items[track].containsAudioAnalysis())) {

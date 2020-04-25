@@ -7,6 +7,11 @@
 > - :memo:       [Documentation]
 > - :nail_care:  [Polish]
 
+## v1.1.4 (4/24/2020)
+#### :nail_care: [Polish]
+- `Tracks Container`
+    - I suppose plural for Analysis is Analyses
+
 ## v1.1.3 (4/20/2020)
 #### :bug: [Bug Fix]
 - `User Class`
@@ -14,6 +19,8 @@
 #### :nail_care: [Polish]
 - `Playlists Container`
     - Utilizes both `Get My Playlists` and `Get User's Playlists`.
+- `Tracks Container`
+    - I suppose plural for Analysis is Analyses
 
 ## v1.1.2 (4/20/2020)
 #### :rocket: [New Feature]
