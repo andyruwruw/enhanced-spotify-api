@@ -46,7 +46,7 @@ Container.prototype = {
           const itemKeys = Object.keys(item);
 
           for (let i = 0; i < itemKeys.length; i += 1) {
-            if (key !== this.uri_type) {
+            if (itemKeys[i] !== this.uri_type) {
               this.items[item[this.uri_type].id][itemKeys[i]] = item[itemKeys[i]];
             }
           }
@@ -108,7 +108,7 @@ Container.prototype = {
     let id = null;
     if (typeof (item) === 'string') {
       id = item;
-    } else if ((item instanceof Models[this.type] || typeof (item) === 'object') && item.hasOwnProperty('id')) {
+    } else if ((item instanceof Models[this.type] || typeof (item) === 'object') && 'id' in item) {
       id = item.id;
     } else {
       throw new Error(`${this.name}.includes: Invalid Parameter "item"`);
@@ -259,7 +259,7 @@ Container.prototype = {
     } else {
       throw new Error(`${this.name}.remove: Invalid Parameter "item"`);
     }
-    this.order = this.order.filter((item) => item != id);
+    this.order = this.order.filter((itemID) => itemID !== id);
     const deletedItem = this.items[id];
     delete this.items[id];
     return deletedItem;
