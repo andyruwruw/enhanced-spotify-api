@@ -7,6 +7,12 @@
 > - :memo:       [Documentation]
 > - :nail_care:  [Polish]
 
+## v1.1.5 (4/26/2020)
+#### :rocket: [New Feature]
+- `Artists Container`
+    - Get User Top Artists
+    - Follow and Unfollow name standardized.
+
 ## v1.1.4 (4/24/2020)
 #### :nail_care: [Polish]
 - `Tracks Container`

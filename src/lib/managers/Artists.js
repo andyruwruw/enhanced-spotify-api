@@ -58,7 +58,7 @@ Artists.prototype = {
      * Follow Artist
      * Follows artist.
      */
-    follow: async function() {
+    followAll: async function() {
         try {
             return await Models.wrapperInstance.followArtists(Object.keys(this.items));
         } catch (error) {
@@ -70,7 +70,7 @@ Artists.prototype = {
      * Unfollow Artist
      * Unfollows artist.
      */
-    unfollow: async function() {
+    unfollowAll: async function() {
         try {
             return await Models.wrapperInstance.unfollowArtists(Object.keys(this.items));
         } catch (error) {
@@ -365,6 +365,24 @@ Artists.getRelatedArtists = async function(artistId) {
     try {
         let artists = new Models.Artists(artistId);
         return await artists.getRelatedArtists();
+    } catch (error) {
+        throw error;
+    }
+};
+
+/**
+ * Get User Top Artists
+ * Returns Artists object of user's top artists
+ * @param {Object} options (Optional) Additional Options.
+ * @returns {Artists} User's top artists.
+ */
+Artists.getMyTopArtists = async function(options) {
+    try {
+        if (options != null && typeof(options) != 'object') {
+            throw new Error("Artists.getMyTopArtists: Invalid Parameter \"options\"");
+        }
+        let response = await Models.wrapperInstance.getMyTopArtists(options ? options : {});
+        return new Models.Artists(response.body.items);
     } catch (error) {
         throw error;
     }
