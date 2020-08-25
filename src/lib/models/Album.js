@@ -1,485 +1,489 @@
-'use strict';
+const Models = require('../../index');
 
-// Associated Models
-var Models = require('../../index');
-
- /**
- * Album Constructor
- * Creates a new Album Instance for a given album.
- * @param {Object | String} data Data to be preloaded. Must either be a string of the album ID or contain an `id` property.
+/**
+ * Creates a new Album Instance for a given album
+ *
+ * @param {object | string} data Data to be preloaded,
+ * Must either be a string of the album ID or contain an `id` property
  */
 function Album(data) {
-    try {
-        if (typeof(data) == 'string') {
-            this.id = data;
-            this._tracks = new Models.Tracks();
-        } else if (typeof(data) == 'object') {
-            if (data.hasOwnProperty('id')) {
-                this.id = data.id; 
-            } else {
-                throw new Error("Album.constructor: No ID Provided");
-            }
-            this._tracks = '_tracks' in data ? data._tracks : new Models.Tracks();
-            this.loadConditionally(data);
-        } else {
-            throw new Error("Album.constructor: Invalid Data");
-        }
-        this.tracksRetrieved = false;
-    } catch (error) {
-        throw error;
+  if (typeof (data) === 'string') {
+    this.id = data;
+    this._tracks = new Models.Tracks();
+  } else if (typeof (data) === 'object') {
+    if ('id' in data) {
+      this.id = data.id;
+    } else {
+      throw new Error('Album.constructor: No ID Provided');
     }
+    this._tracks = '_tracks' in data ? data._tracks : new Models.Tracks();
+    this.loadConditionally(data);
+  } else {
+    throw new Error('Album.constructor: Invalid Data');
+  }
+  this.tracksRetrieved = false;
 }
 
 Album.prototype = {
-    /**
-     * Play Album
-     * Plays album on user's active device.
-     * @param {Object} options (Optional) Additional options.
-     * @returns {Object} Response from request.
-     * options.offset: {Object} Where from the context to play (Only valid with albums and playlists).
-     * options.offset.position: {Number} Index of item to start with in context.
-     * options.offset.uri: {String} URI of item to start with in context.
-     * options.position_ms: {Number} Millisecond to start with in track.
-     */
-    play: async function(options) {
-        try {
-            let _options = options ? options : {};
-            _options.context_uri = 'spotify:album:' + this.id;
-            return await Models.wrapperInstance.play(_options);
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Plays album on user's active device
+   *
+   * @param {object} [options] (Optional) Additional options
+   * @param {object} [options.offset] Where from the context to play
+   * (Only valid with albums and playlists)
+   * @param {number} [options.offset.position] Index of item to start with in context
+   * @param {string} [options.offset.uri] URI of item to start with in context
+   * @param {number} [options.position_ms] Millisecond to start with in track
+   * @returns {object} Response from request
+   */
+  play(options) {
+    const _options = options || {};
+    _options.context_uri = `spotify:album:${this.id}`;
+    return Models.wrapperInstance.play(_options);
+  },
 
-    /**
-     * Is Liked
-     * Returns whether an album is saved to the user's library.
-     * @returns {Boolean} Whether album is saved to the user's library.
-     */
-    isLiked: async function() {
-        try {
-            let response = await Models.wrapperInstance.containsMySavedAlbums([this.id]);
-            return response.body[0];
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Returns whether an album is saved to the user's library
+   *
+   * @returns {boolean} Whether album is saved to the user's library
+   */
+  async isLiked() {
+    const response = await Models.wrapperInstance.containsMySavedAlbums([this.id]);
+    return response.body[0];
+  },
 
-    /**
-     * Like Album
-     * Adds album to the user's library.
-     * @returns {Object} Response from request.
-     */
-    like: async function() {
-        try {
-            return await Models.wrapperInstance.addToMySavedAlbums([this.id]);
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Adds album to the user's library
+   *
+   * @returns {object} Response from request
+   */
+  like() {
+    return Models.wrapperInstance.addToMySavedAlbums([this.id]);
+  },
 
-    /**
-    * Unlike Album
-    * Removes album from the user's library.
-    * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
-    * @returns {Object} Response from request.
-    */
-    unlike: async function() {
-        try {
-            return await Models.wrapperInstance.removeFromMySavedAlbums([this.id]);
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+  * Removes album from the user's library
+  *
+  * @returns {object} Response from request
+  */
+  unlike() {
+    return Models.wrapperInstance.removeFromMySavedAlbums([this.id]);
+  },
 
-    /**
-     * Contains Full Object
-     * Returns boolean whether full object data is present.
-     * @returns {Boolean} Whether full object is loaded.
-     */
-    containsFullObject: function() {
-        return ((this.name != null) && (this.album_type != null) && (this.artists != null) && (this.available_markets != null) && (this.copyrights != null) && (this.external_ids) && (this.external_urls) && (this.genres != null) && (this.href != null) && (this.images != null) && (this.label != null) && (this.popularity != null) && (this.release_date != null) && (this.release_date_precision != null) && (this.restrictions) && (this.tracks != null) && (this.uri != null) );
-    },
+  /**
+   * Returns boolean whether full object data is present
+   *
+   * @returns {boolean} Whether full object is loaded
+   */
+  containsFullObject() {
+    return ((this.name != null)
+      && (this.album_type != null)
+      && (this.artists != null)
+      && (this.available_markets != null)
+      && (this.copyrights != null)
+      && (this.external_ids)
+      && (this.external_urls)
+      && (this.genres != null)
+      && (this.href != null)
+      && (this.images != null)
+      && (this.label != null)
+      && (this.popularity != null)
+      && (this.release_date != null)
+      && (this.release_date_precision != null)
+      && (this.restrictions)
+      && (this.tracks != null)
+      && (this.uri != null));
+  },
 
-    /**
-     * Contains Simplified Object
-     * Returns boolean whether simplified object data is present.
-     * @returns {Boolean} Whether simplified object is loaded.
-     */
-    containsSimplifiedObject: function() {
-        return ((this.name != null) && (this.album_type != null) && (this.artists != null) && (this.available_markets != null) && (this.external_urls) && (this.href != null) && (this.images != null) && (this.release_date != null) && (this.release_date_precision != null) && (this.restrictions) && (this.uri != null));
-    },
+  /**
+   * Returns boolean whether simplified object data is present
+   *
+   * @returns {boolean} Whether simplified object is loaded
+   */
+  containsSimplifiedObject() {
+    return ((this.name != null)
+      && (this.album_type != null)
+      && (this.artists != null)
+      && (this.available_markets != null)
+      && (this.external_urls)
+      && (this.href != null)
+      && (this.images != null)
+      && (this.release_date != null)
+      && (this.release_date_precision != null)
+      && (this.restrictions)
+      && (this.uri != null));
+  },
 
-    /**
-     * Get Full Object
-     * Returns full album data. Retrieves from Spotify API if nessisary.
-     * @returns {Object} Album Full Object Data.
-     */
-    getFullObject: async function() {
-        try {
-            if (!(await this.containsFullObject())) {
-                await this.retrieveFullObject();
-            }
-            return {
-                id: this.id,
-                name: this.name,
-                album_type: this.album_type,
-                artists: this.artists,
-                available_markets: this.available_markets,
-                copyrights: this.copyrights,
-                external_ids: this.external_ids,
-                external_urls: this.external_urls,
-                genres: this.genres,
-                href: this.href,
-                images: this.images,
-                label: this.label,
-                popularity: this.popularity,
-                release_date: this.release_date,
-                release_date_precision: this.release_date_precision,
-                restrictions: this.restrictions,
-                tracks: this.tracks,
-                uri: this.uri,
-                type: 'album',
-            };
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Get Simplified Object
-     * Returns simplified album data. Retrieves from Spotify API if nessisary.
-     * @returns {Object} Album Simplified Object Data.
-     */
-    getSimplifiedObject: async function() {
-        try {
-            if (!(await this.containsSimplifiedObject())) {
-                await this.retrieveFullObject();
-            }
-            let data = {
-                id: this.id,
-                name: this.name,
-                album_type: this.album_type,
-                artists: this.artists,
-                available_markets: this.available_markets,
-                external_urls: this.external_urls,
-                href: this.href,
-                images: this.images,
-                release_date: this.release_date,
-                release_date_precision: this.release_date_precision,
-                restrictions: this.restrictions,
-                uri: this.uri,
-                type: 'album',
-            };
-            if (this.album_group != null) {
-                data.album_group = this.album_group;
-            }
-            return data; 
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Get Current Data
-     * Just returns whatever the album object currently holds
-     * @returns {Object} Any Album Data.
-     */
-    getCurrentData: function() {
-        try {
-            let data = { id: this.id, type: 'album' };
-            let properties = ['name', 'album_type', 'artists', 'available_markets', 'copyrights', 'external_ids', 'external_urls', 'genres', 'href', 'images', 'label', 'popularity', 'release_date', 'release_date_precision', 'restrictions', 'tracks', 'uri', '_tracks'];
-            for (let i = 0; i < properties.length; i++) {
-                if (this[properties[i]] != null) {
-                    data[properties[i]] = this[properties[i]];
-                }
-            }
-            return data;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Get Album Tracks
-     * Returns Tracks object of album tracks.
-     * @returns {Tracks} Tracks instance with all album tracks.
-     */
-    getTracks: async function() {
-        try {
-            if (!this.tracksRetrieved) {
-                await this.retrieveTracks();
-            }
-            return this._tracks;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Get Album Artists
-     * Returns Artists object of album artists.
-     * @returns {Artists} Artists instance with all album artists.
-     */
-    getArtists: async function() {
-        try {
-            if (!(await this.containsSimplifiedObject())) {
-                await this.retrieveFullObject();
-            }
-            return new Models.Artists(this.artists);
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Retrieve Full Object
-     * Retrieves full album data from Spotify API
-     */
-    retrieveFullObject: async function() {
-        try {
-            let response = await Models.wrapperInstance.getAlbum(this.id);
-            await this.loadFullObject(response.body);
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Retrieve Album Tracks
-     * Retrieves all tracks in album from Spotify API
-     */
-    retrieveTracks: async function() {
-        try {
-            let options = { limit: 50, offset: 0 };
-            let response;
-            do {
-                response = await Models.wrapperInstance.getAlbumTracks(this.id, options);
-                await this.loadTracks(response.body.items);
-                options.offset += 50;
-            } while (!(response.body.items.length < 50));
-            this.tracksRetrieved = true;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Load Full Object
-     * Sets full data (outside constructor).
-     * @param {Object} data Object with album full object data.
-     */
-    loadFullObject: async function(data) {
-        try {
-            this.name = data.name;
-            this.album_type = data.album_type;
-            this.artists = data.artists;
-            this.available_markets = data.available_markets;
-            this.copyrights = data.copyrights;
-            this.external_ids = data.external_ids;
-            this.external_urls = data.external_urls;
-            this.genres = data.genres;
-            this.href = data.href;
-            this.images = data.images;
-            this.label = data.label;
-            this.popularity = data.popularity;
-            this.release_date = data.release_date;
-            this.release_date_precision = data.release_date_precision;
-            this.restrictions = data.restrictions;
-            this.uri = data.uri;
-            this.tracks = data.tracks;
-            if ('items' in data.tracks) {
-                await this.loadTracks(data.tracks.items);
-            } else {
-                await this.loadTracks(data.tracks);
-            }
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Load Simplified Object
-     * Sets simplified data (outside constructor).
-     * @param {Object} data Object with album simplified object data.
-     */
-    loadSimplifiedObject: async function(data) {
-        try {
-            this.id = data.id;
-            this.name = data.name;
-            this.album_type = data.album_type;
-            this.artists = data.artists;
-            this.available_markets = data.available_markets;
-            this.external_urls = data.external_urls;
-            this.href = data.href;
-            this.images = data.images;
-            this.release_date = data.release_date;
-            this.release_date_precision = data.release_date_precision;
-            this.restrictions = data.restrictions;
-            this.uri = data.uri;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Load Conditionally
-     * Sets all data conditionally.
-     * @param {Object} data Object with album data.
-     */
-    loadConditionally: function(data) {
-        try {
-            let properties = ['name', 'album_type', 'artists', 'available_markets', 'copyrights', 'external_ids', 'external_urls', 'genres', 'href', 'images', 'label', 'popularity', 'release_date', 'release_date_precision', 'restrictions', 'tracks', 'uri', 'album_group'];
-            for (let i = 0; i < properties.length; i++) {
-                if (data.hasOwnProperty(properties[i])) {
-                    this[properties[i]] = data[properties[i]];
-                }
-            }
-            if ('tracks' in data) {
-                if ('items' in data.tracks) {
-                    this.loadTracks(data.tracks.items);
-                } else if (data.tracks instanceof Array) {
-                    this.loadTracks(data.tracks);
-                }
-            }
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Load Track
-     * Helper method to add tracks to album's internal Tracks item.
-     * @param {Tracks | Array | Track | object | string} tracks 
-     */
-    loadTracks: async function(tracks) {
-        try {
-            if (tracks instanceof Models.Tracks || tracks instanceof Array) {
-                this._tracks.concat(tracks);
-            } else if (typeof(tracks) == 'object' || typeof(tracks) == 'string') {
-                this._tracks.add(tracks);
-            } else {
-                throw new Error("Album.loadTracks: Invalid Parameter \"tracks\"");
-            }
-        } catch (error) {
-            throw error;
-        }
-    },
-};
-
-/**
- * Get Album
- * Returns Album object of ID
- * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
- * @param {String} albumID Id of album.
- * @param {Object} options (Optional) Additional options.
- * @returns {Album} Album from id.
- * options.market: {String} Country code.
- */
-Album.getAlbum = async function(albumID, options) {
-    try {
-        let response = await Models.wrapperInstance.getAlbum(albumID, options ? options : {});
-        return new Models.Album(response.body);
-    } catch (error) {
-        throw error;
+  /**
+   * Returns full album data,
+   * Retrieves from Spotify API if necessary
+   *
+   * @returns {object} Album full object data
+   */
+  async getFullObject() {
+    if (!(await this.containsFullObject())) {
+      await this.retrieveFullObject();
     }
-};
+    return {
+      id: this.id,
+      name: this.name,
+      album_type: this.album_type,
+      artists: this.artists,
+      available_markets: this.available_markets,
+      copyrights: this.copyrights,
+      external_ids: this.external_ids,
+      external_urls: this.external_urls,
+      genres: this.genres,
+      href: this.href,
+      images: this.images,
+      label: this.label,
+      popularity: this.popularity,
+      release_date: this.release_date,
+      release_date_precision: this.release_date_precision,
+      restrictions: this.restrictions,
+      tracks: this.tracks,
+      uri: this.uri,
+      type: 'album',
+    };
+  },
 
-/**
- * Add Methods
- * Adds functionality to Class
- * @param {Object} methods Object containing new methods to be added as properties.
- */
-Album.addMethods = function(methods) {
-    for (let method in methods) {
-        this.prototype[method] = methods[method];
+  /**
+   * Returns simplified album data,
+   * Retrieves from Spotify API if necessary
+   *
+   * @returns {object} Album simplified object data
+   */
+  async getSimplifiedObject() {
+    if (!(this.containsSimplifiedObject())) {
+      await this.retrieveFullObject();
     }
-};
+    const data = {
+      id: this.id,
+      name: this.name,
+      album_type: this.album_type,
+      artists: this.artists,
+      available_markets: this.available_markets,
+      external_urls: this.external_urls,
+      href: this.href,
+      images: this.images,
+      release_date: this.release_date,
+      release_date_precision: this.release_date_precision,
+      restrictions: this.restrictions,
+      uri: this.uri,
+      type: 'album',
+    };
+    if (this.album_group != null) {
+      data.album_group = this.album_group;
+    }
+    return data;
+  },
 
-/**
- * Override
- * Replaces a method within the Class.
- * @param {String} name Name of the method to replace.
- * @param {Function} method Function to replace with.
- */
-Album.override = function(name, method) {
-    if (this.prototype.hasOwnProperty(name)) {
-        this.prototype[name] = method;
+  /**
+   * Just returns whatever the album object currently holds
+   *
+   * @returns {object} Any album data
+   */
+  getCurrentData() {
+    const data = {
+      id: this.id,
+      type: 'album',
+    };
+
+    const properties = [
+      'name',
+      'album_type',
+      'artists',
+      'available_markets',
+      'copyrights',
+      'external_ids',
+      'external_urls',
+      'genres',
+      'href',
+      'images',
+      'label',
+      'popularity',
+      'release_date',
+      'release_date_precision',
+      'restrictions',
+      'tracks',
+      'uri',
+      '_tracks',
+    ];
+
+    for (let i = 0; i < properties.length; i += 1) {
+      if (this[properties[i]] != null) {
+        data[properties[i]] = this[properties[i]];
+      }
+    }
+    return data;
+  },
+
+  /**
+   * Returns Tracks object of album tracks
+   *
+   * @returns {Tracks} Tracks instance with all album tracks
+   */
+  async getTracks() {
+    if (!this.tracksRetrieved) {
+      await this.retrieveTracks();
+    }
+    return this._tracks;
+  },
+
+  /**
+   * Returns Artists object of album artists
+   *
+   * @returns {Artists} Artists instance with all album artists
+   */
+  async getArtists() {
+    if (!(this.containsSimplifiedObject())) {
+      await this.retrieveFullObject();
+    }
+    return new Models.Artists(this.artists);
+  },
+
+  /**
+   * Retrieves full album data from Spotify API
+   */
+  async retrieveFullObject() {
+    const response = await Models.wrapperInstance.getAlbum(this.id);
+    await this.loadFullObject(response.body);
+  },
+
+  /**
+   * Retrieves all tracks in album from Spotify API
+   */
+  async retrieveTracks() {
+    const options = { limit: 50, offset: 0 };
+    let response;
+
+    do {
+      response = await Models.wrapperInstance.getAlbumTracks(this.id, options);
+      await this.loadTracks(response.body.items);
+
+      options.offset += 50;
+    } while (!(response.body.items.length < 50));
+
+    this.tracksRetrieved = true;
+  },
+
+  /**
+   * Sets full data (outside constructor)
+   *
+   * @param {object} data Object with album full object data
+   */
+  async loadFullObject(data) {
+    this.name = data.name;
+    this.album_type = data.album_type;
+    this.artists = data.artists;
+    this.available_markets = data.available_markets;
+    this.copyrights = data.copyrights;
+    this.external_ids = data.external_ids;
+    this.external_urls = data.external_urls;
+    this.genres = data.genres;
+    this.href = data.href;
+    this.images = data.images;
+    this.label = data.label;
+    this.popularity = data.popularity;
+    this.release_date = data.release_date;
+    this.release_date_precision = data.release_date_precision;
+    this.restrictions = data.restrictions;
+    this.uri = data.uri;
+    this.tracks = data.tracks;
+    if ('items' in data.tracks) {
+      await this.loadTracks(data.tracks.items);
     } else {
-        throw new Error("Album.override: \"name\" does not exist.");
+      await this.loadTracks(data.tracks);
     }
+  },
+
+  /**
+   * Sets simplified data (outside constructor)
+   *
+   * @param {object} data Object with album simplified object data
+   */
+  async loadSimplifiedObject(data) {
+    this.id = data.id;
+    this.name = data.name;
+    this.album_type = data.album_type;
+    this.artists = data.artists;
+    this.available_markets = data.available_markets;
+    this.external_urls = data.external_urls;
+    this.href = data.href;
+    this.images = data.images;
+    this.release_date = data.release_date;
+    this.release_date_precision = data.release_date_precision;
+    this.restrictions = data.restrictions;
+    this.uri = data.uri;
+  },
+
+  /**
+   * Sets all data conditionally
+   *
+   * @param {object} data Object with album data
+   */
+  loadConditionally(data) {
+    const properties = [
+      'name',
+      'album_type',
+      'artists',
+      'available_markets',
+      'copyrights',
+      'external_ids',
+      'external_urls',
+      'genres',
+      'href',
+      'images',
+      'label',
+      'popularity',
+      'release_date',
+      'release_date_precision',
+      'restrictions',
+      'tracks',
+      'uri',
+      'album_group',
+    ];
+
+    for (let i = 0; i < properties.length; i += 1) {
+      if (properties[i] in data) {
+        this[properties[i]] = data[properties[i]];
+      }
+    }
+    if ('tracks' in data) {
+      if ('items' in data.tracks) {
+        this.loadTracks(data.tracks.items);
+      } else if (data.tracks instanceof Array) {
+        this.loadTracks(data.tracks);
+      }
+    }
+  },
+
+  /**
+   * Helper method to add tracks to album's internal Tracks item
+   *
+   * @param {Tracks | Array | Track | object | string} tracks
+   */
+  async loadTracks(tracks) {
+    if (tracks instanceof Models.Tracks || tracks instanceof Array) {
+      this._tracks.concat(tracks);
+    } else if (typeof (tracks) === 'object' || typeof (tracks) === 'string') {
+      this._tracks.add(tracks);
+    } else {
+      throw new Error('Album.loadTracks: Invalid Parameter \'tracks\'');
+    }
+  },
 };
 
-Album.setCredentials = function(credentials) {
-    Models.wrapperInstance.setCredentials(credentials);
+/**
+ * Returns Album object of ID
+ *
+ * @param {string} albumID Id of album.
+ * @param {object} [options] (Optional) Additional options.
+ * @param {string} [options.market] Country code
+ * @returns {Album} Album from id.
+ */
+Album.getAlbum = async function getAlbum(albumID, options) {
+  const response = await Models.wrapperInstance.getAlbum(albumID, options || {});
+  return new Models.Album(response.body);
 };
 
-Album.getCredentials = function() {
-    return Models.wrapperInstance.getCredentials();
+/**
+ * Adds functionality to Class
+ *
+ * @param {object} methods Object containing new methods to be added as properties
+ */
+Album.addMethods = function addMethods(methods) {
+  const methodNames = Object.keys(methods);
+
+  for (let i = 0; i < methods.length; i += 1) {
+    this.prototype[methodNames[i]] = methods[methodNames[i]];
+  }
 };
 
-Album.resetCredentials = function() {
-    Models.wrapperInstance.resetCredentials();
+/**
+ * Replaces a method within the Class
+ *
+ * @param {string} name Name of the method to replace
+ * @param {function} method Function to replace with
+ */
+Album.override = function override(name, method) {
+  if (name in this.prototype) {
+    this.prototype[name] = method;
+  } else {
+    throw new Error('Album.override: \'name\' does not exist.');
+  }
 };
 
-Album.setClientId = function(clientId) {
-    Models.wrapperInstance.setClientId(clientId);
+Album.setCredentials = function setCredentials(credentials) {
+  Models.wrapperInstance.setCredentials(credentials);
 };
 
-Album.setClientSecret = function(clientSecret) {
-    Models.wrapperInstance.setClientSecret(clientSecret);
+Album.getCredentials = function getCredentials() {
+  return Models.wrapperInstance.getCredentials();
 };
 
-Album.setAccessToken = function(accessToken) {
-    Models.wrapperInstance.setAccessToken(accessToken);
+Album.resetCredentials = function resetCredentials() {
+  Models.wrapperInstance.resetCredentials();
 };
 
-Album.setRefreshToken = function(refreshToken) {
-    Models.wrapperInstance.setRefreshToken(refreshToken);
+Album.setClientId = function setClientId(clientId) {
+  Models.wrapperInstance.setClientId(clientId);
 };
 
-Album.setRedirectURI = function(redirectUri) {
-    Models.wrapperInstance.setRedirectURI(redirectUri);
+Album.setClientSecret = function setClientSecret(clientSecret) {
+  Models.wrapperInstance.setClientSecret(clientSecret);
 };
 
-Album.getRedirectURI = function() {
-    return Models.wrapperInstance.getRedirectURI();
+Album.setAccessToken = function setAccessToken(accessToken) {
+  Models.wrapperInstance.setAccessToken(accessToken);
 };
 
-Album.getClientId = function() {
-    return Models.wrapperInstance.getClientId();
+Album.setRefreshToken = function setRefreshToken(refreshToken) {
+  Models.wrapperInstance.setRefreshToken(refreshToken);
 };
 
-Album.getClientSecret = function() {
-    return Models.wrapperInstance.getClientSecret();
+Album.setRedirectURI = function setRedirectURI(redirectUri) {
+  Models.wrapperInstance.setRedirectURI(redirectUri);
 };
 
-Album.getAccessToken = function() {
-    return Models.wrapperInstance.getAccessToken();
+Album.getRedirectURI = function getRedirectURI() {
+  return Models.wrapperInstance.getRedirectURI();
 };
 
-Album.getRefreshToken = function() {
-    return Models.wrapperInstance.getRefreshToken();
+Album.getClientId = function getClientId() {
+  return Models.wrapperInstance.getClientId();
 };
 
-Album.resetClientId = function() {
-    return Models.wrapperInstance.resetClientId();
+Album.getClientSecret = function getClientSecret() {
+  return Models.wrapperInstance.getClientSecret();
 };
 
-Album.resetClientSecret = function() {
-    return Models.wrapperInstance.resetClientSecret();
+Album.getAccessToken = function getAccessToken() {
+  return Models.wrapperInstance.getAccessToken();
 };
 
-Album.resetAccessToken = function() {
-    return Models.wrapperInstance.resetAccessToken();
+Album.getRefreshToken = function getRefreshToken() {
+  return Models.wrapperInstance.getRefreshToken();
 };
 
-Album.resetRefreshToken = function() {
-    return Models.wrapperInstance.resetRefreshToken();
+Album.resetClientId = function resetClientId() {
+  return Models.wrapperInstance.resetClientId();
 };
 
-Album.resetRedirectURI = function() {
-    return Models.wrapperInstance.resetRedirectURI();
+Album.resetClientSecret = function resetClientSecret() {
+  return Models.wrapperInstance.resetClientSecret();
+};
+
+Album.resetAccessToken = function resetAccessToken() {
+  return Models.wrapperInstance.resetAccessToken();
+};
+
+Album.resetRefreshToken = function resetRefreshToken() {
+  return Models.wrapperInstance.resetRefreshToken();
+};
+
+Album.resetRedirectURI = function resetRedirectURI() {
+  return Models.wrapperInstance.resetRedirectURI();
 };
 
 module.exports = Album;

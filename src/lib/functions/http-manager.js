@@ -1,24 +1,22 @@
-'use strict';
-
 // From spotify-web-api
 // Used to fix endpoints that were broken and add new endpoints not yet added.
 
-var superagent = require('superagent'),
-  WebApiError = require('./webapi-error');
+const superagent = require('superagent');
+const WebApiError = require('./webapi-error');
 
-var HttpManager = {};
+const HttpManager = {};
 
 /* Create superagent options from the base request */
-var _getParametersFromRequest = function(request) {
-  var options = {};
+const _getParametersFromRequest = function _getParametersFromRequest(request) {
+  const options = {};
 
   if (request.getQueryParameters()) {
     options.query = request.getQueryParameters();
   }
 
   if (
-    request.getHeaders() &&
-    request.getHeaders()['Content-Type'] === 'application/json'
+    request.getHeaders()
+    && request.getHeaders()['Content-Type'] === 'application/json'
   ) {
     options.data = JSON.stringify(request.getBodyParameters());
   } else if (request.getBodyParameters()) {
@@ -32,48 +30,49 @@ var _getParametersFromRequest = function(request) {
 };
 
 /* Create an error object from an error returned from the Web API */
-var _getErrorObject = function(defaultMessage, err) {
-  var errorObject;
+const _getErrorObject = function _getErrorObject(defaultMessage, err) {
+  let errorObject;
   if (typeof err.error === 'object' && typeof err.error.message === 'string') {
     // Web API Error format
     errorObject = new WebApiError(err.error.message, err.error.status);
   } else if (typeof err.error === 'string') {
     // Authorization Error format
     /* jshint ignore:start */
-    errorObject = new WebApiError(err.error + ': ' + err['error_description']);
+    errorObject = new WebApiError(`${err.error}: ${err.error_description}`);
     /* jshint ignore:end */
   } else if (typeof err === 'string') {
     // Serialized JSON error
     try {
-      var parsedError = JSON.parse(err);
+      const parsedError = JSON.parse(err);
       errorObject = new WebApiError(
         parsedError.error.message,
-        parsedError.error.status
+        parsedError.error.status,
       );
-    } catch (err) {
-      // Error not JSON formatted
+    } catch (error) {
+      return;
     }
   }
 
   if (!errorObject) {
     // Unexpected format
-    errorObject = new WebApiError(defaultMessage + ': ' + JSON.stringify(err));
+    errorObject = new WebApiError(`${defaultMessage}: ${JSON.stringify(err)}`);
   }
 
+  // eslint-disable-next-line consistent-return
   return errorObject;
 };
 
 /* Make the request to the Web API */
-HttpManager._makeRequest = function(method, options, uri, callback) {
-  var req = method.bind(superagent)(uri);
+HttpManager._makeRequest = function _makeRequest(method, options, uri, callback) {
+  const req = method.bind(superagent)(uri);
 
   if (options.query) {
     req.query(options.query);
   }
 
   if (
-    options.data &&
-    (!options.headers || options.headers['Content-Type'] !== 'application/json')
+    options.data
+    && (!options.headers || options.headers['Content-Type'] !== 'application/json')
   ) {
     req.type('form');
     req.send(options.data);
@@ -85,10 +84,10 @@ HttpManager._makeRequest = function(method, options, uri, callback) {
     req.set(options.headers);
   }
 
-  req.end(function(err, response) {
+  req.end((err, response) => {
     if (err) {
-      var errorObject = _getErrorObject('Request error', {
-        error: err
+      const errorObject = _getErrorObject('Request error', {
+        error: err,
       });
       return callback(errorObject);
     }
@@ -96,7 +95,7 @@ HttpManager._makeRequest = function(method, options, uri, callback) {
     return callback(null, {
       body: response.body,
       headers: response.headers,
-      statusCode: response.statusCode
+      statusCode: response.statusCode,
     });
   });
 };
@@ -106,9 +105,9 @@ HttpManager._makeRequest = function(method, options, uri, callback) {
  * @param {BaseRequest} The request.
  * @param {Function} The callback function.
  */
-HttpManager.get = function(request, callback) {
-  var options = _getParametersFromRequest(request);
-  var method = superagent.get;
+HttpManager.get = function get(request, callback) {
+  const options = _getParametersFromRequest(request);
+  const method = superagent.get;
 
   HttpManager._makeRequest(method, options, request.getURI(), callback);
 };
@@ -118,9 +117,9 @@ HttpManager.get = function(request, callback) {
  * @param {BaseRequest} The request.
  * @param {Function} The callback function.
  */
-HttpManager.post = function(request, callback) {
-  var options = _getParametersFromRequest(request);
-  var method = superagent.post;
+HttpManager.post = function post(request, callback) {
+  const options = _getParametersFromRequest(request);
+  const method = superagent.post;
 
   HttpManager._makeRequest(method, options, request.getURI(), callback);
 };
@@ -130,9 +129,9 @@ HttpManager.post = function(request, callback) {
  * @param {BaseRequest} The request.
  * @param {Function} The callback function.
  */
-HttpManager.del = function(request, callback) {
-  var options = _getParametersFromRequest(request);
-  var method = superagent.del;
+HttpManager.del = function del(request, callback) {
+  const options = _getParametersFromRequest(request);
+  const method = superagent.del;
 
   HttpManager._makeRequest(method, options, request.getURI(), callback);
 };
@@ -142,9 +141,9 @@ HttpManager.del = function(request, callback) {
  * @param {BaseRequest} The request.
  * @param {Function} The callback function.
  */
-HttpManager.put = function(request, callback) {
-  var options = _getParametersFromRequest(request);
-  var method = superagent.put;
+HttpManager.put = function put(request, callback) {
+  const options = _getParametersFromRequest(request);
+  const method = superagent.put;
 
   HttpManager._makeRequest(method, options, request.getURI(), callback);
 };

@@ -1,796 +1,820 @@
-'use strict';
+const Models = require('../../index');
 
-// Associated Models
-var Models = require('../../index');
-
- /**
- * Track Constructor
- * Creates a new Track Instance for a given track.
- * @param {Object | String} data Data to be preloaded. Must either be a string of the track ID or contain an `id` property.
+/**
+ * Creates a new Track instance for a given track
+ *
+ * @param {object | string} data Data to be preloaded,
+ * Must either be a string of the track ID or contain an `id` property
  */
 function Track(data) {
-    try {
-        if (typeof(data) == 'string') {
-            this.id = data;
-        } else if (typeof(data) == 'object') {
-            if (data.hasOwnProperty('id')) {
-                this.id = data.id; 
-            } else {
-                throw new Error("Track.constructor: No ID Provided");
-            }
-            this.loadConditionally(data);
-        } else {
-            throw new Error("Track.constructor: Invalid Data");
-        }
-    } catch (error) {
-        throw error;
+  if (typeof (data) === 'string') {
+    this.id = data;
+  } else if (typeof (data) === 'object') {
+    if ('id' in data) {
+      this.id = data.id;
+    } else {
+      throw new Error('Track.constructor: No ID Provided');
     }
+    this.loadConditionally(data);
+  } else {
+    throw new Error('Track.constructor: Invalid Data');
+  }
 }
 
 Track.prototype = {
-    /**
-     * Play Track
-     * Plays track on user's active device.
-     * @param {Object} options (Optional) Additional options.
-     * @returns {Object} Response from request.
-     * options.position_ms: {Number} Position to start playback (Milliseconds) (Depreciated? spotify-web-api-node?)
-     */
-    play: async function(options) {
-        try {
-            let _options = options ? options : {};
-            _options.uris = [ 'spotify:track:' + this.id ];
-            return await Models.wrapperInstance.play(_options);
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Plays track on user's active device
+   * @param {object} [options] (Optional) Additional options
+   * @param {number} [options.position_ms] Position to start playback
+   * (Milliseconds) (Depreciated? spotify-web-api-node?)
+   * @returns {object} Response from request
+   */
+  async play(options) {
+    const _options = options || {};
+    _options.uris = [`spotify:track:${this.id}`];
+    return Models.wrapperInstance.play(_options);
+  },
 
-    /**
-     * Is Liked
-     * Returns whether this track is saved to the user's library.
-     * @returns {Boolean} Whether this track is saved to the user's library.
-     */
-    isLiked: async function() {
-        try {
-            let response = await Models.wrapperInstance.containsMySavedTracks([this.id]);
-            return response.body[0];
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Returns whether this track is saved to the user's library
+   *
+   * @returns {boolean} Whether this track is saved to the user's library
+   */
+  async isLiked() {
+    const response = await Models.wrapperInstance.containsMySavedTracks([this.id]);
+    return response.body[0];
+  },
 
-    /**
-     * Like Track
-     * Adds this track to the user's library.
-     * @returns {Object} Response from request.
-     */
-    like: async function() {
-        try {
-            return await Models.wrapperInstance.addToMySavedTracks([this.id]);
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Adds this track to the user's library
+   *
+   * @returns {object} Response from request
+   */
+  like() {
+    return Models.wrapperInstance.addToMySavedTracks([this.id]);
+  },
 
-    /**
-    * Unlike Track
-    * Removes this track from the user's library.
-    * @param {Wrapper} wrapper Enhanced Spotify API Wrapper instance for API calls.
-    * @returns {Object} Response from request.
-    */
-    unlike: async function() {
-        try {
-            return await Models.wrapperInstance.removeFromMySavedTracks([this.id]);
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+  * Removes this track from the user's library
+  *
+  * @returns {object} Response from request
+  */
+  unlike() {
+    return Models.wrapperInstance.removeFromMySavedTracks([this.id]);
+  },
 
-    /**
-     * Contains Full Object
-     * Returns boolean whether full object data is present.
-     * @returns {Boolean} Whether full object is loaded.
-     */
-    containsFullObject: function() {
-        return ((this.name != null) && (this.album) && (this.artists != null) && (this.available_markets != null) && (this.disc_number != null) && (this.duration_ms != null) && (this.explicit != null) && (this.external_ids) && (this.external_urls) && (this.href != null) && (this.popularity != null) && (this.preview_url != null) && (this.track_number != null) && (this.uri != null) && (this.is_local != null));
-    },
+  /**
+   * Returns boolean whether full object data is present
+   *
+   * @returns {boolean} Whether full object is loaded
+   */
+  containsFullObject() {
+    return ((this.name != null)
+      && (this.album)
+      && (this.artists != null)
+      && (this.available_markets != null)
+      && (this.disc_number != null)
+      && (this.duration_ms != null)
+      && (this.explicit != null)
+      && (this.external_ids)
+      && (this.external_urls)
+      && (this.href != null)
+      && (this.popularity != null)
+      && (this.preview_url != null)
+      && (this.track_number != null)
+      && (this.uri != null)
+      && (this.is_local != null));
+  },
 
-    /**
-     * Contains Simplified Object
-     * Returns boolean whether simplified object data is present.
-     * @returns {Boolean} Whether simplified object is loaded.
-     */
-    containsSimplifiedObject: function() {
-        return ((this.name != null) && (this.artists != null) && (this.available_markets != null) && (this.disc_number != null) && (this.duration_ms != null) && (this.explicit != null) && (this.external_urls) && (this.href != null) && (this.preview_url != null) && (this.track_number != null) && (this.uri != null) && (this.is_local != null));
-    },
+  /**
+   * Returns boolean whether simplified object data is present
+   *
+   * @returns {boolean} Whether simplified object is loaded
+   */
+  containsSimplifiedObject() {
+    return ((this.name != null)
+      && (this.artists != null)
+      && (this.available_markets != null)
+      && (this.disc_number != null)
+      && (this.duration_ms != null)
+      && (this.explicit != null)
+      && (this.external_urls)
+      && (this.href != null)
+      && (this.preview_url != null)
+      && (this.track_number != null)
+      && (this.uri != null)
+      && (this.is_local != null));
+  },
 
-    /**
-     * Contains Link Object
-     * Returns boolean whether link object data is present.
-     * @returns {Boolean} Whether link object is loaded.
-     */
-    containsLinkObject: function() {
-        return ((this.external_urls != null) && (this.href != null) && (this.uri != null));
-    },
+  /**
+   * Returns boolean whether link object data is present
+   *
+   * @returns {boolean} Whether link object is loaded
+   */
+  containsLinkObject() {
+    return ((this.external_urls != null)
+      && (this.href != null)
+      && (this.uri != null));
+  },
 
-    /**
-     * Contains Audio Features
-     * Returns boolean whether audio feature data is present.
-     * @returns {Boolean} Whether audio features data is loaded.
-     */
-    containsAudioFeatures: function() {
-        return ((this.duration_ms != null) && (this.key != null) && (this.mode != null) && (this.time_signature != null) && (this.acousticness != null) && (this.danceability != null) && (this.energy != null) && (this.instrumentalness != null) && (this.liveness != null) && (this.loudness != null) && (this.speechiness != null) && (this.valence != null) && (this.tempo != null) && (this.uri != null) && (this.track_href != null) && (this.analysis_url != null));
-    },
+  /**
+   * Returns boolean whether audio feature data is present
+   *
+   * @returns {boolean} Whether audio features data is loaded
+   */
+  containsAudioFeatures() {
+    return ((this.duration_ms != null)
+      && (this.key != null)
+      && (this.mode != null)
+      && (this.time_signature != null)
+      && (this.acousticness != null)
+      && (this.danceability != null)
+      && (this.energy != null)
+      && (this.instrumentalness != null)
+      && (this.liveness != null)
+      && (this.loudness != null)
+      && (this.speechiness != null)
+      && (this.valence != null)
+      && (this.tempo != null)
+      && (this.uri != null)
+      && (this.track_href != null)
+      && (this.analysis_url != null));
+  },
 
-    /**
-     * Contains Audio Analysis
-     * Returns boolean whether audio analysis data is present.
-     * @returns {Boolean} Whether audio analysis data is loaded.
-     */
-    containsAudioAnalysis: function() {
-        return ((this.bars != null) && (this.beats != null) && (this.sections != null) && (this.segments != null) && (this.tatums != null) && (this.track != null));
-    },
+  /**
+   * Returns boolean whether audio analysis data is present
+   *
+   * @returns {boolean} Whether audio analysis data is loaded
+   */
+  containsAudioAnalysis() {
+    return ((this.bars != null)
+      && (this.beats != null)
+      && (this.sections != null)
+      && (this.segments != null)
+      && (this.tatums != null)
+      && (this.track != null));
+  },
 
-    /**
-     * Get Full Object
-     * Returns full track data. Retrieves from Spotify API if necessary.
-     * @returns {Object} Track Full Object Data.
-     */
-    getFullObject: async function() {
-        try {
-            if (!(await this.containsFullObject())) {
-                await this.retrieveFullObject();
-            }
-            let result = {
-                id: this.id,
-                name: this.name,
-                album: this.album,
-                artists: this.artists,
-                available_markets: this.available_markets,
-                disc_number: this.disc_number,
-                duration_ms: this.duration_ms,
-                explicit: this.explicit,
-                external_ids: this.external_ids,
-                external_urls: this.external_urls,
-                href: this.href,
-                popularity: this.popularity,
-                preview_url: this.preview_url,
-                track_number: this.track_number,
-                uri: this.uri,
-                is_local: this.is_local,
-                type: 'track',
-            };
-            if (this.is_playable != null) {
-                result.is_playable = this.is_playable;
-            }
-            if (this.linked_from != null) {
-                result.linked_from = this.linked_from;
-            }
-            if (this.restrictions != null) {
-                result.restrictions = this.restrictions;
-            }
-            return result;
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Returns full track data,
+   * Retrieves from Spotify API if necessary
+   *
+   * @returns {object} Track full object data
+   */
+  async getFullObject() {
+    if (!(this.containsFullObject())) {
+      await this.retrieveFullObject();
+    }
+    const result = {
+      id: this.id,
+      name: this.name,
+      album: this.album,
+      artists: this.artists,
+      available_markets: this.available_markets,
+      disc_number: this.disc_number,
+      duration_ms: this.duration_ms,
+      explicit: this.explicit,
+      external_ids: this.external_ids,
+      external_urls: this.external_urls,
+      href: this.href,
+      popularity: this.popularity,
+      preview_url: this.preview_url,
+      track_number: this.track_number,
+      uri: this.uri,
+      is_local: this.is_local,
+      type: 'track',
+    };
+    if (this.is_playable != null) {
+      result.is_playable = this.is_playable;
+    }
+    if (this.linked_from != null) {
+      result.linked_from = this.linked_from;
+    }
+    if (this.restrictions != null) {
+      result.restrictions = this.restrictions;
+    }
+    return result;
+  },
 
-    /**
-     * Get Simplified Object
-     * Returns simplified track data. Retrieves from Spotify API if necessary.
-     * @returns {Object} Track Simplified Object Data.
-     */
-    getSimplifiedObject: async function() {
-        try {
-            if (!(await this.containsSimplifiedObject())) {
-                await this.retrieveFullObject();
-            }
-            let result = {
-                id: this.id,
-                name: this.name,
-                artists: this.artists,
-                available_markets: this.available_markets,
-                disc_number: this.disc_number,
-                duration_ms: this.duration_ms,
-                explicit: this.explicit,
-                external_urls: this.external_urls,
-                href: this.href,
-                preview_url: this.preview_url,
-                track_number: this.track_number,
-                uri: this.uri,
-                is_local: this.is_local,
-                type: 'track',
-            };
-            if (this.is_playable != null) {
-                result.is_playable = this.is_playable;
-            }
-            if (this.linked_from != null) {
-                result.linked_from = this.linked_from;
-            }
-            if (this.restrictions != null) {
-                result.restrictions = this.restrictions;
-            }
-            return result;
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Returns simplified track data,
+   * Retrieves from Spotify API if necessary
+   *
+   * @returns {object} Track simplified object data
+   */
+  async getSimplifiedObject() {
+    if (!(this.containsSimplifiedObject())) {
+      await this.retrieveFullObject();
+    }
+    const result = {
+      id: this.id,
+      name: this.name,
+      artists: this.artists,
+      available_markets: this.available_markets,
+      disc_number: this.disc_number,
+      duration_ms: this.duration_ms,
+      explicit: this.explicit,
+      external_urls: this.external_urls,
+      href: this.href,
+      preview_url: this.preview_url,
+      track_number: this.track_number,
+      uri: this.uri,
+      is_local: this.is_local,
+      type: 'track',
+    };
+    if (this.is_playable != null) {
+      result.is_playable = this.is_playable;
+    }
+    if (this.linked_from != null) {
+      result.linked_from = this.linked_from;
+    }
+    if (this.restrictions != null) {
+      result.restrictions = this.restrictions;
+    }
+    return result;
+  },
 
-    /**
-     * Get Track Link
-     * Returns track link data. Retrieves from Spotify API if necessary.
-     * @returns {Object} Track Link Data
-     */
-    getLinkObject: async function() {
-        try {
-            if (!(await this.containsLinkObject())) {
-                await this.retrieveFullObject();
-            } 
-            return {
-                id: this.id,
-                external_urls: this.external_urls,
-                href: this.href,
-                uri: this.uri,
-                type: 'track',
-            };
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Returns track link data,
+   * Retrieves from Spotify API if necessary
+   *
+   * @returns {object} Track link data
+   */
+  async getLinkObject() {
+    if (!(this.containsLinkObject())) {
+      await this.retrieveFullObject();
+    }
+    return {
+      id: this.id,
+      external_urls: this.external_urls,
+      href: this.href,
+      uri: this.uri,
+      type: 'track',
+    };
+  },
 
-    /**
-     * Get Audio Feature Data
-     * Returns audio feature data. Retrieves from Spotify API if necessary.
-     * @returns {Object} Track Audio Feature Data
-     */
-    getAudioFeatures: async function() {
-        try {
-            if (!(await this.containsAudioFeatures())) {
-                await this.retrieveAudioFeatures();
-            }
-            return {
-                id: this.id,
-                duration_ms: this.duration_ms,
-                key: this.key,
-                mode: this.mode,
-                time_signature: this.time_signature,
-                acousticness: this.acousticness,
-                danceability: this.danceability,
-                energy: this.energy,
-                instrumentalness: this.instrumentalness,
-                liveness: this.liveness,
-                loudness: this.loudness,
-                speechiness: this.speechiness,
-                valence: this.valence,
-                tempo: this.tempo,
-                uri: this.uri,
-                track_href: this.track_href,
-                analysis_url: this.analysis_url,
-                type: 'audio_features',
-            };
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Returns audio feature data,
+   * Retrieves from Spotify API if necessary
+   *
+   * @returns {object} Track audio feature data
+   */
+  async getAudioFeatures() {
+    if (!(this.containsAudioFeatures())) {
+      await this.retrieveAudioFeatures();
+    }
+    return {
+      id: this.id,
+      duration_ms: this.duration_ms,
+      key: this.key,
+      mode: this.mode,
+      time_signature: this.time_signature,
+      acousticness: this.acousticness,
+      danceability: this.danceability,
+      energy: this.energy,
+      instrumentalness: this.instrumentalness,
+      liveness: this.liveness,
+      loudness: this.loudness,
+      speechiness: this.speechiness,
+      valence: this.valence,
+      tempo: this.tempo,
+      uri: this.uri,
+      track_href: this.track_href,
+      analysis_url: this.analysis_url,
+      type: 'audio_features',
+    };
+  },
 
-    /**
-     * Get Audio Analysis Data
-     * Returns audio analysis data. Retrieves from Spotify API if necessary.
-     * @returns {object} Track Audio Analysis Data
-     */
-    getAudioAnalysis: async function() {
-        try {
-            if (!(await this.containsAudioAnalysis())) {
-                await this.retrieveAudioAnalysis();
-            }
-            let results = {
-                bars: this.bars,
-                beats: this.beats,
-                sections: this.sections,
-                segments: this.segments,
-                tatums: this.tatums,
-                track: this.track,
-            };
-            if (this.meta != null) {
-                results.meta = this.meta;
-            }
-            return results;
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Returns audio analysis data,
+   * Retrieves from Spotify API if necessary
+   *
+   * @returns {object} Track audio analysis data
+   */
+  async getAudioAnalysis() {
+    if (!(this.containsAudioAnalysis())) {
+      await this.retrieveAudioAnalysis();
+    }
+    const results = {
+      bars: this.bars,
+      beats: this.beats,
+      sections: this.sections,
+      segments: this.segments,
+      tatums: this.tatums,
+      track: this.track,
+    };
+    if (this.meta != null) {
+      results.meta = this.meta;
+    }
+    return results;
+  },
 
-    /**
-     * Get All Data
-     * Returns all data. Retrieves from Spotify API if necessary.
-     * @returns {Object} All Track's Data
-     */
-    getAllData: async function() {
-        try {
-            if (!(await this.containsAudioAnalysis())) {
-                await this.retrieveAudioAnalysis();
-            }
-            if (!(await this.containsAudioFeatures())) {
-                await this.retrieveAudioFeatures();
-            }
-            if (!(await this.containsFullObject())) {
-                await this.retrieveFullObject();
-            }
-            let results = {
-                id: this.id,
-                name: this.name,
-                album: this.album,
-                artists: this.artists,
-                available_markets: this.available_markets,
-                disc_number: this.disc_number,
-                explicit: this.explicit,
-                external_ids: this.external_ids,
-                external_urls: this.external_urls,
-                href: this.href,
-                popularity: this.popularity,
-                preview_url: this.preview_url,
-                track_number: this.track_number,
-                type: "track",
-                uri: this.uri,
-                is_local: this.is_local,
-                duration_ms: this.duration_ms,
-                key: this.key,
-                mode: this.mode,
-                time_signature: this.time_signature,
-                acousticness: this.acousticness,
-                danceability: this.danceability,
-                energy: this.energy,
-                instrumentalness: this.instrumentalness,
-                liveness: this.liveness,
-                loudness: this.loudness,
-                speechiness: this.speechiness,
-                valence: this.valence,
-                tempo: this.tempo,
-                track_href: this.track_href,
-                analysis_url: this.analysis_url,
-                bars: this.bars,
-                beats: this.beats,
-                sections: this.sections,
-                segments: this.segments,
-                tatums: this.tatums,
-                track: this.track,
-            };
-            if (this.meta != null) {
-                results.meta = this.meta;
-            }
-            if (this.is_playable != null) {
-                result.is_playable = this.is_playable;
-            }
-            if (this.linked_from != null) {
-                result.linked_from = this.linked_from;
-            }
-            if (this.restrictions != null) {
-                result.restrictions = this.restrictions;
-            }
-            return results;
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Returns all data,
+   * Retrieves from Spotify API if necessary
+   *
+   * @returns {object} All track's data
+   */
+  async getAllData() {
+    if (!(this.containsAudioAnalysis())) {
+      await this.retrieveAudioAnalysis();
+    }
+    if (!(this.containsAudioFeatures())) {
+      await this.retrieveAudioFeatures();
+    }
+    if (!(this.containsFullObject())) {
+      await this.retrieveFullObject();
+    }
+    const results = {
+      id: this.id,
+      name: this.name,
+      album: this.album,
+      artists: this.artists,
+      available_markets: this.available_markets,
+      disc_number: this.disc_number,
+      explicit: this.explicit,
+      external_ids: this.external_ids,
+      external_urls: this.external_urls,
+      href: this.href,
+      popularity: this.popularity,
+      preview_url: this.preview_url,
+      track_number: this.track_number,
+      type: 'track',
+      uri: this.uri,
+      is_local: this.is_local,
+      duration_ms: this.duration_ms,
+      key: this.key,
+      mode: this.mode,
+      time_signature: this.time_signature,
+      acousticness: this.acousticness,
+      danceability: this.danceability,
+      energy: this.energy,
+      instrumentalness: this.instrumentalness,
+      liveness: this.liveness,
+      loudness: this.loudness,
+      speechiness: this.speechiness,
+      valence: this.valence,
+      tempo: this.tempo,
+      track_href: this.track_href,
+      analysis_url: this.analysis_url,
+      bars: this.bars,
+      beats: this.beats,
+      sections: this.sections,
+      segments: this.segments,
+      tatums: this.tatums,
+      track: this.track,
+    };
+    if (this.meta != null) {
+      results.meta = this.meta;
+    }
+    if (this.is_playable != null) {
+      results.is_playable = this.is_playable;
+    }
+    if (this.linked_from != null) {
+      results.linked_from = this.linked_from;
+    }
+    if (this.restrictions != null) {
+      results.restrictions = this.restrictions;
+    }
+    return results;
+  },
 
-    /**
-     * Get Current Data
-     * Just returns whatever the track object currently hold.
-     * @returns {Object} Any Track Data.
-     */
-    getCurrentData: function() {
-        try {
-            let data = { id: this.id, type: 'track' };
-            let properties = ['name', 'album', 'artists', 'available_markets', 'disc_number', 'explicit', 'external_ids', 'external_urls', 'href', 'is_playable', 'linked_from', 'restrictions', 'popularity', 'preview_url', 'track_number', 'uri', 'is_local', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'valence', 'tempo', 'track_href', 'analysis_url', 'bars', 'beats', 'sections', 'segments', 'tatums', 'track', 'meta'];
-            for (let i = 0; i < properties.length; i++) {
-                if (this[properties[i]] != null) {
-                    data[properties[i]] = this[properties[i]];
-                }
-            }
-            return data;
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Just returns whatever the track object currently hold
+   *
+   * @returns {object} Any track data
+   */
+  getCurrentData() {
+    const data = {
+      id: this.id,
+      type: 'track',
+    };
 
-    /**
-     * Get Track Artists
-     * Returns Artists Object with track's artists.
-     */
-    getArtists: async function() {
-        try {
-            if (!(this.artists != null)) {
-                await this.retrieveFullObject();
-            }
-            return new Models.Artists(this.artists);
-        } catch (error) {
-            throw error;
-        }
-    },
+    const properties = [
+      'name',
+      'album',
+      'artists',
+      'available_markets',
+      'disc_number',
+      'explicit',
+      'external_ids',
+      'external_urls',
+      'href',
+      'is_playable',
+      'linked_from',
+      'restrictions',
+      'popularity',
+      'preview_url',
+      'track_number',
+      'uri',
+      'is_local',
+      'acousticness',
+      'danceability',
+      'energy',
+      'instrumentalness',
+      'liveness',
+      'loudness',
+      'speechiness',
+      'valence',
+      'tempo',
+      'track_href',
+      'analysis_url',
+      'bars',
+      'beats',
+      'sections',
+      'segments',
+      'tatums',
+      'track',
+      'meta',
+    ];
 
-    /**
-     * Get Track Album
-     * Returns Album Object for track's album.
-     */
-    getAlbum: async function() {
-        try {
-            if (!this.album) {
-                await this.retrieveFullObject();
-            }
-            return new Models.Album(this.album);
-        } catch (error) {
-            throw error;
-        }
-    },
+    for (let i = 0; i < properties.length; i += 1) {
+      if (this[properties[i]] != null) {
+        data[properties[i]] = this[properties[i]];
+      }
+    }
+    return data;
+  },
 
-    /**
-     * Get Recommendations
-     * Returns recommendations for track.
-     * @param {Object} options (Optional) Additional options.
-     * @returns {Tracks} Track Instance with recommended tracks.
-     * options.limit: {Number} Number of tracks to Retrieve (Default 20).
-     * options.target_[audio_feature]: {Number} Value to target for specific audio feature.
-     * options.min_[audio_feature]: {Number} Minimum value for specific audio feature.
-     * options.max_[audio_feature]: {Number} Maximum value for specific audio feature.
-     */
-    getRecommendations: async function(options) {
-        try {
-            if (options != null && typeof(options) != 'object') {
-                throw new Error("Track.getRecommendations: Invalid Parameter \"options\"");
-            }
-            let _options = options ? options : {};
-            if (_options.hasOwnProperty('seed_artists')) {
-                delete _options.seed_artists;
-            }
-            if (_options.hasOwnProperty('seed_genres')) {
-                delete _options.seed_artists;
-            }
-            _options.seed_tracks = this.id;
-            let response = await Models.wrapperInstance.getRecommendations(_options);
-            return new Models.Tracks(response.body.tracks);
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Returns Artists object with track's artists
+   */
+  async getArtists() {
+    if (!(this.artists != null)) {
+      await this.retrieveFullObject();
+    }
+    return new Models.Artists(this.artists);
+  },
 
-    /**
-     * Get Recommendations with Audio Features
-     * Returns recommendations for track with added target on audio feature values.
-     * @param {Object} options (Optional) Additional options.
-     * @returns {Tracks} Track Instance with recommended tracks.
-     * options.limit: {Number} Number of tracks to Retrieve (Default 20).
-     */
-    getRecommendationWithAudioFeatures: async function(options) {
-        try {
-            if (options != null && typeof(options) != 'object') {
-                throw new Error("Track.getRecommendationWithAudioFeatures: Invalid Parameter \"options\"");
-            }
-            if (!(await this.containsAudioFeatures())) {
-                await this.retrieveAudioFeatures();
-            }
-            let _options = options ? options : {};
-            if (_options.hasOwnProperty('seed_artists')) {
-                delete _options.seed_artists;
-            }
-            if (_options.hasOwnProperty('seed_genres')) {
-                delete _options.seed_artists;
-            }
-            _options.seed_tracks = this.id;
-            _options.target_acousticness = this.acousticness;
-            _options.target_danceability = this.danceability;
-            _options.target_energy = this.energy;
-            _options.target_instrumentalness = this.instrumentalness;
-            _options.target_liveness = this.liveness;
-            _options.target_mode = this.mode;
-            _options.target_speechiness = this.speechiness;
-            _options.target_tempo = this.tempo;
-            _options.target_valence = this.valence;
-            let response = await Models.wrapperInstance.getRecommendations(_options);
-            return new Models.Tracks(response.body.tracks);
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Returns Album object for track's album
+   */
+  async getAlbum() {
+    if (!this.album) {
+      await this.retrieveFullObject();
+    }
+    return new Models.Album(this.album);
+  },
 
-    /**
-     * Load Full Object
-     * Sets full data (outside constructor).
-     * @param {Object} data Object with track full object data.
-     */
-    loadFullObject: function(data) {
-        try {
-            this.name = data.name;
-            this.album = data.album;
-            this.artists = data.artists;
-            this.available_markets = data.available_markets;
-            this.disc_number = data.disc_number;
-            this.duration_ms = data.duration_ms;
-            this.explicit = data.explicit;
-            this.external_ids = data.external_ids;
-            this.external_urls = data.external_urls;
-            this.href = data.href;
-            this.is_playable = data.is_playable;
-            this.linked_from = data.linked_from;
-            this.restrictions = data.restrictions;
-            this.popularity = data.popularity;
-            this.preview_url = data.preview_url;
-            this.track_number = data.track_number;
-            this.uri = data.uri;
-            this.is_local = data.is_local;
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Returns recommendations for track
+   *
+   * @param {object} [options] (Optional) Additional options
+   * @param {number} [options.limit] Number of tracks to retrieve
+   * @param {number} [options.target_[audio_feature]] Value to target for specific audio feature
+   * @param {number} [options.min_[audio_feature]] Minimum value for specific audio feature
+   * @param {number} [options.max_[audio_feature]] Maximum value for specific audio feature
+   * @returns {Tracks} Track instance with recommended tracks
+   */
+  async getRecommendations(options) {
+    if (options != null && typeof (options) !== 'object') {
+      throw new Error('Track.getRecommendations: Invalid Parameter "options"');
+    }
+    const _options = options || {};
+    if ('seed_artists' in _options) {
+      delete _options.seed_artists;
+    }
+    if ('seed_genres' in _options) {
+      delete _options.seed_artists;
+    }
+    _options.seed_tracks = this.id;
+    const response = await Models.wrapperInstance.getRecommendations(_options);
+    return new Models.Tracks(response.body.tracks);
+  },
 
-    /**
-     * Load Simplified Object
-     * Sets simplified data (outside constructor).
-     * @param {Object} data Object with track simplified object data.
-     */
-    loadSimplifiedObject: function(data) {
-        try {
-            this.name = data.name;
-            this.artists = data.artists;
-            this.available_markets = data.available_markets;
-            this.disc_number = data.disc_number;
-            this.duration_ms = data.duration_ms;
-            this.explicit = data.explicit;
-            this.external_urls = data.external_urls;
-            this.href = data.href;
-            this.is_playable = data.is_playable;
-            this.linked_from = data.linked_from;
-            this.restrictions = data.restrictions;
-            this.preview_url = data.preview_url;
-            this.track_number = data.track_number;
-            this.uri = data.uri;
-            this.is_local = data.is_local;
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Returns recommendations for track with added target on audio feature values
+   *
+   * @param {object} [options] (Optional) Additional options
+   * @param {number} [options.limit] Number of tracks to retrieve
+   * @returns {Tracks} Track Instance with recommended tracks
+   */
+  async getRecommendationWithAudioFeatures(options) {
+    if (options != null && typeof (options) !== 'object') {
+      throw new Error('Track.getRecommendationWithAudioFeatures: Invalid Parameter "options"');
+    }
+    if (!(await this.containsAudioFeatures())) {
+      await this.retrieveAudioFeatures();
+    }
+    const _options = options || {};
+    if ('seed_artists' in _options) {
+      delete _options.seed_artists;
+    }
+    if ('seed_genres' in _options) {
+      delete _options.seed_artists;
+    }
+    _options.seed_tracks = this.id;
+    _options.target_acousticness = this.acousticness;
+    _options.target_danceability = this.danceability;
+    _options.target_energy = this.energy;
+    _options.target_instrumentalness = this.instrumentalness;
+    _options.target_liveness = this.liveness;
+    _options.target_mode = this.mode;
+    _options.target_speechiness = this.speechiness;
+    _options.target_tempo = this.tempo;
+    _options.target_valence = this.valence;
+    const response = await Models.wrapperInstance.getRecommendations(_options);
+    return new Models.Tracks(response.body.tracks);
+  },
 
-    /**
-     * Load Link Object
-     * Sets link data (outside constructor).
-     * @param {Object} data Object with track link object data.
-     */
-    loadLinkObject: function(data) {
-        try {
-            this.external_urls = data.external_urls;
-            this.href = data.href;
-            this.uri = data.uri;
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Sets full data (outside constructor)
+   *
+   * @param {object} data Object with track full object data
+   */
+  loadFullObject(data) {
+    this.name = data.name;
+    this.album = data.album;
+    this.artists = data.artists;
+    this.available_markets = data.available_markets;
+    this.disc_number = data.disc_number;
+    this.duration_ms = data.duration_ms;
+    this.explicit = data.explicit;
+    this.external_ids = data.external_ids;
+    this.external_urls = data.external_urls;
+    this.href = data.href;
+    this.is_playable = data.is_playable;
+    this.linked_from = data.linked_from;
+    this.restrictions = data.restrictions;
+    this.popularity = data.popularity;
+    this.preview_url = data.preview_url;
+    this.track_number = data.track_number;
+    this.uri = data.uri;
+    this.is_local = data.is_local;
+  },
 
-    /**
-     * Load Audio Features
-     * Sets audio feature data (outside constructor).
-     * @param {Object} data Object with track audio feature data.
-     */
-    loadAudioFeatures: function(data) {
-        try {
-            this.duration_ms = data.duration_ms;
-            this.key = data.key;
-            this.mode = data.mode;
-            this.time_signature = data.time_signature;
-            this.acousticness = data.acousticness;
-            this.danceability = data.danceability;
-            this.energy = data.energy;
-            this.instrumentalness = data.instrumentalness;
-            this.liveness = data.liveness;
-            this.loudness = data.loudness;
-            this.speechiness = data.speechiness;
-            this.valence = data.valence;
-            this.tempo = data.tempo;
-            this.uri = data.uri;
-            this.track_href = data.track_href;
-            this.analysis_url = data.analysis_url;
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Sets simplified data (outside constructor)
+   *
+   * @param {object} data Object with track simplified object data
+   */
+  loadSimplifiedObject(data) {
+    this.name = data.name;
+    this.artists = data.artists;
+    this.available_markets = data.available_markets;
+    this.disc_number = data.disc_number;
+    this.duration_ms = data.duration_ms;
+    this.explicit = data.explicit;
+    this.external_urls = data.external_urls;
+    this.href = data.href;
+    this.is_playable = data.is_playable;
+    this.linked_from = data.linked_from;
+    this.restrictions = data.restrictions;
+    this.preview_url = data.preview_url;
+    this.track_number = data.track_number;
+    this.uri = data.uri;
+    this.is_local = data.is_local;
+  },
 
-    /**
-     * Load Audio Analysis
-     * Sets audio analysis data (outside constructor).
-     * @param {Object} data Object with track audio analysis data.
-     */
-    loadAudioAnalysis: function(data) {
-        try {
-            this.bars = data.bars;
-            this.beats = data.beats;
-            this.sections = data.sections;
-            this.segments = data.segments;
-            this.tatums = data.tatums;
-            this.track = data.track;
-            if (data.hasOwnProperty('meta')) {
-                this.meta = data.meta;
-            }
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Sets link data (outside constructor)
+   *
+   * @param {object} data Object with track link object data
+   */
+  loadLinkObject(data) {
+    this.external_urls = data.external_urls;
+    this.href = data.href;
+    this.uri = data.uri;
+  },
 
-    /**
-     * Load Conditionally
-     * Sets all data conditionally.
-     * @param {Object} data Object with track data.
-     */
-    loadConditionally: function(data) {
-        try {
-            let properties = ['name', 'album', 'artists', 'available_markets', 'disc_number', 'duration_ms', 'explicit', 'external_ids', 'external_urls', 'href', 'is_playable', 'linked_from', 'restrictions', 'popularity', 'preview_url', 'track_number', 'uri', 'is_local', 'key', 'mode', 'time_signature', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'valence', 'tempo', 'track_href', 'analysis_url', 'bars', 'beats', 'sections', 'segments', 'tatums', 'track', 'meta'];
-            for (let i = 0; i < properties.length; i++) {
-                if (data.hasOwnProperty(properties[i])) {
-                    this[properties[i]] = data[properties[i]];
-                }
-            }
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Sets audio feature data (outside constructor)
+   *
+   * @param {object} data Object with track audio feature data
+   */
+  loadAudioFeatures(data) {
+    this.duration_ms = data.duration_ms;
+    this.key = data.key;
+    this.mode = data.mode;
+    this.time_signature = data.time_signature;
+    this.acousticness = data.acousticness;
+    this.danceability = data.danceability;
+    this.energy = data.energy;
+    this.instrumentalness = data.instrumentalness;
+    this.liveness = data.liveness;
+    this.loudness = data.loudness;
+    this.speechiness = data.speechiness;
+    this.valence = data.valence;
+    this.tempo = data.tempo;
+    this.uri = data.uri;
+    this.track_href = data.track_href;
+    this.analysis_url = data.analysis_url;
+  },
 
-    /**
-     * Retrieve Full Object
-     * Retrieves full track data from Spotify API
-     */
-    retrieveFullObject: async function() {
-        try {
-            if (this.hasOwnProperty('is_local') && this.is_local) {
-                return;
-            }
-            let response = await Models.wrapperInstance.getTrack(this.id);
-            await this.loadFullObject(response.body);
-        } catch (error) {
-            throw error;
-        }
-    },
-    
-    /**
-     * Retrieve Audio Features
-     * Retrieves audio feature data from Spotify API
-     */
-    retrieveAudioFeatures: async function() {
-        try {
-            if (this.hasOwnProperty('is_local') && this.is_local) {
-                return;
-            }
-            let response = await Models.wrapperInstance.getAudioFeaturesForTrack(this.id);
-            await this.loadAudioFeatures(response.body);
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Sets audio analysis data (outside constructor)
+   *
+   * @param {object} data Object with track audio analysis data
+   */
+  loadAudioAnalysis(data) {
+    this.bars = data.bars;
+    this.beats = data.beats;
+    this.sections = data.sections;
+    this.segments = data.segments;
+    this.tatums = data.tatums;
+    this.track = data.track;
+    if ('meta' in data) {
+      this.meta = data.meta;
+    }
+  },
 
-     /**
-     * Retrieve Audio Analysis
-     * Retrieves audio analysis data from Spotify API
-     */
-    retrieveAudioAnalysis: async function() {
-        try {
-            if (this.hasOwnProperty('is_local') && this.is_local) {
-                return;
-            }
-            let response = await Models.wrapperInstance.getAudioAnalysisForTrack(this.id);
-            await this.loadAudioAnalysis(response.body);
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Sets all data conditionally
+   *
+   * @param {object} data Object with track data
+   */
+  loadConditionally(data) {
+    const properties = [
+      'name',
+      'album',
+      'artists',
+      'available_markets',
+      'disc_number',
+      'duration_ms',
+      'explicit',
+      'external_ids',
+      'external_urls',
+      'href',
+      'is_playable',
+      'linked_from',
+      'restrictions',
+      'popularity',
+      'preview_url',
+      'track_number',
+      'uri',
+      'is_local',
+      'key',
+      'mode',
+      'time_signature',
+      'acousticness',
+      'danceability',
+      'energy',
+      'instrumentalness',
+      'liveness',
+      'loudness',
+      'speechiness',
+      'valence',
+      'tempo',
+      'track_href',
+      'analysis_url',
+      'bars',
+      'beats',
+      'sections',
+      'segments',
+      'tatums',
+      'track',
+      'meta',
+    ];
+
+    for (let i = 0; i < properties.length; i += 1) {
+      if (properties[i] in data) {
+        this[properties[i]] = data[properties[i]];
+      }
+    }
+  },
+
+  /**
+   * Retrieves full track data from Spotify API
+   */
+  async retrieveFullObject() {
+    if ('is_local' in this && this.is_local) {
+      return;
+    }
+    const response = await Models.wrapperInstance.getTrack(this.id);
+    await this.loadFullObject(response.body);
+  },
+
+  /**
+   * Retrieves audio feature data from Spotify API
+   */
+  async retrieveAudioFeatures() {
+    if ('is_local' in this && this.is_local) {
+      return;
+    }
+    const response = await Models.wrapperInstance.getAudioFeaturesForTrack(this.id);
+    await this.loadAudioFeatures(response.body);
+  },
+
+  /**
+   * Retrieves audio analysis data from Spotify API
+   */
+  async retrieveAudioAnalysis() {
+    if ('is_local' in this && this.is_local) {
+      return;
+    }
+    const response = await Models.wrapperInstance.getAudioAnalysisForTrack(this.id);
+    await this.loadAudioAnalysis(response.body);
+  },
 };
 
 /**
- * Get Track
  * Returns Track object of ID
- * @param {Wrapper} wrapper Enhanced Spotify API instance for API calls.
- * @param {string} trackID Id of track.
- * @returns {Track} Track from id.
+ *
+ * @param {string} trackID Id of track
+ * @returns {Track} Track from id
  */
-Track.getTrack = async function(trackID) {
-    try {
-        let response = Models.wrapperInstance.getTrack(trackID);
-        return new Models.Track(response.body);
-    } catch (error) {
-        throw error;
-    }
+Track.getTrack = async function getTrack(trackID) {
+  const response = Models.wrapperInstance.getTrack(trackID);
+  return new Models.Track(response.body);
 };
 
 /**
- * Add Methods
  * Adds functionality to Class
- * @param {Object} methods Object containing new methods to be added as properties.
+ *
+ * @param {object} methods Object containing new methods to be added as properties
  */
-Track.addMethods = function(methods) {
-    for (let method in methods) {
-        this.prototype[method] = methods[method];
-    }
+Track.addMethods = function addMethods(methods) {
+  const methodNames = Object.keys(methods);
+
+  for (let i = 0; i < methods.length; i += 1) {
+    this.prototype[methodNames[i]] = methods[methodNames[i]];
+  }
 };
 
 /**
- * Override
- * Replaces a method within the Class.
- * @param {String} name Name of the method to replace.
- * @param {Function} method Function to replace with.
+ * Replaces a method within the Class
+ *
+ * @param {string} name Name of the method to replace
+ * @param {function} method Function to replace with
  */
-Track.override = function(name, method) {
-    if (this.prototype.hasOwnProperty(name)) {
-        this.prototype[name] = method;
-    } else {
-        throw new Error("Track.override: \"name\" does not exist.");
-    }
+Track.override = function override(name, method) {
+  if (name in this.prototype) {
+    this.prototype[name] = method;
+  } else {
+    throw new Error('Track.override: \'name\' does not exist.');
+  }
 };
 
-Track.setCredentials = function(credentials) {
-    Models.wrapperInstance.setCredentials(credentials);
+Track.setCredentials = function setCredentials(credentials) {
+  Models.wrapperInstance.setCredentials(credentials);
 };
 
-Track.getCredentials = function() {
-    return Models.wrapperInstance.getCredentials();
+Track.getCredentials = function getCredentials() {
+  return Models.wrapperInstance.getCredentials();
 };
 
-Track.resetCredentials = function() {
-    Models.wrapperInstance.resetCredentials();
+Track.resetCredentials = function resetCredentials() {
+  Models.wrapperInstance.resetCredentials();
 };
 
-Track.setClientId = function(clientId) {
-    Models.wrapperInstance.setClientId(clientId);
+Track.setClientId = function setClientId(clientId) {
+  Models.wrapperInstance.setClientId(clientId);
 };
 
-Track.setClientSecret = function(clientSecret) {
-    Models.wrapperInstance.setClientSecret(clientSecret);
+Track.setClientSecret = function setClientSecret(clientSecret) {
+  Models.wrapperInstance.setClientSecret(clientSecret);
 };
 
-Track.setAccessToken = function(accessToken) {
-    Models.wrapperInstance.setAccessToken(accessToken);
+Track.setAccessToken = function setAccessToken(accessToken) {
+  Models.wrapperInstance.setAccessToken(accessToken);
 };
 
-Track.setRefreshToken = function(refreshToken) {
-    Models.wrapperInstance.setRefreshToken(refreshToken);
+Track.setRefreshToken = function setRefreshToken(refreshToken) {
+  Models.wrapperInstance.setRefreshToken(refreshToken);
 };
 
-Track.setRedirectURI = function(redirectUri) {
-    Models.wrapperInstance.setRedirectURI(redirectUri);
+Track.setRedirectURI = function setRedirectURI(redirectUri) {
+  Models.wrapperInstance.setRedirectURI(redirectUri);
 };
 
-Track.getRedirectURI = function() {
-    return Models.wrapperInstance.getRedirectURI();
+Track.getRedirectURI = function getRedirectURI() {
+  return Models.wrapperInstance.getRedirectURI();
 };
 
-Track.getClientId = function() {
-    return Models.wrapperInstance.getClientId();
+Track.getClientId = function getClientId() {
+  return Models.wrapperInstance.getClientId();
 };
 
-Track.getClientSecret = function() {
-    return Models.wrapperInstance.getClientSecret();
+Track.getClientSecret = function getClientSecret() {
+  return Models.wrapperInstance.getClientSecret();
 };
 
-Track.getAccessToken = function() {
-    return Models.wrapperInstance.getAccessToken();
+Track.getAccessToken = function getAccessToken() {
+  return Models.wrapperInstance.getAccessToken();
 };
 
-Track.getRefreshToken = function() {
-    return Models.wrapperInstance.getRefreshToken();
+Track.getRefreshToken = function getRefreshToken() {
+  return Models.wrapperInstance.getRefreshToken();
 };
 
-Track.resetClientId = function() {
-    return Models.wrapperInstance.resetClientId();
+Track.resetClientId = function resetClientId() {
+  return Models.wrapperInstance.resetClientId();
 };
 
-Track.resetClientSecret = function() {
-    return Models.wrapperInstance.resetClientSecret();
+Track.resetClientSecret = function resetClientSecret() {
+  return Models.wrapperInstance.resetClientSecret();
 };
 
-Track.resetAccessToken = function() {
-    return Models.wrapperInstance.resetAccessToken();
+Track.resetAccessToken = function resetAccessToken() {
+  return Models.wrapperInstance.resetAccessToken();
 };
 
-Track.resetRefreshToken = function() {
-    return Models.wrapperInstance.resetRefreshToken();
+Track.resetRefreshToken = function resetRefreshToken() {
+  return Models.wrapperInstance.resetRefreshToken();
 };
 
-Track.resetRedirectURI = function() {
-    return Models.wrapperInstance.resetRedirectURI();
+Track.resetRedirectURI = function resetRedirectURI() {
+  return Models.wrapperInstance.resetRedirectURI();
 };
 
 module.exports = Track;

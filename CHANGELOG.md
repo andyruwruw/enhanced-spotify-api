@@ -7,6 +7,14 @@
 > - :memo:       [Documentation]
 > - :nail_care:  [Polish]
 
+## v1.1.5 (8/24/2020)
+#### :bug: [Bug Fix]
+- `Tracks Container`
+    - Incorrect key used for retrieval of audio features.
+#### :nail_care: [Polish]
+- `All Classes`
+    - Now abiding AirBnB eslint standards.
+
 ## v1.1.5 (4/26/2020)
 #### :rocket: [New Feature]
 - `Artists Container`

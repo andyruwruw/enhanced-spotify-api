@@ -1,232 +1,214 @@
-'use strict';
+const Models = require('../../index');
 
-// Associated Models
-var Models = require('../../index');
-
- /**
- * Constructor
- * Creates a new Categories Container Instance.
- * @param {Array | Category | object | string} data (optional) Data to be preloaded. Single or multiple categories.
+/**
+ * Creates a new Categories container instance
+ *
+ * @param {Array | Category | object | string} data (optional) Data to be preloaded,
+ * Single or multiple categories
  */
 function Categories(items) {
-    try {
-        this.name = 'Categories';
-        this.type = 'Category';
-        Models.Container.call(this, items);
-    } catch (error) {
-        throw error;
-    }
+  this.name = 'Categories';
+  this.type = 'Category';
+  Models.Container.call(this, items);
 }
 
 Categories.prototype = {
-    ...Models.Container.prototype,
+  ...Models.Container.prototype,
 
-    getURIs: null,
+  getURIs: null,
 
-    getURIsNoRepeats: null,
+  getURIsNoRepeats: null,
 
-    /**
-     * Play Categories
-     * Plays category on user's active device.
-     * @param {number} index (Optional) Index of category
-     */
-    play: async function(index) {
-        try {
-            let _index = index != null ? index : 0;
-            return await this.item[this.order[_index]].play();
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Plays category on user's active device
+   *
+   * @param {number} [index] (Optional) Index of category
+   */
+  play(index) {
+    const _index = index != null ? index : 0;
+    return this.item[this.order[_index]].play();
+  },
 
-    /**
-     * Get Full Objects
-     * Returns full category data for all categories. Retrieves from Spotify API if nessisary.
-     * @returns {Array} Array of Category Full Objects.
-     */
-    getFullObjects: async function() {
-        try {
-            await this.retrieveFullObjects();
-            let result = [];
-            for (let i = 0; i < this.order.length; i++) {
-                await result.push(await this.items[this.order].getFullObject());
-            }
-            return result;
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Returns full category data for all categories,
+   * Retrieves from Spotify API if necessary
+   *
+   * @returns {Array} Array of category full objects
+   */
+  async getFullObjects() {
+    await this.retrieveFullObjects();
+    const result = [];
 
-    /**
-     * Get Categories Current Data
-     * Just returns whatever the category objects currently hold.
-     * @returns {Array} Array of Current Category Data
-     */
-    getCurrentData: async function() {
-        try {
-            let result = [];
-            for (let i = 0; i < this.order.length; i++) {
-                await result.push(await this.items[this.order].getCurrentData());
-            }
-            return result;
-        } catch (error) {
-            throw error;
-        }
-    },
+    for (let i = 0; i < this.order.length; i += 1) {
+      await result.push(await this.items[this.order].getFullObject());
+    }
 
-    /**
-     * Get Categories Playlists
-     * Returns Playlists instance with Categories playlists.
-     * @param {object} options (Optional) Options to be passed into request.
-     * @returns {Playlists} Playlists instance with category playlists.
-     */
-    getPlaylists: async function(options) {
-        try {
-            if (options != null && typeof(options) != 'object') {
-                throw new Error("Category.getPlaylists: Invalid Parameter \"options\"");
-            }
-            let _options = options ? options : {};
-            let playlists = new Categories.Playlists();
-            for (let category in this.items) {
-                await playlists.concat(await this.items[category].getPlaylists(_options));
-            }
-            return playlists;
-        } catch (error) {
-            throw error;
-        }
-    },
+    return result;
+  },
 
-    /** 
-     * Retrieve Full Objects
-     * Retrieves full category data for all Categories from Spotify API
-     */
-    retrieveFullObjects: async function() {
-        try {
-            for (let category in this.items) {
-                if (!(await this.items[category].containsFullObject())) {
-                    await this.items[category].retrieveFullObject();
-                }
-            }
-        } catch (error) {
-            throw error;
-        }
-    },
+  /**
+   * Just returns whatever the category objects currently hold
+   *
+   * @returns {Array} Array of current category data
+   */
+  async getCurrentData() {
+    const result = [];
+
+    for (let i = 0; i < this.order.length; i += 1) {
+      await result.push(await this.items[this.order].getCurrentData());
+    }
+
+    return result;
+  },
+
+  /**
+   * Returns Playlists instance with categories playlists
+   *
+   * @param {object} [options] (Optional) Options to be passed into request
+   * @returns {Playlists} Playlists instance with category playlists
+   */
+  async getPlaylists(options) {
+    if (options != null && typeof (options) !== 'object') {
+      throw new Error('Category.getPlaylists: Invalid Parameter "options"');
+    }
+    const _options = options || {};
+    const playlists = new Categories.Playlists();
+
+    const categoryIDs = Object.keys(this.items);
+
+    for (let i = 0; i < categoryIDs.length; i += 1) {
+      await playlists.concat(await this.items[categoryIDs[i]].getPlaylists(_options));
+    }
+
+    return playlists;
+  },
+
+  /**
+   * Retrieves full category data for all categories from Spotify API
+   */
+  async retrieveFullObjects() {
+    const categoryIDs = Object.keys(this.items);
+
+    for (let i = 0; i < categoryIDs.length; i += 1) {
+      if (!(await this.items[categoryIDs[i]].containsFullObject())) {
+        await this.items[categoryIDs[i]].retrieveFullObject();
+      }
+    }
+  },
 };
 
 /**
- * Get a List of Categories
- * Returns Categories instance.
- * @param {object} options (Optional) Options for request.
+ * Returns Categories instance
+ *
+ * @param {object} [options] (Optional) Options for request
  * @returns {Categories} Categories instance
  */
-Categories.getCategories = async function(options) {
-    try {
-        if (options != null && typeof(options) != 'object') {
-            throw new Error("Categories.getCategories: Invalid Parameter \"options\"");
-        }
-        let _options = options ? options : {};
-        let response = await Models.wrapperInstance.getCategories(_options);
-        return new Categories(response.body.categories);
-    } catch (error) {
-        throw error;
-    }
-}
+Categories.getCategories = async function getCategories(options) {
+  if (options != null && typeof (options) !== 'object') {
+    throw new Error('Categories.getCategories: Invalid Parameter "options"');
+  }
+  const _options = options || {};
+  const response = await Models.wrapperInstance.getCategories(_options);
+  return new Categories(response.body.categories);
+};
 
 /**
- * Add Methods
  * Adds functionality to Class
- * @param {Object} methods Object containing new methods to be added as properties.
+ *
+ * @param {object} methods Object containing new methods to be added as properties
  */
-Categories.addMethods = function(methods) {
-    for (let method in methods) {
-        this.prototype[method] = methods[method];
-    }
+Categories.addMethods = function addMethods(methods) {
+  const methodNames = Object.keys(methods);
+
+  for (let i = 0; i < methods.length; i += 1) {
+    this.prototype[methodNames[i]] = methods[methodNames[i]];
+  }
 };
 
 /**
- * Override
- * Replaces a method within the Class.
- * @param {String} name Name of the method to replace.
- * @param {Function} method Function to replace with.
+ * Replaces a method within the Class
+ *
+ * @param {string} name Name of the method to replace
+ * @param {function} method Function to replace with
  */
-Categories.override = function(name, method) {
-    if (this.prototype.hasOwnProperty(name)) {
-        this.prototype[name] = method;
-    } else {
-        throw new Error("Categories.override: \"name\" does not exist.");
-    }
+Categories.override = function override(name, method) {
+  if (name in this.prototype) {
+    this.prototype[name] = method;
+  } else {
+    throw new Error('Categories.override: \'name\' does not exist.');
+  }
 };
 
-Categories.setCredentials = function(credentials) {
-    Models.wrapperInstance.setCredentials(credentials);
+Categories.setCredentials = function setCredentials(credentials) {
+  Models.wrapperInstance.setCredentials(credentials);
 };
 
-Categories.getCredentials = function() {
-    return Models.wrapperInstance.getCredentials();
+Categories.getCredentials = function getCredentials() {
+  return Models.wrapperInstance.getCredentials();
 };
 
-Categories.resetCredentials = function() {
-    Models.wrapperInstance.resetCredentials();
+Categories.resetCredentials = function resetCredentials() {
+  Models.wrapperInstance.resetCredentials();
 };
 
-Categories.setClientId = function(clientId) {
-    Models.wrapperInstance.setClientId(clientId);
+Categories.setClientId = function setClientId(clientId) {
+  Models.wrapperInstance.setClientId(clientId);
 };
 
-Categories.setClientSecret = function(clientSecret) {
-    Models.wrapperInstance.setClientSecret(clientSecret);
+Categories.setClientSecret = function setClientSecret(clientSecret) {
+  Models.wrapperInstance.setClientSecret(clientSecret);
 };
 
-Categories.setAccessToken = function(accessToken) {
-    Models.wrapperInstance.setAccessToken(accessToken);
+Categories.setAccessToken = function setAccessToken(accessToken) {
+  Models.wrapperInstance.setAccessToken(accessToken);
 };
 
-Categories.setRefreshToken = function(refreshToken) {
-    Models.wrapperInstance.setRefreshToken(refreshToken);
+Categories.setRefreshToken = function setRefreshToken(refreshToken) {
+  Models.wrapperInstance.setRefreshToken(refreshToken);
 };
 
-Categories.setRedirectURI = function(redirectUri) {
-    Models.wrapperInstance.setRedirectURI(redirectUri);
+Categories.setRedirectURI = function setRedirectURI(redirectUri) {
+  Models.wrapperInstance.setRedirectURI(redirectUri);
 };
 
-Categories.getRedirectURI = function() {
-    return Models.wrapperInstance.getRedirectURI();
+Categories.getRedirectURI = function getRedirectURI() {
+  return Models.wrapperInstance.getRedirectURI();
 };
 
-Categories.getClientId = function() {
-    return Models.wrapperInstance.getClientId();
+Categories.getClientId = function getClientId() {
+  return Models.wrapperInstance.getClientId();
 };
 
-Categories.getClientSecret = function() {
-    return Models.wrapperInstance.getClientSecret();
+Categories.getClientSecret = function getClientSecret() {
+  return Models.wrapperInstance.getClientSecret();
 };
 
-Categories.getAccessToken = function() {
-    return Models.wrapperInstance.getAccessToken();
+Categories.getAccessToken = function getAccessToken() {
+  return Models.wrapperInstance.getAccessToken();
 };
 
-Categories.getRefreshToken = function() {
-    return Models.wrapperInstance.getRefreshToken();
+Categories.getRefreshToken = function getRefreshToken() {
+  return Models.wrapperInstance.getRefreshToken();
 };
 
-Categories.resetClientId = function() {
-    return Models.wrapperInstance.resetClientId();
+Categories.resetClientId = function resetClientId() {
+  return Models.wrapperInstance.resetClientId();
 };
 
-Categories.resetClientSecret = function() {
-    return Models.wrapperInstance.resetClientSecret();
+Categories.resetClientSecret = function resetClientSecret() {
+  return Models.wrapperInstance.resetClientSecret();
 };
 
-Categories.resetAccessToken = function() {
-    return Models.wrapperInstance.resetAccessToken();
+Categories.resetAccessToken = function resetAccessToken() {
+  return Models.wrapperInstance.resetAccessToken();
 };
 
-Categories.resetRefreshToken = function() {
-    return Models.wrapperInstance.resetRefreshToken();
+Categories.resetRefreshToken = function resetRefreshToken() {
+  return Models.wrapperInstance.resetRefreshToken();
 };
 
-Categories.resetRedirectURI = function() {
-    return Models.wrapperInstance.resetRedirectURI();
+Categories.resetRedirectURI = function resetRedirectURI() {
+  return Models.wrapperInstance.resetRedirectURI();
 };
 
 module.exports = Categories;

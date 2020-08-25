@@ -1,430 +1,397 @@
-'use strict';
+const Models = require('../../index');
 
-// Associated Models
-var Models = require('../../index');
-
- /**
- * User Constructor
- * Creates a new User Instance for a given user.
- * @param {Object | String} data Data to be preloaded. Must either be a string of the user ID or contain an `id` property.
+/**
+ * Creates a new User Instance for a given user
+ *
+ * @param {object | string} data Data to be preloaded,
+ * Must either be a string of the user ID or contain an `id` property.
  */
 function User(data) {
-    try {
-        if (typeof(data) == 'string') {
-            this.id = data;
-        } else if (typeof(data) == 'object') {
-            if (data.hasOwnProperty('id')) {
-                this.id = data.id; 
-            } else {
-                throw new Error("User.constructor: No ID Provided");
-            }
-            this.loadConditionally(data);
-        } else {
-            throw new Error("User.constructor: Invalid Data");
-        }
-    } catch (error) {
-        throw error;
+  if (typeof (data) === 'string') {
+    this.id = data;
+  } else if (typeof (data) === 'object') {
+    if ('id' in data) {
+      this.id = data.id;
+    } else {
+      throw new Error('User.constructor: No ID Provided');
     }
+    this.loadConditionally(data);
+  } else {
+    throw new Error('User.constructor: Invalid Data');
+  }
 }
 
 User.prototype = {
-    /**
-     * Is Me
-     * Returns whether this user is the current logged in user.
-     * @returns {Boolean} Whether user is current logged in user.
-     */
-    isMe: async function() {
-        try {
-            if (this.meStatus == null) {
-                let response = await Models.wrapperInstance.getMe();
-                this.meStatus = (response.body.id == this.id);
-            } 
-            return this.meStatus;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Is Followed
-     * Returns whether this user is followed by the current user.
-     * @returns {boolean} Whether this user is followed by the current user.
-     */
-    isFollowed: async function() {
-        try {
-            let response = await Models.wrapperInstance.isFollowingUsers([this.id]);
-            return response.body[0];
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Follow User
-     * Follows this user.
-     * @returns {Object} Response from request.
-     */
-    follow: async function() {
-        try {
-            return await Models.wrapperInstance.followUsers([this.id]);
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Unfollow User
-     * Unfollows this user.
-     * @returns {Object} Response from request.
-     */
-    unfollow: async function() {
-        try {
-            return await Models.wrapperInstance.unfollowUsers([this.id]);
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Contains Private Object
-     * Returns boolean whether private object data is present.
-     * @returns {Boolean} Whether private object is loaded.
-     */
-    containsPrivateObject: function() {
-        return ((this.country != null) && (this.email != null) && (this.product != null) && (this.display_name != null) && (this.external_urls) && (this.followers) && (this.href != null) && (this.images != null) && (this.uri != null));
-    },
-
-    /**
-     * Contains Public Object
-     * Returns boolean whether public object data is present.
-     * @returns {Boolean} Whether public object is loaded.
-     */
-    containsPublicObject: function() {
-        return ((this.display_name != null) && (this.external_urls) && (this.followers) && (this.href != null) && (this.images != null) && (this.uri != null));
-    },
-
-    /**
-     * Get Private Object
-     * Returns private user data. Retrieves from Spotify API if nessisary.
-     * @returns {Object} User Private Object Data.
-     */
-    getPrivateObject: async function() {
-        try {
-            if (!(await this.containsPrivateObject())) {
-                await this.retrievePrivateObject();
-            }
-            return {
-                id: this.id,
-                display_name: this.display_name,
-                external_urls: this.external_urls,
-                followers: this.followers,
-                href: this.href,
-                images: this.images,
-                uri: this.uri,
-                country: this.country,
-                email: this.email,
-                product: this.product,
-                type: 'user',
-            };
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Get Public Object
-     * Returns public user data. Retrieves from Spotify API if nessisary.
-     * 
-     * @returns {object} User Public Object Data.
-     */
-    getPublicObject: async function() {
-        try {
-            if (!(await this.containsPublicObject())) {
-                await this.retrievePublicObject();
-            }
-            return {
-                id: this.id,
-                display_name: this.display_name,
-                external_urls: this.external_urls,
-                followers: this.followers,
-                href: this.href,
-                images: this.images,
-                uri: this.uri,
-                type: 'user',
-            };
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Get Current Data
-     * Just returns whatever the user object currently holds
-     * @returns {Object} Any User Data.
-     */
-    getCurrentData: function() {
-        try {
-            let data = { id: this.id, type: 'user' };
-            let properties = ['display_name', 'external_urls', 'followers', 'href', 'images', 'uri', 'country', 'email', 'product'];
-            for (let i = 0; i < properties.length; i++) {
-                if (this[properties[i]] != null) {
-                    data[properties[i]] = this[properties[i]];
-                }
-            }
-            return data;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Get User's Playlists
-     * Returns Playlists object of user's playlists
-     * @param {Object} options (Optional) Additional options
-     * @returns {Playlist} Playlist Object with User Playlists
-     */
-    getPlaylists: async function(options) {
-        try {
-            if (await this.isMe()) {
-                return await Models.Playlists.getMyPlaylists(options);
-            } else {
-                return await Models.Playlists.getUserPlaylists(this.id, options);
-            }
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Get All User's Playlists
-     * Returns Playlists object of all user's playlists
-     * 
-     * @returns {Playlist} Playlist Object with All User Playlists
-     */
-    getAllPlaylists: async function() {
-        try {
-            if (await this.isMe()) {
-                return await Models.Playlists.getAllMyPlaylists();
-            } else {
-                return await Models.Playlists.getAllUserPlaylists(this.id);
-            }
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Load Private Object
-     * Sets private data (outside constructor).
-     * @param {Object} data Object with user private object data.
-     */
-    loadPrivateObject: function(data) {
-        try {
-            this.id = data.id;
-            this.display_name = data.display_name;
-            this.external_urls = data.external_urls;
-            this.followers = data.followers;
-            this.href = data.href;
-            this.images = data.images;
-            this.uri = data.uri;
-            this.country = data.country;
-            this.email = data.email;
-            this.product = data.product;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Load Public Object
-     * Sets public data (outside constructor).
-     * @param {Object} data Object with user public object data.
-     */
-    loadPublicObject: function(data) {
-        try {
-            this.display_name = data.display_name;
-            this.external_urls = data.external_urls;
-            this.followers = data.followers;
-            this.href = data.href;
-            this.images = data.images;
-            this.uri = data.uri;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Load Conditionally
-     * Sets all data conditionally.
-     * @param {Object} data Object with user data.
-     */
-    loadConditionally: function(data) {
-        try {
-            let properties = ['display_name', 'external_urls', 'followers', 'href', 'images', 'uri', 'country', 'email', 'product'];
-            for (let i = 0; i < properties.length; i++) {
-                if (data.hasOwnProperty(properties[i])) {
-                    this[properties[i]] = data[properties[i]];
-                }
-            }
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Retrieve Private Object
-     * Retrieves private user data from Spotify API
-     */
-    retrievePrivateObject: async function() {
-        try {
-            let response = await Models.wrapperInstance.getMe();
-            if (response.body.id != this.id) {
-                throw new Error("User.retrievePrivateObject: Cannot Retrieve Private Data for Non-Current User")
-            }
-            await this.loadPrivateObject(response.body);
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Retrieve Public Object
-     * Retrieves public user data from Spotify API
-     */
-    retrievePublicObject: async function() {
-        try {
-            let response = await Models.wrapperInstance.getUser(this.id);
-            await this.loadPublicObject(response.body);
-        } catch (error) {
-            throw error;
-        }
-    },
-}
-
-/**
- * Get Me
- * Returns User object of current user.
- * @returns {User} Current User
- */
-User.getMe = async function() {
-    try {
-        let response = await Models.wrapperInstance.getMe();
-        return new Models.User(response.body);
-    } catch (error) {
-        throw error;
+  /**
+   * Returns whether this user is the current logged in user
+   *
+   * @returns {boolean} Whether user is current logged in user
+   */
+  async isMe() {
+    if (this.meStatus === null) {
+      const response = await Models.wrapperInstance.getMe();
+      this.meStatus = (response.body.id === this.id);
     }
+    return this.meStatus;
+  },
+
+  /**
+   * Returns whether this user is followed by the current user
+   *
+   * @returns {boolean} Whether this user is followed by the current user
+   */
+  async isFollowed() {
+    const response = await Models.wrapperInstance.isFollowingUsers([this.id]);
+    return response.body[0];
+  },
+
+  /**
+   * Follows this user
+   *
+   * @returns {object} Response from request
+   */
+  follow() {
+    return Models.wrapperInstance.followUsers([this.id]);
+  },
+
+  /**
+   * Unfollows this user
+   *
+   * @returns {object} Response from request
+   */
+  unfollow() {
+    return Models.wrapperInstance.unfollowUsers([this.id]);
+  },
+
+  /**
+   * Returns boolean whether private object data is present
+   *
+   * @returns {boolean} Whether private object is loaded
+   */
+  containsPrivateObject() {
+    return ((this.country != null)
+      && (this.email != null)
+      && (this.product != null)
+      && (this.display_name != null)
+      && (this.external_urls)
+      && (this.followers)
+      && (this.href != null)
+      && (this.images != null)
+      && (this.uri != null));
+  },
+
+  /**
+   * Returns boolean whether public object data is present
+   *
+   * @returns {boolean} Whether public object is loaded
+   */
+  containsPublicObject() {
+    return ((this.display_name != null)
+      && (this.external_urls)
+      && (this.followers)
+      && (this.href != null)
+      && (this.images != null)
+      && (this.uri != null));
+  },
+
+  /**
+   * Returns private user data,
+   * Retrieves from Spotify API if necessary
+   *
+   * @returns {object} User private object data
+   */
+  async getPrivateObject() {
+    if (!(this.containsPrivateObject())) {
+      await this.retrievePrivateObject();
+    }
+    return {
+      id: this.id,
+      display_name: this.display_name,
+      external_urls: this.external_urls,
+      followers: this.followers,
+      href: this.href,
+      images: this.images,
+      uri: this.uri,
+      country: this.country,
+      email: this.email,
+      product: this.product,
+      type: 'user',
+    };
+  },
+
+  /**
+   * Returns public user data,
+   * Retrieves from Spotify API if necessary
+   *
+   * @returns {object} User public object data
+   */
+  async getPublicObject() {
+    if (!(this.containsPublicObject())) {
+      await this.retrievePublicObject();
+    }
+    return {
+      id: this.id,
+      display_name: this.display_name,
+      external_urls: this.external_urls,
+      followers: this.followers,
+      href: this.href,
+      images: this.images,
+      uri: this.uri,
+      type: 'user',
+    };
+  },
+
+  /**
+   * Just returns whatever the user object currently holds
+   *
+   * @returns {object} Any user data
+   */
+  getCurrentData() {
+    const data = {
+      id: this.id,
+      type: 'user',
+    };
+
+    const properties = [
+      'display_name',
+      'external_urls',
+      'followers',
+      'href',
+      'images',
+      'uri',
+      'country',
+      'email',
+      'product',
+    ];
+
+    for (let i = 0; i < properties.length; i += 1) {
+      if (this[properties[i]] != null) {
+        data[properties[i]] = this[properties[i]];
+      }
+    }
+    return data;
+  },
+
+  /**
+   * Returns Playlists object of user's playlists
+   *
+   * @param {object} options (Optional) Additional options
+   * @returns {Playlist} Playlist object with user playlists
+   */
+  async getPlaylists(options) {
+    if (await this.isMe()) {
+      return Models.Playlists.getMyPlaylists(options);
+    }
+    return Models.Playlists.getUserPlaylists(this.id, options);
+  },
+
+  /**
+   * Returns Playlists object of all user's playlists
+   *
+   * @returns {Playlists} Playlists object with all user playlists
+   */
+  async getAllPlaylists() {
+    if (await this.isMe()) {
+      return Models.Playlists.getAllMyPlaylists();
+    }
+    return Models.Playlists.getAllUserPlaylists(this.id);
+  },
+
+  /**
+   * Sets private data (outside constructor)
+   *
+   * @param {object} data Object with user private object data
+   */
+  loadPrivateObject(data) {
+    this.id = data.id;
+    this.display_name = data.display_name;
+    this.external_urls = data.external_urls;
+    this.followers = data.followers;
+    this.href = data.href;
+    this.images = data.images;
+    this.uri = data.uri;
+    this.country = data.country;
+    this.email = data.email;
+    this.product = data.product;
+  },
+
+  /**
+   * Sets public data (outside constructor)
+   *
+   * @param {object} data Object with user public object data
+   */
+  loadPublicObject(data) {
+    this.display_name = data.display_name;
+    this.external_urls = data.external_urls;
+    this.followers = data.followers;
+    this.href = data.href;
+    this.images = data.images;
+    this.uri = data.uri;
+  },
+
+  /**
+   * Sets all data conditionally
+   *
+   * @param {object} data Object with user data
+   */
+  loadConditionally(data) {
+    const properties = [
+      'display_name',
+      'external_urls',
+      'followers',
+      'href',
+      'images',
+      'uri',
+      'country',
+      'email',
+      'product',
+    ];
+
+    for (let i = 0; i < properties.length; i += 1) {
+      if (properties[i] in data) {
+        this[properties[i]] = data[properties[i]];
+      }
+    }
+  },
+
+  /**
+   * Retrieves private user data from Spotify API
+   */
+  async retrievePrivateObject() {
+    const response = await Models.wrapperInstance.getMe();
+    if (response.body.id !== this.id) {
+      throw new Error('User.retrievePrivateObject: Cannot Retrieve Private Data for Non-Current User');
+    }
+    await this.loadPrivateObject(response.body);
+  },
+
+  /**
+   * Retrieves public user data from Spotify API
+   */
+  async retrievePublicObject() {
+    const response = await Models.wrapperInstance.getUser(this.id);
+    await this.loadPublicObject(response.body);
+  },
 };
 
 /**
- * Get User
+ * Returns User object of current user
+ *
+ * @returns {User} Current user
+ */
+User.getMe = async function getMe() {
+  const response = await Models.wrapperInstance.getMe();
+  return new Models.User(response.body);
+};
+
+/**
  * Returns User object of ID
- * @param {String} userID Id of user.
- * @returns {User} User from id.
+ *
+ * @param {string} userID Id of user
+ * @returns {User} User from id
  */
-User.getUser = async function(userID) {
-    try {
-        let response = await Models.wrapperInstance.getUser(userID);
-        return new Models.User(response.body);
-    } catch (error) {
-        throw error;
-    }
+User.getUser = async function getUser(userID) {
+  const response = await Models.wrapperInstance.getUser(userID);
+  return new Models.User(response.body);
 };
 
 /**
- * Add Methods
  * Adds functionality to Class
- * @param {Object} methods Object containing new methods to be added as properties.
+ *
+ * @param {object} methods Object containing new methods to be added as properties
  */
-User.addMethods = function(methods) {
-    for (let method in methods) {
-        this.prototype[method] = methods[method];
-    }
+User.addMethods = function addMethods(methods) {
+  const methodNames = Object.keys(methods);
+
+  for (let i = 0; i < methods.length; i += 1) {
+    this.prototype[methodNames[i]] = methods[methodNames[i]];
+  }
 };
 
 /**
- * Override
- * Replaces a method within the Class.
- * @param {String} name Name of the method to replace.
- * @param {Function} method Function to replace with.
+ * Replaces a method within the Class
+ *
+ * @param {string} name Name of the method to replace
+ * @param {function} method Function to replace with
  */
-User.override = function(name, method) {
-    if (this.prototype.hasOwnProperty(name)) {
-        this.prototype[name] = method;
-    } else {
-        throw new Error("User.override: \"name\" does not exist.");
-    }
+User.override = function override(name, method) {
+  if (name in this.prototype) {
+    this.prototype[name] = method;
+  } else {
+    throw new Error('User.override: \'name\' does not exist.');
+  }
 };
 
-User.setCredentials = function(credentials) {
-    Models.wrapperInstance.setCredentials(credentials);
+User.setCredentials = function setCredentials(credentials) {
+  Models.wrapperInstance.setCredentials(credentials);
 };
 
-User.getCredentials = function() {
-    return Models.wrapperInstance.getCredentials();
+User.getCredentials = function getCredentials() {
+  return Models.wrapperInstance.getCredentials();
 };
 
-User.resetCredentials = function() {
-    Models.wrapperInstance.resetCredentials();
+User.resetCredentials = function resetCredentials() {
+  Models.wrapperInstance.resetCredentials();
 };
 
-User.setClientId = function(clientId) {
-    Models.wrapperInstance.setClientId(clientId);
+User.setClientId = function setClientId(clientId) {
+  Models.wrapperInstance.setClientId(clientId);
 };
 
-User.setClientSecret = function(clientSecret) {
-    Models.wrapperInstance.setClientSecret(clientSecret);
+User.setClientSecret = function setClientSecret(clientSecret) {
+  Models.wrapperInstance.setClientSecret(clientSecret);
 };
 
-User.setAccessToken = function(accessToken) {
-    Models.wrapperInstance.setAccessToken(accessToken);
+User.setAccessToken = function setAccessToken(accessToken) {
+  Models.wrapperInstance.setAccessToken(accessToken);
 };
 
-User.setRefreshToken = function(refreshToken) {
-    Models.wrapperInstance.setRefreshToken(refreshToken);
+User.setRefreshToken = function setRefreshToken(refreshToken) {
+  Models.wrapperInstance.setRefreshToken(refreshToken);
 };
 
-User.setRedirectURI = function(redirectUri) {
-    Models.wrapperInstance.setRedirectURI(redirectUri);
+User.setRedirectURI = function setRedirectURI(redirectUri) {
+  Models.wrapperInstance.setRedirectURI(redirectUri);
 };
 
-User.getRedirectURI = function() {
-    return Models.wrapperInstance.getRedirectURI();
+User.getRedirectURI = function getRedirectURI() {
+  return Models.wrapperInstance.getRedirectURI();
 };
 
-User.getClientId = function() {
-    return Models.wrapperInstance.getClientId();
+User.getClientId = function getClientId() {
+  return Models.wrapperInstance.getClientId();
 };
 
-User.getClientSecret = function() {
-    return Models.wrapperInstance.getClientSecret();
+User.getClientSecret = function getClientSecret() {
+  return Models.wrapperInstance.getClientSecret();
 };
 
-User.getAccessToken = function() {
-    return Models.wrapperInstance.getAccessToken();
+User.getAccessToken = function getAccessToken() {
+  return Models.wrapperInstance.getAccessToken();
 };
 
-User.getRefreshToken = function() {
-    return Models.wrapperInstance.getRefreshToken();
+User.getRefreshToken = function getRefreshToken() {
+  return Models.wrapperInstance.getRefreshToken();
 };
 
-User.resetClientId = function() {
-    return Models.wrapperInstance.resetClientId();
+User.resetClientId = function resetClientId() {
+  return Models.wrapperInstance.resetClientId();
 };
 
-User.resetClientSecret = function() {
-    return Models.wrapperInstance.resetClientSecret();
+User.resetClientSecret = function resetClientSecret() {
+  return Models.wrapperInstance.resetClientSecret();
 };
 
-User.resetAccessToken = function() {
-    return Models.wrapperInstance.resetAccessToken();
+User.resetAccessToken = function resetAccessToken() {
+  return Models.wrapperInstance.resetAccessToken();
 };
 
-User.resetRefreshToken = function() {
-    return Models.wrapperInstance.resetRefreshToken();
+User.resetRefreshToken = function resetRefreshToken() {
+  return Models.wrapperInstance.resetRefreshToken();
 };
 
-User.resetRedirectURI = function() {
-    return Models.wrapperInstance.resetRedirectURI();
+User.resetRedirectURI = function resetRedirectURI() {
+  return Models.wrapperInstance.resetRedirectURI();
 };
 
 module.exports = User;

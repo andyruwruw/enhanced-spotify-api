@@ -1,5 +1,3 @@
-'use strict';
-
 // From spotify-web-api
 // Used to fix endpoints that were broken and add new endpoints not yet added.
 

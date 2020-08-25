@@ -1,329 +1,294 @@
-'use strict';
+const Models = require('../../index');
 
-// Associated Models
-var Models = require('../../index');
-
- /**
- * Constructor
- * Creates a new Shows Container Instance.
- * @param {Array | Show | object | string} data (optional) Data to be preloaded. Single or multiple shows.
+/**
+ * Creates a new Shows container instance
+ * @param {Array | Show | object | string} [data] (optional) Data to be preloaded,
+ * Single or multiple shows.
  */
 function Shows(items) {
-    try {
-        this.name = 'Shows';
-        this.type = 'Show';
-        this.uri_type = 'show';
-        Models.Container.call(this, items);
-    } catch (error) {
-        throw error;
-    }
+  this.name = 'Shows';
+  this.type = 'Show';
+  this.uri_type = 'show';
+  Models.Container.call(this, items);
 }
 
 Shows.prototype = {
-    ...Models.Container.prototype,
+  ...Models.Container.prototype,
 
-    /**
-     * Plays Shows
-     * Plays shows on user's active device.
-     * @param {Object} options (Optional) Additional options.
-     * @returns {Object} Response from request.
-     * options.show_index: {Number} Which album to start with (Default: 0).
-     * options.offset: {Object} Where from the album to play.
-     * options.offset.position: {Number} Index of item to start with in context.
-     * options.offset.uri: {String} URI of item to start with in context.
-     * options.position_ms: {Number} Millisecond to start with in track.
-     */
-    play: async function(options) {
-        try {
-            let _show_index = (options && typeof(options) == 'object' && options.hasOwnProperty('show_index')) ? options.show_index : 0;
-            let episodes = new Models.Episodes();
-            for (let i = 0; i < this.order.length; i++) {
-                await episodes.concat(await this.items[this.order[(i + _show_index) % this.order.length]].getEpisodes());
-            }
-            return await episodes.play(options);
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Are Liked
-     * Returns array of booleans whether shows are saved to the user's library.
-     * @returns {array} Array of Booleans Whether show are saved to the user's library.
-     */
-    areLiked: async function() {
-        try {
-            let shows = await this.order.map((show) => {
-                return this.items[show]; 
-            });
-            let response = await Models.wrapperInstance.containsMySavedShows(await shows.map((show) => show.id));
-            return response.body;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-    * Like Shows
-    * Adds shows to the user's library.
-    */
-    likeAll: async function() {
-        try {
-            await Models.wrapperInstance.addToMySavedShows(Object.keys(this.items));
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-    * Unlike Shows
-    * Removes shows from the user's library.
-    */
-    unlikeAll: async function() {
-        try {
-            await Models.wrapperInstance.removeFromMySavedShows(Object.keys(this.items));
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Get Full Objects
-     * Returns full show data for all shows. Retrieves from Spotify API if nessisary.
-     * @returns {array} Array of Show Full Objects.
-     */
-    getFullObjects: async function() {
-        try {
-            await this.retrieveFullObjects('full');
-            let result = [];
-            for (let i = 0; i < this.order.length; i++) {
-                await result.push(await this.items[this.order[i]].getFullObject());
-            }
-            return result;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Get Simplified Objects
-     * Returns simplified show data for all shows. Retrieves from Spotify API if nessisary.
-     * @returns {array} Array of Show Simplified Objects.
-     */
-    getSimplifiedObjects: async function() {
-        try {
-            await this.retrieveFullObjects('simplified');
-            let result = [];
-            for (let i = 0; i < this.order.length; i++) {
-                await result.push(await this.items[this.order[i]].getSimplifiedObject());
-            }
-            return result;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Get Shows Current Data
-     * Just returns whatever the show objects currently hold.
-     * @returns {array} Array of Current Show Data
-     */
-    getCurrentData: async function() {
-        try {
-            let result = [];
-            for (let i = 0; i < this.order.length; i++) {
-                await result.push(await this.items[this.order[i]].getCurrentData());
-            }
-            return result;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /**
-     * Get All Show's Episodes
-     * Returns Episodes instance with all show's episodes.
-     * @returns {Episodes} Episodes object of all show's episodes.
-     */
-    getEpisodes: async function() {
-        try {
-            await this.retrieveFullObjects();
-            let episodes = new Shows.Episodes();
-            for (let show in this.items) {
-                await episodes.concat(await this.items[show].getEpisodes());
-            }
-            return episodes;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    /** 
-     * Retrieve Full Objects
-     * Retrieves full show data for all shows from Spotify API
-     * @param {string} objectType Optional | 'simplified', 'link' or 'full', what to check if the show contains.
-     */
-    retrieveFullObjects: async function(objectType) {
-        try {
-            let ids = [];
-            for (let show in this.items) {
-                if (objectType == 'simplified') {
-                    if (!(await this.items[show].containsSimplifiedObject())) {
-                        ids.push(show);
-                    } 
-                } else {
-                    if (!(await this.items[show].containsFullObject())) {
-                        ids.push(show);
-                    }
-                }
-            }
-            if (ids.length) {
-                let response;
-                do {
-                    response = await Models.wrapperInstance.getShows(ids.splice(0, 50));
-                    for (let i = 0; i < response.body.shows.length; i++) {
-                        if (response.body.shows[i] == null) continue;
-                        this.items[response.body.shows[i].id].loadFullObject(response.body.shows[i]);
-                    }
-                } while (ids.length > 0);
-            }
-        } catch (error) {
-            throw error;
-        }
-    },
-};
-
-/**
- * Search for a Shows
- * Returns search results for a query.
- * @param {string} query String to search for.
- * @param {object} options (Optional) Additional options.
- * @returns {Shows} Shows returned from Search.
- */
-Shows.search = async function(query, options) {
-    try {
-        if (options != null && typeof(options) != 'object') {
-            throw new Error("Shows.search: Invalid Parameter \"options\"");
-        }
-        let _options = (typeof(options) == 'object') ? options : {};
-        let response = await Models.wrapperInstance.searchShows(query, _options);
-        return new Shows(response.body.shows.items);
-    } catch (error) {
-        throw error;
+  /**
+   * Plays shows on user's active device
+   *
+   * @param {object} [options] (Optional) Additional options
+   * @param {number} [options.show_index=0] Which show to start with
+   * @param {object} [options.offset] Where from the show to play
+   * @param {number} [options.offset.position=0] Index of item to start with in context
+   * @param {string} [options.offset.uri] URI of item to start with in context
+   * @param {number} [options.position_ms=0] Millisecond to start with in track
+   * @returns {object} Response from request
+   */
+  async play(options) {
+    const _show_index = (options && typeof (options) === 'object' && 'show_index' in options) ? options.show_index : 0;
+    const episodes = new Models.Episodes();
+    for (let i = 0; i < this.order.length; i += 1) {
+      await episodes.concat(
+        await this.items[this.order[(i + _show_index) % this.order.length]].getEpisodes(),
+      );
     }
+    return episodes.play(options);
+  },
+
+  /**
+   * Returns array of booleans whether shows are saved to the user's library
+   *
+   * @returns {array} Array of Booleans Whether show are saved to the user's library
+   */
+  async areLiked() {
+    const shows = await this.order.map((show) => this.items[show]);
+    const showIDs = await shows.map((show) => show.id);
+    const response = await Models.wrapperInstance.containsMySavedShows(showIDs);
+    return response.body;
+  },
+
+  /**
+  * Adds shows to the user's library
+  *
+  * @returns {object} Response from request
+  */
+  async likeAll() {
+    return Models.wrapperInstance.addToMySavedShows(Object.keys(this.items));
+  },
+
+  /**
+  * Removes shows from the user's library
+  *
+  * @returns {object} Response from request
+  */
+  async unlikeAll() {
+    return Models.wrapperInstance.removeFromMySavedShows(Object.keys(this.items));
+  },
+
+  /**
+   * Returns full show data for all shows,
+   * Retrieves from Spotify API if necessary
+   *
+   * @returns {array} Array of show full objects
+   */
+  async getFullObjects() {
+    await this.retrieveFullObjects('full');
+    const result = [];
+
+    for (let i = 0; i < this.order.length; i += 1) {
+      await result.push(await this.items[this.order[i]].getFullObject());
+    }
+
+    return result;
+  },
+
+  /**
+   * Returns simplified show data for all shows,
+   * Retrieves from Spotify API if necessary
+   *
+   * @returns {array} Array of show simplified objects
+   */
+  async getSimplifiedObjects() {
+    await this.retrieveFullObjects('simplified');
+    const result = [];
+    for (let i = 0; i < this.order.length; i += 1) {
+      await result.push(await this.items[this.order[i]].getSimplifiedObject());
+    }
+    return result;
+  },
+
+  /**
+   * Just returns whatever the show objects currently hold
+   *
+   * @returns {array} Array of current show data
+   */
+  async getCurrentData() {
+    const result = [];
+    for (let i = 0; i < this.order.length; i += 1) {
+      await result.push(await this.items[this.order[i]].getCurrentData());
+    }
+    return result;
+  },
+
+  /**
+   * Returns Episodes instance with all show's episodes
+   *
+   * @returns {Episodes} Episodes object of all show's episodes
+   */
+  async getEpisodes() {
+    await this.retrieveFullObjects();
+    const episodes = new Shows.Episodes();
+    const showIDs = Object.keys(this.items);
+
+    for (let i = 0; i < showIDs.length; i += 1) {
+      await episodes.concat(await this.items[showIDs[i]].getEpisodes());
+    }
+    return episodes;
+  },
+
+  /**
+   * Retrieves full show data for all shows from Spotify API
+   *
+   * @param {string} objectType What to check if the show contains
+   * ('simplified', 'link', 'full')
+   */
+  async retrieveFullObjects(objectType) {
+    const ids = [];
+    const showIDs = Object.keys(this.items);
+
+    for (let i = 0; i < showIDs.length; i += 1) {
+      if (objectType === 'simplified') {
+        if (!(await this.items[showIDs[i]].containsSimplifiedObject())) {
+          ids.push(showIDs[i]);
+        }
+      } else if (!(await this.items[showIDs[i]].containsFullObject())) {
+        ids.push(showIDs[i]);
+      }
+    }
+
+    if (ids.length) {
+      let response;
+
+      do {
+        response = await Models.wrapperInstance.getShows(ids.splice(0, 50));
+
+        for (let i = 0; i < response.body.shows.length; i += 1) {
+          if (response.body.shows[i] !== null) {
+            this.items[response.body.shows[i].id].loadFullObject(response.body.shows[i]);
+          }
+        }
+      } while (ids.length > 0);
+    }
+  },
 };
 
 /**
- * Get Shows
+ * Returns search results for a query
+ *
+ * @param {string} query String to search for
+ * @param {object} [options] (Optional) Additional options
+ * @returns {Shows} Shows returned from search
+ */
+Shows.search = async function search(query, options) {
+  if (options != null && typeof (options) !== 'object') {
+    throw new Error('Shows.search: Invalid Parameter "options"');
+  }
+  const _options = (typeof (options) === 'object') ? options : {};
+  const response = await Models.wrapperInstance.searchShows(query, _options);
+  return new Shows(response.body.shows.items);
+};
+
+/**
  * Returns Shows object of IDs
- * @param {Array} showIds Ids of shows.
- * @returns {Shows} Shows from ids.
+ *
+ * @param {Array} showIds Ids of shows
+ * @returns {Shows} Shows from ids
  */
-Shows.getShows = async function(showIds) {
-    try {
-        let shows = new Shows(showIds);
-        await shows.retrieveFullObjects();
-        return shows;
-    } catch (error) {
-        throw error;
-    }
+Shows.getShows = async function getShows(showIds) {
+  const shows = new Shows(showIds);
+  await shows.retrieveFullObjects();
+  return shows;
 };
 
 /**
- * Add Methods
  * Adds functionality to Class
- * @param {Object} methods Object containing new methods to be added as properties.
+ *
+ * @param {object} methods Object containing new methods to be added as properties
  */
-Shows.addMethods = function(methods) {
-    for (let method in methods) {
-        this.prototype[method] = methods[method];
-    }
+Shows.addMethods = function addMethods(methods) {
+  const methodNames = Object.keys(methods);
+
+  for (let i = 0; i < methods.length; i += 1) {
+    this.prototype[methodNames[i]] = methods[methodNames[i]];
+  }
 };
 
 /**
- * Override
- * Replaces a method within the Class.
- * @param {String} name Name of the method to replace.
- * @param {Function} method Function to replace with.
+ * Replaces a method within the Class
+ *
+ * @param {string} name Name of the method to replace
+ * @param {function} method Function to replace with
  */
-Shows.override = function(name, method) {
-    if (this.prototype.hasOwnProperty(name)) {
-        this.prototype[name] = method;
-    } else {
-        throw new Error("Shows.override: \"name\" does not exist.");
-    }
+Shows.override = function override(name, method) {
+  if (name in this.prototype) {
+    this.prototype[name] = method;
+  } else {
+    throw new Error('Shows.override: \'name\' does not exist.');
+  }
 };
 
-Shows.setCredentials = function(credentials) {
-    Models.wrapperInstance.setCredentials(credentials);
+Shows.setCredentials = function setCredentials(credentials) {
+  Models.wrapperInstance.setCredentials(credentials);
 };
 
-Shows.getCredentials = function() {
-    return Models.wrapperInstance.getCredentials();
+Shows.getCredentials = function getCredentials() {
+  return Models.wrapperInstance.getCredentials();
 };
 
-Shows.resetCredentials = function() {
-    Models.wrapperInstance.resetCredentials();
+Shows.resetCredentials = function resetCredentials() {
+  Models.wrapperInstance.resetCredentials();
 };
 
-Shows.setClientId = function(clientId) {
-    Models.wrapperInstance.setClientId(clientId);
+Shows.setClientId = function setClientId(clientId) {
+  Models.wrapperInstance.setClientId(clientId);
 };
 
-Shows.setClientSecret = function(clientSecret) {
-    Models.wrapperInstance.setClientSecret(clientSecret);
+Shows.setClientSecret = function setClientSecret(clientSecret) {
+  Models.wrapperInstance.setClientSecret(clientSecret);
 };
 
-Shows.setAccessToken = function(accessToken) {
-    Models.wrapperInstance.setAccessToken(accessToken);
+Shows.setAccessToken = function setAccessToken(accessToken) {
+  Models.wrapperInstance.setAccessToken(accessToken);
 };
 
-Shows.setRefreshToken = function(refreshToken) {
-    Models.wrapperInstance.setRefreshToken(refreshToken);
+Shows.setRefreshToken = function setRefreshToken(refreshToken) {
+  Models.wrapperInstance.setRefreshToken(refreshToken);
 };
 
-Shows.setRedirectURI = function(redirectUri) {
-    Models.wrapperInstance.setRedirectURI(redirectUri);
+Shows.setRedirectURI = function setRedirectURI(redirectUri) {
+  Models.wrapperInstance.setRedirectURI(redirectUri);
 };
 
-Shows.getRedirectURI = function() {
-    return Models.wrapperInstance.getRedirectURI();
+Shows.getRedirectURI = function getRedirectURI() {
+  return Models.wrapperInstance.getRedirectURI();
 };
 
-Shows.getClientId = function() {
-    return Models.wrapperInstance.getClientId();
+Shows.getClientId = function getClientId() {
+  return Models.wrapperInstance.getClientId();
 };
 
-Shows.getClientSecret = function() {
-    return Models.wrapperInstance.getClientSecret();
+Shows.getClientSecret = function getClientSecret() {
+  return Models.wrapperInstance.getClientSecret();
 };
 
-Shows.getAccessToken = function() {
-    return Models.wrapperInstance.getAccessToken();
+Shows.getAccessToken = function getAccessToken() {
+  return Models.wrapperInstance.getAccessToken();
 };
 
-Shows.getRefreshToken = function() {
-    return Models.wrapperInstance.getRefreshToken();
+Shows.getRefreshToken = function getRefreshToken() {
+  return Models.wrapperInstance.getRefreshToken();
 };
 
-Shows.resetClientId = function() {
-    return Models.wrapperInstance.resetClientId();
+Shows.resetClientId = function resetClientId() {
+  return Models.wrapperInstance.resetClientId();
 };
 
-Shows.resetClientSecret = function() {
-    return Models.wrapperInstance.resetClientSecret();
+Shows.resetClientSecret = function resetClientSecret() {
+  return Models.wrapperInstance.resetClientSecret();
 };
 
-Shows.resetAccessToken = function() {
-    return Models.wrapperInstance.resetAccessToken();
+Shows.resetAccessToken = function resetAccessToken() {
+  return Models.wrapperInstance.resetAccessToken();
 };
 
-Shows.resetRefreshToken = function() {
-    return Models.wrapperInstance.resetRefreshToken();
+Shows.resetRefreshToken = function resetRefreshToken() {
+  return Models.wrapperInstance.resetRefreshToken();
 };
 
-Shows.resetRedirectURI = function() {
-    return Models.wrapperInstance.resetRedirectURI();
+Shows.resetRedirectURI = function resetRedirectURI() {
+  return Models.wrapperInstance.resetRedirectURI();
 };
 
 module.exports = Shows;

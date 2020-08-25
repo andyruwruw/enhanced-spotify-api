@@ -1,374 +1,317 @@
-'use strict';
+const Models = require('../../index');
 
-var Models = require('../../index');
-
- /**
- * Playback Constructor
- * Creates a new Playback Instance for a given user.
- */
 function Playback() {}
 
 /**
- * Get Currently Playing Item
- * Returns Track or Episode instance of playing item.
- * @param {Object} options (Optional) Additional options
- * @returns {Object} Playback State information.
- * options.market: {String} Country Code.
- * options.additional_types: {String} A comma-separated list of item types that your client supports besides the default track type.
+ * Returns Track or Episode instance of playing item
+ *
+ * @param {object} [options] (Optional) Additional options
+ * @param {string} [options.market] Country code
+ * @param {string} [options.additional_types] A comma-separated list of item types
+ * that your client supports besides the default track type
+ * @returns {object} Playback State information
  */
-Playback.getCurrentlyPlaying = async function(options) {
-    try {
-        let _options = options ? options : {};
-        let response = await Models.wrapperInstance.getMyCurrentPlayingTrack(_options);
-        return response.body;
-    } catch (error) {
-        throw error;
-    }
+Playback.getCurrentlyPlaying = async function getCurrentlyPlaying(options) {
+  const _options = options || {};
+  const response = await Models.wrapperInstance.getMyCurrentPlayingTrack(_options);
+  return response.body;
 };
 
 /**
- * Get Currently Playing Item
- * Returns Track or Episode instance of playing item.
- * @param {Object} options (Optional) Additional options
- * @returns {Track | Episode} Playback State information.
- * options.market: {String} Country Code.
+ * Returns Track or Episode instance of playing item
+ *
+ * @param {object} [options] (Optional) Additional options
+ * @param {string} [options.market] Country code
+ * @returns {Track | Episode} Playback State information
  */
-Playback.getCurrentlyPlayingTrackOrEpisode = async function(options) {
-    try {
-        let _options = options ? options : {};
-        _options.additional_types = "track,episode";
-        let response = await Models.wrapperInstance.getMyCurrentPlayingTrack(_options);
-        if (response.body.currently_playing_type == 'track') {
-            return new Models.Track(response.body.item);
-        } else if (response.body.currently_playing_type == 'episode') {
-            return new Models.Episode(response.body.item);
-        }
-        return null;
-    } catch (error) {
-        throw error;
-    }
+// eslint-disable-next-line max-len
+Playback.getCurrentlyPlayingTrackOrEpisode = async function getCurrentlyPlayingTrackOrEpisode(options) {
+  const _options = options || {};
+  _options.additional_types = 'track,episode';
+  const response = await Models.wrapperInstance.getMyCurrentPlayingTrack(_options);
+  if (response.body.currently_playing_type === 'track') {
+    return new Models.Track(response.body.item);
+  } if (response.body.currently_playing_type === 'episode') {
+    return new Models.Episode(response.body.item);
+  }
+  return null;
 };
 
 /**
- * Get Currently Playing Item
- * Returns Track or Episode instance of playing item.
- * @param {Object} options (Optional) Additional options
- * @returns {Album | Playlist | Show | Artist} Playback State information.
- * options.market: {String} Country Code.
+ * Returns Class instance of playing context
+ *
+ * @param {object} [options] (Optional) Additional options
+ * @param {string} [options.market] Country code
+ * @returns {Album | Playlist | Show | Artist} Playback state information
  */
-Playback.getCurrentlyPlayingContext = async function(options) {
-    try {
-        let _options = options ? options : {};
-        _options.additional_types = "track,episode";
-        let response = await Models.wrapperInstance.getMyCurrentPlayingTrack(_options);
-        if (response.body.context == null) {
-            return null;
-        } else if (response.body.context.type == 'artist') {
-            return new Models.Artist(response.body.context.uri.split(':').reverse()[0]);
-        } else if (response.body.currently_playing_type == 'playlist') {
-            return new Models.Playlist(response.body.context.uri.split(':').reverse()[0]);
-        } else if (response.body.currently_playing_type == 'show') {
-            return new Models.Show(response.body.context.uri.split(':').reverse()[0]);
-        } else if (response.body.currently_playing_type == 'album') {
-            return new Models.Album(response.body.context.uri.split(':').reverse()[0]);
-        }
-        return null;
-    } catch (error) {
-        throw error;
-    }
+Playback.getCurrentlyPlayingContext = async function getCurrentlyPlayingContext(options) {
+  const _options = options || {};
+  _options.additional_types = 'track,episode';
+  const response = await Models.wrapperInstance.getMyCurrentPlayingTrack(_options);
+  if (response.body.context === null) {
+    return null;
+  } if (response.body.context.type === 'artist') {
+    return new Models.Artist(response.body.context.uri.split(':').reverse()[0]);
+  } if (response.body.currently_playing_type === 'playlist') {
+    return new Models.Playlist(response.body.context.uri.split(':').reverse()[0]);
+  } if (response.body.currently_playing_type === 'show') {
+    return new Models.Show(response.body.context.uri.split(':').reverse()[0]);
+  } if (response.body.currently_playing_type === 'album') {
+    return new Models.Album(response.body.context.uri.split(':').reverse()[0]);
+  }
+  return null;
 };
 
 /**
- * Transfer Playback
  * Switches Playback to New Device
- * @param {String} deviceID Device to be switched to.
- * @param {Object} options (Optional) Additional options
- * @returns {Object} Response from request.
- * options.play: {Boolean} Ensure playback happens on new device.
+ *
+ * @param {string} deviceID Device to be switched to.
+ * @param {object} [options] (Optional) Additional options
+ * @param {object} [options.play] Ensure playback happens on new device
+ * @returns {object} Response from request.
  */
-Playback.transferPlayback = async function(deviceID, options) {
-    try {
-        let _options = options ? options : {};
-        _options.deviceIDs = [deviceID];
-        return await Models.wrapperInstance.transferMyPlayback(_options);
-    } catch (error) {
-        throw error;
-    }
+Playback.transferPlayback = function transferPlayback(deviceID, options) {
+  const _options = options || {};
+  _options.deviceIDs = [deviceID];
+  return Models.wrapperInstance.transferMyPlayback(_options);
 };
 
 /**
- * Play
- * Plays item on current playback device.
- * @param {Object} options (Optional) Additional options
- * @returns {Object} Response from request.
- * options.context_uri: {String} Spotify URI of context to play (albums, artists, playlists).
- * options.uris: {Array} Array of Spotify Track URIs to be played.
- * options.offset: {Object} Where from the context to play (Only valid with albums and playlists).
- * options.offset.position: {Number} Index of item to start with in context.
- * options.offset.uri: {String} URI of item to start with in context.
- * options.position_ms: {Number} Millisecond to start with in track.
+ * Plays item on current playback device
+ *
+ * @param {object} [options] (Optional) Additional options
+ * @param {string} [options.context_uri] Spotify URI of context to play
+ * (albums, artists, playlists)
+ * @param {Array} [options.uris] Array of Spotify Track URIs to be played
+ * (Only valid with albums and playlists)
+ * @param {object} [options.offset] Index of item to start with in context
+ * @param {number} [options.offset.position] (Optional) Additional options
+ * @param {string} [options.offset.uri] URI of item to start with in context
+ * @param {number} [options.position_ms] Millisecond to start with in track
+ * @returns {object} Response from request.
  */
-Playback.play = async function(options) {
-    try {
-        return await Models.wrapperInstance.play(options);
-    } catch (error) {
-        throw error;
-    }
+Playback.play = function play(options) {
+  return Models.wrapperInstance.play(options);
 };
 
 /**
- * Pause
- * Pauses current playback device.
- * @param {Object} options (Optional) Additional options
- * @returns {Object} Response to request.
- * options.device_id: {String} Device ID of target to command.
+ * Pauses current playback device
+ *
+ * @param {object} [options] (Optional) Additional options
+ * @param {string} [options.device_id] Device ID of target to command
+ * @returns {object} Response to request.
  */
-Playback.pause = async function(options) {
-    try {
-        return await Models.wrapperInstance.pause(options);
-    } catch (error) {
-        throw error;
-    }
+Playback.pause = function (options) {
+  return Models.wrapperInstance.pause(options);
 };
 
 /**
- * Skip to next
- * Moves Playback to next item.
- * @param {Object} options (Optional) Additional options
- * @returns {Object} Response to request.
- * options.device_id: {String} Device ID of target to command.
+ * Moves Playback to next item
+ *
+ * @param {object} options (Optional) Additional options
+ * @param {string} [options.device_id] Device ID of target to command
+ * @returns {object} Response to request.
  */
-Playback.skipToNext = async function(options) {
-    try {
-        return await Models.wrapperInstance.skipToNext(options);
-    } catch (error) {
-        throw error;
-    }
+Playback.skipToNext = function skipToNext(options) {
+  return Models.wrapperInstance.skipToNext(options);
 };
 
 /**
- * Skip to Previous
- * Moves Playback to previous item.
- * @param {Object} options (Optional) Additional options
- * @returns {Object} Response to request.
- * options.device_id: {String} Device ID of target to command.
+ * Moves Playback to previous item
+ *
+ * @param {object} options (Optional) Additional options
+ * @param {string} [options.device_id] Device ID of target to command
+ * @returns {object} Response to request
  */
-Playback.skipToPrevious = async function(options) {
-    try {
-        return await Models.wrapperInstance.skipToPrevious(options);
-    } catch (error) {
-        throw error;
-    }
+Playback.skipToPrevious = async function skipToPrevious(options) {
+  return Models.wrapperInstance.skipToPrevious(options);
 };
 
 /**
- * Seek
- * Moves Playback to new position in currently playing item.
- * @param {Number} position Milliseconds in Item
- * @param {Object} options (Optional) Additional options
- * @returns {Object} Response to request.
- * options.device_id: {String} Device ID of target to command.
+ * Moves playback to new position in currently playing item
+ *
+ * @param {Number} position Milliseconds in item
+ * @param {object} [options] (Optional) Additional options
+ * @param {string} [options.device_id] Device ID of target to command
+ * @returns {object} Response to request
  */
-Playback.seek = async function(position, options) {
-    try {
-        return await Models.wrapperInstance.seek(position, options);
-    } catch (error) {
-        throw error;
-    }
+Playback.seek = function seek(position, options) {
+  return Models.wrapperInstance.seek(position, options);
 };
 
 /**
- * Set Repeat
- * Sets repeat state for current playback device.
- * @param {String} state New Repeat state
- * @param {Object} options (Optional) Additional options
- * @returns {Object} Response to request.
- * options.device_id: {String} Device ID of target to command.
+ * Sets repeat state for current playback device
+ *
+ * @param {string} state New Repeat state
+ * @param {object} [options] (Optional) Additional options
+ * @param {string} [options.device_id] Device ID of target to command
+ * @returns {object} Response to request
  */
-Playback.setRepeat = async function(state, options) {
-    try {
-        return await Models.wrapperInstance.setRepeat(state, options);
-    } catch (error) {
-        throw error;
-    }
+Playback.setRepeat = function setRepeat(state, options) {
+  return Models.wrapperInstance.setRepeat(state, options);
 };
 
 /**
- * Set Volume
- * Sets volume for current playback device.
- * @param {Number} percent New Volume
- * @param {Object} options (Optional) Additional options
- * @returns {Object} Response to request.
- * options.device_id: {String} Device ID of target to command.
+ * Sets volume for current playback device
+ *
+ * @param {Number} percent New volume
+ * @param {object} [options] (Optional) Additional options
+ * @param {string} [options.device_id] Device ID of target to command
+ * @returns {object} Response to request
  */
-Playback.setVolume = async function(percent, options) {
-    try {
-        return await Models.wrapperInstance.setVolume(percent, options);
-    } catch (error) {
-        throw error;
-    }
+Playback.setVolume = function setVolume(percent, options) {
+  return Models.wrapperInstance.setVolume(percent, options);
 };
 
 /**
- * Set Shuffle
- * Sets shuffle state for current playback device.
- * @param {Boolean} state New shuffle state.
- * @param {Object} options (Optional) Additional options
- * @returns {Object} Response to request.
- * options.device_id: {String} Device ID of target to command.
+ * Sets shuffle state for current playback device
+ *
+ * @param {boolean} state New shuffle state
+ * @param {object} [options] (Optional) Additional options
+ * @param {string} [options.device_id] Device ID of target to command
+ * @returns {object} Response to request
  */
-Playback.setShuffle = async function(state, options) {
-    try {
-        return await Models.wrapperInstance.setShuffle(state, options);
-    } catch (error) {
-        throw error;
-    }
+Playback.setShuffle = function setShuffle(state, options) {
+  return Models.wrapperInstance.setShuffle(state, options);
 };
 
 /**
- * Get Devices
- * Retrieves devices from spotify.
- * @returns {Object} Devices
+ * Retrieves devices from spotify
+ *
+ * @returns {object} Devices
  */
-Playback.getDevices = async function() {
-    try {
-        let response = await Models.wrapperInstance.getMyDevices();
-        return response.body.devices;
-    } catch (error) {
-        throw error;
-    }
+Playback.getDevices = async function getDevices() {
+  const response = await Models.wrapperInstance.getMyDevices();
+  return response.body.devices;
 };
 
 /**
- * Get Current Playback State
- * Returns current playback state from spotify.
- * @param {Object} options (Optional) Additional options
- * @returns {Object} Current Playback State
- * options.market: {String} Country Code.
- * options.additional_types: {String} Comma-separated lists of item types (track, episode) (Default: track).
+ * Returns current playback state from spotify
+ *
+ * @param {object} [options] (Optional) Additional options
+ * @param {string} [options.market] Country code
+ * @param {string} [options.additional_types=track] Comma-separated lists of item types
+ * (track, episode)
+ * @returns {object} Current Playback State
  */
-Playback.getCurrentPlaybackState = async function(options) {
-    try {
-        let response = await Models.wrapperInstance.getMyCurrentPlaybackState(options != null ? options : {});
-        return response.body;
-    } catch (error) {
-        throw error;
-    }
+Playback.getCurrentPlaybackState = async function getCurrentPlaybackState(options) {
+  const response = await Models.wrapperInstance.getMyCurrentPlaybackState(options || {});
+  return response.body;
 };
 
 /**
- * Get Recently Played Tracks
- * Returns a Tracks instance of recently played tracks.
- * @param {Object} options (Optional) Additional options
- * @returns {Tracks} Recently Played Tracks
- * options.limit: {Number} Number of items to return.
- * options.after: {Number} Unix timestamp. Returns tracks played after. (Don't use before).
- * options.before: {Number} Unix timestamp. Returns tracks played before. (Don't use after).
+ * Returns a Tracks instance of recently played tracks
+ *
+ * @param {object} [options] (Optional) Additional options
+ * @param {number} [options.limit] Number of items to return
+ * @param {number} [options.before] Unix timestamp,
+ * Returns tracks played before (Don't use after)
+ * @param {number} [options.after] Unix timestamp,
+ * Returns tracks played after (Don't use before)
+ * @returns {Tracks} Recently played tracks
  */
-Playback.getRecentlyPlayedTracks = async function(options) {
-    try {
-        let response = await Models.wrapperInstance.getMyRecentlyPlayedTracks(options != null ? options : {});
-        return new Models.Tracks(response.body.items);
-    } catch (error) {
-        throw error;
-    }
+Playback.getRecentlyPlayedTracks = async function getRecentlyPlayedTracks(options) {
+  const response = await Models.wrapperInstance.getMyRecentlyPlayedTracks(options || {});
+  return new Models.Tracks(response.body.items);
 };
 
 /**
- * Add Methods
  * Adds functionality to Class
- * @param {Object} methods Object containing new methods to be added as properties.
+ *
+ * @param {object} methods Object containing new methods to be added as properties
  */
-Playback.addMethods = function(methods) {
-    for (let method in methods) {
-        this.prototype[method] = methods[method];
-    }
+Playback.addMethods = function addMethods(methods) {
+  const methodNames = Object.keys(methods);
+
+  for (let i = 0; i < methods.length; i += 1) {
+    this.prototype[methodNames[i]] = methods[methodNames[i]];
+  }
 };
 
 /**
- * Override
- * Replaces a method within the Class.
- * @param {String} name Name of the method to replace.
- * @param {Function} method Function to replace with.
+ * Replaces a method within the Class
+ *
+ * @param {string} name Name of the method to replace
+ * @param {function} method Function to replace with
  */
-Playback.override = function(name, method) {
-    if (this.prototype.hasOwnProperty(name)) {
-        this.prototype[name] = method;
-    } else {
-        throw new Error("Playback.override: \"name\" does not exist.");
-    }
+Playback.override = function override(name, method) {
+  if (name in this.prototype) {
+    this.prototype[name] = method;
+  } else {
+    throw new Error('Playback.override: \'name\' does not exist.');
+  }
 };
 
-Playback.setCredentials = function(credentials) {
-    Models.wrapperInstance.setCredentials(credentials);
+Playback.setCredentials = function setCredentials(credentials) {
+  Models.wrapperInstance.setCredentials(credentials);
 };
 
-Playback.getCredentials = function() {
-    return Models.wrapperInstance.getCredentials();
+Playback.getCredentials = function getCredentials() {
+  return Models.wrapperInstance.getCredentials();
 };
 
-Playback.resetCredentials = function() {
-    Models.wrapperInstance.resetCredentials();
+Playback.resetCredentials = function resetCredentials() {
+  Models.wrapperInstance.resetCredentials();
 };
 
-Playback.setClientId = function(clientId) {
-    Models.wrapperInstance.setClientId(clientId);
+Playback.setClientId = function setClientId(clientId) {
+  Models.wrapperInstance.setClientId(clientId);
 };
 
-Playback.setClientSecret = function(clientSecret) {
-    Models.wrapperInstance.setClientSecret(clientSecret);
+Playback.setClientSecret = function setClientSecret(clientSecret) {
+  Models.wrapperInstance.setClientSecret(clientSecret);
 };
 
-Playback.setAccessToken = function(accessToken) {
-    Models.wrapperInstance.setAccessToken(accessToken);
+Playback.setAccessToken = function setAccessToken(accessToken) {
+  Models.wrapperInstance.setAccessToken(accessToken);
 };
 
-Playback.setRefreshToken = function(refreshToken) {
-    Models.wrapperInstance.setRefreshToken(refreshToken);
+Playback.setRefreshToken = function setRefreshToken(refreshToken) {
+  Models.wrapperInstance.setRefreshToken(refreshToken);
 };
 
-Playback.setRedirectURI = function(redirectUri) {
-    Models.wrapperInstance.setRedirectURI(redirectUri);
+Playback.setRedirectURI = function setRedirectURI(redirectUri) {
+  Models.wrapperInstance.setRedirectURI(redirectUri);
 };
 
-Playback.getRedirectURI = function() {
-    return Models.wrapperInstance.getRedirectURI();
+Playback.getRedirectURI = function getRedirectURI() {
+  return Models.wrapperInstance.getRedirectURI();
 };
 
-Playback.getClientId = function() {
-    return Models.wrapperInstance.getClientId();
+Playback.getClientId = function getClientId() {
+  return Models.wrapperInstance.getClientId();
 };
 
-Playback.getClientSecret = function() {
-    return Models.wrapperInstance.getClientSecret();
+Playback.getClientSecret = function getClientSecret() {
+  return Models.wrapperInstance.getClientSecret();
 };
 
-Playback.getAccessToken = function() {
-    return Models.wrapperInstance.getAccessToken();
+Playback.getAccessToken = function getAccessToken() {
+  return Models.wrapperInstance.getAccessToken();
 };
 
-Playback.getRefreshToken = function() {
-    return Models.wrapperInstance.getRefreshToken();
+Playback.getRefreshToken = function getRefreshToken() {
+  return Models.wrapperInstance.getRefreshToken();
 };
 
-Playback.resetClientId = function() {
-    return Models.wrapperInstance.resetClientId();
+Playback.resetClientId = function resetClientId() {
+  return Models.wrapperInstance.resetClientId();
 };
 
-Playback.resetClientSecret = function() {
-    return Models.wrapperInstance.resetClientSecret();
+Playback.resetClientSecret = function resetClientSecret() {
+  return Models.wrapperInstance.resetClientSecret();
 };
 
-Playback.resetAccessToken = function() {
-    return Models.wrapperInstance.resetAccessToken();
+Playback.resetAccessToken = function resetAccessToken() {
+  return Models.wrapperInstance.resetAccessToken();
 };
 
-Playback.resetRefreshToken = function() {
-    return Models.wrapperInstance.resetRefreshToken();
+Playback.resetRefreshToken = function resetRefreshToken() {
+  return Models.wrapperInstance.resetRefreshToken();
 };
 
-Playback.resetRedirectURI = function() {
-    return Models.wrapperInstance.resetRedirectURI();
+Playback.resetRedirectURI = function resetRedirectURI() {
+  return Models.wrapperInstance.resetRedirectURI();
 };
 
 module.exports = Playback;

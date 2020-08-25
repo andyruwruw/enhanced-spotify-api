@@ -1,29 +1,29 @@
-'use strict';
-
-var WebApiRequest = require('./webapi-request');
-var HttpManager = require('./http-manager');
+const WebApiRequest = require('./webapi-request');
+const HttpManager = require('./http-manager');
 
 /**
  * Get an Episode
  * Returns data from API for an episode
- * 
- * @param {string} episodeId The episode's ID.
- * @param {Object} [options] The possible options, currently only market.
- * @param {requestCallback} [callback] Optional callback method to be called instead of the promise.
- * @returns {Promise|undefined} A promise that if successful, returns an object containing information about the show. 
+ *
+ * @param {string} episodeId The episode's ID
+ * @param {Object} [options] The possible options, currently only market
+ * @param {requestCallback} [callback] Optional callback method to be called instead of the promise
+ * @returns {Promise | undefined} A promise that if successful,
+ * returns an object containing information about the show
  */
-let getEpisode = function(episodeId, options, callback) {
-    var actualCallback, actualOptions;
-    if (typeof options === 'function' && !callback) {
-        actualCallback = options;
-        actualOptions = {};
-    } else {
-        actualCallback = callback;
-        actualOptions = options;
-    }
+const getEpisode = function getEpisode(episodeId, options, callback) {
+  let actualCallback; let
+    actualOptions;
+  if (typeof options === 'function' && !callback) {
+    actualCallback = options;
+    actualOptions = {};
+  } else {
+    actualCallback = callback;
+    actualOptions = options;
+  }
 
-    return WebApiRequest.builder(this.getAccessToken())
-    .withPath('/v1/episodes/' + episodeId)
+  return WebApiRequest.builder(this.getAccessToken())
+    .withPath(`/v1/episodes/${episodeId}`)
     .withQueryParameters(actualOptions)
     .build()
     .execute(HttpManager.get, actualCallback);
@@ -32,28 +32,30 @@ let getEpisode = function(episodeId, options, callback) {
 /**
  * Get Episodes
  * Look up several Episodes.
- * 
+ *
  * @param {string[]} episodeIDs The IDs of the episodes.
  * @param {Object} [options] The possible options, currently only market.
  * @param {requestCallback} [callback] Optional callback method to be called instead of the promise.
- * @returns {Promise|undefined} A promise that if successful, returns an object containing information about the shows. 
+ * @returns {Promise|undefined} A promise that if successful,
+ * returns an object containing information about the shows.
  */
-let getEpisodes = function(episodeIDs, options, callback) {
-    var actualCallback, actualOptions;
-    if (typeof options === 'function' && !callback) {
-        actualCallback = options;
-        actualOptions = {};
-    } else {
-        actualCallback = callback;
-        actualOptions = options;
-    }
-    return WebApiRequest.builder(this.getAccessToken())
+const getEpisodes = function getEpisodes(episodeIDs, options, callback) {
+  let actualCallback; let
+    actualOptions;
+  if (typeof options === 'function' && !callback) {
+    actualCallback = options;
+    actualOptions = {};
+  } else {
+    actualCallback = callback;
+    actualOptions = options;
+  }
+  return WebApiRequest.builder(this.getAccessToken())
     .withPath('/v1/episodes')
     .withQueryParameters(
-    {
-        ids: episodeIDs.join(',')
-    },
-    actualOptions
+      {
+        ids: episodeIDs.join(','),
+      },
+      actualOptions,
     )
     .build()
     .execute(HttpManager.get, actualCallback);
@@ -68,12 +70,12 @@ let getEpisodes = function(episodeIDs, options, callback) {
  *          search results. The result is paginated. If the promise is rejected,
  *          it contains an error object. Not returned if a callback is given.
  */
-let searchEpisodes = function(query, options, callback) {
-    return this.search(query, ['episode'], options, callback);
+const searchEpisodes = function searchEpisodes(query, options, callback) {
+  return this.search(query, ['episode'], options, callback);
 };
 
 module.exports = {
-    getEpisode: getEpisode,
-    getEpisodes: getEpisodes,
-    searchEpisodes: searchEpisodes,
+  getEpisode,
+  getEpisodes,
+  searchEpisodes,
 };

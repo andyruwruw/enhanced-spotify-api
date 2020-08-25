@@ -1,6 +1,6 @@
 {
   "name": "enhanced-spotify-api",
-  "version": "1.1.4",
+  "version": "1.1.6",
   "description": "Object-oriented library to work with Spotify's API. Includes wrapper for regular endpoints and additional functionality and grouping of requests.",
   "main": "src/index.js",
   "scripts": {
@@ -31,6 +31,12 @@
   "dependencies": {
     "fs": "0.0.1-security",
     "path": "^0.12.7",
-    "spotify-web-api-node": "^4.0.0"
+    "spotify-web-api-node": "^4.0.0",
+    "superagent": "^6.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
   }
 }
