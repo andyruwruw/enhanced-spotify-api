@@ -7,7 +7,7 @@
 > - :memo:       [Documentation]
 > - :nail_care:  [Polish]
 
-## v1.1.5 (8/24/2020)
+## v1.1.6 (8/24/2020)
 #### :bug: [Bug Fix]
 - `Tracks Container`
     - Incorrect key used for retrieval of audio features.
