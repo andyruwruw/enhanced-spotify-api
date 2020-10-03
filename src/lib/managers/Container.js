@@ -59,7 +59,6 @@ Container.prototype = {
       if (!(item in this.items)) {
         this.items[item] = new Models[this.type](item);
       }
-
       this.order.push(item);
     } else {
       throw new Error(`${this.name}.push: Invalid Parameter "item"`);
@@ -147,9 +146,6 @@ Container.prototype = {
    * @returns {Item} Item at a given index
    */
   get(index) {
-    if (index > this.order.length - 1) {
-      throw new Error(`${this.name}.get: Index out of range`);
-    }
     return this.items[this.order[index > 0 ? index : (this.order.length - 1) - index]];
   },
 
@@ -355,7 +351,7 @@ Container.prototype = {
 Container.addMethods = function addMethods(methods) {
   const methodNames = Object.keys(methods);
 
-  for (let i = 0; i < methods.length; i += 1) {
+  for (let i = 0; i < methodNames.length; i += 1) {
     this.prototype[methodNames[i]] = methods[methodNames[i]];
   }
 };

@@ -1,0 +1,774 @@
+{
+  "tracks": [
+    {
+      "album": {
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0KTj6k94XZh0c6IEMfxeWV"
+        },
+        "href": "https://api.spotify.com/v1/albums/0KTj6k94XZh0c6IEMfxeWV",
+        "id": "0KTj6k94XZh0c6IEMfxeWV",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2739e495fb707973f3390850eea",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e029e495fb707973f3390850eea",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048519e495fb707973f3390850eea",
+            "width": 64
+          }
+        ],
+        "name": "Dreamland (+ Bonus Levels)",
+        "release_date": "2020-08-06",
+        "release_date_precision": "day",
+        "total_tracks": 18,
+        "type": "album",
+        "uri": "spotify:album:0KTj6k94XZh0c6IEMfxeWV"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+          },
+          "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+          "id": "4yvcSjfu4PC0CYQyLy4wSq",
+          "name": "Glass Animals",
+          "type": "artist",
+          "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 238805,
+      "explicit": false,
+      "external_ids": {
+        "isrc": "GBUM72000433"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/02MWAaffLxlfxAUY7c5dvx"
+      },
+      "href": "https://api.spotify.com/v1/tracks/02MWAaffLxlfxAUY7c5dvx",
+      "id": "02MWAaffLxlfxAUY7c5dvx",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Heat Waves",
+      "popularity": 68,
+      "preview_url": "https://p.scdn.co/mp3-preview/807fbead013f8f87d805b26224304c79d7f19091?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 14,
+      "type": "track",
+      "uri": "spotify:track:02MWAaffLxlfxAUY7c5dvx"
+    },
+    {
+      "album": {
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0KTj6k94XZh0c6IEMfxeWV"
+        },
+        "href": "https://api.spotify.com/v1/albums/0KTj6k94XZh0c6IEMfxeWV",
+        "id": "0KTj6k94XZh0c6IEMfxeWV",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2739e495fb707973f3390850eea",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e029e495fb707973f3390850eea",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048519e495fb707973f3390850eea",
+            "width": 64
+          }
+        ],
+        "name": "Dreamland (+ Bonus Levels)",
+        "release_date": "2020-08-06",
+        "release_date_precision": "day",
+        "total_tracks": 18,
+        "type": "album",
+        "uri": "spotify:album:0KTj6k94XZh0c6IEMfxeWV"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+          },
+          "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+          "id": "4yvcSjfu4PC0CYQyLy4wSq",
+          "name": "Glass Animals",
+          "type": "artist",
+          "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 200583,
+      "explicit": false,
+      "external_ids": {
+        "isrc": "GBUM72000428"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/5VGEgFZfWBoEOGb3Vlo3rU"
+      },
+      "href": "https://api.spotify.com/v1/tracks/5VGEgFZfWBoEOGb3Vlo3rU",
+      "id": "5VGEgFZfWBoEOGb3Vlo3rU",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Tangerine",
+      "popularity": 64,
+      "preview_url": "https://p.scdn.co/mp3-preview/4a9cc736a5b2c5b50bc5d5b7c3aa3ee64a4b193f?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 2,
+      "type": "track",
+      "uri": "spotify:track:5VGEgFZfWBoEOGb3Vlo3rU"
+    },
+    {
+      "album": {
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/14IOe7ahxQPTwUYUQX3IFi"
+        },
+        "href": "https://api.spotify.com/v1/albums/14IOe7ahxQPTwUYUQX3IFi",
+        "id": "14IOe7ahxQPTwUYUQX3IFi",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2737a293e6787c6d200c5077cd0",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e027a293e6787c6d200c5077cd0",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048517a293e6787c6d200c5077cd0",
+            "width": 64
+          }
+        ],
+        "name": "ZABA",
+        "release_date": "2014-06-03",
+        "release_date_precision": "day",
+        "total_tracks": 11,
+        "type": "album",
+        "uri": "spotify:album:14IOe7ahxQPTwUYUQX3IFi"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+          },
+          "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+          "id": "4yvcSjfu4PC0CYQyLy4wSq",
+          "name": "Glass Animals",
+          "type": "artist",
+          "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 289306,
+      "explicit": false,
+      "external_ids": {
+        "isrc": "GBUM71400655"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/1gk3FhAV07q9Jg77UxnVjX"
+      },
+      "href": "https://api.spotify.com/v1/tracks/1gk3FhAV07q9Jg77UxnVjX",
+      "id": "1gk3FhAV07q9Jg77UxnVjX",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Gooey",
+      "popularity": 71,
+      "preview_url": "https://p.scdn.co/mp3-preview/8f3df5fc05d6d69e45a7ffaa21a11f7b0a05a4ce?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 4,
+      "type": "track",
+      "uri": "spotify:track:1gk3FhAV07q9Jg77UxnVjX"
+    },
+    {
+      "album": {
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6qb9MDR0lfsN9a2pw77uJy"
+        },
+        "href": "https://api.spotify.com/v1/albums/6qb9MDR0lfsN9a2pw77uJy",
+        "id": "6qb9MDR0lfsN9a2pw77uJy",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273ec3d15eab5bd77027abc4b23",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02ec3d15eab5bd77027abc4b23",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851ec3d15eab5bd77027abc4b23",
+            "width": 64
+          }
+        ],
+        "name": "How To Be A Human Being",
+        "release_date": "2016-08-26",
+        "release_date_precision": "day",
+        "total_tracks": 11,
+        "type": "album",
+        "uri": "spotify:album:6qb9MDR0lfsN9a2pw77uJy"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+          },
+          "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+          "id": "4yvcSjfu4PC0CYQyLy4wSq",
+          "name": "Glass Animals",
+          "type": "artist",
+          "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 320654,
+      "explicit": true,
+      "external_ids": {
+        "isrc": "GB2DY1600028"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/0rRjGruFonCGOt0S5zAJNQ"
+      },
+      "href": "https://api.spotify.com/v1/tracks/0rRjGruFonCGOt0S5zAJNQ",
+      "id": "0rRjGruFonCGOt0S5zAJNQ",
+      "is_local": false,
+      "is_playable": true,
+      "name": "The Other Side Of Paradise",
+      "popularity": 70,
+      "preview_url": "https://p.scdn.co/mp3-preview/0f8fa9b44a2bd1ab87055fc9112f0b5fbadac819?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 8,
+      "type": "track",
+      "uri": "spotify:track:0rRjGruFonCGOt0S5zAJNQ"
+    },
+    {
+      "album": {
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0KTj6k94XZh0c6IEMfxeWV"
+        },
+        "href": "https://api.spotify.com/v1/albums/0KTj6k94XZh0c6IEMfxeWV",
+        "id": "0KTj6k94XZh0c6IEMfxeWV",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2739e495fb707973f3390850eea",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e029e495fb707973f3390850eea",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048519e495fb707973f3390850eea",
+            "width": 64
+          }
+        ],
+        "name": "Dreamland (+ Bonus Levels)",
+        "release_date": "2020-08-06",
+        "release_date_precision": "day",
+        "total_tracks": 18,
+        "type": "album",
+        "uri": "spotify:album:0KTj6k94XZh0c6IEMfxeWV"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+          },
+          "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+          "id": "4yvcSjfu4PC0CYQyLy4wSq",
+          "name": "Glass Animals",
+          "type": "artist",
+          "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+        },
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/6fxyWrfmjcbj5d12gXeiNV"
+          },
+          "href": "https://api.spotify.com/v1/artists/6fxyWrfmjcbj5d12gXeiNV",
+          "id": "6fxyWrfmjcbj5d12gXeiNV",
+          "name": "Denzel Curry",
+          "type": "artist",
+          "uri": "spotify:artist:6fxyWrfmjcbj5d12gXeiNV"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 216821,
+      "explicit": true,
+      "external_ids": {
+        "isrc": "GBUM71905642"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/3Sj4lCOlYVeHpkvuc9W5Vn"
+      },
+      "href": "https://api.spotify.com/v1/tracks/3Sj4lCOlYVeHpkvuc9W5Vn",
+      "id": "3Sj4lCOlYVeHpkvuc9W5Vn",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Tokyo Drifting",
+      "popularity": 64,
+      "preview_url": "https://p.scdn.co/mp3-preview/b73c47b8be4622274726556fded997c57b4fbf29?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 7,
+      "type": "track",
+      "uri": "spotify:track:3Sj4lCOlYVeHpkvuc9W5Vn"
+    },
+    {
+      "album": {
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0KTj6k94XZh0c6IEMfxeWV"
+        },
+        "href": "https://api.spotify.com/v1/albums/0KTj6k94XZh0c6IEMfxeWV",
+        "id": "0KTj6k94XZh0c6IEMfxeWV",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2739e495fb707973f3390850eea",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e029e495fb707973f3390850eea",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048519e495fb707973f3390850eea",
+            "width": 64
+          }
+        ],
+        "name": "Dreamland (+ Bonus Levels)",
+        "release_date": "2020-08-06",
+        "release_date_precision": "day",
+        "total_tracks": 18,
+        "type": "album",
+        "uri": "spotify:album:0KTj6k94XZh0c6IEMfxeWV"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+          },
+          "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+          "id": "4yvcSjfu4PC0CYQyLy4wSq",
+          "name": "Glass Animals",
+          "type": "artist",
+          "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 187383,
+      "explicit": true,
+      "external_ids": {
+        "isrc": "GBUM72000432"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/07ElML4j2iR5k1E6C0Uqzj"
+      },
+      "href": "https://api.spotify.com/v1/tracks/07ElML4j2iR5k1E6C0Uqzj",
+      "id": "07ElML4j2iR5k1E6C0Uqzj",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Space Ghost Coast To Coast",
+      "popularity": 58,
+      "preview_url": "https://p.scdn.co/mp3-preview/83b76b2bbadb340dda49b2da2c7cc960b2439910?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 6,
+      "type": "track",
+      "uri": "spotify:track:07ElML4j2iR5k1E6C0Uqzj"
+    },
+    {
+      "album": {
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6qb9MDR0lfsN9a2pw77uJy"
+        },
+        "href": "https://api.spotify.com/v1/albums/6qb9MDR0lfsN9a2pw77uJy",
+        "id": "6qb9MDR0lfsN9a2pw77uJy",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273ec3d15eab5bd77027abc4b23",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02ec3d15eab5bd77027abc4b23",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851ec3d15eab5bd77027abc4b23",
+            "width": 64
+          }
+        ],
+        "name": "How To Be A Human Being",
+        "release_date": "2016-08-26",
+        "release_date_precision": "day",
+        "total_tracks": 11,
+        "type": "album",
+        "uri": "spotify:album:6qb9MDR0lfsN9a2pw77uJy"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+          },
+          "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+          "id": "4yvcSjfu4PC0CYQyLy4wSq",
+          "name": "Glass Animals",
+          "type": "artist",
+          "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 230693,
+      "explicit": false,
+      "external_ids": {
+        "isrc": "GB2DY1600029"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/1LPGwuFgIzbJoShfDdw7MY"
+      },
+      "href": "https://api.spotify.com/v1/tracks/1LPGwuFgIzbJoShfDdw7MY",
+      "id": "1LPGwuFgIzbJoShfDdw7MY",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Youth",
+      "popularity": 67,
+      "preview_url": "https://p.scdn.co/mp3-preview/7c78e351ba36a8c40a59c044ee264fab2d47a2b4?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 2,
+      "type": "track",
+      "uri": "spotify:track:1LPGwuFgIzbJoShfDdw7MY"
+    },
+    {
+      "album": {
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0KTj6k94XZh0c6IEMfxeWV"
+        },
+        "href": "https://api.spotify.com/v1/albums/0KTj6k94XZh0c6IEMfxeWV",
+        "id": "0KTj6k94XZh0c6IEMfxeWV",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2739e495fb707973f3390850eea",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e029e495fb707973f3390850eea",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048519e495fb707973f3390850eea",
+            "width": 64
+          }
+        ],
+        "name": "Dreamland (+ Bonus Levels)",
+        "release_date": "2020-08-06",
+        "release_date_precision": "day",
+        "total_tracks": 18,
+        "type": "album",
+        "uri": "spotify:album:0KTj6k94XZh0c6IEMfxeWV"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+          },
+          "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+          "id": "4yvcSjfu4PC0CYQyLy4wSq",
+          "name": "Glass Animals",
+          "type": "artist",
+          "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 234865,
+      "explicit": false,
+      "external_ids": {
+        "isrc": "GBUM72000429"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/5B9t3xqRqNzyb7MDNXOReG"
+      },
+      "href": "https://api.spotify.com/v1/tracks/5B9t3xqRqNzyb7MDNXOReG",
+      "id": "5B9t3xqRqNzyb7MDNXOReG",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Hot Sugar",
+      "popularity": 54,
+      "preview_url": "https://p.scdn.co/mp3-preview/c05dacb21ad3b8a7d4dad8660e3ba8f31dc2556d?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 4,
+      "type": "track",
+      "uri": "spotify:track:5B9t3xqRqNzyb7MDNXOReG"
+    },
+    {
+      "album": {
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0KTj6k94XZh0c6IEMfxeWV"
+        },
+        "href": "https://api.spotify.com/v1/albums/0KTj6k94XZh0c6IEMfxeWV",
+        "id": "0KTj6k94XZh0c6IEMfxeWV",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2739e495fb707973f3390850eea",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e029e495fb707973f3390850eea",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048519e495fb707973f3390850eea",
+            "width": 64
+          }
+        ],
+        "name": "Dreamland (+ Bonus Levels)",
+        "release_date": "2020-08-06",
+        "release_date_precision": "day",
+        "total_tracks": 18,
+        "type": "album",
+        "uri": "spotify:album:0KTj6k94XZh0c6IEMfxeWV"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+          },
+          "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+          "id": "4yvcSjfu4PC0CYQyLy4wSq",
+          "name": "Glass Animals",
+          "type": "artist",
+          "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 161789,
+      "explicit": true,
+      "external_ids": {
+        "isrc": "GBUM72000423"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/6rg8jKMFjOcjSVDSCH9SHK"
+      },
+      "href": "https://api.spotify.com/v1/tracks/6rg8jKMFjOcjSVDSCH9SHK",
+      "id": "6rg8jKMFjOcjSVDSCH9SHK",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Waterfalls Coming Out Your Mouth",
+      "popularity": 54,
+      "preview_url": "https://p.scdn.co/mp3-preview/17c1731caa6a2b04d3fa981b7a7615d3fb389f68?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 10,
+      "type": "track",
+      "uri": "spotify:track:6rg8jKMFjOcjSVDSCH9SHK"
+    },
+    {
+      "album": {
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0KTj6k94XZh0c6IEMfxeWV"
+        },
+        "href": "https://api.spotify.com/v1/albums/0KTj6k94XZh0c6IEMfxeWV",
+        "id": "0KTj6k94XZh0c6IEMfxeWV",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2739e495fb707973f3390850eea",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e029e495fb707973f3390850eea",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048519e495fb707973f3390850eea",
+            "width": 64
+          }
+        ],
+        "name": "Dreamland (+ Bonus Levels)",
+        "release_date": "2020-08-06",
+        "release_date_precision": "day",
+        "total_tracks": 18,
+        "type": "album",
+        "uri": "spotify:album:0KTj6k94XZh0c6IEMfxeWV"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+          },
+          "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+          "id": "4yvcSjfu4PC0CYQyLy4wSq",
+          "name": "Glass Animals",
+          "type": "artist",
+          "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 203492,
+      "explicit": false,
+      "external_ids": {
+        "isrc": "GBUM72000427"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/45d0O3xhhDPV6fhT6aCu48"
+      },
+      "href": "https://api.spotify.com/v1/tracks/45d0O3xhhDPV6fhT6aCu48",
+      "id": "45d0O3xhhDPV6fhT6aCu48",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Dreamland",
+      "popularity": 55,
+      "preview_url": "https://p.scdn.co/mp3-preview/2fbaad5c87c9ade72399aede2ac562edf90daae2?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 1,
+      "type": "track",
+      "uri": "spotify:track:45d0O3xhhDPV6fhT6aCu48"
+    }
+  ]
+}

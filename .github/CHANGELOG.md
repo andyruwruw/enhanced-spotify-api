@@ -7,6 +7,15 @@
 > - :memo:       [Documentation]
 > - :nail_care:  [Polish]
 
+## v1.1.8 (8/25/2020)
+#### :nail_care: [Polish]
+- Jest Tests Added
+#### :bug: [Bug Fix]
+- Track `getTrack()` Fixed
+- Track `containsFullObject()` Fixed
+- Album `containsFullObject()` Fixed
+- All `addMethods()` Fixed
+
 ## v1.1.7 (8/25/2020)
 #### :bug: [Bug Fix]
 - `Container Class`

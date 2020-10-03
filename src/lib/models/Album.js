@@ -21,6 +21,7 @@ function Album(data) {
   } else {
     throw new Error('Album.constructor: Invalid Data');
   }
+  this.type = 'album';
   this.tracksRetrieved = false;
 }
 
@@ -81,8 +82,8 @@ Album.prototype = {
       && (this.artists != null)
       && (this.available_markets != null)
       && (this.copyrights != null)
-      && (this.external_ids)
-      && (this.external_urls)
+      && (this.external_ids != null)
+      && (this.external_urls != null)
       && (this.genres != null)
       && (this.href != null)
       && (this.images != null)
@@ -90,7 +91,6 @@ Album.prototype = {
       && (this.popularity != null)
       && (this.release_date != null)
       && (this.release_date_precision != null)
-      && (this.restrictions)
       && (this.tracks != null)
       && (this.uri != null));
   },
@@ -105,12 +105,11 @@ Album.prototype = {
       && (this.album_type != null)
       && (this.artists != null)
       && (this.available_markets != null)
-      && (this.external_urls)
+      && (this.external_urls != null)
       && (this.href != null)
       && (this.images != null)
       && (this.release_date != null)
       && (this.release_date_precision != null)
-      && (this.restrictions)
       && (this.uri != null));
   },
 
@@ -208,6 +207,7 @@ Album.prototype = {
       'tracks',
       'uri',
       '_tracks',
+      'total_tracks',
     ];
 
     for (let i = 0; i < properties.length; i += 1) {
@@ -272,7 +272,7 @@ Album.prototype = {
    *
    * @param {object} data Object with album full object data
    */
-  async loadFullObject(data) {
+  loadFullObject(data) {
     this.name = data.name;
     this.album_type = data.album_type;
     this.artists = data.artists;
@@ -290,10 +290,10 @@ Album.prototype = {
     this.restrictions = data.restrictions;
     this.uri = data.uri;
     this.tracks = data.tracks;
-    if ('items' in data.tracks) {
-      await this.loadTracks(data.tracks.items);
+    if (data.tracks && 'items' in data.tracks) {
+      this.loadTracks(data.tracks.items);
     } else {
-      await this.loadTracks(data.tracks);
+      this.loadTracks(data.tracks);
     }
   },
 
@@ -302,7 +302,7 @@ Album.prototype = {
    *
    * @param {object} data Object with album simplified object data
    */
-  async loadSimplifiedObject(data) {
+  loadSimplifiedObject(data) {
     this.id = data.id;
     this.name = data.name;
     this.album_type = data.album_type;
@@ -342,6 +342,7 @@ Album.prototype = {
       'tracks',
       'uri',
       'album_group',
+      'total_tracks',
     ];
 
     for (let i = 0; i < properties.length; i += 1) {
@@ -363,13 +364,13 @@ Album.prototype = {
    *
    * @param {Tracks | Array | Track | object | string} tracks
    */
-  async loadTracks(tracks) {
+  loadTracks(tracks) {
     if (tracks instanceof Models.Tracks || tracks instanceof Array) {
       this._tracks.concat(tracks);
-    } else if (typeof (tracks) === 'object' || typeof (tracks) === 'string') {
-      this._tracks.add(tracks);
-    } else {
-      throw new Error('Album.loadTracks: Invalid Parameter \'tracks\'');
+    } else if (typeof (tracks) === 'string') {
+      this._tracks.push(tracks);
+    } else if (typeof (tracks) === 'object' && 'items' in tracks) {
+      this._tracks.concat(tracks.items);
     }
   },
 };
@@ -395,7 +396,7 @@ Album.getAlbum = async function getAlbum(albumID, options) {
 Album.addMethods = function addMethods(methods) {
   const methodNames = Object.keys(methods);
 
-  for (let i = 0; i < methods.length; i += 1) {
+  for (let i = 0; i < methodNames.length; i += 1) {
     this.prototype[methodNames[i]] = methods[methodNames[i]];
   }
 };

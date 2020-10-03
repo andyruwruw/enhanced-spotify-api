@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const Models = require('../../index');
 
 /**
@@ -19,6 +20,7 @@ function Track(data) {
   } else {
     throw new Error('Track.constructor: Invalid Data');
   }
+  this.type = 'track';
 }
 
 Track.prototype = {
@@ -70,17 +72,16 @@ Track.prototype = {
    */
   containsFullObject() {
     return ((this.name != null)
-      && (this.album)
+      && (this.album != null)
       && (this.artists != null)
       && (this.available_markets != null)
       && (this.disc_number != null)
       && (this.duration_ms != null)
       && (this.explicit != null)
-      && (this.external_ids)
-      && (this.external_urls)
+      && (this.external_ids != null)
+      && (this.external_urls != null)
       && (this.href != null)
       && (this.popularity != null)
-      && (this.preview_url != null)
       && (this.track_number != null)
       && (this.uri != null)
       && (this.is_local != null));
@@ -100,7 +101,6 @@ Track.prototype = {
       && (this.explicit != null)
       && (this.external_urls)
       && (this.href != null)
-      && (this.preview_url != null)
       && (this.track_number != null)
       && (this.uri != null)
       && (this.is_local != null));
@@ -714,7 +714,7 @@ Track.prototype = {
  * @returns {Track} Track from id
  */
 Track.getTrack = async function getTrack(trackID) {
-  const response = Models.wrapperInstance.getTrack(trackID);
+  const response = await Models.wrapperInstance.getTrack(trackID);
   return new Models.Track(response.body);
 };
 
@@ -726,7 +726,7 @@ Track.getTrack = async function getTrack(trackID) {
 Track.addMethods = function addMethods(methods) {
   const methodNames = Object.keys(methods);
 
-  for (let i = 0; i < methods.length; i += 1) {
+  for (let i = 0; i < methodNames.length; i += 1) {
     this.prototype[methodNames[i]] = methods[methodNames[i]];
   }
 };

@@ -2,7 +2,6 @@ const Models = require('../../index');
 
 /**
  * Creates a new User Instance for a given user
- *
  * @param {object | string} data Data to be preloaded,
  * Must either be a string of the user ID or contain an `id` property.
  */
@@ -24,7 +23,6 @@ function User(data) {
 User.prototype = {
   /**
    * Returns whether this user is the current logged in user
-   *
    * @returns {boolean} Whether user is current logged in user
    */
   async isMe() {
@@ -37,7 +35,6 @@ User.prototype = {
 
   /**
    * Returns whether this user is followed by the current user
-   *
    * @returns {boolean} Whether this user is followed by the current user
    */
   async isFollowed() {
@@ -47,7 +44,6 @@ User.prototype = {
 
   /**
    * Follows this user
-   *
    * @returns {object} Response from request
    */
   follow() {
@@ -56,7 +52,6 @@ User.prototype = {
 
   /**
    * Unfollows this user
-   *
    * @returns {object} Response from request
    */
   unfollow() {
@@ -65,7 +60,6 @@ User.prototype = {
 
   /**
    * Returns boolean whether private object data is present
-   *
    * @returns {boolean} Whether private object is loaded
    */
   containsPrivateObject() {
@@ -82,7 +76,6 @@ User.prototype = {
 
   /**
    * Returns boolean whether public object data is present
-   *
    * @returns {boolean} Whether public object is loaded
    */
   containsPublicObject() {
@@ -97,7 +90,6 @@ User.prototype = {
   /**
    * Returns private user data,
    * Retrieves from Spotify API if necessary
-   *
    * @returns {object} User private object data
    */
   async getPrivateObject() {
@@ -122,7 +114,6 @@ User.prototype = {
   /**
    * Returns public user data,
    * Retrieves from Spotify API if necessary
-   *
    * @returns {object} User public object data
    */
   async getPublicObject() {
@@ -143,7 +134,6 @@ User.prototype = {
 
   /**
    * Just returns whatever the user object currently holds
-   *
    * @returns {object} Any user data
    */
   getCurrentData() {
@@ -174,7 +164,6 @@ User.prototype = {
 
   /**
    * Returns Playlists object of user's playlists
-   *
    * @param {object} options (Optional) Additional options
    * @returns {Playlist} Playlist object with user playlists
    */
@@ -187,7 +176,6 @@ User.prototype = {
 
   /**
    * Returns Playlists object of all user's playlists
-   *
    * @returns {Playlists} Playlists object with all user playlists
    */
   async getAllPlaylists() {
@@ -199,7 +187,6 @@ User.prototype = {
 
   /**
    * Sets private data (outside constructor)
-   *
    * @param {object} data Object with user private object data
    */
   loadPrivateObject(data) {
@@ -217,7 +204,6 @@ User.prototype = {
 
   /**
    * Sets public data (outside constructor)
-   *
    * @param {object} data Object with user public object data
    */
   loadPublicObject(data) {
@@ -231,7 +217,6 @@ User.prototype = {
 
   /**
    * Sets all data conditionally
-   *
    * @param {object} data Object with user data
    */
   loadConditionally(data) {
@@ -276,7 +261,6 @@ User.prototype = {
 
 /**
  * Returns User object of current user
- *
  * @returns {User} Current user
  */
 User.getMe = async function getMe() {
@@ -286,7 +270,6 @@ User.getMe = async function getMe() {
 
 /**
  * Returns User object of ID
- *
  * @param {string} userID Id of user
  * @returns {User} User from id
  */
@@ -297,20 +280,18 @@ User.getUser = async function getUser(userID) {
 
 /**
  * Adds functionality to Class
- *
  * @param {object} methods Object containing new methods to be added as properties
  */
 User.addMethods = function addMethods(methods) {
   const methodNames = Object.keys(methods);
 
-  for (let i = 0; i < methods.length; i += 1) {
+  for (let i = 0; i < methodNames.length; i += 1) {
     this.prototype[methodNames[i]] = methods[methodNames[i]];
   }
 };
 
 /**
  * Replaces a method within the Class
- *
  * @param {string} name Name of the method to replace
  * @param {function} method Function to replace with
  */

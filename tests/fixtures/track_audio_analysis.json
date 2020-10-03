@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "analyzer_version": "4.0.0",
+    "platform": "Linux",
+    "detailed_status": "OK",
+    "status_code": 0,
+    "timestamp": 1488121482,
+    "analysis_time": 14.41071,
+    "input_process": "libvorbisfile L+R 44100->22050"
+  },
+  "track": {
+    "num_samples": 9027858,
+    "duration": 409.42667,
+    "sample_md5": "",
+    "offset_seconds": 0,
+    "window_seconds": 0,
+    "analysis_sample_rate": 22050,
+    "analysis_channels": 1,
+    "end_of_fade_in": 0.3542,
+    "start_of_fade_out": 409.42667,
+    "loudness": -8.787,
+    "tempo": 102.859,
+    "tempo_confidence": 0.7,
+    "time_signature": 4,
+    "time_signature_confidence": 1,
+    "key": 0,
+    "key_confidence": 0.615,
+    "mode": 1,
+    "mode_confidence": 0.602,
+    "codestring": "XXXXXXXXXXX",
+    "rhythm_version": 1
+  },
+  "bars": [
+    {
+      "start": 3.07996,
+      "duration": 2.54566,
+      "confidence": 0.759
+    }
+  ],
+  "beats": [
+    {
+      "start": 1.14994,
+      "duration": 0.65755,
+      "confidence": 0.743
+    }
+  ],
+  "sections": [
+    {
+      "start": 0,
+      "duration": 9.45941,
+      "confidence": 1,
+      "loudness": -11.096,
+      "tempo": 94.338,
+      "tempo_confidence": 0.371,
+      "key": 0,
+      "key_confidence": 0.284,
+      "mode": 1,
+      "mode_confidence": 0.556,
+      "time_signature": 4,
+      "time_signature_confidence": 1
+    }
+  ],
+  "segments": [
+    {
+      "start": 0,
+      "duration": 0.3542,
+      "confidence": 0,
+      "loudness_start": -60,
+      "loudness_max_time": 0,
+      "loudness_max": -60,
+      "loudness_end": 0,
+      "pitches": [
+        0.936,
+        0.899,
+        0.801,
+        0.754,
+        0.702,
+        0.784,
+        0.844,
+        0.996,
+        1,
+        0.77,
+        0.522,
+        0.853
+      ],
+      "timbre": [
+        0,
+        171.13,
+        9.469,
+        -28.48,
+        57.491,
+        -50.067,
+        14.833,
+        5.359,
+        -27.228,
+        0.973,
+        -10.64,
+        -7.228
+      ]
+    }
+  ],
+  "tatums": [
+    {
+      "start": 1.14994,
+      "duration": 0.32877,
+      "confidence": 0.743
+    }
+  ]
+}

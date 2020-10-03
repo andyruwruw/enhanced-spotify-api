@@ -1,6 +1,6 @@
 {
   "name": "enhanced-spotify-api",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Object-oriented library to work with Spotify's API. Includes wrapper for regular endpoints and additional functionality and grouping of requests.",
   "main": "src/index.js",
   "scripts": {
@@ -37,6 +37,8 @@
   "devDependencies": {
     "eslint": "^7.7.0",
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0"
+    "eslint-plugin-import": "^2.22.0",
+    "nock": "^13.0.4",
+    "sinon": "^9.0.3"
   }
 }

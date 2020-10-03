@@ -1,0 +1,90 @@
+{
+  "tracks": [
+    {
+      "album": {
+        "album_type": "ALBUM",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1aTDTChWWyiJH3SEnYrdVp"
+            },
+            "href": "https://api.spotify.com/v1/artists/1aTDTChWWyiJH3SEnYrdVp",
+            "id": "1aTDTChWWyiJH3SEnYrdVp",
+            "name": "Taj Mahal",
+            "type": "artist",
+            "uri": "spotify:artist:1aTDTChWWyiJH3SEnYrdVp"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6RvtNMmeTSq5etxTwUfG0D"
+        },
+        "href": "https://api.spotify.com/v1/albums/6RvtNMmeTSq5etxTwUfG0D",
+        "id": "6RvtNMmeTSq5etxTwUfG0D",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2733076964515ebd8a334da8c95",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e023076964515ebd8a334da8c95",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048513076964515ebd8a334da8c95",
+            "width": 64
+          }
+        ],
+        "name": "Phantom Blues",
+        "release_date": "1996-02-26",
+        "release_date_precision": "day",
+        "total_tracks": 0,
+        "type": "album",
+        "uri": "spotify:album:6RvtNMmeTSq5etxTwUfG0D"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/1aTDTChWWyiJH3SEnYrdVp"
+          },
+          "href": "https://api.spotify.com/v1/artists/1aTDTChWWyiJH3SEnYrdVp",
+          "id": "1aTDTChWWyiJH3SEnYrdVp",
+          "name": "Taj Mahal",
+          "type": "artist",
+          "uri": "spotify:artist:1aTDTChWWyiJH3SEnYrdVp"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 160360,
+      "explicit": false,
+      "external_ids": {
+        "isrc": "USPM19639010"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/63vUX4fixN873tbuAfUbaH"
+      },
+      "href": "https://api.spotify.com/v1/tracks/63vUX4fixN873tbuAfUbaH",
+      "id": "63vUX4fixN873tbuAfUbaH",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Lovin' in My Baby's Eyes",
+      "popularity": 52,
+      "preview_url": "https://p.scdn.co/mp3-preview/6ac033504417b719da6e9534dda7f0db08ab44c2?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 1,
+      "type": "track",
+      "uri": "spotify:track:63vUX4fixN873tbuAfUbaH"
+    }
+  ],
+  "seeds": [
+    {
+      "initialPoolSize": 249,
+      "afterFilteringSize": 249,
+      "afterRelinkingSize": 249,
+      "id": "3HKpZgez8S4TS2F0sWLvAR",
+      "type": "TRACK",
+      "href": "https://api.spotify.com/v1/tracks/3HKpZgez8S4TS2F0sWLvAR"
+    }
+  ]
+}

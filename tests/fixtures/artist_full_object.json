@@ -1,0 +1,38 @@
+{
+  "external_urls": {
+    "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+  },
+  "followers": {
+    "href": null,
+    "total": 1292703
+  },
+  "genres": [
+    "gauze pop",
+    "indietronica",
+    "modern rock",
+    "shiver pop"
+  ],
+  "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+  "id": "4yvcSjfu4PC0CYQyLy4wSq",
+  "images": [
+    {
+      "height": 640,
+      "url": "https://i.scdn.co/image/f282504561b0c2b2ec74925793bbf132982e9098",
+      "width": 640
+    },
+    {
+      "height": 320,
+      "url": "https://i.scdn.co/image/43889206b3aab1e168d664ff9a2a30c5d4e50055",
+      "width": 320
+    },
+    {
+      "height": 160,
+      "url": "https://i.scdn.co/image/ebfc603dcc3c1efc110fc0563aa31121a2033804",
+      "width": 160
+    }
+  ],
+  "name": "Glass Animals",
+  "popularity": 80,
+  "type": "artist",
+  "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+}

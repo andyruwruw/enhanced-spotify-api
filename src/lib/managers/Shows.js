@@ -200,7 +200,7 @@ Shows.getShows = async function getShows(showIds) {
 Shows.addMethods = function addMethods(methods) {
   const methodNames = Object.keys(methods);
 
-  for (let i = 0; i < methods.length; i += 1) {
+  for (let i = 0; i < methodNames.length; i += 1) {
     this.prototype[methodNames[i]] = methods[methodNames[i]];
   }
 };

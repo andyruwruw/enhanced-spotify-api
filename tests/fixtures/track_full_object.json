@@ -1,0 +1,77 @@
+{
+  "album": {
+    "album_type": "album",
+    "artists": [
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/0augulkuXFx1qPfb590w2C"
+        },
+        "href": "https://api.spotify.com/v1/artists/0augulkuXFx1qPfb590w2C",
+        "id": "0augulkuXFx1qPfb590w2C",
+        "name": "Roy Buchanan",
+        "type": "artist",
+        "uri": "spotify:artist:0augulkuXFx1qPfb590w2C"
+      }
+    ],
+    "available_markets": [],
+    "external_urls": {
+      "spotify": "https://open.spotify.com/album/4YT7aZsiaWo3KBEVNpCzrE"
+    },
+    "href": "https://api.spotify.com/v1/albums/4YT7aZsiaWo3KBEVNpCzrE",
+    "id": "4YT7aZsiaWo3KBEVNpCzrE",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://i.scdn.co/image/ab67616d0000b273e67b3ca02b6f4ab0946158ea",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://i.scdn.co/image/ab67616d00001e02e67b3ca02b6f4ab0946158ea",
+        "width": 300
+      },
+      {
+        "height": 64,
+        "url": "https://i.scdn.co/image/ab67616d00004851e67b3ca02b6f4ab0946158ea",
+        "width": 64
+      }
+    ],
+    "name": "Telemaster Live In \"75",
+    "release_date": "2017-02-24",
+    "release_date_precision": "day",
+    "total_tracks": 8,
+    "type": "album",
+    "uri": "spotify:album:4YT7aZsiaWo3KBEVNpCzrE"
+  },
+  "artists": [
+    {
+      "external_urls": {
+        "spotify": "https://open.spotify.com/artist/0augulkuXFx1qPfb590w2C"
+      },
+      "href": "https://api.spotify.com/v1/artists/0augulkuXFx1qPfb590w2C",
+      "id": "0augulkuXFx1qPfb590w2C",
+      "name": "Roy Buchanan",
+      "type": "artist",
+      "uri": "spotify:artist:0augulkuXFx1qPfb590w2C"
+    }
+  ],
+  "available_markets": [],
+  "disc_number": 1,
+  "duration_ms": 409426,
+  "explicit": false,
+  "external_ids": {
+    "isrc": "USA2B1701207"
+  },
+  "external_urls": {
+    "spotify": "https://open.spotify.com/track/3HKpZgez8S4TS2F0sWLvAR"
+  },
+  "href": "https://api.spotify.com/v1/tracks/3HKpZgez8S4TS2F0sWLvAR",
+  "id": "3HKpZgez8S4TS2F0sWLvAR",
+  "is_local": false,
+  "name": "Can I Change My Mind? (Live)",
+  "popularity": 0,
+  "preview_url": null,
+  "track_number": 1,
+  "type": "track",
+  "uri": "spotify:track:3HKpZgez8S4TS2F0sWLvAR"
+}
