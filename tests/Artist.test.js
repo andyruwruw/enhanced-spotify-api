@@ -3,19 +3,22 @@ const nock = require('nock');
 
 const EnhancedSpotifyAPI = require('../src/index');
 const {
-  // artist_albums,
+  artist_albums,
   artist_full_object,
   artist_is_followed,
   artist_simple,
-  // artist_top_tracks,
+  artist_top_tracks,
+  artist_albums_50_1,
+  artist_albums_50_2,
+  album_tracks,
 } = require('./fixtures');
 
 const {
-  // Album,
-  // Albums,
+  Album,
+  Albums,
   Artist,
-  // Tracks,
-  // Track,
+  Tracks,
+  Track,
 } = EnhancedSpotifyAPI;
 
 describe('Artist Static Methods', () => {
@@ -419,84 +422,231 @@ describe('Artist Instance Methods ', () => {
    * Verifies get top tracks returns a Tracks instance with the
    * correct data.
    */
-  // it('Artist: Get Top Tracks', async () => {
-  //   nock('https://api.spotify.com/v1')
-  //     .get(`/artists/${artist_simple.id}/top-tracks`)
-  //     .query({
-  //       country: 'US',
-  //     })
-  //     .reply(200, artist_top_tracks);
+  it('Artist: Get Top Tracks', async () => {
+    nock('https://api.spotify.com/v1')
+      .get(`/artists/${artist_simple.id}/top-tracks`)
+      .query({
+        country: 'US',
+      })
+      .reply(200, artist_top_tracks);
 
-  //   const artist = new Artist(artist_simple.id);
-  //   const tracks = await artist.getTopTracks();
+    const artist = new Artist(artist_simple.id);
+    const tracks = await artist.getTopTracks();
 
-  //   expect(tracks).toBeInstanceOf(Tracks);
-  //   expect(tracks.size()).toBe(artist_top_tracks.tracks.length);
+    expect(tracks).toBeInstanceOf(Tracks);
+    expect(tracks.size()).toBe(artist_top_tracks.tracks.length);
 
-  //   const track = tracks.get(0);
+    const track = tracks.get(0);
 
-  //   expect(track).toBeInstanceOf(Track);
-  //   expect(track.artists).toStrictEqual(artist_top_tracks.tracks[0].artists);
-  //   expect(track.album).toStrictEqual(artist_top_tracks.tracks[0].album);
-  //   expect(track.available_markets).toStrictEqual(artist_top_tracks.tracks[0].available_markets);
-  //   expect(track.disc_number).toBe(artist_top_tracks.tracks[0].disc_number);
-  //   expect(track.duration_ms).toBe(artist_top_tracks.tracks[0].duration_ms);
-  //   expect(track.explicit).toBe(artist_top_tracks.tracks[0].explicit);
-  //   expect(track.external_ids).toStrictEqual(artist_top_tracks.tracks[0].external_ids);
-  //   expect(track.external_urls).toStrictEqual(artist_top_tracks.tracks[0].external_urls);
-  //   expect(track.href).toBe(artist_top_tracks.tracks[0].href);
-  //   expect(track.id).toBe(artist_top_tracks.tracks[0].id);
-  //   expect(track.is_local).toBe(artist_top_tracks.tracks[0].is_local);
-  //   expect(track.name).toBe(artist_top_tracks.tracks[0].name);
-  //   expect(track.popularity).toBe(artist_top_tracks.tracks[0].popularity);
-  //   expect(track.preview_url).toBe(artist_top_tracks.tracks[0].preview_url);
-  //   expect(track.track_number).toBe(artist_top_tracks.tracks[0].track_number);
-  //   expect(track.type).toBe(artist_top_tracks.tracks[0].type);
-  //   expect(track.uri).toBe(artist_top_tracks.tracks[0].uri);
-  // });
+    expect(track).toBeInstanceOf(Track);
+    expect(track.artists).toStrictEqual(artist_top_tracks.tracks[0].artists);
+    expect(track.album).toStrictEqual(artist_top_tracks.tracks[0].album);
+    expect(track.available_markets).toStrictEqual(artist_top_tracks.tracks[0].available_markets);
+    expect(track.disc_number).toBe(artist_top_tracks.tracks[0].disc_number);
+    expect(track.duration_ms).toBe(artist_top_tracks.tracks[0].duration_ms);
+    expect(track.explicit).toBe(artist_top_tracks.tracks[0].explicit);
+    expect(track.external_ids).toStrictEqual(artist_top_tracks.tracks[0].external_ids);
+    expect(track.external_urls).toStrictEqual(artist_top_tracks.tracks[0].external_urls);
+    expect(track.href).toBe(artist_top_tracks.tracks[0].href);
+    expect(track.id).toBe(artist_top_tracks.tracks[0].id);
+    expect(track.is_local).toBe(artist_top_tracks.tracks[0].is_local);
+    expect(track.name).toBe(artist_top_tracks.tracks[0].name);
+    expect(track.popularity).toBe(artist_top_tracks.tracks[0].popularity);
+    expect(track.preview_url).toBe(artist_top_tracks.tracks[0].preview_url);
+    expect(track.track_number).toBe(artist_top_tracks.tracks[0].track_number);
+    expect(track.type).toBe(artist_top_tracks.tracks[0].type);
+    expect(track.uri).toBe(artist_top_tracks.tracks[0].uri);
+  });
 
   /**
    * Verifies get albums returns an Albums instance with the
    * correct data.
    */
-  // it('Artist: Get Albums', async () => {
-  //   nock('https://api.spotify.com/v1')
-  //     .get(`/artists/${artist_simple.id}/albums`)
-  //     .query({
-  //       limit: 1,
-  //       offset: 0,
-  //     })
-  //     .reply(200, artist_albums);
+  it('Artist: Get Albums', async () => {
+    nock('https://api.spotify.com/v1')
+      .get(`/artists/${artist_simple.id}/albums`)
+      .query({
+        limit: 1,
+        offset: 0,
+      })
+      .reply(200, artist_albums);
 
-  //   const artist = new Artist(artist_simple.id);
-  //   const albums = await artist.getAlbums({
-  //     limit: 1,
-  //     offset: 0,
-  //   });
+    const artist = new Artist(artist_simple.id);
+    const albums = await artist.getAlbums({
+      limit: 1,
+      offset: 0,
+    });
 
-  //   expect(albums).toBeInstanceOf(Albums);
-  //   expect(albums.size()).toBe(artist_albums.items.length);
+    expect(albums).toBeInstanceOf(Albums);
+    expect(albums.size()).toBe(artist_albums.items.length);
 
-  //   const album = albums.get(0);
+    const album = albums.get(0);
 
-  //   expect(album).toBeInstanceOf(Album);
-  //   expect(album.album_type).toBe(artist_albums.items[2].album_type);
-  //   expect(album.artists).toStrictEqual(artist_albums.items[2].artists);
-  //   expect(album.available_markets).toBeInstanceOf(artist_albums.items[2].available_markets);
-  //   expect(album.copyrights).toStrictEqual(artist_albums.items[2].copyrights);
-  //   expect(album.external_ids).toStrictEqual(artist_albums.items[2].external_ids);
-  //   expect(album.external_urls).toStrictEqual(artist_albums.items[2].external_urls);
-  //   expect(album.genres).toStrictEqual(artist_albums.items[2].genres);
-  //   expect(album.href).toBe(artist_albums.items[2].href);
-  //   expect(album.id).toBe(artist_albums.items[2].id);
-  //   expect(album.images).toStrictEqual(artist_albums.items[2].images);
-  //   expect(album.label).toBe(artist_albums.items[2].label);
-  //   expect(album.name).toBe(artist_albums.items[2].name);
-  //   expect(album.popularity).toBe(artist_albums.items[2].popularity);
-  //   expect(album.release_date).toBe(artist_albums.items[2].release_date);
-  //   expect(album.release_date_precision).toBe(artist_albums.items[2].release_date_precision);
-  //   expect(album.tracks).toStrictEqual(artist_albums.items[2].tracks);
-  //   expect(album.type).toBe(artist_albums.items[2].type);
-  //   expect(album.uri).toBe(artist_albums.items[2].uri);
-  // });
+    expect(album).toBeInstanceOf(Album);
+    expect(album.album_type).toBe(artist_albums.items[0].album_type);
+    expect(album.artists).toStrictEqual(artist_albums.items[0].artists);
+    expect(album.available_markets).toStrictEqual(artist_albums.items[0].available_markets);
+    expect(album.copyrights).toStrictEqual(artist_albums.items[0].copyrights);
+    expect(album.external_ids).toStrictEqual(artist_albums.items[0].external_ids);
+    expect(album.external_urls).toStrictEqual(artist_albums.items[0].external_urls);
+    expect(album.genres).toStrictEqual(artist_albums.items[0].genres);
+    expect(album.href).toBe(artist_albums.items[0].href);
+    expect(album.id).toBe(artist_albums.items[0].id);
+    expect(album.images).toStrictEqual(artist_albums.items[0].images);
+    expect(album.label).toBe(artist_albums.items[0].label);
+    expect(album.name).toBe(artist_albums.items[0].name);
+    expect(album.popularity).toBe(artist_albums.items[0].popularity);
+    expect(album.release_date).toBe(artist_albums.items[0].release_date);
+    expect(album.release_date_precision).toBe(artist_albums.items[0].release_date_precision);
+    expect(album.tracks).toStrictEqual(artist_albums.items[0].tracks);
+    expect(album.type).toBe(artist_albums.items[0].type);
+    expect(album.uri).toBe(artist_albums.items[0].uri);
+  });
+
+  /**
+   * Verifies get all albums returns an Albums instance with
+   * the correct data.
+   */
+  it('Artist: Get All Albums', async () => {
+    nock('https://api.spotify.com/v1')
+      .get(`/artists/${artist_simple.id}/albums`)
+      .query({
+        limit: 50,
+        offset: 0,
+      })
+      .reply(200, artist_albums_50_1);
+    
+    nock('https://api.spotify.com/v1')
+      .get(`/artists/${artist_simple.id}/albums`)
+      .query({
+        limit: 50,
+        offset: 50,
+      })
+      .reply(200, artist_albums_50_2);
+
+    const artist = new Artist(artist_simple.id);
+    const albums = await artist.getAllAlbums();
+
+    expect(albums).toBeInstanceOf(Albums);
+    expect(albums.size()).toBe(artist_albums_50_1.items.length + artist_albums_50_2.items.length);
+
+    const album = albums.get(0);
+
+    expect(album).toBeInstanceOf(Album);
+    expect(album.album_type).toBe(artist_albums_50_1.items[0].album_type);
+    expect(album.artists).toStrictEqual(artist_albums_50_1.items[0].artists);
+    expect(album.available_markets).toStrictEqual(artist_albums_50_1.items[0].available_markets);
+    expect(album.copyrights).toStrictEqual(artist_albums_50_1.items[0].copyrights);
+    expect(album.external_ids).toStrictEqual(artist_albums_50_1.items[0].external_ids);
+    expect(album.external_urls).toStrictEqual(artist_albums_50_1.items[0].external_urls);
+    expect(album.genres).toStrictEqual(artist_albums_50_1.items[0].genres);
+    expect(album.href).toBe(artist_albums_50_1.items[0].href);
+    expect(album.id).toBe(artist_albums_50_1.items[0].id);
+    expect(album.images).toStrictEqual(artist_albums_50_1.items[0].images);
+    expect(album.label).toBe(artist_albums_50_1.items[0].label);
+    expect(album.name).toBe(artist_albums_50_1.items[0].name);
+    expect(album.popularity).toBe(artist_albums_50_1.items[0].popularity);
+    expect(album.release_date).toBe(artist_albums_50_1.items[0].release_date);
+    expect(album.release_date_precision).toBe(artist_albums_50_1.items[0].release_date_precision);
+    expect(album.tracks).toStrictEqual(artist_albums_50_1.items[0].tracks);
+    expect(album.type).toBe(artist_albums_50_1.items[0].type);
+    expect(album.uri).toBe(artist_albums_50_1.items[0].uri);
+  });
+
+  /**
+   * Verifies get all tracks returns a Tracks instance with
+   * the correct data.
+   */
+  it('Artist: Get All Tracks', async () => {
+    nock('https://api.spotify.com/v1')
+      .get(`/artists/${artist_simple.id}/albums`)
+      .query({
+        limit: 50,
+        offset: 0,
+      })
+      .reply(200, artist_albums);
+
+    nock('https://api.spotify.com/v1')
+      .get(`/albums/${artist_albums.items[0].id}/tracks`)
+      .query({
+        limit: 50,
+        offset: 0,
+      })
+      .reply(200, album_tracks);
+
+    nock('https://api.spotify.com/v1')
+      .get(`/albums/${artist_albums.items[1].id}/tracks`)
+      .query({
+        limit: 50,
+        offset: 0,
+      })
+      .reply(200, album_tracks);
+
+    nock('https://api.spotify.com/v1')
+      .get(`/albums/${artist_albums.items[2].id}/tracks`)
+      .query({
+        limit: 50,
+        offset: 0,
+      })
+      .reply(200, album_tracks);
+
+    const artist = new Artist(artist_simple.id);
+    const tracks = await artist.getAllTracks();
+
+    expect(tracks).toBeInstanceOf(Tracks);
+    expect(tracks.size()).toBe(30);
+
+    const track = tracks.get(0);
+
+    expect(track).toBeInstanceOf(Track);
+    expect(track.artists).toStrictEqual(album_tracks.items[0].artists);
+    expect(track.album).toStrictEqual(album_tracks.items[0].album);
+    expect(track.available_markets).toStrictEqual(album_tracks.items[0].available_markets);
+    expect(track.disc_number).toBe(album_tracks.items[0].disc_number);
+    expect(track.duration_ms).toBe(album_tracks.items[0].duration_ms);
+    expect(track.explicit).toBe(album_tracks.items[0].explicit);
+    expect(track.external_ids).toStrictEqual(album_tracks.items[0].external_ids);
+    expect(track.external_urls).toStrictEqual(album_tracks.items[0].external_urls);
+    expect(track.href).toBe(album_tracks.items[0].href);
+    expect(track.id).toBe(album_tracks.items[0].id);
+    expect(track.is_local).toBe(album_tracks.items[0].is_local);
+    expect(track.name).toBe(album_tracks.items[0].name);
+    expect(track.popularity).toBe(album_tracks.items[0].popularity);
+    expect(track.preview_url).toBe(album_tracks.items[0].preview_url);
+    expect(track.track_number).toBe(album_tracks.items[0].track_number);
+    expect(track.type).toBe(album_tracks.items[0].type);
+    expect(track.uri).toBe(album_tracks.items[0].uri);
+  });
+
+  /**
+   * Verifies load full object populates correct data.
+   */
+  it('Artist: Load Full Object', () => {
+    const artist = new Artist(artist_simple.id);
+    expect(artist.containsFullObject()).toBe(false);
+    artist.loadFullObject(artist_full_object);
+    expect(artist.containsFullObject()).toBe(true);
+  });
+
+  /**
+   * Verifies load simplified object populates correct data.
+   */
+  it('Artist: Load Simplified Object', () => {
+    const artist = new Artist(artist_simple.id);
+    expect(artist.containsSimplifiedObject()).toBe(false);
+    artist.loadSimplifiedObject(artist_full_object);
+    expect(artist.containsSimplifiedObject()).toBe(true);
+  });
+
+  /**
+   * Verifies load conditionally populates correct data.
+   */
+  it('Artist: Load Conditionally', () => {
+    const artist = new Artist(artist_simple.id);
+    expect(artist.containsFullObject()).toBe(false);
+    artist.loadConditionally(artist_simple);
+    expect(artist.containsFullObject()).toBe(false);
+    expect(artist.name).toBe(artist_simple.name);
+    expect(artist.uri).toBe(artist_simple.uri);
+  });
 });

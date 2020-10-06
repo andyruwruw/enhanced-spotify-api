@@ -19,6 +19,7 @@ function Episode(data) {
   } else {
     throw new Error('Episode.constructor: Invalid Data');
   }
+  this.type = 'episode';
 }
 
 Episode.prototype = {

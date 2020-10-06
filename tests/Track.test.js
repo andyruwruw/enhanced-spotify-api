@@ -908,6 +908,9 @@ describe('Track Instance Methods ', () => {
     expect(recommendedTrack.uri).toBe(actualObject.uri);
   });
 
+  /**
+   * Verifies load full object populates correct data.
+   */
   it('Track: Load Full Object', () => {
     const track = new Track(track_simple.id);
     expect(track.containsFullObject()).toBe(false);
@@ -915,6 +918,9 @@ describe('Track Instance Methods ', () => {
     expect(track.containsFullObject()).toBe(true);
   });
 
+  /**
+   * Verifies load simplified object populates correct data.
+   */
   it('Track: Load Simplified Object', () => {
     const track = new Track(track_simple.id);
     expect(track.containsSimplifiedObject()).toBe(false);
@@ -922,6 +928,9 @@ describe('Track Instance Methods ', () => {
     expect(track.containsSimplifiedObject()).toBe(true);
   });
 
+  /**
+   * Verifies load link object populates correct data.
+   */
   it('Track: Load Link Object', () => {
     const track = new Track(track_simple.id);
     expect(track.containsLinkObject()).toBe(false);
@@ -929,6 +938,10 @@ describe('Track Instance Methods ', () => {
     expect(track.containsLinkObject()).toBe(true);
   });
 
+  /**
+   * Verifies load audio features object populates correct
+   * data.
+   */
   it('Track: Load Audio Features Object', () => {
     const track = new Track(track_simple.id);
     expect(track.containsAudioFeatures()).toBe(false);
@@ -936,6 +949,10 @@ describe('Track Instance Methods ', () => {
     expect(track.containsAudioFeatures()).toBe(true);
   });
 
+  /**
+   * Verifies load audio analysis object populates correct
+   * data.
+   */
   it('Track: Load Audio Analysis Object', () => {
     const track = new Track(track_simple.id);
     expect(track.containsAudioAnalysis()).toBe(false);
@@ -943,6 +960,9 @@ describe('Track Instance Methods ', () => {
     expect(track.containsAudioAnalysis()).toBe(true);
   });
 
+  /**
+   * Verifies load conditionally populates correct data.
+   */
   it('Track: Load Conditionally', () => {
     const track = new Track(track_simple.id);
     expect(track.containsFullObject()).toBe(false);

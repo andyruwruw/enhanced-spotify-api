@@ -12,8 +12,7 @@ function Playback() {}
  * @returns {object} Playback State information
  */
 Playback.getCurrentlyPlaying = async function getCurrentlyPlaying(options) {
-  const _options = options || {};
-  const response = await Models.wrapperInstance.getMyCurrentPlayingTrack(_options);
+  const response = await Models.wrapperInstance.getMyCurrentPlayingTrack(options || {});
   return response.body;
 };
 
@@ -28,7 +27,9 @@ Playback.getCurrentlyPlaying = async function getCurrentlyPlaying(options) {
 Playback.getCurrentlyPlayingTrackOrEpisode = async function getCurrentlyPlayingTrackOrEpisode(options) {
   const _options = options || {};
   _options.additional_types = 'track,episode';
+
   const response = await Models.wrapperInstance.getMyCurrentPlayingTrack(_options);
+
   if (response.body.currently_playing_type === 'track') {
     return new Models.Track(response.body.item);
   } if (response.body.currently_playing_type === 'episode') {
@@ -47,17 +48,19 @@ Playback.getCurrentlyPlayingTrackOrEpisode = async function getCurrentlyPlayingT
 Playback.getCurrentlyPlayingContext = async function getCurrentlyPlayingContext(options) {
   const _options = options || {};
   _options.additional_types = 'track,episode';
+
   const response = await Models.wrapperInstance.getMyCurrentPlayingTrack(_options);
+  
   if (response.body.context === null) {
     return null;
   } if (response.body.context.type === 'artist') {
-    return new Models.Artist(response.body.context.uri.split(':').reverse()[0]);
-  } if (response.body.currently_playing_type === 'playlist') {
-    return new Models.Playlist(response.body.context.uri.split(':').reverse()[0]);
-  } if (response.body.currently_playing_type === 'show') {
-    return new Models.Show(response.body.context.uri.split(':').reverse()[0]);
-  } if (response.body.currently_playing_type === 'album') {
-    return new Models.Album(response.body.context.uri.split(':').reverse()[0]);
+    return new Models.Artist(response.body.context.uri.split(':')[2]);
+  } if (response.body.context.type === 'playlist') {
+    return new Models.Playlist(response.body.context.uri.split(':')[2]);
+  } if (response.body.context.type === 'show') {
+    return new Models.Show(response.body.context.uri.split(':')[2]);
+  } if (response.body.context.type === 'album') {
+    return new Models.Album(response.body.context.uri.split(':')[2]);
   }
   return null;
 };
@@ -72,7 +75,7 @@ Playback.getCurrentlyPlayingContext = async function getCurrentlyPlayingContext(
  */
 Playback.transferPlayback = function transferPlayback(deviceID, options) {
   const _options = options || {};
-  _options.deviceIDs = [deviceID];
+  _options.deviceIds = [deviceID];
   return Models.wrapperInstance.transferMyPlayback(_options);
 };
 
@@ -108,23 +111,19 @@ Playback.pause = function (options) {
 /**
  * Moves Playback to next item
  *
- * @param {object} options (Optional) Additional options
- * @param {string} [options.device_id] Device ID of target to command
  * @returns {object} Response to request.
  */
-Playback.skipToNext = function skipToNext(options) {
-  return Models.wrapperInstance.skipToNext(options);
+Playback.skipToNext = function skipToNext() {
+  return Models.wrapperInstance.skipToNext();
 };
 
 /**
  * Moves Playback to previous item
- *
- * @param {object} options (Optional) Additional options
- * @param {string} [options.device_id] Device ID of target to command
+ * 
  * @returns {object} Response to request
  */
-Playback.skipToPrevious = async function skipToPrevious(options) {
-  return Models.wrapperInstance.skipToPrevious(options);
+Playback.skipToPrevious = async function skipToPrevious() {
+  return Models.wrapperInstance.skipToPrevious();
 };
 
 /**
@@ -181,8 +180,7 @@ Playback.setShuffle = function setShuffle(state, options) {
  * @returns {object} Devices
  */
 Playback.getDevices = async function getDevices() {
-  const response = await Models.wrapperInstance.getMyDevices();
-  return response.body.devices;
+  return (await Models.wrapperInstance.getMyDevices()).body;
 };
 
 /**

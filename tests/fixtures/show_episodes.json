@@ -1,0 +1,2117 @@
+{
+    "href": "https://api.spotify.com/v1/shows/38bS44xjbVVZ3No3ByF1dJ/episodes?offset=0&limit=50",
+    "items": [
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/02a11b81052678fe848e33bf0cab0ff979eac55d",
+        "description": "Följ med på en promenad i granskogen, som länge haft en särskild och närmast religiös betydelse för svenskarna. Det menar i alla fall den religionshistoriker som nu söker naturdyrkandets rötter.  För många svenskar är naturen och skogen helig och en del av oss får närmast en religiös upplevelse under en skogspromenad. Men hur kom det sig att världens mest sekulariserade folk skulle söka andlighet i skogen? Religionshistorikern David Thurfjell, aktuell med boken Granskogsfolk, söker rötterna bland Tacitus germanska naturkult, bland tomtar och troll, 1800-talets naturromantik och moderniseringens dubbla sidor och vi möter honom under en skogspromenad förstås! Dessutom om vem som egentligen var den förste att kalla sig kung av Sverige. För Olof Skötkonung, som traditionellt betraktas som Sveriges förste kung, fanns ju inget Sverige, så Dick Harrison får reda ut vem det egentligen kan vara som var Karl XVI Gustavs första kollega. Programledare är Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/4QfITlxqRPXth7OAMWV94C"
+        },
+        "href": "https://api.spotify.com/v1/episodes/4QfITlxqRPXth7OAMWV94C",
+        "id": "4QfITlxqRPXth7OAMWV94C",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/a7b7e01647d04d251b3847422644b705a60346de",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ebb8e9ea7d19607f45f39d8e7744eb4b2522a796",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/f82c4e8557507d5f74e51111cd6eecb7572ecd10",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Granskogsfolket svenskarna",
+        "release_date": "2020-10-06",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:4QfITlxqRPXth7OAMWV94C"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/7b653d3c472984b74f75590ef165d63972483943",
+        "description": "Följ med Tobias Svanelid till vendeltidens Ströja längst in i Bråviken, en tidigare okänd handelsplats och mäktig stormannahall från en tid som gav Tolkien inspirationen till sitt Rohan!  Längst inne i Bråviken har en rik handelsplats och en mäktig stormannahall dolt sig för arkeologerna. Fram tills nu när porten till Östergötland, vendeltidens Ströja, grävs ut. Tobias Svanelid besöker platsen för att höra om guldgubbar och märkliga mynt, om det legendariska slaget vid Bråvalla och om hur Tolkien hittade inspiration till sitt Rohan i en svensk vendeltid. Dessutom om en av historiens doldisar, ingenjören, som nu för första gången får sin historia berättad i Gunnar Wetterbergs aktuella Ingenjörerna. Från kanalbyggen och kanontillverkning har ingenjörerna i hundratals omvandlat Sverige. Idag ligger de bakom några av landets mest framgångsrika företag, men hur kom det sig att just Sverige skulle fostra en så skicklig yrkeskår?",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/7BCeJcyyLocmeoOsW0Di3g"
+        },
+        "href": "https://api.spotify.com/v1/episodes/7BCeJcyyLocmeoOsW0Di3g",
+        "id": "7BCeJcyyLocmeoOsW0Di3g",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/2f7d7335bdff899a77b00bcbaf3745a1e9ec96f2",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/f2e71aa6c42c14e3eb488b654feb248a92079899",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/7d596405b0977aedd0e9203af4a01dbb8073d162",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Ströja – Rohan i Östergötland",
+        "release_date": "2020-09-29",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:7BCeJcyyLocmeoOsW0Di3g"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/34dc4d5785d379b42e35a23028e7c901241c43b7",
+        "description": "300 spartaner stod mot hundratusentals perser i en konflikt som blivit västerlandets mest ikoniska. Men vad hände egentligen vid Thermopyle och Salamis och hur ser vi på slagen idag?  För 2 500 år sedan drabbade det persiska imperiet samman med de grekiska stadsstaterna. Slagen vid Thermopyle och Salamis har gått till historien som striderna då västliga idéer om demokrati och frihet stod emot östlig despoti. Men vad hände egentligen under slagen? Hur kunde de numerärt underlägsna grekiska styrkorna segra och hur väl stämmer bilden av en kamp mellan frihet och förtryck. Tobias Svanelid diskuterar frågorna med antikvetaren Johannes Siapkas. Dessutom svarar Dick Harrison på en lyssnarfråga om hur ofta det egentligen hänt att svenska kungar slagit ihjäl folk för sitt eget höga nöjes skull.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/5LsQEKPaAOPulYSzSYXmkj"
+        },
+        "href": "https://api.spotify.com/v1/episodes/5LsQEKPaAOPulYSzSYXmkj",
+        "id": "5LsQEKPaAOPulYSzSYXmkj",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/2c682eb149f58e880c1a2e9db4de2f3554982a3a",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/8c55d56297f6194fe9e3712905bf86ecc53d0e2d",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/a7618d1b3236f1c2457a9579c79755adb4be6d37",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Slagen vid Thermopyle och Salamis",
+        "release_date": "2020-09-22",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:5LsQEKPaAOPulYSzSYXmkj"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/fb5d0cca145e283e239c285dc36fa8b50a02a952",
+        "description": "Extrem fattigdom och avsaknad av politiskt inflytande lade grunden till den unika svenska jämlikheten, snarare än sockenstämmor och odalbönder, menar forskare som debatterar frågan i dagens program.  Självägande bönder, sockenstämmor och tingstraditioner lade grunden till det demokratiska och jämlika Sverige har det hetat, men nu utmanar ekonomhistorikern Erik Bengtsson den bilden i nya boken \"Världens jämlikaste land\". Han fokuserar istället på hur ojämlikt Sverige var, såväl ekonomiskt som politiskt, under 1800-talet. Något som lade grunden för starka folkrörelsetraditioner och 1900-talets Folkhem. Historieprofessor Lars Trägårdh debatterar de nya rönen med författaren. Dessutom testar vi 1500-talets simhjälpmedel  sävbunten, som skulle rädda liv och lära småbarnen att simma, flera sekel innan simpuffar och badringar tog över funktionen. Och så svarar Dick Harrison på lyssnarfrågan om hur äldre tider tänkte kring yngre regenter  togs verkligen unga kungar och drottningar på allvar av sin samtid? Programledare är Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/6lme7rSf0Cbu5eyB16fxgZ"
+        },
+        "href": "https://api.spotify.com/v1/episodes/6lme7rSf0Cbu5eyB16fxgZ",
+        "id": "6lme7rSf0Cbu5eyB16fxgZ",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/030d253ae81adfb4ac965b3f4be13d84ca137dc9",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/0403c65e90dbd5a91638423f28a33c4da2fe5224",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/456437010468fe1eac7b0cc76fb4bb1c1cf2ca11",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Hur blev Sverige världens jämlikaste land?",
+        "release_date": "2020-09-15",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:6lme7rSf0Cbu5eyB16fxgZ"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/b01cc9aade0ceee8432187a3e5ed53790541d149",
+        "description": "För 8000 år sedan var jägarna och samlarna i södra Sverige bofasta halva året. Vid Sölvesborg har man hittat unika lämningar som avslöjar en helt ny bild av vår äldsta forntid.  Vid Sölvesborg har arkeologerna hittat resterna efter en extremt välbevarad stenåldersby som ger en helt ny bild av hur jägarstenålderns samhälle kan ha fungerat. Tobias Svanelid besöker platsen för att diskutera stenåldershus och den mystiska översvämning som bevarat platsen för eftervärlden. Dessutom om Anna Whitlock, verklighetens Fröken Friman, som nu föräras en egen biografi.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/4rjypZD5NPYQV7bDbx10kG"
+        },
+        "href": "https://api.spotify.com/v1/episodes/4rjypZD5NPYQV7bDbx10kG",
+        "id": "4rjypZD5NPYQV7bDbx10kG",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/070cb1edd57ec775568890ed9d89a22adf2b651d",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/34d73cdc5e61da0f7400e960f26b2ffca17f2efc",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/b4e44fb263d7fe23efc9c093b313a16e1cddbdf9",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Stenåldersbyn som dränktes",
+        "release_date": "2020-09-08",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:4rjypZD5NPYQV7bDbx10kG"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/558643e377873d5921dd1af6f4c4152a7173b674",
+        "description": "Spåren efter 1700-talets rökare är vanliga, men en hel kritpipsfabrik är ovanligt att stöta på. Tobias Svanelid besöker utgrävningen av kritpipsfabriken i Karlskrona, och testar att puffa på en kopia!  De ibland halvmeterlånga kritpiporna i skör, vit lera var 1700-talets beroendeframkallande och påstått hälsofrämjande favoritlast. I Karlskrona tillverkades tiotusentals kritpipor närmast på löpande band för att mätta inte minst den svenska flottans behov av rökvaror, och nu grävs för första gången resterna av en kritpipsfabrik fram. Tobias Svanelid besöker platsen för att höra om den komplicerade tillverkningsprocessen och om tobaken som förenade människor från världens alla hörn. Dessutom smakar han på en nytillverkad kritpipa, för än är inte hantverkskunnandet helt utdött! Och så berättar Dick Harrison vilka kulturella spår vikingarna lämnade efter sig under sina resor österled.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/5q8S8Qe0FoYAmfAF3XaRzb"
+        },
+        "href": "https://api.spotify.com/v1/episodes/5q8S8Qe0FoYAmfAF3XaRzb",
+        "id": "5q8S8Qe0FoYAmfAF3XaRzb",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/de4b37d82de59fb1358a80b7755bb594b7b0de00",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/03f71e10f1dfffb81fbf57828febeec65f472ab7",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ce84f1f2b1707115ec5037de66c68bfa8ae66881",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Kritpipsfabriken i Karlskrona",
+        "release_date": "2020-09-01",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:5q8S8Qe0FoYAmfAF3XaRzb"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/ea89bd5d518adbb0ae3bb97df4d734a144c94e58",
+        "description": "Följ med Tobias Svanelid till Guldgubbarnas (och gummornas!) rike i Västra Vång i Blekinge. Här har en mäktig släkt levt och verkat i hundratals år och lämnat ett mäktigt arv efter sig.  I Västra Vång strax norr om Ronneby har arkeologerna hittat spåren efter ett spännande maktcentrum. Tobias Svanelid reser till platsen för vad som kan ha varit ett hednatempel prytt med guldgubbar, små guldbleck som avslöjar nära kontakter mellan Blekinge, Öland och Bornholm. Hör också om hur Blekinge nu, efter upptäckten av Västra Vång och andra unika arkeologiska fynd, planerar ett nytt arkeologiskt museum. Dessutom svarar Dick Harrison på en lyssnarfråga om det märkliga faktum att det finns så många fler runstenar i Sverige än i något annat land.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/15kzk7F0e0NYHKUVOFYWpv"
+        },
+        "href": "https://api.spotify.com/v1/episodes/15kzk7F0e0NYHKUVOFYWpv",
+        "id": "15kzk7F0e0NYHKUVOFYWpv",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/a02987ea9522076c61eff4cac568e2fc8a0da668",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/c8cd9dc72d76f35ddc9d5debc6878eac227d0fbc",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/0400f25252790dc94e9335fc9906163fb1ff2f98",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Guldgubbarnas rike",
+        "release_date": "2020-08-25",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:15kzk7F0e0NYHKUVOFYWpv"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/134e178a566e820b228617537077bbbcb860ce5f",
+        "description": "Det gotländska alltinget i Roma undersöks nu av arkeologer för att ge kunskap om hur vikingatidens tvistlösande lade grunden för en nordisk demokratisk tradition.  Vid Roma på Gotland har arkeologerna hittat spåren efter det stora gotländska alltinget. Gutnaltinget som det kom att kallas samlade alla gotläningar en gång om året till viktiga beslut, men också till lekar, spel och giftermålsplaner och här tycks också ha funnits en vikingatida standardiseringsmyndighet. Tobias Svanelid besöker platsen som varit en av grundstenarna för en nordisk demokratisk tradition och träffar arkeologerna som för första gången försöker förstå en av svensk historias mest ikoniska platser.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/4qe4bH5TNGAf6vLfsICPbe"
+        },
+        "href": "https://api.spotify.com/v1/episodes/4qe4bH5TNGAf6vLfsICPbe",
+        "id": "4qe4bH5TNGAf6vLfsICPbe",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/3760247c5314b44675d64b9d72ba9bbdfabe54d5",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/191f9ede99b3cad81827694e4c29f9bfff1466ba",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/6899b5f33b725090ebc9e288e72bc0ea209ab71c",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Gotlandstinget lade grunden för svensk demokrati",
+        "release_date": "2020-08-18",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:4qe4bH5TNGAf6vLfsICPbe"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/bb8bed20269afa999fe46a36746b816538c517b5",
+        "description": "Kristina har en crush på Felix Mendelssohn, precis som Jenny Lind hade. Om det och mycket mer när Vetenskapsradion Historia läser och spelar sig igenom coronasommaren!  Lägg dig i hängmattan med eller utan munskydd och njut av en god historiebok i väntan på att världen öppnas upp igen. Vetenskapsradion Historias Tobias Svanelid pratar sommarens bästa historieböcker med Kristina Ekero Eriksson och Urban Björstadius och testar två historiska brädspel som kan förgylla regniga sommardagar. Böckerna och spelen vi tipsar om är:  Hon kallades Daisy av Prinsessan Christina Fru Magnusson Vi människor av Frank Westerman Frödjelekar av Annika Sandén Komikerns historia av Peter K Andersson Kungar av Erik Petersson Näktergalen av Ingela Tägil Jag stannade kvar i Auschwitz av Eddy de Wind Människor i rörelse av Henrik Höijer Guide till det medeltida Rom av Anna Blennow 200 svenska sevärdheter från andra världskriget av Lars Gyllenhaal Från det inre av Västergötland av Egil och Anders Josefson Den bråkiga staden av Andrés Brink Pinto och Martin Ericsson Hundra år i Göteborg (del 9 och 10) av redaktör Gudrun Nyberg Nybyggarnas liv av Rolf Kjellström Ovan valven av Robin Gullbrandsson Det ockulta sekelskiftet av Per Faxneld Historiens ansikten av Kent Andersson Crusader Kings av Fria Ligan Sails of Glory av Ares Games ",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/514IKXyLKiTBMX7xjB1mYT"
+        },
+        "href": "https://api.spotify.com/v1/episodes/514IKXyLKiTBMX7xjB1mYT",
+        "id": "514IKXyLKiTBMX7xjB1mYT",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/b16363e4a124b223c147fe099344a5b579655e2d",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/87b6780a66704bc287248185892451556e055024",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/acb9a740e346b64a1da726dffe3165dd4d3ab304",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Historieläsning och spel i coronasommaren",
+        "release_date": "2020-06-16",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:514IKXyLKiTBMX7xjB1mYT"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/fd2475a68f90db7ce71beb3ce494d6c9b303d0fd",
+        "description": "Hör om Sveriges sämste kung, om förlagorna bakom Zorro och kapten Haddock, om Ragnar Lodbroks historiska sanningshalt och Isabellas smutsiga trosor i Vetenskapsradion Historias lyssnarfrågemarathon.  Dags igen för Vetenskapsradion Historias lyssnarfrågemarathon  lyssnarnas egen storfavorit som i två år toppat antalet nedladdningar. Återigen bänkar sig historieprofessorn Dick Harrison vid Lunds universitet med energidryck och svettband för att svara på så många lyssnarfrågor han mäktar med på 45 minuter. Hör om historiska b-kändisar och fantasifoster, om Ragnar Lodbrok och Kung Salomo, om Isabella med de smutsiga underkläderna och verklighetens Kapten Haddock. Programledare är Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/10KjHj5ibrNihMQUVuYGfj"
+        },
+        "href": "https://api.spotify.com/v1/episodes/10KjHj5ibrNihMQUVuYGfj",
+        "id": "10KjHj5ibrNihMQUVuYGfj",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/535049f80fcbe4bc9314964f48413e4bc70615f9",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/dd33bf7348a19cc5dedc9422a1b627dedd719404",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/9f0f3ad5001e03a1121b91f71898f53c41bc2897",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Har Zorro, Haddock och Ben Hur funnits?",
+        "release_date": "2020-06-09",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:10KjHj5ibrNihMQUVuYGfj"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/3dfac725a96243d8863ff30009626c558a983122",
+        "description": "Följ med Vetenskapsradion Historia till Södra Råda där den nedbrunna medeltidskyrkan nu återuppstår med hjälp av 700-åriga hantverkstraditioner.  Hösten 2001 brann den världsberömda medeltidsträkyrkan i Södra Råda ner men efter många års arbete står nu en rekonstruktion snart klar. Vetenskapsradion Historias Urban Björstadius åker till platsen för det speciella kyrkobygget, där medeltida metoder används i såväl stort som smått. - Det handlar om att lära sig av medeltidens byggmästare, berättar timmermannen Kalle Melin som guidar runt bland 700-åriga yxor och sotade måttband. Dessutom om hur jakten på själva timret till medeltidskyrkan också blivit en utmaning i Sveriges modernt brukade skogar. - Att hitta stammar som kan tjäna som 11 meter långa plankor är svårt i skogar som inte fått växa fritt, menar timmermannen Bengt Bygdén. Programledare är Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/1BAq37Vn3rGT9EjjoHpOjI"
+        },
+        "href": "https://api.spotify.com/v1/episodes/1BAq37Vn3rGT9EjjoHpOjI",
+        "id": "1BAq37Vn3rGT9EjjoHpOjI",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/02ae862b1f28d26b0d8032ea4802fc5034b5bac1",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/d0b098795058874c767e545571aec4e2b4758314",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/0f0a59da12c933bface4a5fa57f7292f4a67223b",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Nedbrunna medeltidskyrkan återuppstår",
+        "release_date": "2020-06-02",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:1BAq37Vn3rGT9EjjoHpOjI"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/cc49ac12032a3232634f7979bac982cde73842d2",
+        "description": "Musslor står mot mänskligt kulturarv vid Järle i Nora. Vetenskapsradion Historia tar pulsen på striden där naturen står mot kulturen.  Järle kvarndamm i Nora kan komma att rivas. Naturvårdsverket vill se bättre livsförutsättningar för musslor och fiskar, men många motsätter sig rivningen. Vetenskapsradion Historias Urban Björstadius tar pulsen på striden om Järle Kvarn, där naturvärden står mot kulturvärden och där ingen lätt lösning tycks kunna skönjas. Enligt Birgitta Johansen vid Örebro Läns Museum är Järle kvarn ett unikt kulturarv som kan berätta om ett nära tusenårigt bergsbruk, men också om tiden då Järle höll på att bli en viktig svensk stad. Hembygdsrörelsens Eva Järliden befarar att den levande landsbygden som Järle hjälpt till att skapa i trakten nu hotas, och får medhåll av keramikern Moa Rudebert som har sin verksamhet och ett café vid Järle. - Jag tror att det kommer att komma färre besökare om dammen rivs och den här miljön förändras, säger hon. Naturvårdsverkets Maria Tiricke menar att myndigheten är tvungen att agera för att förbättra situationen för Järleåns hotade djurarter. I veckan går fristen ut för att komma med synpunkter i ärendet som nu hamnat hos Mark- och miljödomstolen. Programledare är Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/3Nby7z5x8LlB4dG2IMzqCu"
+        },
+        "href": "https://api.spotify.com/v1/episodes/3Nby7z5x8LlB4dG2IMzqCu",
+        "id": "3Nby7z5x8LlB4dG2IMzqCu",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/c0564f79f1280950a93f316816412bf998a74365",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/f640011370a46c572c4b98865107d0c450633f7e",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/db9ff8bba7c8d2b0f4a38b5666cf6082a1252ef4",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Striden om Järle kvarn",
+        "release_date": "2020-05-26",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:3Nby7z5x8LlB4dG2IMzqCu"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/a72f8b00fc6d1611def82c07fe4c79eb33d849c6",
+        "description": "Snuskiga stenyxor och pornografiska hällristningar har lett arkeologen Jonathan Lindström på en resa genom sexualitetens långa historia. Dessutom om aztekernas undergång för 500 år sedan.  SR-spanaren och arkeologen Jonathan Lindström är aktuell med en ljudbok om sexets historia, från Aylas erfarenheter i Grottbjörnens folk, via snuskiga stenyxor och hällristningar till närtidens kamp för preventivmedel. Men kan vi egentligen lära oss av historien i det här fallet? Och så handlar det om hur Andra världskriget bara fortsatte, även i Europa, även efter att freden formellt undertecknats. De sista tyska soldaterna lade inte ner vapnen förrän i september 1945  på Svalbard! Och så reder Dick Harrison ut hur spanjorerna kunde besegra det mäktiga aztekerväldet för 500 år sedan. Programledare Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/02vm1SbyrQMfYdX4AyH5d0"
+        },
+        "href": "https://api.spotify.com/v1/episodes/02vm1SbyrQMfYdX4AyH5d0",
+        "id": "02vm1SbyrQMfYdX4AyH5d0",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/37af0a862cbbca2778316fad295379c2a0941280",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/76020b51d3f462e2250262204ab2f16da55af9d2",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/d2fbe25f7dabe56f6987dce2b8dfa3269ba0f237",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Alla tiders sex",
+        "release_date": "2020-05-19",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:02vm1SbyrQMfYdX4AyH5d0"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/a4cfcd75b44c7bf82902ebfc2107cebb12e751d3",
+        "description": "Jeanne d'Arc är Frankrikes \"Grande Dame\", 100 år efter att hon blev helgon och nära 600 år sedan hon brändes på bål. Möt henne, och hör om 1700-talets dyraste fest, Marie-Antoinettes bröllop.  Två franska kvinnliga historiska fixstjärnor står i fokus denna vecka. Det har gått 100 år sedan Jeanne dArc förärades helgonstatus, och hennes resa från visionär, krigare, crossdresser och kätterska till helgon är en makalös resa som än idag präglar fransmännen. Tobias Svanelid granskar helgonets status inför hundraårsdagen tillsammans med Dick Harrison. Dessutom uppmärksammas 1700-talets dyraste party  Marie Antoinettes bröllop med den franske kronprinsen Louis Auguste. Fyrverkerier, festbanketter och ett sprillans nytt operahus i Versailles markerade starten på ett komplicerat äktenskap och början till slutet för den franska monarkin berättar historikern Jonas Nordin.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/0H8NrdqqSPDvbWx8bytevX"
+        },
+        "href": "https://api.spotify.com/v1/episodes/0H8NrdqqSPDvbWx8bytevX",
+        "id": "0H8NrdqqSPDvbWx8bytevX",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/2a7df20f8bd0d09bebb7ac4a2179ae06a2a23a68",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/0d5dbf75b1d9d3c7ca2193678c95f256cfc2d297",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/d0d4644483717c1edb6ff18553ce2b05c5da3373",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Helgonet och bruden",
+        "release_date": "2020-05-12",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:0H8NrdqqSPDvbWx8bytevX"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/18eda0f50e12011a2663d54e25e18087d3cbad0b",
+        "description": "Hur upplevdes freden i Europa för 75 år sedan? Tobias Svanelid söker sig bortom festyran på Kungsgatan i maj 1945 för att närma sig känslor av skam, svek och den förfärande insikten om krigets fasor.  Karnevalsstämning på Kungsgatan och jubelrubriker i dagstidningarna. Det har gått 75 år sedan andra världskriget tog slut i Europa, men hur upplevdes egentligen freden och den sista nervkittlande krigsmånaden? Tobias Svanelid samtalar med historikerna Yvonne Hirdman och Klas Åmark för att närma sig känslorna av hopp och lycka, men också skam, ångest och insikten om att Sverige hade kunnat göra mer. Dessutom svarar Dick Harrison på en lyssnarfråga om vilken som är världens äldsta byggnad som fortfarande är i bruk.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/6nbxt8poCbnNlxErs6jdwj"
+        },
+        "href": "https://api.spotify.com/v1/episodes/6nbxt8poCbnNlxErs6jdwj",
+        "id": "6nbxt8poCbnNlxErs6jdwj",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/29eea4a01a7058a49f9854a1c21511fe7701acbf",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/dd35787d54dc4861b208b52d21bdcf073e7b33ee",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/3fc89d3622194ebf98839374f0115c4fa128eafd",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Freden i Europa 75 år",
+        "release_date": "2020-05-05",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:6nbxt8poCbnNlxErs6jdwj"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/dc19e2e3fbb7f1cbaf37b414dc2fd4c89722cedd",
+        "description": "Fina anor och ett gudomligt mandat präglade historiens kungligheter, förutom det faktum att det var ett av historiens farligaste jobb. Tobias Svanelid bekantar sig med kungarnas världshistoria!  Historien handlar bara om kungar och krig menar somliga, men även om det inte stämmer intar kungarna en särställning i historien. Det menar Erik Petersson som nu skriver kungarnas världshistoria. Tobias Svanelid träffar honom för att förstå varför vi över huvud taget har kungar, hur de legitimerat sin makt och vad de betyder för oss idag. Karin Tegenborg Falkdalen är senare i vår aktuell med sin bok om drottningarnas historia. De svenska drottningarna, från 1500-talet och framåt, förväntades vara moderliga, omhändertagande och plikttrogna och än idag styrs drottningrollen delvis av femhundraåriga ideal. Och så svarar Dick Harrison på en lyssnarfråga om kungafientligheten i Sverige  hur nära det egentligen var att Sverige fick en revolution liknande den i Frankrike och vad Ankarström egentligen ville med sitt kungamord.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/58PiprryHSyX5vFqvpqx2v"
+        },
+        "href": "https://api.spotify.com/v1/episodes/58PiprryHSyX5vFqvpqx2v",
+        "id": "58PiprryHSyX5vFqvpqx2v",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/94dafad9df1e98d545597f243fcb6777fbc4b6d3",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/9cc2cc13eb12ae3f576a5612223aec6295b8d093",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/808de288b21cb6d002d92b781fd9d756bda9a6b6",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Kungarnas historia (och drottningarnas)",
+        "release_date": "2020-04-28",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:58PiprryHSyX5vFqvpqx2v"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/215e9428e9691c5a0374ee53e7098ec2457134c0",
+        "description": "Följ med till vraket som nu ger en ny pusselbit av Sveriges viktigaste exportvara - järnet. Och så uppmärksammar vi freden i Lapplandskriget 1945, då Finland drog en lättnadens suck.  På trettio meters djup i Stockholms skärgård ligger en skatt av järn. Marinarkeologerna jublar över fyndet som bland annat kan berätta om den ovanliga båttypen holk och Gustav Vasas ambitioner, men högre jublar bergshistorikerna som i skeppslasten fått helt nya ledtrådar till Sveriges viktigaste exportvara. Tobias Svanelid träffar marinarkeologen Jim Hansson och bergshistorikern Catarina Karlsson för att få reda på mer om nyupptäckta Osmundvraket. Dessutom uppmärksammas slutet på Lapplandskriget  Finlands tredje krig under andra världskriget, som avslutades med ett ikoniskt fotografi som än idag slår an en sträng hos många finländare. Och så reder Dick Harrison ut frågan om vad det egentligen var för krig Sverige utkämpade mot Storbritannien på 1810-talet, som räknas som världshistoriens oblodigaste.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/7sRzs8hOO5lkvQtLoAFcHt"
+        },
+        "href": "https://api.spotify.com/v1/episodes/7sRzs8hOO5lkvQtLoAFcHt",
+        "id": "7sRzs8hOO5lkvQtLoAFcHt",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/8bb2914ee1649884bafbc22cd3dc576536f573fc",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/5befb82de0b8175349abeb0fa06006f8ebfa6542",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/e82dfd1705a6a1661356e0e8ac31423017b6a0e3",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Osmundvraket skriver om Sveriges historia",
+        "release_date": "2020-04-21",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:7sRzs8hOO5lkvQtLoAFcHt"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/e306b911e129cf4893e903acfed497904de205e6",
+        "description": "Följ med till stormaktstidens Skokloster och försök tyda ordspråk och familjebiblar på tyska, latin och italienska! Dessutom om kommande dokumentären om stölderna vid Myntkabinettet.  Latin, tyska, franska, italienska och svenska pryder väggarna i stormaktstida barockpärlan Skokloster. Tobias Svanelid besöker slottet för att försöka förstå vad alla dessa språk betydde för slottets invånare och hur väl man egentligen kunde läsa och tala dem. Språkforskaren Susanne Tienken menar att de målar upp ett språkligt landskap som gör att vi kan komma 1600-talsmänniskan närmre och bättre förstå hur Sverige försökte ta en plats i världen som nybliven stormakt. Dessutom om kommande dokumentärserien Guldfeber på SVT Play, berättelsen om stölderna på Kungliga Myntkabinettet  Sveriges största kulturarvsbrott genom tiderna. Och så svarar Dick Harrison på en fråga om de tyska områdena Pfalz och Zweibrücken som på ett mycket krångligt sätt tillhörde Sverige på 1600-talet.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/2yI5MmbuhGl3kSCwUXjbd0"
+        },
+        "href": "https://api.spotify.com/v1/episodes/2yI5MmbuhGl3kSCwUXjbd0",
+        "id": "2yI5MmbuhGl3kSCwUXjbd0",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/f25ccfe76424c012c4d0923fe643199e9a624c92",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/d4744539a10bf48d54ce69a0517141ef54f4c49e",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/6b2d57c1fcfe1a41ca6e5b771eb7969e56faf36e",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Flerspråkighetens Skokloster",
+        "release_date": "2020-04-14",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:2yI5MmbuhGl3kSCwUXjbd0"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/189d1d8e8db8cf170bbcd99db38b0e83d920ac5a",
+        "description": "I landets kyrkor finns bokskatter som utgör ett okänt men viktigt kulturarv som nu inventeras. Dessutom om Venus från Milo som kom att ta en hel värld med storm när hon återfanns för 200 år sedan.  Dammiga pergament och malätna böcker utgör en bortglömd kulturskatt i våra kyrkor. Idag är riskerar de att slängas som skräp, men i ett aktuellt forskningsprojekt försöker historikern Martin Kjellgren inventera de svenska kyrkornas bortglömda kulturskatter i form av några av våra äldsta och mest värdefulla böcker. I tornrum, sakristior och pastorsexpeditioner hittar han 1400-talsvolymer och malätna offentliga kungörelser som utgör ovärderliga delar av vårt kulturarv. Dessutom om ikoniska statyn Venus de Milo som hittades för exakt 200 år sedan, och om varför just Karl XII och inte Gustav II Adolf kom att bli vår hjältekung nummer ett.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/3g4RzNzVlOS6dx27ig3vm9"
+        },
+        "href": "https://api.spotify.com/v1/episodes/3g4RzNzVlOS6dx27ig3vm9",
+        "id": "3g4RzNzVlOS6dx27ig3vm9",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/88708ad5908019c222fd1140d1589129135bc4bb",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/b6c2352dec74d2040bfa08d0ecc4e0daa0cabc8f",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/179cc5984a105a40b624bfc1ac89bdc05d3c3eee",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Kyrkornas bortglömda bokskatter",
+        "release_date": "2020-04-07",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:3g4RzNzVlOS6dx27ig3vm9"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/c42edec5c4af1b3bc94dfa89f22b138054bbfe01",
+        "description": "Galna tidningskostymer och eldfester med tusentals deltagare. 1700-talets maskerader var fantastiska fester som nu undersöks i aktuell forskning.  Askungen, Gustav III och Casanova älskade dem och de har blivit symboler för 1700-talets uppsluppna festande. Följ med Vetenskapsradion Historias Tobias Svanelid på maskeradbal på Stockholms slott, i Gamla Stan och vid Kungsträdgården, bland utklädda grekiska gudar, galna tidningskostymer och eldfesten som var Sveriges största maskerad. Dessutom om 1700-talets kanske mest ikoniska politiska slagord  frihet, jämlikhet och broderskap. Men vem myntade egentligen begreppet och vad betyder det för oss idag, undrar en lyssnare. Historieprofessor Dick Harrison vet svaret.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/3WuVpCciwXruOkKFVffIkg"
+        },
+        "href": "https://api.spotify.com/v1/episodes/3WuVpCciwXruOkKFVffIkg",
+        "id": "3WuVpCciwXruOkKFVffIkg",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/30e226a1cba014d1adc3b19cb9a730f586aec653",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/eceaf868b32acebbde5022912b9a89e044b72fec",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/e6f571e5b393f8c88bb6d695e5750b7dcc2b804b",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Maskeradbalerna var 1700-talets frirum",
+        "release_date": "2020-03-31",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:3WuVpCciwXruOkKFVffIkg"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/250334e294926ed94bea7afb98ae152c405a7ed8",
+        "description": "Museer värnar vårt kollektiva minne, men arbetar också med att glömma bort. Hur glömskan fungerar reds nu ut i en aktuell bok. Dessutom om vad som händer med museerna när de ser besökare som kunder.  Vad väljer museer att visa och berätta och vad väljs bort? De senaste åren har sydstatsgeneraler, Richard Wagner och Zarah Leander blivit ifrågasatta. Många museer har valt att rensa i sina samlingar, att repatriera och utrangera föremål som anses problematiska. Hur denna process går till undersöks nu av författaren Stefan Bohman, aktuell med boken Skelett i garderoben. Dessutom om vad som händer när museet ägnar större kraft åt sina caféer och museibutiker snarare än själva utställningarna. Och så reder Dick Harrison ut om Gustav Vasa egentligen var en landsfader eller tyrann. Programledare är Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/2yIF2fe2Jjr1vlX50HbH0V"
+        },
+        "href": "https://api.spotify.com/v1/episodes/2yIF2fe2Jjr1vlX50HbH0V",
+        "id": "2yIF2fe2Jjr1vlX50HbH0V",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/b7185adb7fe64e55437c2bf48287f131546cbc1c",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/d997db87a943336c1aaaed4a9cebe3a69c34787c",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/20757d122478cf82cd51791d5df1736ed10204e4",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Museernas skelett i garderoben",
+        "release_date": "2020-03-24",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:2yIF2fe2Jjr1vlX50HbH0V"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/54ffc9506bc58a81ec4f2bad7915125c779d668a",
+        "description": "Avrättningslekar och snöbollskrig som ballar ut, men också galna hångelfester. 1600-talets svenskar hade roligt, menar Annika Sandén, en av deltagarna i Vetenskapsradion Historias första livepodd.  I Vetenskapsradion Historias första livepodd på Historiska museet träffar lyssnarna och publiken historikern Annika Sandén som letar efter 1600-talets få ljuspunkter. I skuggan av farsoter och krig försökte nämligen 1600-talssvensken roa sig så gott det gick, och i sin aktuella bok Fröjdelekar hittar hon mängder av exempel på lekar, hyss och högtider som gjorde tillvaron mera dräglig. Ibland kunde dock lekarna gå för långt, som när snöbollskastningen i Jämtland 1666 slutade i blodbad. Dessutom berättar arkeologen Jonas M Nordin om hur stormaktstidens Sverige såg på och behandlade sina samiska medborgare, en historia om både fredlig samexistens och maktmissbruk. Programledare är Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/0gSr9Ike42ftldHWnvdjwy"
+        },
+        "href": "https://api.spotify.com/v1/episodes/0gSr9Ike42ftldHWnvdjwy",
+        "id": "0gSr9Ike42ftldHWnvdjwy",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/def6bde0a86fee1da38cf72ae513af3568950687",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/d859c0147fb566e995fb1c328fa8d9580fefd32d",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/e81baa8cfd5acd25e89f39eaadca829aa79744d1",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "1600-talets galna lekar",
+        "release_date": "2020-03-17",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:0gSr9Ike42ftldHWnvdjwy"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/58ffe0ab352019aa6bf9a85a8cd08183bf904059",
+        "description": "Historiens dom över komikerna har varit hård, men i alla tider har de ändå arbetat för att få oss att skratta. Vilka de egentligen var reds nu ut i en ny bok om komikernas historia.  Narrar, hovdvärgar och clowner. Alla har de försökt roa oss och få oss att skratta, samtidigt som historiens dom över dem ofta varit hård. Först nu belyses komikernas historia i en aktuell bok av historikern Peter K Andersson. Tobias Svanelid pratar med honom för att lära känna några av historiens dolda lustigkurrar, som inte sällan burit ett stort mörker inombords. Dessutom reder Dick Harrison ut när historiens kungar och drottningar slutade leda sina trupper i fält.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/1AQFlah93wEel2XcK3GZLY"
+        },
+        "href": "https://api.spotify.com/v1/episodes/1AQFlah93wEel2XcK3GZLY",
+        "id": "1AQFlah93wEel2XcK3GZLY",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/276b93239b2816ec4c00b2601b863ac1d2494009",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/23e7f82f41e5efd209e909ac16739c4c5a648181",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/9444abaf0d2279ffc4c34f2ac06c1788ca3fe2eb",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Komikernas historia",
+        "release_date": "2020-03-10",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:1AQFlah93wEel2XcK3GZLY"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/d697fbd91dd8de75a5bf206a6e95e0048765a98b",
+        "description": "Ett flöjtur var 1700-talets jukebox och nu klingar återigen denna märkliga apparat på Årsta Slott. Samtidigt ser projektet om Stockholms dolda musikhistoria 1600-1900 dagens ljus.  På Årsta Slott spelar återigen Fredrika Bremers pappas flöjtur, precis som det gjorde för drygt 200 år sedan. En snillrik och komplicerad mekanisk musikmaskin, 1700-talets jukebox, där förmögna svenskar kunde byta låtar precis som vi idag gör spellistor på våra musikappar. Vetenskapsradion Historia dyker ner i flöjturets klingande värld. Dessutom uppmärksammas initiativet att föra ut den glömda svenska musikhistorien i ljuset. Bernt Malmros är musikern som ägnat en stor del av sitt liv i arkiv för att leta fram en bortglömd svensk musikhistoria från 1600-talet fram till 1800-talet och tycker att det är viktigt att vi idag får ta del av musiken som en gång var svenskarnas greatest hits. Du kan lära dig mer om det musikhistoriska projektet Musik Tre Sekler här. Och så svarar Dick Harrison på veckans lyssnarfråga om hur mycket vi egentligen hatat danskarna efter de ständiga krigen mellan Sverige och Danmark. Programledare är Tobias Svanelid.",
+        "duration_ms": 2740011,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/2DlM8d7YhN5Onn3QCOwRa6"
+        },
+        "href": "https://api.spotify.com/v1/episodes/2DlM8d7YhN5Onn3QCOwRa6",
+        "id": "2DlM8d7YhN5Onn3QCOwRa6",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/c0405fe03e842c0380e7323353b4252cd3749d00",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/0455220578e3fa2c823904fda2a45b8593a22203",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/6c6c1146c693bd0e103ffbe5148b86b5c31a1e6c",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Svenska 1700-talsmusiken klingar igen",
+        "release_date": "2020-03-03",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:2DlM8d7YhN5Onn3QCOwRa6"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/eacf4c9b88497b771e28fae975deb1978decfd75",
+        "description": "Knackningar och hemliga lappar bröt de isolerade fångarnas monotona tillvaro i svenska fängelser vid förra sekelskiftet. Dessutom om Svenska Amerikalinje-festen som får Tobias Svanelid att dansa jazz.  För hundra år sedan var det isolering som gällde för många av landets fångar. Det så kallade Philadelphiasystemet stipulerade att internerna skulle sitta tre år i total avskildhet från andra fångar, men verkligheten såg annorlunda ut. I en aktuell avhandling visar historikern Viktor Englund hur knackningar i väggarna och hemliga lappar skapade ett fångsamhälle som inte skulle finnas. Dessutom svidar Tobias Svanelid på sig 20-talskostymen för att gå på Svenska Amerikalinje-baluns på Sjöhistoriska museet. Inspirerade av ett av Sveriges mest ikoniska företag lockades hundratals historiefestare till museet för att dansa och låtsas leva i marin lyx. Och så svarar Dick Harrison på frågan varför man hurrar tre och inte fyra gånger i Lund.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/2vDJfkk11JQBHkZk7Ta6bI"
+        },
+        "href": "https://api.spotify.com/v1/episodes/2vDJfkk11JQBHkZk7Ta6bI",
+        "id": "2vDJfkk11JQBHkZk7Ta6bI",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/3b6e8d7c71ce1a8c6d4e1d27f9ee6a36e378a8fe",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/1c7590019983ae8c6494231f75c38401cf4c911c",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/023996429763c9dd75519dba2a8f664962fdbdf2",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Så bröts fångarnas isolering",
+        "release_date": "2020-02-25",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:2vDJfkk11JQBHkZk7Ta6bI"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/4aafa23b4da4f979c32d15ea3c9cf29b0e61b122",
+        "description": "Mysteriet med tsardottern som mirakulöst överlevde arkebuseringen har fascinerat oss i hundra år. Tobias Svanelid går till botten med historien om den främsta av alla Anastasiakopior - Anna Andersson.  I februari 1920 fiskades en ung kvinna upp ur en kanal i Berlin. På sinnessjukhuset hon hamnade påstod hon att hon var Anastasia, den enda överlevande av den arkebuserade siste ryske tsarens barn. Tobias Svanelid pratar med historieprofessorn Klas-Göran Karlsson för att ta reda på vad som egentligen hände med tsarfamiljen och hur Anna Andersson, den mest kända av alla Anastasiakopior, förde sin kamp för erkännande. Dessutom svarar Dick Harrison på en fråga om Asterix  hur trovärdiga är egentligen Asterixalbumen enligt en historiker? Vill du höra hela sändningen från Radiohuset där bland annat Vetenskapsradion Historia firade sitt 20-årsjubileum. Klicka här!",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/4wlcH1uJh1aWmavhD0kdLk"
+        },
+        "href": "https://api.spotify.com/v1/episodes/4wlcH1uJh1aWmavhD0kdLk",
+        "id": "4wlcH1uJh1aWmavhD0kdLk",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/00e40f42f44b33c35bc9621c188b760f20fa4a47",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/847506de9cf9150e137f4ca1fc35a5972c3d07e6",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/6e91312156ca43d2e17139ae6c8960e853152408",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Mysteriet Anastasia vill aldrig lösas",
+        "release_date": "2020-02-18",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:4wlcH1uJh1aWmavhD0kdLk"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/5e2302b4823017edfe1e1eda297ae1a3d54df98a",
+        "description": "Kulturstaden Dresden jämnades med marken i februari 1945 och i lågorna omkom minst 25 000 människor. Tobias Svanelid undersöker om bombningen var strategiskt befogad och hur man minns händelsen idag.  Den 13 februari 1945 drog flyglarmet igång i tyska staden Dresden. Ett dygn senare skulle minst 25 000 människor ha omkommit i brandbombernas lågor och av kulturstaden vid Elbe återstod bara rykande ruiner. Tobias Svanelid diskuterar bombningen av Dresden, ett av världskrigets stora tvisteämnen, med historikern Lars Ericson Wolke. Dessutom svarar Dick Harrison på en lyssnarfråga om en annan välkänd brandkatastrof, den på Stockholms Slott 1697, och vad den branden innebar för vår kunskap om svensk historia.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/3l0C4xt36Q3sr9WHnMoQG7"
+        },
+        "href": "https://api.spotify.com/v1/episodes/3l0C4xt36Q3sr9WHnMoQG7",
+        "id": "3l0C4xt36Q3sr9WHnMoQG7",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/e3bd98b43bcd1bda1bcec9bd51cd2139463adafb",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/980316218a3ad80fb14d3d6d7fed90f9f51a72e1",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ce2ce41bcd71e9a5e0177e419c1882e748518511",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "När Tyskland brann – bombningen av Dresden 1945",
+        "release_date": "2020-02-11",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:3l0C4xt36Q3sr9WHnMoQG7"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/5febd20c051284b75f6435ff6ead43b637ec09e0",
+        "description": "Storpolitik på hög nivå när Roosevelt, Churchill och Stalin träffades 1945 - Tobias Svanelid reder ut hur världen omformades i Jalta. Och så lanseras en ny teori om mystiska Dyatlovolyckan 1959.  I februari 1945 träffades USA:s, Storbritanniens och Sovjetunionens ledare i Jalta för att bestämma om världens öde efter kriget. Men det var tre stormakter som drog åt helt olika håll, och Tobias Svanelid träffar historieprofessorerna Kent Zetterberg och Kristian Gerner för att ta reda på hur och om man över huvud taget kunde enas vid Jalta. Dessutom diskuterar man frågan om hur vi än idag lever i svallvågorna av besluten vid Jalta för 75 år sedan. Vi får också en rapport från arkeologen Richard Holmgren som var den förste som häromåret skidade till mytomspunna Dyatlovpasset i Uralbergen. Den oförklarliga Dyatlovolyckan 1959 har nu återigen börjat utredas av ryska myndigheter, men Richard Holmgren har en egen teori som han bättre tycker förklarar ett av 1900-talets största mysterium, när nio skidåkare omkom i det vintriga passet.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/3row2motELXDJHgRRJPHf5"
+        },
+        "href": "https://api.spotify.com/v1/episodes/3row2motELXDJHgRRJPHf5",
+        "id": "3row2motELXDJHgRRJPHf5",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ae4b7edd0c6ef9dc3843fdb41b68b820df78ed51",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/21552ce3c1f3a902174211e0aa9cfc8a9542f19b",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/5ce89374aa08e5ce59a14eb12e250b9e75e44a38",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Jaltakonferensen 1945 beseglade världens öde",
+        "release_date": "2020-02-04",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:3row2motELXDJHgRRJPHf5"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/a48a69a39dad5cd2ad3a3cafa7ea7c3416b4b6ea",
+        "description": "Världshistoriens värsta fartygskatastrof inträffade i Östersjön för 75 år sedan. Hör om Wilhelm Gustloffs undergång och de andra fartygsförlisningarna som 1945 förvandlade Östersjön till Dödens hav.  För 75 år sedan sänktes det tyska fartyget Wilhelm Gustloff av en sovjetisk ubåt i vad som räknas som den värsta fartygskatastrofen i världshistorien. Mer än 9000 människor, många av dem barn, gick under i det iskalla vattnet och tiotusentals fler skulle följa med i djupet under de sista krigsmånaderna 1945, då Östersjön förvandlades till Dödens hav. Tobias Svanelid träffar fartygshistorikern Claes-Göran Wetterholm som berättar om de gripande fartygstragedierna vårvintern 1945. Dessutom granskar vi bioaktuella storfilmen 1917, och så förklarar Dick Harrison hur nazisterna kunde motivera att lägga stora resurser på judeutrotningen mitt under brinnande världskrig i veckans lyssnarfråga.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/7FiesSNgnkCM1EAehMyElH"
+        },
+        "href": "https://api.spotify.com/v1/episodes/7FiesSNgnkCM1EAehMyElH",
+        "id": "7FiesSNgnkCM1EAehMyElH",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/9b065087f2100fc2d2cd0ff6612f13143f0c937c",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/bfe144565c36c11c680e183aa847d6ac3e555157",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/decffaf413832e07b1c531fd305f7da78fb1f23a",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Dödens hav – Östersjön 1945",
+        "release_date": "2020-01-28",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:7FiesSNgnkCM1EAehMyElH"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/dc162013c8681a456f8e073d0007eb4b4e92047b",
+        "description": "Hör om drömtydaren Artemidoros av Daldis, antikens Freud, om hur häxprocesserna påverkade vår syn på hur drömmar kunde påverka människokroppen och om den fruktansvärda Maran som smög in om natten.  Vi sover en tredjedel av våra liv, men trots det har våra drömmar sällan stått i fokus för historisk forskning, trots att de inte sällan påverkat våra liv. Först nu börjar olika forskarlag undersöka drömmarnas historia och hur olika vi förstått och tolkat drömmar under de senaste tvåtusen åren. Tobias Svanelid träffar forskarna som undersöker allt ifrån antikens Freud  Artemidoros av Daldis  till häxprocessernas mystiska drömresor och den fruktansvärda Maran som red gårdsfolket om natten.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/2JDZf5OK3HrdJJ7k1XfNjd"
+        },
+        "href": "https://api.spotify.com/v1/episodes/2JDZf5OK3HrdJJ7k1XfNjd",
+        "id": "2JDZf5OK3HrdJJ7k1XfNjd",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/10e4684a30208960bfa795f4690a1b1a41cdc8c6",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/b434f775061c1b109b70629e44d47d30bfa23e08",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/2592e0d4cb07c67922fb632a8ca3cdb5c508623b",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Maror och antikens Freud – om drömmarnas historia",
+        "release_date": "2020-01-21",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:2JDZf5OK3HrdJJ7k1XfNjd"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/32d9bb91ab24dbbbe6958b49886cd79d201f4e76",
+        "description": "Hör om familjen Rockefeller och deras Standard Oil som en gång skapade världens största förmögenhet men som idag används för att finansiera klimatforskning. Och så pratar vi med den Arga historikern.  För 150 år sedan grundades Standard Oil, företaget som skulle bli ett av världens största och vars grundare John D Rockefeller skulle bli världens rikaste. Vetenskapsradion Historia träffar teknikhistorikern Jacob Nordangård som berättar företagets och familjens historia och hur familjeförmögenheten växlades till kulturellt och politiskt kapital och hur oljepengar idag används inom miljörörelsen. Dessutom uppmärksammas projektet Den arga historikern som vill göra historikerna mer synliga i samhällsdebatten. Och så svarar Dick Harrison på lyssnarfrågan om huruvida rika personer hade lättare att klara sig undan pesten än fattiga. Programledare är Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/4JnRfKf450IJyyTihmpCbH"
+        },
+        "href": "https://api.spotify.com/v1/episodes/4JnRfKf450IJyyTihmpCbH",
+        "id": "4JnRfKf450IJyyTihmpCbH",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/4b19c00d7d8b70c4537f5600cbfe609ac8778484",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/9ac4268d29012f09ea7ed42a6a711dae1ed51000",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/1370b8febd7fe48cd6dfd7f9de50cf521b2704fe",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Rockefellers Standard Oil – olja, makt och rikedom",
+        "release_date": "2020-01-14",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:4JnRfKf450IJyyTihmpCbH"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/73f26e749ef041b82af8a061541044458a8bfe54",
+        "description": "Hör Magnus Viktorins intervju med Tobias Svanelid med anledning av Vetenskapsradion Historias 20-årsjubileum, där programmets och programledarens historia står i fokus.  13 januari år 2000 sändes det allra första avsnittet av Vetenskapsradion Historia. 20 år och närmare 900 program senare träffar Magnus Viktorin programledaren Tobias Svanelid för att diskutera programmets historia och höjdpunkter.",
+        "duration_ms": 874058,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/6LS7WyK4mPfGa0rtsg21Be"
+        },
+        "href": "https://api.spotify.com/v1/episodes/6LS7WyK4mPfGa0rtsg21Be",
+        "id": "6LS7WyK4mPfGa0rtsg21Be",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/31812d2a857ae1b71865092f02e4351ffcfefef3",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/615d6e9b0a60210611207c94f560d2659c98d0ec",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/012b6d213207e74ed1f48697f1e110d075f5b5e0",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Tobias Svanelid om Vetenskapsradion Historias första 20 år",
+        "release_date": "2020-01-13",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:6LS7WyK4mPfGa0rtsg21Be"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/a9fc7bbcbcf7e0662809ae135ed06fe204e934aa",
+        "description": "Fira med Tobias Svanelid att Vetenskapsradion Historia nu fyller 20 år! Hör ett program späckat av nostalgi men också diskussioner om historieforsknings framsteg sedan programstarten år 2000.  I januari år 2000 sändes det allra första avsnittet av Vetenskapsradion Historia. Två decennier och nära 900 program senare firar programledaren Tobias Svanelid att hans program fyller 20 år. Häng med på en nostalgikavalkad och få reda på vilka stora genombrott den svenska historiska och arkeologiska forskningen har gjort de senaste tjugo åren. Sveriges historikers Brangelina-par: Kristina Ekero Eriksson och Bo Eriksson guidar i den aktuella forskningen och diskuterar hur historiens roll förändrats i Sverige från år 2000 till idag.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/6NByypVEK4DrR5hXom5ohV"
+        },
+        "href": "https://api.spotify.com/v1/episodes/6NByypVEK4DrR5hXom5ohV",
+        "id": "6NByypVEK4DrR5hXom5ohV",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/cd9932ea13d97cfe28192a718d4b571e042fdc92",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/d93f719e9cde26785adfb7624289207e2b113960",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/0446f70cace5bf1bef9f5ca3bababa609b0d7286",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Vetenskapsradion Historia fyller 20 år!",
+        "release_date": "2020-01-07",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:6NByypVEK4DrR5hXom5ohV"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/fe9eff69bf89827b472d98acd170ae46fa534d99",
+        "description": "Häng med Vetenskapsradion Historia till resterna av backhoppningsbacken i Slottsskogen i Göteborg för att höra om tiden då det svenska folkhemmet var backhoppningstokigt.  I början av 1900-talet byggdes uppemot 70 backhoppningsbackar i södra Sverige. Enorma ingenjörskonster låg bakom de prestigefulla anläggningarna som på sin tid drog tiotusentals åskådare. Idag söker arkeologen Magnus Ljunge efter backarnas borttynande rester för att förstå vad de kan berätta om folkhemmets Sverige. Urban Björstadius vandrar med honom uppför Bragebacken i Slottsskogen i Göteborg. Dessutom om 2019 års tio viktigaste arkeologiska upptäckter, och hur det kommer sig att Närke blivit ett så bortglömt landskap i svensk historieskrivning. Programledare är Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/6DR3H5oplKpbU5hOPB0a4w"
+        },
+        "href": "https://api.spotify.com/v1/episodes/6DR3H5oplKpbU5hOPB0a4w",
+        "id": "6DR3H5oplKpbU5hOPB0a4w",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/fb7da0b73e31f0657383b25f88a11dc3989e50fc",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/42cbaa172b1496c25db2099053befe90471dba7d",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/e2d8f3e59a4c6b003d497580ba9536f0e6ac4d34",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Backhoppningsbackarnas kulturarv",
+        "release_date": "2020-01-03",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:6DR3H5oplKpbU5hOPB0a4w"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/ab14277e114e6ac4cc09c3e8b22530b5211b210c",
+        "description": "Tobias Svanelid sammanfattar historieåret 2019 bland hälsingska runor, Noas ankarstenar, tjejgänget Forty Elephants och många andra platser, från Mora och Dalsland till Ljungsarp och Hadrianus mur.  Runmysterier i Hälsingland, arkens ankarstenar vid Ararat, gigantiska katedraler i Mattisskogens Dalsland och vandringar längs murarnas mur i England. Vetenskapsradion Historia har haft ett händelserikt år och sammanfattar sin rapportering i årets krönika. Återse platserna som programmet besökt, eller passa på att få ett smakprov av det du kanske missat av historieåret 2019. Dessutom hinner Dick Harrison svara på en lyssnarfråga om de svenska jultraditionerna, och vad i dem som egentligen är kristna och inte hedniska. Programledare är Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/2fx0eEvFFWtG9vNjVjrU4b"
+        },
+        "href": "https://api.spotify.com/v1/episodes/2fx0eEvFFWtG9vNjVjrU4b",
+        "id": "2fx0eEvFFWtG9vNjVjrU4b",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/5418293925452f24a923568ecbfaeff9a28b8262",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/d153fced33e76028b2b5d8f0ce5647a0eef87006",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/b1f5d319c035223ae56f9283ed470328d0834ae5",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Vetenskapsradion Historias årskrönika 2019",
+        "release_date": "2019-12-24",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:2fx0eEvFFWtG9vNjVjrU4b"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/6fda031b27da1fb7bcf1bb9072643631994c5daf",
+        "description": "Giftiga svärd och konstnärliga statyutsuddningar vill nu berätta en helt ny historia om Singapores moderna historia. Tobias Svanelid fortsätter sin resa i supermoderna mångmiljonstadens förflutna.  När Singapore fyller 200 år gör man upp med sin historia. Den brittiska kolonialtidens hjälte Sir Thomas Stamford Raffles har fått konkurrens av många andra människor som har haft del i den supermoderna djungelstadens utveckling och för historikern Peter Borschberg vid Singapores Nationella Universitet är det lite av ett mysterium att Rafflesstatyn fortfarande står kvar i staden. Tobias Svanelid undersöker Singapores modernare historia och hur den nu omvärderas, och dyker också ner i Singapores traumatiska andravärldskrigshistoria  i Slaget om Singapore som Churchill kallade för Storbritanniens värsta militära nederlag genom historien. Dessutom testar Tobias den buginesiska stridskonsten med förgiftade svärd som kan berätta en helt ny historia om Singapores tidigare okända kulturarv.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/19VfZOfsngaloJcomsvNEW"
+        },
+        "href": "https://api.spotify.com/v1/episodes/19VfZOfsngaloJcomsvNEW",
+        "id": "19VfZOfsngaloJcomsvNEW",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/bb12b04e56be9c7a5e55591d56d5e6efcb2ed54b",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/531596faa086f30c67e7968b9c990200d2cce887",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/fac56d1929efe1dca6846003371ff013dd3df5b3",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Giftiga svärd nya ledtrådar till Singapores historia",
+        "release_date": "2019-12-17",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:19VfZOfsngaloJcomsvNEW"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/9f414693fd9c3cf7b9990dae623d7484ae44965d",
+        "description": "När Singapore firar 200 år söker man sig ännu längre tillbaka till historien. Britternas historieskrivning får ge vika för mer uppdaterad historia som berättar om Singapore som en medeltida metrolpol  Tobias Svanelid besöker 200-årsjubilerande Singapore men hittar en stad som har 700-åriga anor. Mitt bland supermoderna skyskrapor och myllrande global handel döljer sig en medeltida högkultur, vars arkeologiska lämningar och historiska vittnesbörd nu ådrar sig singaporianernas intresse. Följ med till malajernas, balinesernas, portugisernas och holländarnas metropol längs den maritima sidenvägen.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/5HSZHYx6xtoxnfUrTpYxG9"
+        },
+        "href": "https://api.spotify.com/v1/episodes/5HSZHYx6xtoxnfUrTpYxG9",
+        "id": "5HSZHYx6xtoxnfUrTpYxG9",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/95b33e560aaa4ca8b027c9dd8c1e84626d4306e9",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/8d7eccda685b103204ded78824894a55dfc97015",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/198e3abbb77c03806decdb96b63345db6c71e46f",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Singapore firar 200 år men söker äldre rötter",
+        "release_date": "2019-12-10",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:5HSZHYx6xtoxnfUrTpYxG9"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/092a2636e5d5436b555a6c6f4c33ed8c9cc9b04c",
+        "description": "Ta hjälp av Vetenskapsradion Historias Tobias Svanelid och hans bokpratare Kristina Ekero Eriksson och Urban Björstadius för att hitta den rätta historiska julklappen att lägga under granen i år!  Det har varit en biografitung höst och det smittar av sig på Vetenskapsradion Historias julklappstips. Hör Kristina Ekero Eriksson, Urban Björstadius och Tobias Svanelid tipsa om läsning om maktgalna drottningar, grötrimmande nobelpristagare, liderliga 17-åringar och en ständigt fascinerande Bellman. Dessutom om tomteblossindustrier, den mystiska bronsåldern och ständigt bortglömda Korea. Och så testar Spelpanelen två 1800-talssimuleringar, dels kring stormaktsstridernas Afghanistan och slaverimotståndets USA. Böcker och spel som du hör om i programmet:  \"Jag vill sätta världen i rörelse\" av Anna-Karin Palm \"Bellman. Biografin\" av Carina Burman \"Mamsell Bohmans fall\" av Rebecka Lennartsson \"Historien om New York\" av Henrik Berggren \"Små industrier - hundra år i Göteborg\" av Gudrun Nyberg, Wanda Klintberg och Johannes Daun \"Himmelsskivan från Nebra\" av Harald Meller och Kai Michel \"Tisdagar med tolfterna\" av Lisbeth Håkansson Petré \"Winston Churchill - de tvåhundra bästa citaten\" red Andreas Nyberg \"Andra Världskriget i Sverige\" av Lars Gyllenhaal \"Koreakriget\" av Artur Szulc \"Korea - en civilisation i kläm\" av Lars Vargö \"Lovisa Ulrika - konst och kuppförsök\" av Claes Rainer \"Trogen in i döden\" av Catarina Lundegårdh \"Pax Pamir\" av Cole Wehrle \"Freedom\" av Brian Mayer ",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/6UMandbXL1AdDH8s8TabZX"
+        },
+        "href": "https://api.spotify.com/v1/episodes/6UMandbXL1AdDH8s8TabZX",
+        "id": "6UMandbXL1AdDH8s8TabZX",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/19151327f83486be76f2c7409455b20198903096",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab86b1e3787d2fdaf30ae25acd1c55f514bc650b",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/809affb9006152c28cdb2e2b32061198035ebfef",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Biografiorgie och slaverismugglare i årets julklappstips",
+        "release_date": "2019-12-03",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:6UMandbXL1AdDH8s8TabZX"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/b77534ece813a74a102ca2a374afb28895c8702d",
+        "description": "Följ med Vetenskapsradion Historia till de underjordiska gruvgångarna i Falun där historien om Fet-Mats berättar om romantisk kärlek, mystisk förstening och vår längtan till bergens djup.  För exakt 300 år sedan halades en död kropp upp ur Falu koppargruva. Mannen såg ut som om han omkommit helt nyligen, men en äldre kvinna kunde berätta att det rörde sig om Fet-Mats Israelsson som försvunnit i gruvgångarna drygt 40 år tidigare. Vetenskapsradion Historia berättar den smått osannolika och kusligt romantiska historien om Fet-Mats, som kom att fascinera en hel värld och som inspirerat såväl Carl von Linné som Richard Wagner. Dessutom förklarar Dick Harrison hur det hade kunnat gå till att Sverige hade blivit muslimskt på vikingatiden. Programledare är Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/2Mg9e0Qbw6jeo4wtJLKBNb"
+        },
+        "href": "https://api.spotify.com/v1/episodes/2Mg9e0Qbw6jeo4wtJLKBNb",
+        "id": "2Mg9e0Qbw6jeo4wtJLKBNb",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/6af1097327da5159f2facf75c7b854b3d1c8c035",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/c4f639b8d6c05693d86865ddf7254bc0e11361f4",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/526266b800fff08d9fe37e2176bd25d882e8f155",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Fet-Mats fantastiska äventyr",
+        "release_date": "2019-11-26",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:2Mg9e0Qbw6jeo4wtJLKBNb"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/bb599472038edeb1c96ee4a9b76fd63a4507540e",
+        "description": "Britterna älskar och hatar sin mur. En symbol för imperiet, men också för förtrycket av kelter och det urbrittiska. Följ med Tobias Svanelid på hans fortsatta vandringar längs Hadrianus mur.  Tobias Svanelid och antikvetaren Allan Klynne reser vidare längs tvåtusenåriga Hadrianus mur för att ta reda på hur den romerska muren än idag påverkar britterna. Idag är muren ett av landets främsta turistmål där kylskåpsmagneter och gosedjur ska öka förståelsen för Storbritanniens romerska arv. Men muren har också alltid varit en mäktig symbol som nu i Brexittider börjar omtolkas, från att ha symboliserat britternas imperium som arvtagare till det romerska till att idag handla om de underkuvade kelternas obändiga strävan efter frihet.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/633nV5NfrHl7s9nJRbvBv1"
+        },
+        "href": "https://api.spotify.com/v1/episodes/633nV5NfrHl7s9nJRbvBv1",
+        "id": "633nV5NfrHl7s9nJRbvBv1",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/98db0423a4ebf247df591f4ea25b57c90438905a",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/d317c8b8021f176754329d6d4d70d05ebd77dfca",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/3eb73d0261f0b5b59e7ede3ca1703da8d49c85b6",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Hadrianus mur präglar britterna",
+        "release_date": "2019-11-19",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:633nV5NfrHl7s9nJRbvBv1"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/98973e650ddac620b04e63188748021a06a1a7e8",
+        "description": "Samtidigt som Berlin firar murens fall och Trump reser nya murar mot Mexico reser Tobias Svanelid till murarnas mur - Hadrianus romerska gränsmur mot barbarerna i Skottland.   Följ med Tobias Svanelid och antikvetaren Allan Klynne till Hadrianus mur i norra England. Tvåtusen år efter att den byggdes är den fortfarande Storbritanniens största byggnadsverk som idag kan berätta om livet vid Romarrikets yttersta utpost, om mångkulturella möten, om kalasinbjudningar och om soldatliv, men också om vad muren kan berätta om vår egen tids syn på vad som är England och vad en mur gör med vår syn på gränser och kulturer.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/50DVjNkSJKlYj60mt28Yle"
+        },
+        "href": "https://api.spotify.com/v1/episodes/50DVjNkSJKlYj60mt28Yle",
+        "id": "50DVjNkSJKlYj60mt28Yle",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/c73bca74ff89d387c3b9a0b66c25387ad26af5b4",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/1bb34fc1f9059716ab7b5922ec49c726cdc33000",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/bf9e7adb29316628ca0900fdf322d2af32f8718d",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Expedition Hadrianus mur",
+        "release_date": "2019-11-12",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:50DVjNkSJKlYj60mt28Yle"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/7ee6bb0e21743cc21cfaa6a36c9d9d0634b5f240",
+        "description": "För hundra år sedan kom Evert Taubes första vissamling och Vetenskapsradion Historia diskuterar hur stort inflytande den fick över den svenska vistraditionen. Och så lär vi känna The Forty Elephants!  I november 1919 utkom Evert Taubes vissamling Sju sjömansvisor och Byssan Lull  visdiktarens första alster som markerade starten på Taubes långa bana som visartist och på hans inflytande över den svenska vistraditionen. Vetenskapsradion Historia diskuterar händelsen och inflytandet med musikvetaren Johanna Broman Åkesson. Dessutom återvänder vi för sista gången till Londons skuggsida, där Tobias Svanelid och Peter K Andersson bekantar sig med The Forty Elephants  de kvinnliga snattarna som gjorde ständiga räder på varuhuset Selfridges på jakt efter pälskappor, pengar och status. Och så svarar Dick Harrison på en lyssnarfråga om var Sveriges statsmän egentligen hittade inspirationen till den smått revolutionerande författningen för 300 år sedan.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/6hxjDPKwiF36zGNTtSfQcE"
+        },
+        "href": "https://api.spotify.com/v1/episodes/6hxjDPKwiF36zGNTtSfQcE",
+        "id": "6hxjDPKwiF36zGNTtSfQcE",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/0d80e92a6b00f6180e64fee105645e2a029712db",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/b97522e2de0b64ac5198a44906f1514526d33c5c",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/f446a00658b8531600e1845b2a9f41b25e671efe",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "När Evert Taube slog igenom",
+        "release_date": "2019-11-05",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:6hxjDPKwiF36zGNTtSfQcE"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/8c2c6fcb3d74626f1cc38b6759619e1527d455fd",
+        "description": "Om telefoner funkar borde väl också andekommunikation fungera med hjälp av psykografer, tänkte sig förra sekelskiftets spiritister. Tobias Svanelid bekantar sig med dem och deras samtida hypnotisörer.  Halloween väcker spökena till liv varje år, och samma förmåga hade förra sekelskiftets spiritister. Vetenskapsradion Historia träffar historikern Julia Falk som undersöker spiritisternas gyllene era, då andekommunikation och psykografer var högsta mode. Och så reder vi ut i den komplicerade historien från 1700-talets animala magnetism, via hypnosen och dagens psykoanalys. I vår serie om Londons skuggsida guidar Peter K Andersson runt i det fattigaste Spitalfields, no-go-zonen som stod i fokus i en stor fattigdomsundersökning. Programledare är Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/16PkdXpRQSaFlZoRmNu2lC"
+        },
+        "href": "https://api.spotify.com/v1/episodes/16PkdXpRQSaFlZoRmNu2lC",
+        "id": "16PkdXpRQSaFlZoRmNu2lC",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/06a316059fc6bdf6d5b87bdc4a38d3a62834868e",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/4f9916fadd437db032dd444d83cef977121030ca",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/3982c1f0655b207ad520715ad256da5efae90c3b",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Spöksamtal och hypnotisörer",
+        "release_date": "2019-10-29",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:16PkdXpRQSaFlZoRmNu2lC"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/85986409dccdbbd98461d81387e8e0ebd67e1297",
+        "description": "1700-talets horbaler och nattlöperskor, liksom 1800-talets engelska homoskandal på Cleveland Street står i fokus när Tobias Svanelid undersöker storstädernas syndigare historia.  1747 ställdes snickardottern Lena Cajsa Bohman inför rätta i Stockholm. Därmed nystades Stockholms undre värld med så kallade nattlöperskor och kopplare upp och Vetenskapsradion Historia tar pulsen på Bellmans syndiga huvudstad tillsammans med Rebecka Lennartsson, författare till aktuella Mamsell Bohmans fall. Dessutom besöker Tobias Svanelid Londons Cleveland Street, platsen för en omtalad skandal 1889 som avslöjade homosexuella prostituerade med relationer högt upp i den brittiska aristokratin. Historikern Peter K Andersson guidar vid ytterligare en av det viktorianska Londons skuggsidor. Och så reder Dick Harrison ut varför vi egentligen skiljer mellan vendel- och vikingatid inom svensk historieskrivning.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/6N9MYDSKhgpM6CkUtEHVvb"
+        },
+        "href": "https://api.spotify.com/v1/episodes/6N9MYDSKhgpM6CkUtEHVvb",
+        "id": "6N9MYDSKhgpM6CkUtEHVvb",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/c1e13de0b1ac9b48f44eaaa5601530264293fd90",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/96b555cb252805565b7a4066a010811b5ebaee70",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/54e65343aa5276a0a64210c59337c48ebf891405",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Horbaler och gayklubbar",
+        "release_date": "2019-10-22",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:6N9MYDSKhgpM6CkUtEHVvb"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/38e86b77f6207d40d91a7377c671d13e41ff294e",
+        "description": "Häng med på en road trip till Falköpingsbygden, på jakt efter spåren efter tiden då runorna gav vika för latinet. Dessutom besöker vi Jack the Rippers favoritpub - Ten Bells.  I Falköpingsbygden finns spåren av en av de mest ikoniska brytningstiderna i Sveriges historia  när den hedniska vikingatidens runor ersattes av den nya kristendomens latin. Men runforskaren Alessandro Palumbo och latinaren Anna Blennow menar att inskrifterna i bygdens många stenhällar visar hur båda skriftspråken samexisterade och inspirerade varandra, vilket också ger en helt ny bild av 1100-talets Sverige. Följ med Tobias Svanelid på en road trip runt Västergötland på jakt efter spåren. Dessutom fortsätter serien om livet på Londons skuggsida med historikern Peter K Andersson. På puben Ten Bells hittade Jack the Ripper tre av sina offer och länge huserade ett litet Rippermuseum i byggnaden. Men om man vänder blicken bort från mördaren, mot offren, framträder en oväntat detaljerad bild av stadens skuggsida.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/4ssyIpHk3kss3oQ9fvwEXc"
+        },
+        "href": "https://api.spotify.com/v1/episodes/4ssyIpHk3kss3oQ9fvwEXc",
+        "id": "4ssyIpHk3kss3oQ9fvwEXc",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/66b1667c07b366b6f3d9d57198a5210bedc8ca2e",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/740ee2259491eb3a0984ebcf3bce0c0e82c3a335",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/0f9a029ef4caeb5e5b6d9b0d76028ff1e61a99a5",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "När runorna byttes mot latin",
+        "release_date": "2019-10-15",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:4ssyIpHk3kss3oQ9fvwEXc"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/7602d46ec51a1c263d61ad891330e24d79c55d95",
+        "description": "Gärdet i Stockholm hade kunnat bli platsen för ett enormt zeppelinarhangar. Hör om zeppelinarhistorien 1919 och om Jack the Rippers London där Tobias Svanelid letar efter stadens skuggsidor.  Den 8 oktober 1919 landade för första och enda gången en zeppelinare i Sverige. Förhoppningarna inför det nya flygande miraklet lockade stora massor till Gärdet i Stockholm och tidningarna skrev att Sverige snart skulle inlemmas i zeppelinarnas världsomspännande luftnätverk. Så blev det aldrig och Tobias Svanelid träffar flyghistorikern Karl Rönn för att förstå varför. Dessutom inleds en serie om Jack the Rippers London, om livet i Londons skuggsida under det brittiska imperiets viktorianska storhetstid. Historikern Peter K Andersson har intresserat sig för gatuliv, ficktjuvar, skandaler och seriemördare i 1800-talets London och guidar runt på platserna som en gång var Londons ruffigaste.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/5FiYs2Nc8bfUq9MTX4IPBN"
+        },
+        "href": "https://api.spotify.com/v1/episodes/5FiYs2Nc8bfUq9MTX4IPBN",
+        "id": "5FiYs2Nc8bfUq9MTX4IPBN",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/2b8b9769f43688247af96e9b068aeeabb714c85a",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/8b37afb95bf678174ff0da8f4ef030bd869dedfb",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/b55e858525bca5ff14591a6d9855bc1497e05149",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "När zeppelinaren kom på besök",
+        "release_date": "2019-10-08",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:5FiYs2Nc8bfUq9MTX4IPBN"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/30b3810e815f18240aa2079cbbe44af7fa7af81a",
+        "description": "Ät inte kött och skippa kaffet, alkoholen och kryddorna! Det var stridsropet för de tidiga vegetarianerna, som hoppades att fruktdieten kunde ge fred på jorden. Tobias Svanelid bekantar sig med dem.  1903 drog Svenska Vegetariska Föreningen igång sin verksamhet för att få svenskarna att äta mer grönsaker, frukt och nötter, och skippa inte bara kött utan också helst alkohol, tobak, kaffe, te och kryddor. Några som tidigt hakade på den vegetariska trenden var tidens kvinnliga bantare, som förväntades äta mest frukt och grönt och hoppa över kaffet. Tobias Svanelid träffar historikerna Marie Jonsson och Emma Hilborn för att diskutera vilka de första vegetarianerna var och hur de hoppades att världen kunde förbättras om alla bara åt vegetariskt. Dessutom svarar Dick Harrison på en lyssnarfråga om det märkliga med freden i Brömsebro 1645, när Halland tillföll Sverige på 30 år. Var det en enda dansk som verkligen trodde att Sverige skulle lämna tillbaka landskapet?",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/6t0qSeQLAipIlnY0vhc343"
+        },
+        "href": "https://api.spotify.com/v1/episodes/6t0qSeQLAipIlnY0vhc343",
+        "id": "6t0qSeQLAipIlnY0vhc343",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/c8eab8845335c6d3ab1d32dfa41ea85235a292fb",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/b3ec0e998e7f4c6362fd427acb2ae678dde51d2e",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/e5c82dbfc6b4c171b3c010640956719f88dea4ad",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "De första vegetarianerna",
+        "release_date": "2019-10-01",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:6t0qSeQLAipIlnY0vhc343"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/72c863a020f94d08f2ddc9496de4a0c820a42d27",
+        "description": "Þungur hnífur heter det i vikingafilmen Korpen flyger, men andra vikingafraser har vi sämre koll på. Vetenskapsradion Historia träffar runologen Maja Bäckvall för att dechiffrera vikingarnas språk.   Hur lät det när vikingarna läste högt för varandra ifrån runstenarna? Runologen Maja Bäckvall har läst in mängder av Sveriges runinskrifter för att alla nu ska få möjlighet att ta del av ett tusenårigt språk, och Vetenskapsradion Historia har träffat henne för att diskutera hur man kan veta hur vikingarna pratade. Vill du själv botanisera bland Riksantikvarieämbetets inlästa runor når du dem via denna länk. Dessutom om vålnadernas historia som nu skärskådas i förra årets Augustprisvinnare Magnus Västerbros nya bok. Än idag tror upp emot 40 procent av alla svenskar på spöken, men hur kommer det sig egentligen? Och så haussar Dick Harrison den baktalade kung Erik av Pommern, intensivt illa omtyckt av mellanstadielärare Sverige runt, men som nu är värd en upprättelse. Programledare är Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/4D2VlEHgtL2nHzZ4CKqjv7"
+        },
+        "href": "https://api.spotify.com/v1/episodes/4D2VlEHgtL2nHzZ4CKqjv7",
+        "id": "4D2VlEHgtL2nHzZ4CKqjv7",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/0750660dfe493a9345d58c1d7f01161a90b35522",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/6cb247c87ef75718ec0c7d56388cd92f9de4bf5d",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/44231c53ec6546e7eb9431f494491c3b9a9b5907",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Så pratade vikingarna",
+        "release_date": "2019-09-24",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:4D2VlEHgtL2nHzZ4CKqjv7"
+      },
+      {
+        "audio_preview_url": "https://p.scdn.co/mp3-preview/31e738b87c2ac200786667684d8366f8bbd2d456",
+        "description": "Häng med till 200-åriga Södertälje kanal och hör om kringelgummor, Engelbrekt och hur kanalen format Södertäljes historia. Dessutom om Suezkanalen som också fyller jämnt och reformationens vårdkris.  Redan under vikingatiden var vattenvägen mellan Östersjön och Mälaren genom Telge en av Sveriges viktigaste och efter att den slammat igen försökte mängder av kungar gräva en kanal på platsen. Först 1819 blev Södertälje kanal verklighet och Vetenskapsradion Historia besöker den 200-åriga livsnerven för att höra om äldre kanalbyggen, om kringelgummor och hur kanalen påverkat Södertälje som stad. Dessutom om vad som hände med vård, skola och omsorg i 1500-talets Sverige när Gustav Vasa stängde alla kloster i samband med reformationen. Dick Harrison målar upp en mörkertid, inte minst för bildningsnivån i landet, men också för alla munkar och nunnor som plötsligt blev flyktingar i sitt eget land. Programledare är Tobias Svanelid.",
+        "duration_ms": 2685023,
+        "explicit": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/episode/6p30ffmLiroyLEXWp4Dy5r"
+        },
+        "href": "https://api.spotify.com/v1/episodes/6p30ffmLiroyLEXWp4Dy5r",
+        "id": "6p30ffmLiroyLEXWp4Dy5r",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/7d77fd71b275d56a62f9bb1f041958ed7a74fc21",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/fbad06fe9753c696220080c113d33aec2f4d6679",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/fb3aec1dc9b7d343ffa5226067a1b7e213a3c6cb",
+            "width": 64
+          }
+        ],
+        "is_externally_hosted": false,
+        "is_playable": true,
+        "language": "sv",
+        "languages": [
+          "sv"
+        ],
+        "name": "Södertäljes livsnerv firar 200",
+        "release_date": "2019-09-17",
+        "release_date_precision": "day",
+        "resume_point": {
+          "fully_played": false,
+          "resume_position_ms": 0
+        },
+        "type": "episode",
+        "uri": "spotify:episode:6p30ffmLiroyLEXWp4Dy5r"
+      }
+    ],
+    "limit": 50,
+    "next": "https://api.spotify.com/v1/shows/38bS44xjbVVZ3No3ByF1dJ/episodes?offset=50&limit=50",
+    "offset": 0,
+    "previous": null,
+    "total": 49
+  }

@@ -14,6 +14,9 @@
 - Track `getTrack()` Fixed
 - Track `containsFullObject()` Fixed
 - Album `containsFullObject()` Fixed
+- Container `get()` Fixed
+- Category `getPlaylists()` Fixed
+- Category `play()` Fixed
 - All `addMethods()` Fixed
 
 ## v1.1.7 (8/25/2020)

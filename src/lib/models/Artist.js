@@ -71,7 +71,7 @@ Artist.prototype = {
    */
   containsFullObject() {
     return ((this.name != null)
-      && (this.external_urls)
+      && (this.external_urls !== undefined)
       && (this.followers)
       && (this.genres != null)
       && (this.href != null)

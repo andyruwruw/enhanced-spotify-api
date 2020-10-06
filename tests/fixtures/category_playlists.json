@@ -1,0 +1,732 @@
+{
+    "playlists": {
+      "href": "https://api.spotify.com/v1/browse/categories/dinner/playlists?offset=0&limit=20",
+      "items": [
+        {
+          "collaborative": false,
+          "description": "An uplifting yet tasteful dinner playlist with a guaranteed feel good vibe.",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXbm6HfkbMtFZ"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXbm6HfkbMtFZ",
+          "id": "37i9dQZF1DXbm6HfkbMtFZ",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f000000036188e2ec7f243f5434e889bd",
+              "width": null
+            }
+          ],
+          "name": "Feel Good Dinner",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMTg2NTA2MCwwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXbm6HfkbMtFZ/tracks",
+            "total": 115
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DXbm6HfkbMtFZ"
+        },
+        {
+          "collaborative": false,
+          "description": "Press play and enjoy a relaxing meal. Easy!",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXb83YJL7gTWj"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXb83YJL7gTWj",
+          "id": "37i9dQZF1DXb83YJL7gTWj",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f00000003e954dcfd3e7eb1620da77e5e",
+              "width": null
+            }
+          ],
+          "name": "Chill Dinner",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMTg2NTAyNSwwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXb83YJL7gTWj/tracks",
+            "total": 100
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DXb83YJL7gTWj"
+        },
+        {
+          "collaborative": false,
+          "description": "Essential tunes for time with the family.",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXab8DipvnuNU"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXab8DipvnuNU",
+          "id": "37i9dQZF1DXab8DipvnuNU",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f000000034e0f1221839c34ded8865884",
+              "width": null
+            }
+          ],
+          "name": "The Cook(in)",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTU5NTU0MDc1OSwwMDAwMDAyMDAwMDAwMTczN2RhM2UxZjYwMDAwMDE3MjczNTU0NzIy",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXab8DipvnuNU/tracks",
+            "total": 60
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DXab8DipvnuNU"
+        },
+        {
+          "collaborative": false,
+          "description": "Mix of electronic music for your dinner.",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX6kz6Kli3wib"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX6kz6Kli3wib",
+          "id": "37i9dQZF1DX6kz6Kli3wib",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f000000038ddaea20deaa7f80d4bbb15c",
+              "width": null
+            }
+          ],
+          "name": "Dinner Lounge",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMTU1MTY3MywwMDAwMDA2NjAwMDAwMTc0ZTNlYjJhNmUwMDAwMDE2ZDE1Mjc4Njc2",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX6kz6Kli3wib/tracks",
+            "total": 71
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DX6kz6Kli3wib"
+        },
+        {
+          "collaborative": false,
+          "description": "We have curated the perfect soundtrack recipe for a backyard barbecue!",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXbIbVYph0Zr5"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXbIbVYph0Zr5",
+          "id": "37i9dQZF1DXbIbVYph0Zr5",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f000000033c5a340bdd0bc167ad56f064",
+              "width": null
+            }
+          ],
+          "name": "Country Cookout",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMTU3Njc4NSwwMDAwMDAxMjAwMDAwMTc0ZTU2YTU1MmUwMDAwMDE3MjVjMjI2OGY2",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXbIbVYph0Zr5/tracks",
+            "total": 93
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DXbIbVYph0Zr5"
+        },
+        {
+          "collaborative": false,
+          "description": "Dinner music that includes well known and new tracks.",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXatMjChPKgBk"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXatMjChPKgBk",
+          "id": "37i9dQZF1DXatMjChPKgBk",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f000000035a051b0271d3e98edfdc4c09",
+              "width": null
+            }
+          ],
+          "name": "Dinner Music",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMTg2NTA2MCwwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXatMjChPKgBk/tracks",
+            "total": 100
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DXatMjChPKgBk"
+        },
+        {
+          "collaborative": false,
+          "description": "Swinging jazz for your cocktail party.",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWU6MDxlH7Sr1"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWU6MDxlH7Sr1",
+          "id": "37i9dQZF1DWU6MDxlH7Sr1",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f00000003129a21d216e316bff529796f",
+              "width": null
+            }
+          ],
+          "name": "Cocktail Jazz",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMDc4MTUxMiwwMDAwMDAzOTAwMDAwMTc0YjYwMzZmMTYwMDAwMDE3MGY2Zjk4NzI5",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWU6MDxlH7Sr1/tracks",
+            "total": 117
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DWU6MDxlH7Sr1"
+        },
+        {
+          "collaborative": false,
+          "description": "Get jiggy in the kitchen with this groovy playlist.",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX2FsCLsHeMrM"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX2FsCLsHeMrM",
+          "id": "37i9dQZF1DX2FsCLsHeMrM",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f00000003d5ce097e3b611f9cf4634923",
+              "width": null
+            }
+          ],
+          "name": "Kitchen Swagger",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMTg2NTAzMiwwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX2FsCLsHeMrM/tracks",
+            "total": 100
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DX2FsCLsHeMrM"
+        },
+        {
+          "collaborative": false,
+          "description": "Instrumental jazz to set the mood for a relaxed evening.",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWTALrdBtcXjw"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWTALrdBtcXjw",
+          "id": "37i9dQZF1DWTALrdBtcXjw",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f00000003432b9260fc87afc5fcb09811",
+              "width": null
+            }
+          ],
+          "name": "Jazzy Dinner",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTU4NzA5NjA2MCwwMDAwMDAyZTAwMDAwMTcxODY0YzAzMTIwMDAwMDE3MTNiODVmOTU1",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWTALrdBtcXjw/tracks",
+            "total": 58
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DWTALrdBtcXjw"
+        },
+        {
+          "collaborative": false,
+          "description": "Cold beer. Hot wings. Great rock. This is your Game Day soundtrack.",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXauOWFg72pbl"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXauOWFg72pbl",
+          "id": "37i9dQZF1DXauOWFg72pbl",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f0000000383de88d62018fc9453c3f0f6",
+              "width": null
+            }
+          ],
+          "name": "Beer & Wings",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTU4OTUxNTMyMCwwMDAwMDAyNzAwMDAwMTcyMTY3ZWZiMjEwMDAwMDE2ZDAwYmU1ODYw",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXauOWFg72pbl/tracks",
+            "total": 82
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DXauOWFg72pbl"
+        },
+        {
+          "collaborative": false,
+          "description": "Enjoy the best Italian dinner of your life. Buon Appetito!",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWT1R6bXL4dyW"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWT1R6bXL4dyW",
+          "id": "37i9dQZF1DWT1R6bXL4dyW",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f00000003babba615c12964f3de4723d0",
+              "width": null
+            }
+          ],
+          "name": "The Perfect Italian Dinner",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTU3MzY2NDA0NCwwMDAwMDAwYzAwMDAwMTZlNjVhZmI0MWMwMDAwMDE2ZDE1MzJiMzMy",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWT1R6bXL4dyW/tracks",
+            "total": 44
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DWT1R6bXL4dyW"
+        },
+        {
+          "collaborative": false,
+          "description": "Latin tunes to add some flavor to your day!",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXdc2CX1rMGAc"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXdc2CX1rMGAc",
+          "id": "37i9dQZF1DXdc2CX1rMGAc",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f00000003ead3c2743baa711fa530ab4d",
+              "width": null
+            }
+          ],
+          "name": "Sazón",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMTg2NTAyNiwwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXdc2CX1rMGAc/tracks",
+            "total": 75
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DXdc2CX1rMGAc"
+        },
+        {
+          "collaborative": false,
+          "description": "Unwind and drink up these awesome Rock slow songs",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX8V6C5Nr1MvC"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX8V6C5Nr1MvC",
+          "id": "37i9dQZF1DX8V6C5Nr1MvC",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f00000003b659dc3b284457a59f190e31",
+              "width": null
+            }
+          ],
+          "name": "Rocktail Hour",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMDcwODA1MywwMDAwMDAxMTAwMDAwMTc0YjFhMjhiOGQwMDAwMDE3NGIxOTk5MGVj",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX8V6C5Nr1MvC/tracks",
+            "total": 88
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DX8V6C5Nr1MvC"
+        },
+        {
+          "collaborative": false,
+          "description": "Soundtrack your dinner with bossa sounds.",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWVleyMkaelTd"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWVleyMkaelTd",
+          "id": "37i9dQZF1DWVleyMkaelTd",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f000000030491cf2550766cca3304f740",
+              "width": null
+            }
+          ],
+          "name": "Bossa Nova Dinner",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMDc4MTExMiwwMDAwMDAyNjAwMDAwMTc0YjVmZDU2NTUwMDAwMDE3MTMxOWZlZmFi",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWVleyMkaelTd/tracks",
+            "total": 59
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DWVleyMkaelTd"
+        },
+        {
+          "collaborative": false,
+          "description": "Shout ¡Viva México! with this classical songs. ¡Ay caramba! ¡Arriba!",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWVtmGxs4S4N7"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWVtmGxs4S4N7",
+          "id": "37i9dQZF1DWVtmGxs4S4N7",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f00000003b0f8d50b9b3d1c6074802a43",
+              "width": null
+            }
+          ],
+          "name": "Mexican Restaurant",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMTMyMDMxNiwwMDAwMDAwOTAwMDAwMTc0ZDYyMGVlMWQwMDAwMDE3NGQ2MjAxNTZh",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWVtmGxs4S4N7/tracks",
+            "total": 101
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DWVtmGxs4S4N7"
+        },
+        {
+          "collaborative": false,
+          "description": "As you prepare and settle into your romantic dinner, let us provide the soundtrack with these RnB/Soul love songs.",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWTJNOeepZTGy"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWTJNOeepZTGy",
+          "id": "37i9dQZF1DWTJNOeepZTGy",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f000000033105706fe5392048496c8e1e",
+              "width": null
+            }
+          ],
+          "name": "Wine & Dine",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTU5NTM3NzU5MSwwMDAwMDA0NDAwMDAwMTczNzNlYTIyZjQwMDAwMDE2ZDAwYjljYzMy",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWTJNOeepZTGy/tracks",
+            "total": 51
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DWTJNOeepZTGy"
+        },
+        {
+          "collaborative": false,
+          "description": "You bring the ingredients. We bring the flavor. Enjoy la cena!",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX2zAr9vdmFlU"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX2zAr9vdmFlU",
+          "id": "37i9dQZF1DX2zAr9vdmFlU",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f000000030865efd6d290eb3f72b2ccf2",
+              "width": null
+            }
+          ],
+          "name": "Latin Dinner",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMTg2NTA2NCwwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX2zAr9vdmFlU/tracks",
+            "total": 100
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DX2zAr9vdmFlU"
+        },
+        {
+          "collaborative": false,
+          "description": "Set the tone for your dinner with cozy jazz.",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX6ZiG5Dz8cUM"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX6ZiG5Dz8cUM",
+          "id": "37i9dQZF1DX6ZiG5Dz8cUM",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f00000003193b0c9a9d895a0c7ff38d95",
+              "width": null
+            }
+          ],
+          "name": "Date Night Jazz",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMTQ1MDczMSwwMDAwMDAzZDAwMDAwMTc0ZGRlNmU2MTgwMDAwMDE3MjRjMzdlZjEw",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX6ZiG5Dz8cUM/tracks",
+            "total": 82
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DX6ZiG5Dz8cUM"
+        },
+        {
+          "collaborative": false,
+          "description": "Piano songs to soundtrack your dinner.",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWZVU32KsYGUK"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWZVU32KsYGUK",
+          "id": "37i9dQZF1DWZVU32KsYGUK",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f00000003b14c8a7b8e87c07811b6ffc9",
+              "width": null
+            }
+          ],
+          "name": "Piano Dinner",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMDc4MzQyOCwwMDAwMDA2MzAwMDAwMTc0YjYyMGFhMzgwMDAwMDE2ZDE1MWE2MDdm",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWZVU32KsYGUK/tracks",
+            "total": 132
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DWZVU32KsYGUK"
+        },
+        {
+          "collaborative": false,
+          "description": "Get your fiesta started with this mix of classic salsa music.",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWZMxqlsEB7BT"
+          },
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWZMxqlsEB7BT",
+          "id": "37i9dQZF1DWZMxqlsEB7BT",
+          "images": [
+            {
+              "height": null,
+              "url": "https://i.scdn.co/image/ab67706f00000003c880e9d44b18b1c3d687e9b9",
+              "width": null
+            }
+          ],
+          "name": "Chips and Salsa",
+          "owner": {
+            "display_name": "Spotify",
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/spotify"
+            },
+            "href": "https://api.spotify.com/v1/users/spotify",
+            "id": "spotify",
+            "type": "user",
+            "uri": "spotify:user:spotify"
+          },
+          "primary_color": null,
+          "public": null,
+          "snapshot_id": "MTYwMTg2NTAyMywwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+          "tracks": {
+            "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWZMxqlsEB7BT/tracks",
+            "total": 30
+          },
+          "type": "playlist",
+          "uri": "spotify:playlist:37i9dQZF1DWZMxqlsEB7BT"
+        }
+      ],
+      "limit": 20,
+      "next": "https://api.spotify.com/v1/browse/categories/dinner/playlists?offset=20&limit=20",
+      "offset": 0,
+      "previous": null,
+      "total": 45
+    }
+  }

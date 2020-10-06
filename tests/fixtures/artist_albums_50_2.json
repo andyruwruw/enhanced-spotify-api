@@ -1,0 +1,2122 @@
+{
+    "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq/albums?offset=50&limit=50&include_groups=album,single,compilation,appears_on&market=ES",
+    "items": [
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/42Kk5xoPHj5xy8SVszVs6X"
+        },
+        "href": "https://api.spotify.com/v1/albums/42Kk5xoPHj5xy8SVszVs6X",
+        "id": "42Kk5xoPHj5xy8SVszVs6X",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2733f716f3597ca138ce9ef884d",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e023f716f3597ca138ce9ef884d",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048513f716f3597ca138ce9ef884d",
+            "width": 64
+          }
+        ],
+        "name": "Empowering Songs",
+        "release_date": "2020-06-19",
+        "release_date_precision": "day",
+        "total_tracks": 33,
+        "type": "album",
+        "uri": "spotify:album:42Kk5xoPHj5xy8SVszVs6X"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/2Myw6ibgzND8HJZglRO6xj"
+        },
+        "href": "https://api.spotify.com/v1/albums/2Myw6ibgzND8HJZglRO6xj",
+        "id": "2Myw6ibgzND8HJZglRO6xj",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273488263e43867808e3f58c3e7",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02488263e43867808e3f58c3e7",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851488263e43867808e3f58c3e7",
+            "width": 64
+          }
+        ],
+        "name": "Crushing",
+        "release_date": "2020-06-12",
+        "release_date_precision": "day",
+        "total_tracks": 32,
+        "type": "album",
+        "uri": "spotify:album:2Myw6ibgzND8HJZglRO6xj"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6UTjVW0SkT2d0K3WfWg4Oj"
+        },
+        "href": "https://api.spotify.com/v1/albums/6UTjVW0SkT2d0K3WfWg4Oj",
+        "id": "6UTjVW0SkT2d0K3WfWg4Oj",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273b6e517e4db78a35cea50b46b",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02b6e517e4db78a35cea50b46b",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851b6e517e4db78a35cea50b46b",
+            "width": 64
+          }
+        ],
+        "name": "Study Songs",
+        "release_date": "2020-06-12",
+        "release_date_precision": "day",
+        "total_tracks": 45,
+        "type": "album",
+        "uri": "spotify:album:6UTjVW0SkT2d0K3WfWg4Oj"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/30aGFLVpNx6wi2dGCZUQhR"
+        },
+        "href": "https://api.spotify.com/v1/albums/30aGFLVpNx6wi2dGCZUQhR",
+        "id": "30aGFLVpNx6wi2dGCZUQhR",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b27377e49af8fccd63545e448394",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e0277e49af8fccd63545e448394",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d0000485177e49af8fccd63545e448394",
+            "width": 64
+          }
+        ],
+        "name": "Easy Listening Office",
+        "release_date": "2020-06-12",
+        "release_date_precision": "day",
+        "total_tracks": 43,
+        "type": "album",
+        "uri": "spotify:album:30aGFLVpNx6wi2dGCZUQhR"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/08M6wSSjAnqkh1NxWC5F39"
+        },
+        "href": "https://api.spotify.com/v1/albums/08M6wSSjAnqkh1NxWC5F39",
+        "id": "08M6wSSjAnqkh1NxWC5F39",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273d28b6b0e326130cd948af989",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02d28b6b0e326130cd948af989",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851d28b6b0e326130cd948af989",
+            "width": 64
+          }
+        ],
+        "name": "Chilled music 2020",
+        "release_date": "2020-06-12",
+        "release_date_precision": "day",
+        "total_tracks": 53,
+        "type": "album",
+        "uri": "spotify:album:08M6wSSjAnqkh1NxWC5F39"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/5HaTSadrwxPTWXu3XUPrCx"
+        },
+        "href": "https://api.spotify.com/v1/albums/5HaTSadrwxPTWXu3XUPrCx",
+        "id": "5HaTSadrwxPTWXu3XUPrCx",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2736ddc6b73cb7833b634ec99c0",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e026ddc6b73cb7833b634ec99c0",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048516ddc6b73cb7833b634ec99c0",
+            "width": 64
+          }
+        ],
+        "name": "Indie Bands",
+        "release_date": "2020-06-12",
+        "release_date_precision": "day",
+        "total_tracks": 27,
+        "type": "album",
+        "uri": "spotify:album:5HaTSadrwxPTWXu3XUPrCx"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/4Ihqh4V6sGC1LEDIqiQzEY"
+        },
+        "href": "https://api.spotify.com/v1/albums/4Ihqh4V6sGC1LEDIqiQzEY",
+        "id": "4Ihqh4V6sGC1LEDIqiQzEY",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2731094b03c8261394a252a4e2f",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e021094b03c8261394a252a4e2f",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048511094b03c8261394a252a4e2f",
+            "width": 64
+          }
+        ],
+        "name": "Summer Feeling",
+        "release_date": "2020-06-05",
+        "release_date_precision": "day",
+        "total_tracks": 29,
+        "type": "album",
+        "uri": "spotify:album:4Ihqh4V6sGC1LEDIqiQzEY"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/2QApvygMHOz2DWI86oBqwC"
+        },
+        "href": "https://api.spotify.com/v1/albums/2QApvygMHOz2DWI86oBqwC",
+        "id": "2QApvygMHOz2DWI86oBqwC",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2739de05778549579eecb26ef0f",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e029de05778549579eecb26ef0f",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048519de05778549579eecb26ef0f",
+            "width": 64
+          }
+        ],
+        "name": "Chill Indie Music",
+        "release_date": "2020-06-05",
+        "release_date_precision": "day",
+        "total_tracks": 25,
+        "type": "album",
+        "uri": "spotify:album:2QApvygMHOz2DWI86oBqwC"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/3v7sHIwqwcZftEBuXY7S9v"
+        },
+        "href": "https://api.spotify.com/v1/albums/3v7sHIwqwcZftEBuXY7S9v",
+        "id": "3v7sHIwqwcZftEBuXY7S9v",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273c134782de501cb14db0f1f39",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02c134782de501cb14db0f1f39",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851c134782de501cb14db0f1f39",
+            "width": 64
+          }
+        ],
+        "name": "Alternative Chill",
+        "release_date": "2020-05-29",
+        "release_date_precision": "day",
+        "total_tracks": 23,
+        "type": "album",
+        "uri": "spotify:album:3v7sHIwqwcZftEBuXY7S9v"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/66Ma1vv0t98xI3PDhZAXSp"
+        },
+        "href": "https://api.spotify.com/v1/albums/66Ma1vv0t98xI3PDhZAXSp",
+        "id": "66Ma1vv0t98xI3PDhZAXSp",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273bb6867978324b89ee4eeeadc",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02bb6867978324b89ee4eeeadc",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851bb6867978324b89ee4eeeadc",
+            "width": 64
+          }
+        ],
+        "name": "SUMMER CHILLOUT 2020",
+        "release_date": "2020-05-29",
+        "release_date_precision": "day",
+        "total_tracks": 38,
+        "type": "album",
+        "uri": "spotify:album:66Ma1vv0t98xI3PDhZAXSp"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6MFbXMgKuMcrWmYjOQxPq6"
+        },
+        "href": "https://api.spotify.com/v1/albums/6MFbXMgKuMcrWmYjOQxPq6",
+        "id": "6MFbXMgKuMcrWmYjOQxPq6",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b27356c936fe7bc8b808e5d69c3d",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e0256c936fe7bc8b808e5d69c3d",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d0000485156c936fe7bc8b808e5d69c3d",
+            "width": 64
+          }
+        ],
+        "name": "Home Office Radio",
+        "release_date": "2020-05-08",
+        "release_date_precision": "day",
+        "total_tracks": 44,
+        "type": "album",
+        "uri": "spotify:album:6MFbXMgKuMcrWmYjOQxPq6"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/6Rx1JKzBrSzoKQtmbVmBnM"
+            },
+            "href": "https://api.spotify.com/v1/artists/6Rx1JKzBrSzoKQtmbVmBnM",
+            "id": "6Rx1JKzBrSzoKQtmbVmBnM",
+            "name": "Hayley Williams",
+            "type": "artist",
+            "uri": "spotify:artist:6Rx1JKzBrSzoKQtmbVmBnM"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0Q8oRlcT7RewoURosQyI2A"
+        },
+        "href": "https://api.spotify.com/v1/albums/0Q8oRlcT7RewoURosQyI2A",
+        "id": "0Q8oRlcT7RewoURosQyI2A",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273ab78c7a4827d2f42a8c7c44c",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02ab78c7a4827d2f42a8c7c44c",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851ab78c7a4827d2f42a8c7c44c",
+            "width": 64
+          }
+        ],
+        "name": "Dead Horse (Glass Animals Remix)",
+        "release_date": "2020-05-07",
+        "release_date_precision": "day",
+        "total_tracks": 1,
+        "type": "album",
+        "uri": "spotify:album:0Q8oRlcT7RewoURosQyI2A"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/40j6tObiP2aixky2gmuqoU"
+        },
+        "href": "https://api.spotify.com/v1/albums/40j6tObiP2aixky2gmuqoU",
+        "id": "40j6tObiP2aixky2gmuqoU",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2737944ca6882f6f42a83a6cae1",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e027944ca6882f6f42a83a6cae1",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048517944ca6882f6f42a83a6cae1",
+            "width": 64
+          }
+        ],
+        "name": "4 ALL AGES: Relax & Chill Music",
+        "release_date": "2020-05-03",
+        "release_date_precision": "day",
+        "total_tracks": 19,
+        "type": "album",
+        "uri": "spotify:album:40j6tObiP2aixky2gmuqoU"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/3HqF9tneOURV87xa51cLGM"
+        },
+        "href": "https://api.spotify.com/v1/albums/3HqF9tneOURV87xa51cLGM",
+        "id": "3HqF9tneOURV87xa51cLGM",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273f61a3d1768900abdf7449ef0",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02f61a3d1768900abdf7449ef0",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851f61a3d1768900abdf7449ef0",
+            "width": 64
+          }
+        ],
+        "name": "Spring Feels",
+        "release_date": "2020-04-17",
+        "release_date_precision": "day",
+        "total_tracks": 25,
+        "type": "album",
+        "uri": "spotify:album:3HqF9tneOURV87xa51cLGM"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0OTIq3XQDxVyLTubaVHpaT"
+        },
+        "href": "https://api.spotify.com/v1/albums/0OTIq3XQDxVyLTubaVHpaT",
+        "id": "0OTIq3XQDxVyLTubaVHpaT",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273683646f71d3cc6e9e85c598f",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02683646f71d3cc6e9e85c598f",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851683646f71d3cc6e9e85c598f",
+            "width": 64
+          }
+        ],
+        "name": "Indie Alternative",
+        "release_date": "2020-04-10",
+        "release_date_precision": "day",
+        "total_tracks": 28,
+        "type": "album",
+        "uri": "spotify:album:0OTIq3XQDxVyLTubaVHpaT"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/5n5BFMI3udTzLpnk9WDMNZ"
+        },
+        "href": "https://api.spotify.com/v1/albums/5n5BFMI3udTzLpnk9WDMNZ",
+        "id": "5n5BFMI3udTzLpnk9WDMNZ",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b27387f831dfe9e08f3021a13d26",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e0287f831dfe9e08f3021a13d26",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d0000485187f831dfe9e08f3021a13d26",
+            "width": 64
+          }
+        ],
+        "name": "WFH",
+        "release_date": "2020-04-10",
+        "release_date_precision": "day",
+        "total_tracks": 42,
+        "type": "album",
+        "uri": "spotify:album:5n5BFMI3udTzLpnk9WDMNZ"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/1hX2pn7ZeFgux4V9PlKkYm"
+        },
+        "href": "https://api.spotify.com/v1/albums/1hX2pn7ZeFgux4V9PlKkYm",
+        "id": "1hX2pn7ZeFgux4V9PlKkYm",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273517e59f90c7f3f77046bdf28",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02517e59f90c7f3f77046bdf28",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851517e59f90c7f3f77046bdf28",
+            "width": 64
+          }
+        ],
+        "name": "Work At Home",
+        "release_date": "2020-04-10",
+        "release_date_precision": "day",
+        "total_tracks": 47,
+        "type": "album",
+        "uri": "spotify:album:1hX2pn7ZeFgux4V9PlKkYm"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/5OyIWKQBcHzQw4VHy28ygq"
+        },
+        "href": "https://api.spotify.com/v1/albums/5OyIWKQBcHzQw4VHy28ygq",
+        "id": "5OyIWKQBcHzQw4VHy28ygq",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273f1a79cbb81f7751ad8af4da9",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02f1a79cbb81f7751ad8af4da9",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851f1a79cbb81f7751ad8af4da9",
+            "width": 64
+          }
+        ],
+        "name": "Home Workout",
+        "release_date": "2020-03-27",
+        "release_date_precision": "day",
+        "total_tracks": 20,
+        "type": "album",
+        "uri": "spotify:album:5OyIWKQBcHzQw4VHy28ygq"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/5N5q1BjX8YE0hjhBnwJRMq"
+        },
+        "href": "https://api.spotify.com/v1/albums/5N5q1BjX8YE0hjhBnwJRMq",
+        "id": "5N5q1BjX8YE0hjhBnwJRMq",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273e42efe182103d4b69431c0a0",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02e42efe182103d4b69431c0a0",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851e42efe182103d4b69431c0a0",
+            "width": 64
+          }
+        ],
+        "name": "Cabin Fever",
+        "release_date": "2020-03-27",
+        "release_date_precision": "day",
+        "total_tracks": 42,
+        "type": "album",
+        "uri": "spotify:album:5N5q1BjX8YE0hjhBnwJRMq"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/2jNIeBQFdovwUVF5WqoTbJ"
+        },
+        "href": "https://api.spotify.com/v1/albums/2jNIeBQFdovwUVF5WqoTbJ",
+        "id": "2jNIeBQFdovwUVF5WqoTbJ",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2739f8474c872bdce9b1262d329",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e029f8474c872bdce9b1262d329",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048519f8474c872bdce9b1262d329",
+            "width": 64
+          }
+        ],
+        "name": "Social Distancing",
+        "release_date": "2020-03-27",
+        "release_date_precision": "day",
+        "total_tracks": 48,
+        "type": "album",
+        "uri": "spotify:album:2jNIeBQFdovwUVF5WqoTbJ"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6QSJHsC2B0piUCYAT08SJi"
+        },
+        "href": "https://api.spotify.com/v1/albums/6QSJHsC2B0piUCYAT08SJi",
+        "id": "6QSJHsC2B0piUCYAT08SJi",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2733390aa1fca06b96e82f9868a",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e023390aa1fca06b96e82f9868a",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048513390aa1fca06b96e82f9868a",
+            "width": 64
+          }
+        ],
+        "name": "Road Trip: Chill",
+        "release_date": "2020-03-20",
+        "release_date_precision": "day",
+        "total_tracks": 40,
+        "type": "album",
+        "uri": "spotify:album:6QSJHsC2B0piUCYAT08SJi"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/3XkZfqOxTPyFoY0dCbcbr0"
+        },
+        "href": "https://api.spotify.com/v1/albums/3XkZfqOxTPyFoY0dCbcbr0",
+        "id": "3XkZfqOxTPyFoY0dCbcbr0",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273006161be376dffa2d7af1287",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02006161be376dffa2d7af1287",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851006161be376dffa2d7af1287",
+            "width": 64
+          }
+        ],
+        "name": "Chill FM",
+        "release_date": "2020-03-20",
+        "release_date_precision": "day",
+        "total_tracks": 42,
+        "type": "album",
+        "uri": "spotify:album:3XkZfqOxTPyFoY0dCbcbr0"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0qJszuq21T4TnMmWPmnTVY"
+        },
+        "href": "https://api.spotify.com/v1/albums/0qJszuq21T4TnMmWPmnTVY",
+        "id": "0qJszuq21T4TnMmWPmnTVY",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2739b1660e89ef77a5e9ceee760",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e029b1660e89ef77a5e9ceee760",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048519b1660e89ef77a5e9ceee760",
+            "width": 64
+          }
+        ],
+        "name": "Indie Jams",
+        "release_date": "2020-03-20",
+        "release_date_precision": "day",
+        "total_tracks": 22,
+        "type": "album",
+        "uri": "spotify:album:0qJszuq21T4TnMmWPmnTVY"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/7uHLbZmvgZI3ww5Ly9BZpb"
+        },
+        "href": "https://api.spotify.com/v1/albums/7uHLbZmvgZI3ww5Ly9BZpb",
+        "id": "7uHLbZmvgZI3ww5Ly9BZpb",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273990af95f749db04e3a7286b5",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02990af95f749db04e3a7286b5",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851990af95f749db04e3a7286b5",
+            "width": 64
+          }
+        ],
+        "name": "Skiing Music",
+        "release_date": "2020-03-06",
+        "release_date_precision": "day",
+        "total_tracks": 32,
+        "type": "album",
+        "uri": "spotify:album:7uHLbZmvgZI3ww5Ly9BZpb"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/7Kcyuov8YjSLAgBNqTv05g"
+        },
+        "href": "https://api.spotify.com/v1/albums/7Kcyuov8YjSLAgBNqTv05g",
+        "id": "7Kcyuov8YjSLAgBNqTv05g",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2731c6c930a8c2de2f8f0e4bc69",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e021c6c930a8c2de2f8f0e4bc69",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048511c6c930a8c2de2f8f0e4bc69",
+            "width": 64
+          }
+        ],
+        "name": "Night Time Car Drives",
+        "release_date": "2020-03-06",
+        "release_date_precision": "day",
+        "total_tracks": 22,
+        "type": "album",
+        "uri": "spotify:album:7Kcyuov8YjSLAgBNqTv05g"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/1psTsx6PVqcsX28Mb7lw1T"
+        },
+        "href": "https://api.spotify.com/v1/albums/1psTsx6PVqcsX28Mb7lw1T",
+        "id": "1psTsx6PVqcsX28Mb7lw1T",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2730f4ba8935ddf2bf5d59db6ad",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e020f4ba8935ddf2bf5d59db6ad",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048510f4ba8935ddf2bf5d59db6ad",
+            "width": 64
+          }
+        ],
+        "name": "CPR Songs",
+        "release_date": "2020-01-03",
+        "release_date_precision": "day",
+        "total_tracks": 25,
+        "type": "album",
+        "uri": "spotify:album:1psTsx6PVqcsX28Mb7lw1T"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/4lkcUVvSZVdoYUvtIfVhTp"
+        },
+        "href": "https://api.spotify.com/v1/albums/4lkcUVvSZVdoYUvtIfVhTp",
+        "id": "4lkcUVvSZVdoYUvtIfVhTp",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2737bbc654833f70fb57dc12295",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e027bbc654833f70fb57dc12295",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048517bbc654833f70fb57dc12295",
+            "width": 64
+          }
+        ],
+        "name": "Homework Playlist",
+        "release_date": "2020-01-03",
+        "release_date_precision": "day",
+        "total_tracks": 23,
+        "type": "album",
+        "uri": "spotify:album:4lkcUVvSZVdoYUvtIfVhTp"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6JtknQyabpVRb3rN3Gomos"
+        },
+        "href": "https://api.spotify.com/v1/albums/6JtknQyabpVRb3rN3Gomos",
+        "id": "6JtknQyabpVRb3rN3Gomos",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273e9ba39887116234cc05adf93",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02e9ba39887116234cc05adf93",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851e9ba39887116234cc05adf93",
+            "width": 64
+          }
+        ],
+        "name": "Indie BBQ",
+        "release_date": "2019-11-15",
+        "release_date_precision": "day",
+        "total_tracks": 24,
+        "type": "album",
+        "uri": "spotify:album:6JtknQyabpVRb3rN3Gomos"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/1hLj5TFdTdo8xxYES9CHSO"
+        },
+        "href": "https://api.spotify.com/v1/albums/1hLj5TFdTdo8xxYES9CHSO",
+        "id": "1hLj5TFdTdo8xxYES9CHSO",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2736b03246f389cad42c4f11bb6",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e026b03246f389cad42c4f11bb6",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048516b03246f389cad42c4f11bb6",
+            "width": 64
+          }
+        ],
+        "name": "Cold & Lonely Nights",
+        "release_date": "2019-11-08",
+        "release_date_precision": "day",
+        "total_tracks": 25,
+        "type": "album",
+        "uri": "spotify:album:1hLj5TFdTdo8xxYES9CHSO"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6jWGTM4Zlg2RDD4QkupsQu"
+        },
+        "href": "https://api.spotify.com/v1/albums/6jWGTM4Zlg2RDD4QkupsQu",
+        "id": "6jWGTM4Zlg2RDD4QkupsQu",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273342f5aa692d7ffc57e90cad3",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02342f5aa692d7ffc57e90cad3",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851342f5aa692d7ffc57e90cad3",
+            "width": 64
+          }
+        ],
+        "name": "Night Songs",
+        "release_date": "2019-11-08",
+        "release_date_precision": "day",
+        "total_tracks": 26,
+        "type": "album",
+        "uri": "spotify:album:6jWGTM4Zlg2RDD4QkupsQu"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/5IDlk0aG41EzVL9Jn1bncR"
+        },
+        "href": "https://api.spotify.com/v1/albums/5IDlk0aG41EzVL9Jn1bncR",
+        "id": "5IDlk0aG41EzVL9Jn1bncR",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273ae9d03e76ba84b2486d0638b",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02ae9d03e76ba84b2486d0638b",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851ae9d03e76ba84b2486d0638b",
+            "width": 64
+          }
+        ],
+        "name": "Salon Music",
+        "release_date": "2019-11-01",
+        "release_date_precision": "day",
+        "total_tracks": 35,
+        "type": "album",
+        "uri": "spotify:album:5IDlk0aG41EzVL9Jn1bncR"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6ZbyCLFV2rK9wr7WczcfZv"
+        },
+        "href": "https://api.spotify.com/v1/albums/6ZbyCLFV2rK9wr7WczcfZv",
+        "id": "6ZbyCLFV2rK9wr7WczcfZv",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2734bd0d074bbe72659e2ea915a",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e024bd0d074bbe72659e2ea915a",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048514bd0d074bbe72659e2ea915a",
+            "width": 64
+          }
+        ],
+        "name": "Motivation Music",
+        "release_date": "2019-11-01",
+        "release_date_precision": "day",
+        "total_tracks": 50,
+        "type": "album",
+        "uri": "spotify:album:6ZbyCLFV2rK9wr7WczcfZv"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0esWgWPUvH76FqARbwe571"
+        },
+        "href": "https://api.spotify.com/v1/albums/0esWgWPUvH76FqARbwe571",
+        "id": "0esWgWPUvH76FqARbwe571",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2738e7975d40df278e02d822ff7",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e028e7975d40df278e02d822ff7",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048518e7975d40df278e02d822ff7",
+            "width": 64
+          }
+        ],
+        "name": "Indie Chill",
+        "release_date": "2019-10-11",
+        "release_date_precision": "day",
+        "total_tracks": 27,
+        "type": "album",
+        "uri": "spotify:album:0esWgWPUvH76FqARbwe571"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/60m5w9zJr5zTMckXkrfN5k"
+        },
+        "href": "https://api.spotify.com/v1/albums/60m5w9zJr5zTMckXkrfN5k",
+        "id": "60m5w9zJr5zTMckXkrfN5k",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2737d86c522d3af3c6c56034aab",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e027d86c522d3af3c6c56034aab",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048517d86c522d3af3c6c56034aab",
+            "width": 64
+          }
+        ],
+        "name": "Chill Out Tracks",
+        "release_date": "2019-10-11",
+        "release_date_precision": "day",
+        "total_tracks": 32,
+        "type": "album",
+        "uri": "spotify:album:60m5w9zJr5zTMckXkrfN5k"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/4GhxtOO03LJd5bwrZDzMPP"
+        },
+        "href": "https://api.spotify.com/v1/albums/4GhxtOO03LJd5bwrZDzMPP",
+        "id": "4GhxtOO03LJd5bwrZDzMPP",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b27332d3e0f514177d44e51a266e",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e0232d3e0f514177d44e51a266e",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d0000485132d3e0f514177d44e51a266e",
+            "width": 64
+          }
+        ],
+        "name": "Game Day",
+        "release_date": "2019-10-04",
+        "release_date_precision": "day",
+        "total_tracks": 52,
+        "type": "album",
+        "uri": "spotify:album:4GhxtOO03LJd5bwrZDzMPP"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/72S8AfihktU5nqpV6CUTRA"
+        },
+        "href": "https://api.spotify.com/v1/albums/72S8AfihktU5nqpV6CUTRA",
+        "id": "72S8AfihktU5nqpV6CUTRA",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2735ad18322445ed814203882b7",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e025ad18322445ed814203882b7",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048515ad18322445ed814203882b7",
+            "width": 64
+          }
+        ],
+        "name": "Indie Party",
+        "release_date": "2019-09-27",
+        "release_date_precision": "day",
+        "total_tracks": 31,
+        "type": "album",
+        "uri": "spotify:album:72S8AfihktU5nqpV6CUTRA"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/353axvYs8oKs1m4lOQq9tO"
+        },
+        "href": "https://api.spotify.com/v1/albums/353axvYs8oKs1m4lOQq9tO",
+        "id": "353axvYs8oKs1m4lOQq9tO",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2737af1b62422863dc7f2378dc3",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e027af1b62422863dc7f2378dc3",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048517af1b62422863dc7f2378dc3",
+            "width": 64
+          }
+        ],
+        "name": "Summer Nights",
+        "release_date": "2019-09-20",
+        "release_date_precision": "day",
+        "total_tracks": 20,
+        "type": "album",
+        "uri": "spotify:album:353axvYs8oKs1m4lOQq9tO"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/04DBJFhTPMlbzQmLVaUTpU"
+        },
+        "href": "https://api.spotify.com/v1/albums/04DBJFhTPMlbzQmLVaUTpU",
+        "id": "04DBJFhTPMlbzQmLVaUTpU",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273e902ef2653147844e57b4796",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02e902ef2653147844e57b4796",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851e902ef2653147844e57b4796",
+            "width": 64
+          }
+        ],
+        "name": "Summer Mornings",
+        "release_date": "2019-09-20",
+        "release_date_precision": "day",
+        "total_tracks": 20,
+        "type": "album",
+        "uri": "spotify:album:04DBJFhTPMlbzQmLVaUTpU"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/3EMojj1HeLYrhgG01FPB3a"
+        },
+        "href": "https://api.spotify.com/v1/albums/3EMojj1HeLYrhgG01FPB3a",
+        "id": "3EMojj1HeLYrhgG01FPB3a",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2737f266f8ceace9c7d21e12a03",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e027f266f8ceace9c7d21e12a03",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048517f266f8ceace9c7d21e12a03",
+            "width": 64
+          }
+        ],
+        "name": "Winter Chill",
+        "release_date": "2019-09-20",
+        "release_date_precision": "day",
+        "total_tracks": 20,
+        "type": "album",
+        "uri": "spotify:album:3EMojj1HeLYrhgG01FPB3a"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0YuUq0jT4GIpxnyrw99bJV"
+        },
+        "href": "https://api.spotify.com/v1/albums/0YuUq0jT4GIpxnyrw99bJV",
+        "id": "0YuUq0jT4GIpxnyrw99bJV",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b27309543d1fc28808605e83ed9a",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e0209543d1fc28808605e83ed9a",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d0000485109543d1fc28808605e83ed9a",
+            "width": 64
+          }
+        ],
+        "name": "Chill Indie",
+        "release_date": "2019-08-02",
+        "release_date_precision": "day",
+        "total_tracks": 31,
+        "type": "album",
+        "uri": "spotify:album:0YuUq0jT4GIpxnyrw99bJV"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6vIAI2eFE32lq3icbJu2lD"
+        },
+        "href": "https://api.spotify.com/v1/albums/6vIAI2eFE32lq3icbJu2lD",
+        "id": "6vIAI2eFE32lq3icbJu2lD",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273cd1e539e5c1ffcb9c7c1426c",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02cd1e539e5c1ffcb9c7c1426c",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851cd1e539e5c1ffcb9c7c1426c",
+            "width": 64
+          }
+        ],
+        "name": "Van Life",
+        "release_date": "2019-08-02",
+        "release_date_precision": "day",
+        "total_tracks": 24,
+        "type": "album",
+        "uri": "spotify:album:6vIAI2eFE32lq3icbJu2lD"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/5j165sUeA1tc4ZBuLBsaoV"
+        },
+        "href": "https://api.spotify.com/v1/albums/5j165sUeA1tc4ZBuLBsaoV",
+        "id": "5j165sUeA1tc4ZBuLBsaoV",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273d0d194e359d4507f13caab21",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02d0d194e359d4507f13caab21",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851d0d194e359d4507f13caab21",
+            "width": 64
+          }
+        ],
+        "name": "Beach Music",
+        "release_date": "2019-07-19",
+        "release_date_precision": "day",
+        "total_tracks": 23,
+        "type": "album",
+        "uri": "spotify:album:5j165sUeA1tc4ZBuLBsaoV"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/7HER8lLJPhnOhoh53Hrac7"
+        },
+        "href": "https://api.spotify.com/v1/albums/7HER8lLJPhnOhoh53Hrac7",
+        "id": "7HER8lLJPhnOhoh53Hrac7",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2731a48a840a730eeb0b366a883",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e021a48a840a730eeb0b366a883",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048511a48a840a730eeb0b366a883",
+            "width": 64
+          }
+        ],
+        "name": "Indie Drive",
+        "release_date": "2019-07-12",
+        "release_date_precision": "day",
+        "total_tracks": 23,
+        "type": "album",
+        "uri": "spotify:album:7HER8lLJPhnOhoh53Hrac7"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/3eIoU3JlDeeCbYUP56c2xW"
+        },
+        "href": "https://api.spotify.com/v1/albums/3eIoU3JlDeeCbYUP56c2xW",
+        "id": "3eIoU3JlDeeCbYUP56c2xW",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273ddba5c5d4868848b24313b08",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02ddba5c5d4868848b24313b08",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851ddba5c5d4868848b24313b08",
+            "width": 64
+          }
+        ],
+        "name": "Morning Tea",
+        "release_date": "2019-07-12",
+        "release_date_precision": "day",
+        "total_tracks": 18,
+        "type": "album",
+        "uri": "spotify:album:3eIoU3JlDeeCbYUP56c2xW"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0wXHxMHIA8uLxWknSrGlme"
+        },
+        "href": "https://api.spotify.com/v1/albums/0wXHxMHIA8uLxWknSrGlme",
+        "id": "0wXHxMHIA8uLxWknSrGlme",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2736040a3e758bac3de4593dc48",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e026040a3e758bac3de4593dc48",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048516040a3e758bac3de4593dc48",
+            "width": 64
+          }
+        ],
+        "name": "Indie Summer",
+        "release_date": "2019-06-28",
+        "release_date_precision": "day",
+        "total_tracks": 20,
+        "type": "album",
+        "uri": "spotify:album:0wXHxMHIA8uLxWknSrGlme"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/1akQbJgjt8JT2TgpnxfwrS"
+        },
+        "href": "https://api.spotify.com/v1/albums/1akQbJgjt8JT2TgpnxfwrS",
+        "id": "1akQbJgjt8JT2TgpnxfwrS",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2731155096023d728f63e0f575e",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e021155096023d728f63e0f575e",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048511155096023d728f63e0f575e",
+            "width": 64
+          }
+        ],
+        "name": "Festival Headliners",
+        "release_date": "2019-06-21",
+        "release_date_precision": "day",
+        "total_tracks": 32,
+        "type": "album",
+        "uri": "spotify:album:1akQbJgjt8JT2TgpnxfwrS"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/5OCumpYrRv1RY7YznMERdj"
+        },
+        "href": "https://api.spotify.com/v1/albums/5OCumpYrRv1RY7YznMERdj",
+        "id": "5OCumpYrRv1RY7YznMERdj",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273946aff949a3b14b1d544b4ca",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02946aff949a3b14b1d544b4ca",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851946aff949a3b14b1d544b4ca",
+            "width": 64
+          }
+        ],
+        "name": "Alternative High",
+        "release_date": "2019-05-31",
+        "release_date_precision": "day",
+        "total_tracks": 25,
+        "type": "album",
+        "uri": "spotify:album:5OCumpYrRv1RY7YznMERdj"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0GlSLkCH8JGN5SEHI5fP5V"
+        },
+        "href": "https://api.spotify.com/v1/albums/0GlSLkCH8JGN5SEHI5fP5V",
+        "id": "0GlSLkCH8JGN5SEHI5fP5V",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2734f95822086578a9e5bba846f",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e024f95822086578a9e5bba846f",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048514f95822086578a9e5bba846f",
+            "width": 64
+          }
+        ],
+        "name": "Indie Hits",
+        "release_date": "2019-04-05",
+        "release_date_precision": "day",
+        "total_tracks": 22,
+        "type": "album",
+        "uri": "spotify:album:0GlSLkCH8JGN5SEHI5fP5V"
+      }
+    ],
+    "limit": 50,
+    "next": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq/albums?offset=100&limit=50&include_groups=album,single,compilation,appears_on&market=ES",
+    "offset": 50,
+    "previous": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq/albums?offset=0&limit=50&include_groups=album,single,compilation,appears_on&market=ES",
+    "total": 98
+  }

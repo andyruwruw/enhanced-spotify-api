@@ -146,7 +146,7 @@ Container.prototype = {
    * @returns {Item} Item at a given index
    */
   get(index) {
-    return this.items[this.order[index > 0 ? index : (this.order.length - 1) - index]];
+    return this.items[this.order[index >= 0 ? index : (this.order.length - 1) - index]];
   },
 
   /**
@@ -186,8 +186,8 @@ Container.prototype = {
    *
    * @returns {Array} Array of URIs
    */
-  async getURIsNoRepeats() {
-    const ids = await this.getIDsNoRepeats();
+  getURIsNoRepeats() {
+    const ids = this.getIDsNoRepeats();
     return ids.map((id) => `spotify:${this.uri_type}:${id}`);
   },
 
@@ -197,13 +197,16 @@ Container.prototype = {
    * @returns {Item} Removed item
    */
   pop() {
-    const id = this.order.pop();
-    const item = this.items[id];
+    if (this.order.length) {
+      const id = this.order.pop();
+      const item = this.items[id];
 
-    if (!(this.order.includes(id))) {
-      delete this.items[id];
+      if (!(this.order.includes(id))) {
+        delete this.items[id];
+      }
+      return item;
     }
-    return item;
+    return null;
   },
 
   /**
@@ -212,13 +215,16 @@ Container.prototype = {
    * @returns {Item} Removed item
    */
   shift() {
-    const id = this.order.shift();
-    const item = this.items[id];
+    if (this.order.length) {
+      const id = this.order.shift();
+      const item = this.items[id];
 
-    if (!(this.order.includes(id))) {
-      delete this.items[id];
+      if (!(this.order.includes(id))) {
+        delete this.items[id];
+      }
+      return item;
     }
-    return item;
+    return null;
   },
 
   /**
@@ -228,10 +234,14 @@ Container.prototype = {
    * @param {Number} end End of removal (Exclusive)
    * @returns {Items} Removed Items
    */
-  async slice(start, end) {
-    const stop = (end != null) ? end : this.order.length;
-    const ids = this.order.splice(start, stop);
-    const items = new Models[this.name](await ids.map((id) => this.items[id]));
+  slice(start, end) {
+    const ids = this.order.splice(
+      start || 0,
+      end - start || this.order.length - start,
+    );
+
+    const items = new Models[this.name](ids.map((id) => this.items[id]));
+
     for (let i = 0; i < ids.length; i += 1) {
       if (!(this.order.includes(ids[i]))) {
         delete this.items[ids[i]];
@@ -269,18 +279,24 @@ Container.prototype = {
    */
   removeIndexes(indexes) {
     const sorted = indexes.sort((a, b) => b - a);
+  
     if (sorted[0] > (this.order.length - 1) || sorted[sorted.length - 1] < 0) {
       throw new Error(`${this.name}.removeIndexes: Invalid Parameter "indexes", out of range.`);
     }
     const deleted = new Models[this.name]();
+
     for (let i = 0; i < sorted.length; i += 1) {
       const id = this.order[sorted[i]];
+
       this.order.splice(sorted[i], 1);
+  
       deleted.push(this.items[id]);
+
       if (!this.order.includes(id)) {
         delete this.items[id];
       }
     }
+    deleted.reverse();
     return deleted;
   },
 
@@ -290,9 +306,9 @@ Container.prototype = {
    * @param {Function} method Function to be run on each item
    * @param {Function} thisArg Value to use as "this" when executing callback
    */
-  async forEach(method, thisArg) {
-    const items = await this.order.map((item) => this.items[item]);
-    await items.forEach(method, thisArg || this);
+  forEach(method, thisArg) {
+    const items = this.order.map((item) => this.items[item]);
+    items.forEach(method, thisArg || this);
   },
 
   /**
@@ -302,11 +318,14 @@ Container.prototype = {
    * @param {Function} thisArg Value to use as "this" when executing callback
    * @returns {Items} Filtered Items object
    */
-  async filter(method, thisArg) {
+  filter(method, thisArg) {
     const newContainer = new Models[this.name]();
-    const items = await this.order.map((item) => this.items[item]);
-    const filteredItems = await Promise.all(await items.filter(method, thisArg || this));
-    await newContainer.concat(filteredItems);
+
+    const items = this.order.map((item) => this.items[item]);
+
+    const filteredItems = items.filter(method, thisArg || this);
+    newContainer.concat(filteredItems);
+
     return newContainer;
   },
 
@@ -314,10 +333,12 @@ Container.prototype = {
    * Sort items
    * @param {Function} compareFunction Sorting method
    */
-  async sort(compareFunction) {
-    const items = await this.order.map((item) => this.items[item]);
-    const sortedItems = await Promise.all(await items.sort(compareFunction));
-    this.order = await sortedItems.map((item) => item.id);
+  sort(compareFunction) {
+    const items = this.order.map((item) => this.items[item]);
+
+    const sortedItems = items.sort(compareFunction);
+
+    this.order = sortedItems.map((item) => item.id);
   },
 
   /**

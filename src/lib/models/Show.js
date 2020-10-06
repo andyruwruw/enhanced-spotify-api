@@ -21,6 +21,11 @@ function Show(data) {
   } else {
     throw new Error('Show.constructor: Invalid Data');
   }
+  this.episodesRetrieved = false;
+  if ('total_episodes' in this && this.total_episodes !== undefined && this.total_episodes === this._episodes.size()) {
+    this.episodesRetrieved = true;
+  }
+  this.type = 'show';
 }
 
 Show.prototype = {
@@ -212,7 +217,9 @@ Show.prototype = {
    * @returns {Episodes} Episodes instance with all show's episodes
    */
   async getAllEpisodes() {
-    await this.retrieveEpisodes();
+    if (!this.episodesRetrieved) {
+      await this.retrieveEpisodes();
+    }
     return this._episodes;
   },
 
@@ -226,13 +233,17 @@ Show.prototype = {
    * @returns {Episodes} Episodes instance with all show's episodes.
    */
   async getEpisodes(options) {
-    if (options != null && typeof (options) !== 'object') {
-      throw new Error('Show.getEpisodes: Invalid Parameter "options"');
+    if (!this.episodesRetrieved) {
+      const response = await Models.wrapperInstance.getShowEpisodes(this.id, options || {});
+  
+      const episodes = new Models.Episodes(response.body.items);
+
+      await this.loadEpisodes(episodes);
+      return episodes;
     }
-    const response = await Models.wrapperInstance.getShowEpisodes(this.id, options || {});
-    const episodes = new Models.Episodes(response.body.items);
-    await this.loadEpisodes(episodes);
-    return episodes;
+    const offset = options !== undefined && 'offset' in options ? options.offset : 0;
+    const limit = options !== undefined && 'limit' in options ? options.limit : 20;
+    return this._episodes.slice(offset, offset + limit);
   },
 
   /**
@@ -247,6 +258,10 @@ Show.prototype = {
    * Retrieves all episodes in show from Spotify API
    */
   async retrieveEpisodes() {
+    if (this.episodesRetrieved) {
+      return;
+    }
+
     const options = {
       limit: 50,
       offset: 0,
@@ -258,6 +273,8 @@ Show.prototype = {
       await this.loadEpisodes(response.body.items);
       options.offset += 50;
     } while (!(response.body.items.length < 50));
+
+    this.episodesRetrieved = true;
   },
 
   /**
@@ -287,6 +304,9 @@ Show.prototype = {
         this.loadEpisodes(data.episodes);
       }
     }
+    if ('total_episodes' in data) {
+      this.total_episodes = data.total_episodes;
+    }
   },
 
   /**
@@ -308,6 +328,9 @@ Show.prototype = {
     this.media_type = data.media_type;
     this.publisher = data.publisher;
     this.uri = data.uri;
+    if ('total_episodes' in data) {
+      this.total_episodes = data.total_episodes;
+    }
   },
 
   /**
@@ -330,7 +353,9 @@ Show.prototype = {
       'languages',
       'media_type',
       'publisher',
+      'total_episodes',
       'uri',
+      'total_episodes',
     ];
 
     for (let i = 0; i < properties.length; i += 1) {
@@ -354,7 +379,7 @@ Show.prototype = {
    * @param {Array | Episode | object | string} episodes
    */
   async loadEpisodes(episodes) {
-    if (episodes instanceof Show.Episodes || episodes instanceof Array) {
+    if (episodes instanceof Models.Episodes || episodes instanceof Array) {
       this._episodes.concat(episodes);
     } else if (typeof (tracks) === 'object' || typeof (tracks) === 'string') {
       this._episodes.push(episodes);

@@ -327,23 +327,23 @@ describe('Album Instance Methods ', () => {
     const track = album._tracks.get(0);
 
     expect(track).toBeInstanceOf(Track);
-    expect(track.artists).toStrictEqual(album_tracks.items[9].artists);
-    expect(track.album).toStrictEqual(album_tracks.items[9].album);
-    expect(track.available_markets).toStrictEqual(album_tracks.items[9].available_markets);
-    expect(track.disc_number).toBe(album_tracks.items[9].disc_number);
-    expect(track.duration_ms).toBe(album_tracks.items[9].duration_ms);
-    expect(track.explicit).toBe(album_tracks.items[9].explicit);
-    expect(track.external_ids).toStrictEqual(album_tracks.items[9].external_ids);
-    expect(track.external_urls).toStrictEqual(album_tracks.items[9].external_urls);
-    expect(track.href).toBe(album_tracks.items[9].href);
-    expect(track.id).toBe(album_tracks.items[9].id);
-    expect(track.is_local).toBe(album_tracks.items[9].is_local);
-    expect(track.name).toBe(album_tracks.items[9].name);
-    expect(track.popularity).toBe(album_tracks.items[9].popularity);
-    expect(track.preview_url).toBe(album_tracks.items[9].preview_url);
-    expect(track.track_number).toBe(album_tracks.items[9].track_number);
-    expect(track.type).toBe(album_tracks.items[9].type);
-    expect(track.uri).toBe(album_tracks.items[9].uri);
+    expect(track.artists).toStrictEqual(album_tracks.items[0].artists);
+    expect(track.album).toStrictEqual(album_tracks.items[0].album);
+    expect(track.available_markets).toStrictEqual(album_tracks.items[0].available_markets);
+    expect(track.disc_number).toBe(album_tracks.items[0].disc_number);
+    expect(track.duration_ms).toBe(album_tracks.items[0].duration_ms);
+    expect(track.explicit).toBe(album_tracks.items[0].explicit);
+    expect(track.external_ids).toStrictEqual(album_tracks.items[0].external_ids);
+    expect(track.external_urls).toStrictEqual(album_tracks.items[0].external_urls);
+    expect(track.href).toBe(album_tracks.items[0].href);
+    expect(track.id).toBe(album_tracks.items[0].id);
+    expect(track.is_local).toBe(album_tracks.items[0].is_local);
+    expect(track.name).toBe(album_tracks.items[0].name);
+    expect(track.popularity).toBe(album_tracks.items[0].popularity);
+    expect(track.preview_url).toBe(album_tracks.items[0].preview_url);
+    expect(track.track_number).toBe(album_tracks.items[0].track_number);
+    expect(track.type).toBe(album_tracks.items[0].type);
+    expect(track.uri).toBe(album_tracks.items[0].uri);
   });
 
   /**
@@ -530,23 +530,23 @@ describe('Album Instance Methods ', () => {
     const track = tracks.get(0);
 
     expect(track).toBeInstanceOf(Track);
-    expect(track.artists).toStrictEqual(album_tracks.items[9].artists);
-    expect(track.album).toStrictEqual(album_tracks.items[9].album);
-    expect(track.available_markets).toStrictEqual(album_tracks.items[9].available_markets);
-    expect(track.disc_number).toBe(album_tracks.items[9].disc_number);
-    expect(track.duration_ms).toBe(album_tracks.items[9].duration_ms);
-    expect(track.explicit).toBe(album_tracks.items[9].explicit);
-    expect(track.external_ids).toStrictEqual(album_tracks.items[9].external_ids);
-    expect(track.external_urls).toStrictEqual(album_tracks.items[9].external_urls);
-    expect(track.href).toBe(album_tracks.items[9].href);
-    expect(track.id).toBe(album_tracks.items[9].id);
-    expect(track.is_local).toBe(album_tracks.items[9].is_local);
-    expect(track.name).toBe(album_tracks.items[9].name);
-    expect(track.popularity).toBe(album_tracks.items[9].popularity);
-    expect(track.preview_url).toBe(album_tracks.items[9].preview_url);
-    expect(track.track_number).toBe(album_tracks.items[9].track_number);
-    expect(track.type).toBe(album_tracks.items[9].type);
-    expect(track.uri).toBe(album_tracks.items[9].uri);
+    expect(track.artists).toStrictEqual(album_tracks.items[0].artists);
+    expect(track.album).toStrictEqual(album_tracks.items[0].album);
+    expect(track.available_markets).toStrictEqual(album_tracks.items[0].available_markets);
+    expect(track.disc_number).toBe(album_tracks.items[0].disc_number);
+    expect(track.duration_ms).toBe(album_tracks.items[0].duration_ms);
+    expect(track.explicit).toBe(album_tracks.items[0].explicit);
+    expect(track.external_ids).toStrictEqual(album_tracks.items[0].external_ids);
+    expect(track.external_urls).toStrictEqual(album_tracks.items[0].external_urls);
+    expect(track.href).toBe(album_tracks.items[0].href);
+    expect(track.id).toBe(album_tracks.items[0].id);
+    expect(track.is_local).toBe(album_tracks.items[0].is_local);
+    expect(track.name).toBe(album_tracks.items[0].name);
+    expect(track.popularity).toBe(album_tracks.items[0].popularity);
+    expect(track.preview_url).toBe(album_tracks.items[0].preview_url);
+    expect(track.track_number).toBe(album_tracks.items[0].track_number);
+    expect(track.type).toBe(album_tracks.items[0].type);
+    expect(track.uri).toBe(album_tracks.items[0].uri);
   });
 
   /**
@@ -569,23 +569,23 @@ describe('Album Instance Methods ', () => {
     const track = tracks.get(0);
 
     expect(track).toBeInstanceOf(Track);
-    expect(track.artists).toStrictEqual(album_tracks.items[9].artists);
-    expect(track.album).toStrictEqual(album_tracks.items[9].album);
-    expect(track.available_markets).toStrictEqual(album_tracks.items[9].available_markets);
-    expect(track.disc_number).toBe(album_tracks.items[9].disc_number);
-    expect(track.duration_ms).toBe(album_tracks.items[9].duration_ms);
-    expect(track.explicit).toBe(album_tracks.items[9].explicit);
-    expect(track.external_ids).toStrictEqual(album_tracks.items[9].external_ids);
-    expect(track.external_urls).toStrictEqual(album_tracks.items[9].external_urls);
-    expect(track.href).toBe(album_tracks.items[9].href);
-    expect(track.id).toBe(album_tracks.items[9].id);
-    expect(track.is_local).toBe(album_tracks.items[9].is_local);
-    expect(track.name).toBe(album_tracks.items[9].name);
-    expect(track.popularity).toBe(album_tracks.items[9].popularity);
-    expect(track.preview_url).toBe(album_tracks.items[9].preview_url);
-    expect(track.track_number).toBe(album_tracks.items[9].track_number);
-    expect(track.type).toBe(album_tracks.items[9].type);
-    expect(track.uri).toBe(album_tracks.items[9].uri);
+    expect(track.artists).toStrictEqual(album_tracks.items[0].artists);
+    expect(track.album).toStrictEqual(album_tracks.items[0].album);
+    expect(track.available_markets).toStrictEqual(album_tracks.items[0].available_markets);
+    expect(track.disc_number).toBe(album_tracks.items[0].disc_number);
+    expect(track.duration_ms).toBe(album_tracks.items[0].duration_ms);
+    expect(track.explicit).toBe(album_tracks.items[0].explicit);
+    expect(track.external_ids).toStrictEqual(album_tracks.items[0].external_ids);
+    expect(track.external_urls).toStrictEqual(album_tracks.items[0].external_urls);
+    expect(track.href).toBe(album_tracks.items[0].href);
+    expect(track.id).toBe(album_tracks.items[0].id);
+    expect(track.is_local).toBe(album_tracks.items[0].is_local);
+    expect(track.name).toBe(album_tracks.items[0].name);
+    expect(track.popularity).toBe(album_tracks.items[0].popularity);
+    expect(track.preview_url).toBe(album_tracks.items[0].preview_url);
+    expect(track.track_number).toBe(album_tracks.items[0].track_number);
+    expect(track.type).toBe(album_tracks.items[0].type);
+    expect(track.uri).toBe(album_tracks.items[0].uri);
 
     expect(method).not.toHaveBeenCalled();
 
@@ -644,6 +644,9 @@ describe('Album Instance Methods ', () => {
     Album.override('retrieveFullObject', retrieveFullObject);
   });
 
+  /**
+   * Verifies load full object populates correct data.
+   */
   it('Album: Load Full Object', () => {
     const album = new Album(album_simple.id);
     expect(album.containsFullObject()).toBe(false);
@@ -651,6 +654,9 @@ describe('Album Instance Methods ', () => {
     expect(album.containsFullObject()).toBe(true);
   });
 
+  /**
+   * Verifies load simplified object populates correct data.
+   */
   it('Album: Load Simplified Object', () => {
     const album = new Album(album_simple.id);
     expect(album.containsSimplifiedObject()).toBe(false);
@@ -658,6 +664,9 @@ describe('Album Instance Methods ', () => {
     expect(album.containsSimplifiedObject()).toBe(true);
   });
 
+  /**
+   * Verifies load conditionally populates correct data.
+   */
   it('Album: Load Conditionally', () => {
     const album = new Album(album_simple.id);
     expect(album.containsFullObject()).toBe(false);

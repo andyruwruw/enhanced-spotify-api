@@ -1,0 +1,2230 @@
+{
+    "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq/albums?offset=0&limit=50&include_groups=album,single,compilation,appears_on&market=ES",
+    "items": [
+      {
+        "album_group": "album",
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6bKougqSCNbYUEx433cryC"
+        },
+        "href": "https://api.spotify.com/v1/albums/6bKougqSCNbYUEx433cryC",
+        "id": "6bKougqSCNbYUEx433cryC",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2730358ff1bd1de210d8bfe7b49",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e020358ff1bd1de210d8bfe7b49",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048510358ff1bd1de210d8bfe7b49",
+            "width": 64
+          }
+        ],
+        "name": "Dreamland (+ Bonus Levels)",
+        "release_date": "2020-08-11",
+        "release_date_precision": "day",
+        "total_tracks": 21,
+        "type": "album",
+        "uri": "spotify:album:6bKougqSCNbYUEx433cryC"
+      },
+      {
+        "album_group": "album",
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/5bfpRtBW7RNRdsm3tRyl3R"
+        },
+        "href": "https://api.spotify.com/v1/albums/5bfpRtBW7RNRdsm3tRyl3R",
+        "id": "5bfpRtBW7RNRdsm3tRyl3R",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273712701c5e263efc8726b1464",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02712701c5e263efc8726b1464",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851712701c5e263efc8726b1464",
+            "width": 64
+          }
+        ],
+        "name": "Dreamland",
+        "release_date": "2020-08-07",
+        "release_date_precision": "day",
+        "total_tracks": 16,
+        "type": "album",
+        "uri": "spotify:album:5bfpRtBW7RNRdsm3tRyl3R"
+      },
+      {
+        "album_group": "album",
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0KTj6k94XZh0c6IEMfxeWV"
+        },
+        "href": "https://api.spotify.com/v1/albums/0KTj6k94XZh0c6IEMfxeWV",
+        "id": "0KTj6k94XZh0c6IEMfxeWV",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2739e495fb707973f3390850eea",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e029e495fb707973f3390850eea",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048519e495fb707973f3390850eea",
+            "width": 64
+          }
+        ],
+        "name": "Dreamland (+ Bonus Levels)",
+        "release_date": "2020-08-06",
+        "release_date_precision": "day",
+        "total_tracks": 18,
+        "type": "album",
+        "uri": "spotify:album:0KTj6k94XZh0c6IEMfxeWV"
+      },
+      {
+        "album_group": "album",
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6qb9MDR0lfsN9a2pw77uJy"
+        },
+        "href": "https://api.spotify.com/v1/albums/6qb9MDR0lfsN9a2pw77uJy",
+        "id": "6qb9MDR0lfsN9a2pw77uJy",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273ec3d15eab5bd77027abc4b23",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02ec3d15eab5bd77027abc4b23",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851ec3d15eab5bd77027abc4b23",
+            "width": 64
+          }
+        ],
+        "name": "How To Be A Human Being",
+        "release_date": "2016-08-26",
+        "release_date_precision": "day",
+        "total_tracks": 11,
+        "type": "album",
+        "uri": "spotify:album:6qb9MDR0lfsN9a2pw77uJy"
+      },
+      {
+        "album_group": "album",
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0dd6bX3CRdybDCgltyoItP"
+        },
+        "href": "https://api.spotify.com/v1/albums/0dd6bX3CRdybDCgltyoItP",
+        "id": "0dd6bX3CRdybDCgltyoItP",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273044abb45417b2b039cd7c2a2",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02044abb45417b2b039cd7c2a2",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851044abb45417b2b039cd7c2a2",
+            "width": 64
+          }
+        ],
+        "name": "ZABA (Deluxe)",
+        "release_date": "2014-06-06",
+        "release_date_precision": "day",
+        "total_tracks": 15,
+        "type": "album",
+        "uri": "spotify:album:0dd6bX3CRdybDCgltyoItP"
+      },
+      {
+        "album_group": "album",
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/14IOe7ahxQPTwUYUQX3IFi"
+        },
+        "href": "https://api.spotify.com/v1/albums/14IOe7ahxQPTwUYUQX3IFi",
+        "id": "14IOe7ahxQPTwUYUQX3IFi",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2737a293e6787c6d200c5077cd0",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e027a293e6787c6d200c5077cd0",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048517a293e6787c6d200c5077cd0",
+            "width": 64
+          }
+        ],
+        "name": "ZABA",
+        "release_date": "2014-06-03",
+        "release_date_precision": "day",
+        "total_tracks": 11,
+        "type": "album",
+        "uri": "spotify:album:14IOe7ahxQPTwUYUQX3IFi"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/7EsB6vnfiS17ANTPakNQ0i"
+        },
+        "href": "https://api.spotify.com/v1/albums/7EsB6vnfiS17ANTPakNQ0i",
+        "id": "7EsB6vnfiS17ANTPakNQ0i",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b27327071f952309ed8812f708b1",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e0227071f952309ed8812f708b1",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d0000485127071f952309ed8812f708b1",
+            "width": 64
+          }
+        ],
+        "name": "Heat Waves (Diplo Remix)",
+        "release_date": "2020-08-06",
+        "release_date_precision": "day",
+        "total_tracks": 1,
+        "type": "album",
+        "uri": "spotify:album:7EsB6vnfiS17ANTPakNQ0i"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0YuU3tqK56d8UfewdAqCIl"
+        },
+        "href": "https://api.spotify.com/v1/albums/0YuU3tqK56d8UfewdAqCIl",
+        "id": "0YuU3tqK56d8UfewdAqCIl",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273e03f256ea16f671a7628611c",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02e03f256ea16f671a7628611c",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851e03f256ea16f671a7628611c",
+            "width": 64
+          }
+        ],
+        "name": "It’s All So Incredibly Loud",
+        "release_date": "2020-07-31",
+        "release_date_precision": "day",
+        "total_tracks": 1,
+        "type": "album",
+        "uri": "spotify:album:0YuU3tqK56d8UfewdAqCIl"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/69K1zrf6TkXHdYUO8n2qVi"
+        },
+        "href": "https://api.spotify.com/v1/albums/69K1zrf6TkXHdYUO8n2qVi",
+        "id": "69K1zrf6TkXHdYUO8n2qVi",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273ab9d1ae18b640b7b0ce390d4",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02ab9d1ae18b640b7b0ce390d4",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851ab9d1ae18b640b7b0ce390d4",
+            "width": 64
+          }
+        ],
+        "name": "Heat Waves",
+        "release_date": "2020-06-29",
+        "release_date_precision": "day",
+        "total_tracks": 1,
+        "type": "album",
+        "uri": "spotify:album:69K1zrf6TkXHdYUO8n2qVi"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/1YuD9tjpVMRbSmWDfOiyem"
+        },
+        "href": "https://api.spotify.com/v1/albums/1YuD9tjpVMRbSmWDfOiyem",
+        "id": "1YuD9tjpVMRbSmWDfOiyem",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273c55406131ae59c45e87a82cb",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02c55406131ae59c45e87a82cb",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851c55406131ae59c45e87a82cb",
+            "width": 64
+          }
+        ],
+        "name": "Dreamland",
+        "release_date": "2020-05-01",
+        "release_date_precision": "day",
+        "total_tracks": 1,
+        "type": "album",
+        "uri": "spotify:album:1YuD9tjpVMRbSmWDfOiyem"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/1PoNxdvXr6C4XM4cr6Fr6u"
+        },
+        "href": "https://api.spotify.com/v1/albums/1PoNxdvXr6C4XM4cr6Fr6u",
+        "id": "1PoNxdvXr6C4XM4cr6Fr6u",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b27321e9d882381bc3d2f790bf59",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e0221e9d882381bc3d2f790bf59",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d0000485121e9d882381bc3d2f790bf59",
+            "width": 64
+          }
+        ],
+        "name": "Quarantine Covers",
+        "release_date": "2020-04-17",
+        "release_date_precision": "day",
+        "total_tracks": 2,
+        "type": "album",
+        "uri": "spotify:album:1PoNxdvXr6C4XM4cr6Fr6u"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/7xz9Hi6y8KaYlLNSkvme0W"
+        },
+        "href": "https://api.spotify.com/v1/albums/7xz9Hi6y8KaYlLNSkvme0W",
+        "id": "7xz9Hi6y8KaYlLNSkvme0W",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273723f3c3e968f176a130ff102",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02723f3c3e968f176a130ff102",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851723f3c3e968f176a130ff102",
+            "width": 64
+          }
+        ],
+        "name": "Your Love (Déjà Vu)",
+        "release_date": "2020-02-19",
+        "release_date_precision": "day",
+        "total_tracks": 1,
+        "type": "album",
+        "uri": "spotify:album:7xz9Hi6y8KaYlLNSkvme0W"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/6fxyWrfmjcbj5d12gXeiNV"
+            },
+            "href": "https://api.spotify.com/v1/artists/6fxyWrfmjcbj5d12gXeiNV",
+            "id": "6fxyWrfmjcbj5d12gXeiNV",
+            "name": "Denzel Curry",
+            "type": "artist",
+            "uri": "spotify:artist:6fxyWrfmjcbj5d12gXeiNV"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/1awYYlPxboJHZqiEFXEdTh"
+        },
+        "href": "https://api.spotify.com/v1/albums/1awYYlPxboJHZqiEFXEdTh",
+        "id": "1awYYlPxboJHZqiEFXEdTh",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273490997bc549d6ef6c3e948b5",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02490997bc549d6ef6c3e948b5",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851490997bc549d6ef6c3e948b5",
+            "width": 64
+          }
+        ],
+        "name": "Tokyo Drifting",
+        "release_date": "2019-11-13",
+        "release_date_precision": "day",
+        "total_tracks": 1,
+        "type": "album",
+        "uri": "spotify:album:1awYYlPxboJHZqiEFXEdTh"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0v53lR3CdMTyefBV2vHAYL"
+        },
+        "href": "https://api.spotify.com/v1/albums/0v53lR3CdMTyefBV2vHAYL",
+        "id": "0v53lR3CdMTyefBV2vHAYL",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b27389bd3a25b6e49d21740847b8",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e0289bd3a25b6e49d21740847b8",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d0000485189bd3a25b6e49d21740847b8",
+            "width": 64
+          }
+        ],
+        "name": "Agnes (Radio Edit)",
+        "release_date": "2017-06-09",
+        "release_date_precision": "day",
+        "total_tracks": 1,
+        "type": "album",
+        "uri": "spotify:album:0v53lR3CdMTyefBV2vHAYL"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/7hNqaMi3lct1HBRTMM79p1"
+        },
+        "href": "https://api.spotify.com/v1/albums/7hNqaMi3lct1HBRTMM79p1",
+        "id": "7hNqaMi3lct1HBRTMM79p1",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2732d54f689c7c394ee3bd550fb",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e022d54f689c7c394ee3bd550fb",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048512d54f689c7c394ee3bd550fb",
+            "width": 64
+          }
+        ],
+        "name": "Pork Soda (Radio Edit)",
+        "release_date": "2017-03-31",
+        "release_date_precision": "day",
+        "total_tracks": 1,
+        "type": "album",
+        "uri": "spotify:album:7hNqaMi3lct1HBRTMM79p1"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/2JLJ4OEVPnJ5CgNcd6Lnyo"
+        },
+        "href": "https://api.spotify.com/v1/albums/2JLJ4OEVPnJ5CgNcd6Lnyo",
+        "id": "2JLJ4OEVPnJ5CgNcd6Lnyo",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2737ef65d8267531e15267dc31f",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e027ef65d8267531e15267dc31f",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048517ef65d8267531e15267dc31f",
+            "width": 64
+          }
+        ],
+        "name": "Spotify Live",
+        "release_date": "2017-03-31",
+        "release_date_precision": "day",
+        "total_tracks": 5,
+        "type": "album",
+        "uri": "spotify:album:2JLJ4OEVPnJ5CgNcd6Lnyo"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0wuZJYHJAUhUVZDZSL6WfW"
+        },
+        "href": "https://api.spotify.com/v1/albums/0wuZJYHJAUhUVZDZSL6WfW",
+        "id": "0wuZJYHJAUhUVZDZSL6WfW",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2732633c6f342d0284b6c7cc5cc",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e022633c6f342d0284b6c7cc5cc",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048512633c6f342d0284b6c7cc5cc",
+            "width": 64
+          }
+        ],
+        "name": "Season 2 Episode 3 (Photay Remix)",
+        "release_date": "2016-12-02",
+        "release_date_precision": "day",
+        "total_tracks": 1,
+        "type": "album",
+        "uri": "spotify:album:0wuZJYHJAUhUVZDZSL6WfW"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/2uzP9YkKRRWtrrGJVHoxCX"
+        },
+        "href": "https://api.spotify.com/v1/albums/2uzP9YkKRRWtrrGJVHoxCX",
+        "id": "2uzP9YkKRRWtrrGJVHoxCX",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273b778addf6bca2ad4df7ce39f",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02b778addf6bca2ad4df7ce39f",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851b778addf6bca2ad4df7ce39f",
+            "width": 64
+          }
+        ],
+        "name": "Life Itself (Roosevelt Remix)",
+        "release_date": "2016-05-18",
+        "release_date_precision": "day",
+        "total_tracks": 1,
+        "type": "album",
+        "uri": "spotify:album:2uzP9YkKRRWtrrGJVHoxCX"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/2P5sC9cVZDToPxyomzF1UH"
+            },
+            "href": "https://api.spotify.com/v1/artists/2P5sC9cVZDToPxyomzF1UH",
+            "id": "2P5sC9cVZDToPxyomzF1UH",
+            "name": "Joey Bada$$",
+            "type": "artist",
+            "uri": "spotify:artist:2P5sC9cVZDToPxyomzF1UH"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6rX8ry5bXaEbG2mcAgzjSW"
+        },
+        "href": "https://api.spotify.com/v1/albums/6rX8ry5bXaEbG2mcAgzjSW",
+        "id": "6rX8ry5bXaEbG2mcAgzjSW",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273c02e5d5d6613e2c834c9e621",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02c02e5d5d6613e2c834c9e621",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851c02e5d5d6613e2c834c9e621",
+            "width": 64
+          }
+        ],
+        "name": "Lose Control",
+        "release_date": "2015-10-05",
+        "release_date_precision": "day",
+        "total_tracks": 1,
+        "type": "album",
+        "uri": "spotify:album:6rX8ry5bXaEbG2mcAgzjSW"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/56st0yyb1uGIZ92t2vGYcD"
+        },
+        "href": "https://api.spotify.com/v1/albums/56st0yyb1uGIZ92t2vGYcD",
+        "id": "56st0yyb1uGIZ92t2vGYcD",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2733a3d122b69be110eb9ebe412",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e023a3d122b69be110eb9ebe412",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048513a3d122b69be110eb9ebe412",
+            "width": 64
+          }
+        ],
+        "name": "Gooey",
+        "release_date": "2014-04-04",
+        "release_date_precision": "day",
+        "total_tracks": 5,
+        "type": "album",
+        "uri": "spotify:album:56st0yyb1uGIZ92t2vGYcD"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/4tzdd7lmrOF5Ygj8H8SZQU"
+        },
+        "href": "https://api.spotify.com/v1/albums/4tzdd7lmrOF5Ygj8H8SZQU",
+        "id": "4tzdd7lmrOF5Ygj8H8SZQU",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b27359206e2ccf28312710e4d93f",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e0259206e2ccf28312710e4d93f",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d0000485159206e2ccf28312710e4d93f",
+            "width": 64
+          }
+        ],
+        "name": "Hazey",
+        "release_date": "2014-01-01",
+        "release_date_precision": "day",
+        "total_tracks": 4,
+        "type": "album",
+        "uri": "spotify:album:4tzdd7lmrOF5Ygj8H8SZQU"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/5eguvzd7K0v0EMtiZsIWed"
+        },
+        "href": "https://api.spotify.com/v1/albums/5eguvzd7K0v0EMtiZsIWed",
+        "id": "5eguvzd7K0v0EMtiZsIWed",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2739b5f08bc07acae9dcba94a04",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e029b5f08bc07acae9dcba94a04",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048519b5f08bc07acae9dcba94a04",
+            "width": 64
+          }
+        ],
+        "name": "Hazey (Gabriel Garzón-Montano Remix)",
+        "release_date": "2014-01-01",
+        "release_date_precision": "day",
+        "total_tracks": 1,
+        "type": "album",
+        "uri": "spotify:album:5eguvzd7K0v0EMtiZsIWed"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/60TNKsE97pRoQW6LCkUQKV"
+        },
+        "href": "https://api.spotify.com/v1/albums/60TNKsE97pRoQW6LCkUQKV",
+        "id": "60TNKsE97pRoQW6LCkUQKV",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2738abbcf8215f6fe509ebfa2ad",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e028abbcf8215f6fe509ebfa2ad",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048518abbcf8215f6fe509ebfa2ad",
+            "width": 64
+          }
+        ],
+        "name": "Pools",
+        "release_date": "2014-01-01",
+        "release_date_precision": "day",
+        "total_tracks": 5,
+        "type": "album",
+        "uri": "spotify:album:60TNKsE97pRoQW6LCkUQKV"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/3R7FwvRsDtsFg6BpDWTtLc"
+        },
+        "href": "https://api.spotify.com/v1/albums/3R7FwvRsDtsFg6BpDWTtLc",
+        "id": "3R7FwvRsDtsFg6BpDWTtLc",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2731ac1d5da96536d245cc37ef2",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e021ac1d5da96536d245cc37ef2",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048511ac1d5da96536d245cc37ef2",
+            "width": 64
+          }
+        ],
+        "name": "Pools",
+        "release_date": "2014-01-01",
+        "release_date_precision": "day",
+        "total_tracks": 1,
+        "type": "album",
+        "uri": "spotify:album:3R7FwvRsDtsFg6BpDWTtLc"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/7n8wEKfnfniyzhM0CRQU7u"
+        },
+        "href": "https://api.spotify.com/v1/albums/7n8wEKfnfniyzhM0CRQU7u",
+        "id": "7n8wEKfnfniyzhM0CRQU7u",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2730f05894ef3f8c4d2b98152d4",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e020f05894ef3f8c4d2b98152d4",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048510f05894ef3f8c4d2b98152d4",
+            "width": 64
+          }
+        ],
+        "name": "Spotify Sessions (Live From Spotify SXSW)",
+        "release_date": "2014-01-01",
+        "release_date_precision": "day",
+        "total_tracks": 5,
+        "type": "album",
+        "uri": "spotify:album:7n8wEKfnfniyzhM0CRQU7u"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/4M7zRurOW6q7pQxjMcPqwU"
+        },
+        "href": "https://api.spotify.com/v1/albums/4M7zRurOW6q7pQxjMcPqwU",
+        "id": "4M7zRurOW6q7pQxjMcPqwU",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273b817702a010273879ce8d5d8",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02b817702a010273879ce8d5d8",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851b817702a010273879ce8d5d8",
+            "width": 64
+          }
+        ],
+        "name": "Glass Animals",
+        "release_date": "2013-01-01",
+        "release_date_precision": "day",
+        "total_tracks": 4,
+        "type": "album",
+        "uri": "spotify:album:4M7zRurOW6q7pQxjMcPqwU"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/2POdJdNhKu2JlKCknoy9Xa"
+        },
+        "href": "https://api.spotify.com/v1/albums/2POdJdNhKu2JlKCknoy9Xa",
+        "id": "2POdJdNhKu2JlKCknoy9Xa",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273e88eddf4950c33268071926e",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02e88eddf4950c33268071926e",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851e88eddf4950c33268071926e",
+            "width": 64
+          }
+        ],
+        "name": "Psylla",
+        "release_date": "2013-01-01",
+        "release_date_precision": "day",
+        "total_tracks": 2,
+        "type": "album",
+        "uri": "spotify:album:2POdJdNhKu2JlKCknoy9Xa"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/56UdX1jlNZD3H5aI5q80yv"
+        },
+        "href": "https://api.spotify.com/v1/albums/56UdX1jlNZD3H5aI5q80yv",
+        "id": "56UdX1jlNZD3H5aI5q80yv",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b27300ec3806d8e18385f672a60d",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e0200ec3806d8e18385f672a60d",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d0000485100ec3806d8e18385f672a60d",
+            "width": 64
+          }
+        ],
+        "name": "Black Mambo / Exxus",
+        "release_date": "2013-01-01",
+        "release_date_precision": "day",
+        "total_tracks": 4,
+        "type": "album",
+        "uri": "spotify:album:56UdX1jlNZD3H5aI5q80yv"
+      },
+      {
+        "album_group": "single",
+        "album_type": "single",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq"
+            },
+            "href": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq",
+            "id": "4yvcSjfu4PC0CYQyLy4wSq",
+            "name": "Glass Animals",
+            "type": "artist",
+            "uri": "spotify:artist:4yvcSjfu4PC0CYQyLy4wSq"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0lUaIHoBEbk85zZz5oZT0y"
+        },
+        "href": "https://api.spotify.com/v1/albums/0lUaIHoBEbk85zZz5oZT0y",
+        "id": "0lUaIHoBEbk85zZz5oZT0y",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2736f38bfb9cc326c47a2e042d1",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e026f38bfb9cc326c47a2e042d1",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048516f38bfb9cc326c47a2e042d1",
+            "width": 64
+          }
+        ],
+        "name": "Leaflings",
+        "release_date": "2012-05-28",
+        "release_date_precision": "day",
+        "total_tracks": 4,
+        "type": "album",
+        "uri": "spotify:album:0lUaIHoBEbk85zZz5oZT0y"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "album",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/3VTkAGcw8xuG6cjQMWjSld"
+        },
+        "href": "https://api.spotify.com/v1/albums/3VTkAGcw8xuG6cjQMWjSld",
+        "id": "3VTkAGcw8xuG6cjQMWjSld",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273d22de5ba8851da4a4375010e",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02d22de5ba8851da4a4375010e",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851d22de5ba8851da4a4375010e",
+            "width": 64
+          }
+        ],
+        "name": "Indie para Curtir",
+        "release_date": "2020-10-02",
+        "release_date_precision": "day",
+        "total_tracks": 40,
+        "type": "album",
+        "uri": "spotify:album:3VTkAGcw8xuG6cjQMWjSld"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6TaWnVBhRx2gxmE3eOlJGH"
+        },
+        "href": "https://api.spotify.com/v1/albums/6TaWnVBhRx2gxmE3eOlJGH",
+        "id": "6TaWnVBhRx2gxmE3eOlJGH",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273257ffb8d29d326996cf95699",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02257ffb8d29d326996cf95699",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851257ffb8d29d326996cf95699",
+            "width": 64
+          }
+        ],
+        "name": "Ambiance Chill",
+        "release_date": "2020-10-02",
+        "release_date_precision": "day",
+        "total_tracks": 39,
+        "type": "album",
+        "uri": "spotify:album:6TaWnVBhRx2gxmE3eOlJGH"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/1ZQ7v3qT9GJad0mE9JhKIX"
+        },
+        "href": "https://api.spotify.com/v1/albums/1ZQ7v3qT9GJad0mE9JhKIX",
+        "id": "1ZQ7v3qT9GJad0mE9JhKIX",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2732ee50b9b5d563650df2517a9",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e022ee50b9b5d563650df2517a9",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048512ee50b9b5d563650df2517a9",
+            "width": 64
+          }
+        ],
+        "name": "Ambiance Dimanche Matin",
+        "release_date": "2020-09-25",
+        "release_date_precision": "day",
+        "total_tracks": 40,
+        "type": "album",
+        "uri": "spotify:album:1ZQ7v3qT9GJad0mE9JhKIX"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/5nuZdXC8CkgQuLwX7aRjtF"
+        },
+        "href": "https://api.spotify.com/v1/albums/5nuZdXC8CkgQuLwX7aRjtF",
+        "id": "5nuZdXC8CkgQuLwX7aRjtF",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273ab1db1e822f853c4be93eca2",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02ab1db1e822f853c4be93eca2",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851ab1db1e822f853c4be93eca2",
+            "width": 64
+          }
+        ],
+        "name": "Vibes de Domingo",
+        "release_date": "2020-09-25",
+        "release_date_precision": "day",
+        "total_tracks": 43,
+        "type": "album",
+        "uri": "spotify:album:5nuZdXC8CkgQuLwX7aRjtF"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0HUGul3gQ4jCuxAfWJZmMR"
+        },
+        "href": "https://api.spotify.com/v1/albums/0HUGul3gQ4jCuxAfWJZmMR",
+        "id": "0HUGul3gQ4jCuxAfWJZmMR",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273c11df11e9114416f8851478c",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02c11df11e9114416f8851478c",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851c11df11e9114416f8851478c",
+            "width": 64
+          }
+        ],
+        "name": "Trabalhar de Casa",
+        "release_date": "2020-09-25",
+        "release_date_precision": "day",
+        "total_tracks": 46,
+        "type": "album",
+        "uri": "spotify:album:0HUGul3gQ4jCuxAfWJZmMR"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/7urmdPRWXZwHT4B2mzqAdA"
+        },
+        "href": "https://api.spotify.com/v1/albums/7urmdPRWXZwHT4B2mzqAdA",
+        "id": "7urmdPRWXZwHT4B2mzqAdA",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2731d90a99480c580df316c501d",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e021d90a99480c580df316c501d",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048511d90a99480c580df316c501d",
+            "width": 64
+          }
+        ],
+        "name": "Ambiance Télétravail",
+        "release_date": "2020-09-25",
+        "release_date_precision": "day",
+        "total_tracks": 46,
+        "type": "album",
+        "uri": "spotify:album:7urmdPRWXZwHT4B2mzqAdA"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/4BZJUMbJhvLLi7gXKgtGyt"
+        },
+        "href": "https://api.spotify.com/v1/albums/4BZJUMbJhvLLi7gXKgtGyt",
+        "id": "4BZJUMbJhvLLi7gXKgtGyt",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273e549642afc401560e025beff",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02e549642afc401560e025beff",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851e549642afc401560e025beff",
+            "width": 64
+          }
+        ],
+        "name": "Música Para Trabajar En Casa",
+        "release_date": "2020-09-25",
+        "release_date_precision": "day",
+        "total_tracks": 46,
+        "type": "album",
+        "uri": "spotify:album:4BZJUMbJhvLLi7gXKgtGyt"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/7sywxQnApDWPUxyQyfyD89"
+        },
+        "href": "https://api.spotify.com/v1/albums/7sywxQnApDWPUxyQyfyD89",
+        "id": "7sywxQnApDWPUxyQyfyD89",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2738cd2a118a00e2515bbff31e1",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e028cd2a118a00e2515bbff31e1",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048518cd2a118a00e2515bbff31e1",
+            "width": 64
+          }
+        ],
+        "name": "Late Night Drives",
+        "release_date": "2020-09-04",
+        "release_date_precision": "day",
+        "total_tracks": 22,
+        "type": "album",
+        "uri": "spotify:album:7sywxQnApDWPUxyQyfyD89"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/3wz2EjdeJYuOFE1F7KNXPm"
+        },
+        "href": "https://api.spotify.com/v1/albums/3wz2EjdeJYuOFE1F7KNXPm",
+        "id": "3wz2EjdeJYuOFE1F7KNXPm",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2736a41a653b1e715729c4e8505",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e026a41a653b1e715729c4e8505",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048516a41a653b1e715729c4e8505",
+            "width": 64
+          }
+        ],
+        "name": "Cottagecore Vibes",
+        "release_date": "2020-09-04",
+        "release_date_precision": "day",
+        "total_tracks": 16,
+        "type": "album",
+        "uri": "spotify:album:3wz2EjdeJYuOFE1F7KNXPm"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/1ntRQ8q6FoVSLQmjj823o5"
+        },
+        "href": "https://api.spotify.com/v1/albums/1ntRQ8q6FoVSLQmjj823o5",
+        "id": "1ntRQ8q6FoVSLQmjj823o5",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2737fed78eec1e768a17eb0477f",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e027fed78eec1e768a17eb0477f",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048517fed78eec1e768a17eb0477f",
+            "width": 64
+          }
+        ],
+        "name": "Chill Alternative",
+        "release_date": "2020-08-21",
+        "release_date_precision": "day",
+        "total_tracks": 24,
+        "type": "album",
+        "uri": "spotify:album:1ntRQ8q6FoVSLQmjj823o5"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/3fS9rCuakrh2u9Zv5VHuPh"
+        },
+        "href": "https://api.spotify.com/v1/albums/3fS9rCuakrh2u9Zv5VHuPh",
+        "id": "3fS9rCuakrh2u9Zv5VHuPh",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273e2248bcac8f2fdab616c4213",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02e2248bcac8f2fdab616c4213",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851e2248bcac8f2fdab616c4213",
+            "width": 64
+          }
+        ],
+        "name": "Songs To Vibe Out To",
+        "release_date": "2020-07-24",
+        "release_date_precision": "day",
+        "total_tracks": 26,
+        "type": "album",
+        "uri": "spotify:album:3fS9rCuakrh2u9Zv5VHuPh"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/08QU0gcOwgdtVDtlPMITiq"
+        },
+        "href": "https://api.spotify.com/v1/albums/08QU0gcOwgdtVDtlPMITiq",
+        "id": "08QU0gcOwgdtVDtlPMITiq",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b27367454c09754d4f275e930f15",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e0267454c09754d4f275e930f15",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d0000485167454c09754d4f275e930f15",
+            "width": 64
+          }
+        ],
+        "name": "Almost Bedtime",
+        "release_date": "2020-07-17",
+        "release_date_precision": "day",
+        "total_tracks": 43,
+        "type": "album",
+        "uri": "spotify:album:08QU0gcOwgdtVDtlPMITiq"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/7K6uLd8u0Nz2hisJ96y6qn"
+        },
+        "href": "https://api.spotify.com/v1/albums/7K6uLd8u0Nz2hisJ96y6qn",
+        "id": "7K6uLd8u0Nz2hisJ96y6qn",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273b6f74335687faa2e9ca6934c",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02b6f74335687faa2e9ca6934c",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851b6f74335687faa2e9ca6934c",
+            "width": 64
+          }
+        ],
+        "name": "Music For The Waiting Room",
+        "release_date": "2020-07-17",
+        "release_date_precision": "day",
+        "total_tracks": 45,
+        "type": "album",
+        "uri": "spotify:album:7K6uLd8u0Nz2hisJ96y6qn"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/5zNXH92fRWa9Nw2iGf2QP6"
+        },
+        "href": "https://api.spotify.com/v1/albums/5zNXH92fRWa9Nw2iGf2QP6",
+        "id": "5zNXH92fRWa9Nw2iGf2QP6",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273fd5c1519bef4a0a99d32a8d7",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02fd5c1519bef4a0a99d32a8d7",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851fd5c1519bef4a0a99d32a8d7",
+            "width": 64
+          }
+        ],
+        "name": "Home Office Stereo",
+        "release_date": "2020-07-17",
+        "release_date_precision": "day",
+        "total_tracks": 35,
+        "type": "album",
+        "uri": "spotify:album:5zNXH92fRWa9Nw2iGf2QP6"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/78lgnYiduoxINTD9Aaj89g"
+        },
+        "href": "https://api.spotify.com/v1/albums/78lgnYiduoxINTD9Aaj89g",
+        "id": "78lgnYiduoxINTD9Aaj89g",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273185c4408b10be68ef357297f",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02185c4408b10be68ef357297f",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851185c4408b10be68ef357297f",
+            "width": 64
+          }
+        ],
+        "name": "Come Down Sunday",
+        "release_date": "2020-07-17",
+        "release_date_precision": "day",
+        "total_tracks": 23,
+        "type": "album",
+        "uri": "spotify:album:78lgnYiduoxINTD9Aaj89g"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6SaA2vLxYNRyftQ898Bh9N"
+        },
+        "href": "https://api.spotify.com/v1/albums/6SaA2vLxYNRyftQ898Bh9N",
+        "id": "6SaA2vLxYNRyftQ898Bh9N",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273caf5a94dc818a559421b89a3",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02caf5a94dc818a559421b89a3",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851caf5a94dc818a559421b89a3",
+            "width": 64
+          }
+        ],
+        "name": "Office Stereo",
+        "release_date": "2020-07-03",
+        "release_date_precision": "day",
+        "total_tracks": 53,
+        "type": "album",
+        "uri": "spotify:album:6SaA2vLxYNRyftQ898Bh9N"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/7C8TRDykdJatM8mlo1oUWK"
+        },
+        "href": "https://api.spotify.com/v1/albums/7C8TRDykdJatM8mlo1oUWK",
+        "id": "7C8TRDykdJatM8mlo1oUWK",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b27369cc0c3e8e01568920b39a61",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e0269cc0c3e8e01568920b39a61",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d0000485169cc0c3e8e01568920b39a61",
+            "width": 64
+          }
+        ],
+        "name": "Workday Stereo",
+        "release_date": "2020-07-03",
+        "release_date_precision": "day",
+        "total_tracks": 57,
+        "type": "album",
+        "uri": "spotify:album:7C8TRDykdJatM8mlo1oUWK"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/2JYZytXuIBWmpMzDp8sS8o"
+        },
+        "href": "https://api.spotify.com/v1/albums/2JYZytXuIBWmpMzDp8sS8o",
+        "id": "2JYZytXuIBWmpMzDp8sS8o",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273a2b671835538e663c4ba9a1a",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02a2b671835538e663c4ba9a1a",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851a2b671835538e663c4ba9a1a",
+            "width": 64
+          }
+        ],
+        "name": "Summer Indie Hits",
+        "release_date": "2020-07-03",
+        "release_date_precision": "day",
+        "total_tracks": 25,
+        "type": "album",
+        "uri": "spotify:album:2JYZytXuIBWmpMzDp8sS8o"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/0s2cCdfEn7WkqaxMC8SNsA"
+        },
+        "href": "https://api.spotify.com/v1/albums/0s2cCdfEn7WkqaxMC8SNsA",
+        "id": "0s2cCdfEn7WkqaxMC8SNsA",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2734939caf28a6dc38905c85268",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e024939caf28a6dc38905c85268",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048514939caf28a6dc38905c85268",
+            "width": 64
+          }
+        ],
+        "name": "Work Day Beats",
+        "release_date": "2020-07-03",
+        "release_date_precision": "day",
+        "total_tracks": 25,
+        "type": "album",
+        "uri": "spotify:album:0s2cCdfEn7WkqaxMC8SNsA"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/5IMfvld8FmfzXQP6Ln9hUN"
+        },
+        "href": "https://api.spotify.com/v1/albums/5IMfvld8FmfzXQP6Ln9hUN",
+        "id": "5IMfvld8FmfzXQP6Ln9hUN",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2735f5858855fb29e0076c5018f",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e025f5858855fb29e0076c5018f",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048515f5858855fb29e0076c5018f",
+            "width": 64
+          }
+        ],
+        "name": "Happy At Home",
+        "release_date": "2020-07-03",
+        "release_date_precision": "day",
+        "total_tracks": 32,
+        "type": "album",
+        "uri": "spotify:album:5IMfvld8FmfzXQP6Ln9hUN"
+      },
+      {
+        "album_group": "appears_on",
+        "album_type": "compilation",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+            },
+            "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+            "id": "0LyfQWJT6nXafLPZqxe9Of",
+            "name": "Various Artists",
+            "type": "artist",
+            "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/09pF9CzWsqeq0eYQZuzZj8"
+        },
+        "href": "https://api.spotify.com/v1/albums/09pF9CzWsqeq0eYQZuzZj8",
+        "id": "09pF9CzWsqeq0eYQZuzZj8",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2739013f184e20a74b62739d9de",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e029013f184e20a74b62739d9de",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048519013f184e20a74b62739d9de",
+            "width": 64
+          }
+        ],
+        "name": "Sunday Morning Chill",
+        "release_date": "2020-06-26",
+        "release_date_precision": "day",
+        "total_tracks": 58,
+        "type": "album",
+        "uri": "spotify:album:09pF9CzWsqeq0eYQZuzZj8"
+      }
+    ],
+    "limit": 50,
+    "next": "https://api.spotify.com/v1/artists/4yvcSjfu4PC0CYQyLy4wSq/albums?offset=50&limit=50&include_groups=album,single,compilation,appears_on&market=ES",
+    "offset": 0,
+    "previous": null,
+    "total": 98
+  }

@@ -29,7 +29,7 @@ Category.prototype = {
    * @returns {object} Response from request
    */
   async play(options) {
-    return ((await this.getCategoryPlaylists({ limit: 1 })).get(0)).play(options);
+    return ((await this.getPlaylists({ limit: 1 })).get(0)).play(options);
   },
 
   /**
@@ -98,9 +98,8 @@ Category.prototype = {
     if (options != null && typeof (options) !== 'object') {
       throw new Error('Category.getPlaylists: Invalid Parameter "options"');
     }
-    const _options = options || {};
-    const response = await Models.wrapperInstance.getCategoryPlaylists(this.id, _options);
-    return new Models.Playlists(response.body.playlists);
+    const response = await Models.wrapperInstance.getPlaylistsForCategory(this.id, options || {});
+    return new Models.Playlists(response.body.playlists.items);
   },
 
   /**
