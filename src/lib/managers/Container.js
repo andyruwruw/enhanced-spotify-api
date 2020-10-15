@@ -51,7 +51,7 @@ Container.prototype = {
             }
           }
         }
-        this.order.push(item.track.id);
+        this.order.push(item[this.uri_type].id);
       } else {
         throw new Error(`${this.name}.push: Invalid Parameter "item"`);
       }

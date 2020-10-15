@@ -14,6 +14,13 @@ module.exports = {
   album_simple: loadFixture('album_simple'),
   album_tracks: loadFixture('album_tracks'),
 
+  albums_are_liked: loadFixture('albums_are_liked'),
+  albums_full_object: loadFixture('albums_full_object'),
+  albums_new_releases: loadFixture('albums_new_releases'),
+  albums_saved: loadFixture('albums_saved'),
+  albums_search: loadFixture('albums_search'),
+  albums_simple: loadFixture('albums_simple'),
+
   artist_albums: loadFixture('artist_albums'),
   artist_albums_50_1: loadFixture('artist_albums_50_1'),
   artist_albums_50_2: loadFixture('artist_albums_50_2'),
@@ -21,6 +28,10 @@ module.exports = {
   artist_is_followed: loadFixture('artist_is_followed'),
   artist_simple: loadFixture('artist_simple'),
   artist_top_tracks: loadFixture('artist_top_tracks'),
+
+  artists_full_object: loadFixture('artists_full_object'),
+  artists_search: loadFixture('artists_search'),
+  artists_simple: loadFixture('artists_simple'),
 
   category_full_object: loadFixture('category_full_object'),
   category_playlists: loadFixture('category_playlists'),
@@ -53,4 +64,8 @@ module.exports = {
   track_simple: loadFixture('track_simple'),
 
   tracks_recently_played: loadFixture('tracks_recently_played'),
+
+  user_private_object: loadFixture('user_private_object'),
+  user_public_object: loadFixture('user_public_object'),
+  user_simple: loadFixture('user_simple'),
 };

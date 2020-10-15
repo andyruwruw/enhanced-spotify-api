@@ -18,6 +18,7 @@ function User(data) {
   } else {
     throw new Error('User.constructor: Invalid Data');
   }
+  this.type = 'user';
 }
 
 User.prototype = {
@@ -26,7 +27,7 @@ User.prototype = {
    * @returns {boolean} Whether user is current logged in user
    */
   async isMe() {
-    if (this.meStatus === null) {
+    if ( this.meStatus === undefined || this.meStatus === null) {
       const response = await Models.wrapperInstance.getMe();
       this.meStatus = (response.body.id === this.id);
     }
@@ -107,6 +108,7 @@ User.prototype = {
       country: this.country,
       email: this.email,
       product: this.product,
+      explicit_content: this.explicit_content,
       type: 'user',
     };
   },
@@ -152,6 +154,7 @@ User.prototype = {
       'country',
       'email',
       'product',
+      'explicit_content',
     ];
 
     for (let i = 0; i < properties.length; i += 1) {
@@ -200,6 +203,7 @@ User.prototype = {
     this.country = data.country;
     this.email = data.email;
     this.product = data.product;
+    this.explicit_content = data.explicit_content;
   },
 
   /**
@@ -230,6 +234,7 @@ User.prototype = {
       'country',
       'email',
       'product',
+      'explicit_content'
     ];
 
     for (let i = 0; i < properties.length; i += 1) {

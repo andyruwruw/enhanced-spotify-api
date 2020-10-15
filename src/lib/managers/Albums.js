@@ -18,16 +18,16 @@ Albums.prototype = {
   ...Models.Container.prototype,
 
   /**
-     * Plays albums on user's active device
-     *
-     * @param {object} [options] (Optional) Additional options
-     * @param {number} [options.album_index=0] Which album to start with
-     * @param {object} [options.offset] Where from the album to play
-     * @param {number} [options.offset.position=0] Index of item to start with in context
-     * @param {string} [options.offset.uri] URI of item to start with in context
-     * @param {number} [options.position_ms=0] Millisecond to start with in track
-     * @returns {object} Response from request
-     */
+   * Plays albums on user's active device
+   *
+   * @param {object} [options] (Optional) Additional options
+   * @param {number} [options.album_index=0] Which album to start with
+   * @param {object} [options.offset] Where from the album to play
+   * @param {number} [options.offset.position=0] Index of item to start with in context
+   * @param {string} [options.offset.uri] URI of item to start with in context
+   * @param {number} [options.position_ms=0] Millisecond to start with in track
+   * @returns {object} Response from request
+   */
   async play(options) {
     const _album_index = (options && typeof (options) === 'object' && 'album_index' in options) ? options.album_index : 0;
     const tracks = new Models.Tracks();
@@ -153,31 +153,28 @@ Albums.prototype = {
    * Retrieves full album data for all albums from Spotify API
    *
    * @param {String} [objectType] What to check if the album contains,
-   * ('simplified', 'link' or 'full')
+   * ('simplified', or 'full')
    */
   async retrieveFullObjects(objectType) {
     const ids = [];
-    const albumIDs = Object.keys(this.items);
 
-    for (let i = 0; i < albumIDs.length; i += 1) {
-      if (objectType === 'simplified') {
-        if (!(await this.items[albumIDs[i]].containsSimplifiedObject())) {
-          ids.push(albumIDs[i]);
-        }
-      } else if (!(await this.items[albumIDs[i]].containsFullObject())) {
-        ids.push(albumIDs[i]);
+    for (let id in this.items) {
+      if (objectType === 'simplified' &&
+        !(this.items[id].containsSimplifiedObject())) {
+        ids.push(id);
+      } else if (!(this.items[id].containsFullObject())) {
+        ids.push(id);
       }
     }
-    if (ids.length) {
-      let response;
-      do {
-        response = await Models.wrapperInstance.getAlbums(ids.splice(0, 50));
-        for (let i = 0; i < response.body.albums.length; i += 1) {
-          if (response.body.albums[i] !== null) {
-            this.items[response.body.albums[i].id].loadFullObject(response.body.albums[i]);
-          }
+
+    while (ids.length > 0) {
+      const response = await Models.wrapperInstance.getAlbums(ids.splice(0, 50));
+
+      for (let i = 0; i < response.body.albums.length; i += 1) {
+        if (response.body.albums[i] !== null) {
+          this.items[response.body.albums[i].id].loadFullObject(response.body.albums[i]);
         }
-      } while (ids.length > 0);
+      }
     }
   },
 };
@@ -229,13 +226,17 @@ Albums.getAllMySavedAlbums = async function getAllMySavedAlbums() {
     limit: 50,
     offset: 0,
   };
+
   const albums = new Models.Albums();
+
   let response;
   do {
     response = await Models.wrapperInstance.getMySavedAlbums(_options);
     await albums.concat(response.body.items);
+
     _options.offset += 50;
-  } while (!(response.items.length < 50));
+  } while (response.body.items.length === 50);
+
   return albums;
 };
 

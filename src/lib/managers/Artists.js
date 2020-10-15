@@ -254,9 +254,6 @@ Artists.prototype = {
  * @returns {Artists} Artists returned from search
  */
 Artists.search = async function search(query, options) {
-  if (options != null && typeof (options) !== 'object') {
-    throw new Error('Artists.search: Invalid Parameter "options"');
-  }
   const response = await Models.wrapperInstance.searchArtists(query, options || {});
   return new Models.Artists(response.body.artists.items);
 };
@@ -291,9 +288,6 @@ Artists.getRelatedArtists = async function getRelatedArtists(artistId) {
  * @returns {Artists} User's top artists
  */
 Artists.getMyTopArtists = async function getMyTopArtists(options) {
-  if (options != null && typeof (options) !== 'object') {
-    throw new Error('Artists.getMyTopArtists: Invalid Parameter "options"');
-  }
   const response = await Models.wrapperInstance.getMyTopArtists(options || {});
   return new Models.Artists(response.body.items);
 };

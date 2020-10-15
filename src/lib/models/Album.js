@@ -254,7 +254,10 @@ Album.prototype = {
    * Retrieves all tracks in album from Spotify API
    */
   async retrieveTracks() {
-    const options = { limit: 50, offset: 0 };
+    const options = {
+      limit: 50,
+      offset: 0,
+    };
     let response;
 
     do {

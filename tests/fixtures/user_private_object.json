@@ -1,0 +1,28 @@
+{
+    "country": "US",
+    "display_name": "Andrew Young",
+    "email": "andrew@example.com",
+    "explicit_content": {
+      "filter_enabled": false,
+      "filter_locked": false
+    },
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/123456789"
+    },
+    "followers": {
+      "href": null,
+      "total": 59
+    },
+    "href": "https://api.spotify.com/v1/users/123456789",
+    "id": "123456789",
+    "images": [
+      {
+        "height": null,
+        "url": "image_link",
+        "width": null
+      }
+    ],
+    "product": "premium",
+    "type": "user",
+    "uri": "spotify:user:123456789"
+  }

@@ -20,30 +20,17 @@ Tracks.prototype = {
    * Plays tracks on user's active device
    *
    * @param {object} [options] (Optional) Additional options
-   * @param {object} [options.offset] Where from the album to play
+   * @param {object} [options.offset] Where from the tracks to play
    * @param {number} [options.offset.position=0] Index of item to start with in context
    * @param {string} [options.offset.uri] URI of item to start with in context
    * @returns {object} Response from request
    */
   async play(options) {
-    if (options != null && typeof (options) !== 'object') {
-      throw new Error('Tracks.search: Invalid Parameter "options"');
-    }
     const _options = options || {};
     _options.uris = [];
-    let offset = 0;
-    if ('offset' in offset) {
-      if ('position' in offset) {
-        offset = options.offset.position;
-      } else if ('uri' in offset && typeof (offset.uri) === 'string') {
-        const index = this.order.indexOf(options.offset.uri);
-        if (index !== -1) {
-          offset = this.order.indexOf(options.offset.uri);
-        }
-      }
-    }
+
     for (let i = 0; i < this.order.length && i < 25; i += 1) {
-      _options.uris.push(`spotify:track:${this.order[(i + offset) % this.order.length]}`);
+      _options.uris.push(`spotify:track:${this.order[i]}`);
     }
     return Models.wrapperInstance.play(_options);
   },

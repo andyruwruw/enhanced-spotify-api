@@ -1,0 +1,89 @@
+{
+    "artists": [
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/0oSGxfWSnnOXhD2fKuz2Gy"
+        },
+        "followers": {
+          "href": null,
+          "total": 6013018
+        },
+        "genres": [
+          "album rock",
+          "art rock",
+          "classic rock",
+          "dance rock",
+          "glam rock",
+          "permanent wave",
+          "rock"
+        ],
+        "href": "https://api.spotify.com/v1/artists/0oSGxfWSnnOXhD2fKuz2Gy",
+        "id": "0oSGxfWSnnOXhD2fKuz2Gy",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/0dfa45563119fd98226ec0d5cd35a80473502469",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/764f946cb02e0a5e701f72ef80b1a9dfe8784efe",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/bb58aed3822efbd1f844aa9742ab635a970206cd",
+            "width": 160
+          }
+        ],
+        "name": "David Bowie",
+        "popularity": 82,
+        "type": "artist",
+        "uri": "spotify:artist:0oSGxfWSnnOXhD2fKuz2Gy"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/3dBVyJ7JuOMt4GE9607Qin"
+        },
+        "followers": {
+          "href": null,
+          "total": 608331
+        },
+        "genres": [
+          "album rock",
+          "art rock",
+          "blues rock",
+          "classic rock",
+          "dance rock",
+          "folk rock",
+          "glam rock",
+          "protopunk",
+          "psychedelic rock",
+          "rock"
+        ],
+        "href": "https://api.spotify.com/v1/artists/3dBVyJ7JuOMt4GE9607Qin",
+        "id": "3dBVyJ7JuOMt4GE9607Qin",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/19f0a382ca74ba65eb6eae435fc37a4cf7157df9",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/76ef1a6ff3d27c0def7a8fdbf3edae4b1652df88",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/173742d8f6349d693a871ad1751de51dc07f7200",
+            "width": 160
+          }
+        ],
+        "name": "T. Rex",
+        "popularity": 66,
+        "type": "artist",
+        "uri": "spotify:artist:3dBVyJ7JuOMt4GE9607Qin"
+      }
+    ]
+  }
