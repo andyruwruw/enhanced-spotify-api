@@ -1,8 +1,8 @@
 <p align="center">
-    <img width="200px" src="https://raw.githubusercontent.com/andyruwruw/enhanced-spotify-api/master/documentation/logo.svg?sanitize=true"/>
+    <img width="200px" src="https://raw.githubusercontent.com/andyruwruw/enhanced-spotify-api/master/documentation/markdown/logo.svg?sanitize=true"/>
 </p>
 <p align="center" style="margin-bottom: 0px;">
-    <img width="500px" src="https://raw.githubusercontent.com/andyruwruw/enhanced-spotify-api/master/documentation/title.svg?sanitize=true"/>
+    <img width="500px" src="https://raw.githubusercontent.com/andyruwruw/enhanced-spotify-api/master/documentation/markdown/title.svg?sanitize=true"/>
 </p>
 <p align="center" style="margin-top: 0px">Object-Oriented Spotify API Wrapper with Extended Functionality.<p>
 <p align="center" style="margin: 0 auto; margin-top: 15px; max-width: 600px">
