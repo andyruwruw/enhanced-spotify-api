@@ -13,52 +13,100 @@
 
 # Overview
 
-## [Visit the Official Website / Documentation](http://enhancedspotifyapi.com)
-
-No more **Simplified Objects** when you need **Full Objects**
-
-No more **Paging Objects** when you need **All Playlist Tracks**
-
-enhanced-spotify-api is an **Object-Oriented API Wrapper** aimed to make Spotify's API development fun and painless, and to expand available endpoints.
+enhanced-spotify-api is an Object-Oriented API Wrapper aimed to make Spotify's API development fun and painless.
 
 Spend more of your time coding something cool, and less time scouring over documentation.
 
-### Unique Features:
+# Table of Contents
 
-- Object Oriented Wrapper with Classes for `Track`, `Artist`, `Playlist`, and more.
-    - Member functions for all endpoints relevent to each item.
-    - Automatic loading of the data you need when you need it. 
-    - Retrieving data in as few requests as possible.
+[Official Website / Documentation](http://enhancedspotifyapi.com)
 
-- Add and Override Methods! Customize to your hearts content.
-    - I don't know what you need it for, so do your thing my dude.
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Example](#example)
+- [Available Classes](#available-classes)
 
-- Providing all the original functionality of [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node).
-    - Added missing endpoints for shows and episodes (Just released 3/2020).
-    - Fixed known bugs
+# Features
 
-- Grouping relevent requests together into more complicated requests. (Coming Soon)
-    - *What's the average danceability of my whole library?*
-    - *Re-order my playlist so it increases in energy over time.*
-    - *(If you're gross) Get all my track's artist's album's songs and play them.*
+Object oriented wrapper with classes for tracks, artists, playlists, and more
 
-# Why Use enhanced-spotify-api?
+- Member functions for all relevant endpoints
+- Automatic retrieval of data when needed
+- Minimizing requests made
 
-After months of working with Spotify's API and [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node), I found myself repeating code just to recieve the data I needed.
+Providing all the original functionality of [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node).
 
-Sometimes I got a *Simplfied Track Object* from this request but needed a *Full Track Object*. 
+- Added missing endpoints for shows and episodes (Just released 3/2020)
+- Fixed known bugs
 
-Sometimes I needed all the tracks from an Album but had to run through a *Paging Object* with a while loop to retrieve them all.
+Add and Override methods
 
-I built these Data Access Classes and realized they could be really useful to the community. 
+- Customize to your hearts content
+- I don't know what you need it for, so do your thing my dude.
 
-I had a lot of customizations only relevant to me (Attatching to Mongo Database) so I made it customizable as well!
 
-# Detailed Features
+# Quick Start
 
-### Data Access Classes:
+Via command line
 
-*Instance and static methods for all endpoints relevent to each items*
+```
+$ npm i enhanced-spotify-api
+```
+
+Import either the entire library
+
+```
+var EnhancedSpotifyAPI = require('enhanced-spotify-api');
+EnhancedSpotifyAPI.setAccessToken( myAccessToken );
+```
+
+Or deconstruct what you need
+
+```
+var { Track } = require('enhanced-spotify-api');
+Track.setAccessToken( myAccessToken );
+```
+All classes have the same authorization methods.
+
+Applying a Spotify access token to one class will authorize the *entire library* and will not need to be called again.
+
+Instantiate and play!
+
+```
+var playlistID = '6Ibg2aBUp5NP0lAujEGa6p';
+var playlist = new Playlist( playlistID );
+
+var tracks = playlist.getTracks();
+tracks.play();
+
+var size = playlist.size();
+```
+
+See the [official website](http://enhancedspotifyapi.com) for more information.
+
+# Example
+
+```
+var { Track } = require('enhanced-spotify-api');
+Track.setAccessToken( myAccessToken );
+
+var trackID = '3HKpZgez8S4TS2F0sWLvAR';
+var track = new Track( trackID );
+
+console.log('My favorite song is', ( await track.getFullObject() ).name);
+
+track.play();
+
+var artists = track.getArtists();
+
+var artist = artists.get(0);
+
+var topTracks = artist.getTopTracks();
+```
+
+# Available Classes
+
+*Instance and static methods for all endpoints relevent to each item*
 
 - Track
 - Artist
@@ -68,85 +116,14 @@ I had a lot of customizations only relevant to me (Attatching to Mongo Database)
 - Episode
 - User
 - Playback
-
-
-### Manager Classes:
-
-*Manager classes are built to retrieve multiple items in single requests to limit the amount of requests needed.*
-
-- Tracks (Multiple Tracks) 
-- Artists (Multiple Artists)
-- Albums (Multiple Albums)
-- Playlists (Multiple Playlists)
+- Tracks
+- Artists
+- Albums
+- Playlists
 - Shows
-- Episodes (Multiple Episodes)
-- Categories (Multiple Categories)
+- Episodes
+- Categories
 
-
-# Coming Features
-- Process User's Entire Library
-    - Averages of Audio Features in Library
-    - Distribution of Audio Features in Library
-    - History Data
-        - Timeline of Added
-        - Tracks Liked in a Month
-        - Tracks Liked in a Year
-        - Timeline of most added Artists
-        - Timeline of most added Genres
-    - Charts (Enhanced)
-        - Extremes
-            - Your Libraries TOP / LEAST CHART of Audio Features
-                - Example: Most Happy
-                - Example: Least Energetic
-        - Top Saved (Num of Liked Tracks) 
-            - Artists
-            - Genres
-            - Distribution of Audio Features
-            - Timeline of Additions
-            - Playlists Included In
-        - Top Played
-            - Distribution of Audio Features
-            - Average of Audio Features
-            - Most Included Artists
-            - Timeline of Addtions
-            - Most Included Genres
-            - Playlists Included In
-    - Proximity Simular Tracks
-        - Finds tracks WITHIN Library with Simular Audio Features (KD-Tree Search)
-    - Tracks
-        - Percentile Values of Audio Features compaired to Library
-        - Pre-processed Audio Analysis for Waveform
-        - Get Genres
-    - Artists
-        - Age of Relationship
-        - Sort Tracks in Order of:
-            - Date Added
-            - Audio Feature
-        - Get Top Songs
-            - Average of Audio Features
-        - Playlists Included In
-    - Genres
-        - All Liked Tracks from Genre
-        - All Liked Artists from Genre
-        - Timeline of Additions of Genre
-        - Distribution of Audio Features
-        - Timeline of Addition
-        - Playlists Included In
-        - Artist Images (For Display)
-    - Playlists
-        - Most Included Artists
-        - Most Included Genres
-        - Distribution of Audio Features
-        - Timeline of Audio Features (If you listened from start)
-        - Sort Tracks in Order of:
-            - Actual Index
-            - Date Added
-            - Audio Feature Value
-    - Album
-        - Tracks
-            - Distribution of Audio Features
-            - Timeline of Audio Features (If you listened from start)
-        - Playlists Included In
 
 <p align="center">
     <img width="300px" src="https://media0.giphy.com/media/O1xeZ4AgSaNBS/giphy.gif"/>
