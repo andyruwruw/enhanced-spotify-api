@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import router from './router'
-import store from './store'
 import vuetify from './plugins/vuetify';
 import VueHighlightJS from 'vue-highlight.js';
 import App from './App';
@@ -17,7 +16,6 @@ VueHighlightJS.install(Vue, {
 
 new Vue({
   router,
-  store,
   vuetify,
   render: h => h(App)
 }).$mount('#app')

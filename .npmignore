@@ -5,3 +5,5 @@ documentation
 .github
 
 tests
+
+node_modules

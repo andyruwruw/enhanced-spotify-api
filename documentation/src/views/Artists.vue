@@ -116,7 +116,7 @@
                                 </pre></highlight-code>
                             </div>
                             <pre slot="return">
-                                // @ returns {Artist}
+                                // @ returns {Artists}
                             </pre>
                             <pre slot="src">
                             function Artists(items) {
@@ -131,22 +131,6 @@
                             }
                             </pre>
                         </MethodListItem>
-                        <MethodListItem :docs="search.docs" :name="search.name" :code="search.code" :returns="search.returns" :parameters="search.parameters">
-                            <div slot="overview">
-                                
-                            </div>
-                            <div slot="example">
-                                <highlight-code lang="javascript"><pre>
-                               
-                                </pre></highlight-code>
-                            </div>
-                            <pre slot="return">
-                                // @ returns {Object}
-                            </pre>
-                            <pre slot="src">
-                           
-                            </pre>
-                        </MethodListItem>
                         <MethodListItem :docs="getArtists.docs" :name="getArtists.name" :code="getArtists.code" :returns="getArtists.returns" :parameters="getArtists.parameters">
                             <div slot="overview">
                                 
@@ -157,7 +141,23 @@
                                 </pre></highlight-code>
                             </div>
                             <pre slot="return">
-                                // @ returns {Object}
+                                // @ returns {Artists}
+                            </pre>
+                            <pre slot="src">
+                           
+                            </pre>
+                        </MethodListItem>
+                        <MethodListItem :docs="search.docs" :name="search.name" :code="search.code" :returns="search.returns" :parameters="search.parameters">
+                            <div slot="overview">
+                                
+                            </div>
+                            <div slot="example">
+                                <highlight-code lang="javascript"><pre>
+                               
+                                </pre></highlight-code>
+                            </div>
+                            <pre slot="return">
+                                // @ returns {Artists}
                             </pre>
                             <pre slot="src">
                            
@@ -173,7 +173,7 @@
                                 </pre></highlight-code>
                             </div>
                             <pre slot="return">
-                                // @ returns {Object}
+                                // @ returns {Artists}
                             </pre>
                             <pre slot="src">
                            
@@ -189,7 +189,7 @@
                                 </pre></highlight-code>
                             </div>
                             <pre slot="return">
-                                // @ returns {Object}
+                                // @ returns {Artists}
                             </pre>
                             <pre slot="src">
                            
@@ -564,33 +564,39 @@ export default {
             ],
         },
         search: {
-            name: "Push",
-            code: "push(item)",
-            returns: "void",
+            name: "Search for Artists",
+            code: "Artists.search(query, options)",
+            returns: "Artists",
             parameters: [
-                {name: "item", types: ["Track", "Object", "String"], optional: false, description: "Item Instance, item object or item ID to add. "},
+                {name: "query", types: ["String"], optional: false, description: "Search query string."},
+                {name: "options", types: ["Object"], optional: true, description: "Additional Options."},
+            ],
+            options: [
+                {name: 'limit', types: ['Number'], description: 'Number of results to return.', default: '20'},
+                {name: 'offset', types: ['Number'], description: 'Index of first result to return.', default: '0'},
+                {name: 'include_external', types: ['String'], description: 'Whether to include audio content hosted externally.', default: '0'},
             ],
         },
         getArtists: {
-            name: "Push",
-            code: "push(item)",
-            returns: "void",
+            name: "Get Artists",
+            code: "Artist.getArtists(artistIDs)",
+            returns: "Artists",
             parameters: [
-                {name: "item", types: ["Track", "Object", "String"], optional: false, description: "Item Instance, item object or item ID to add. "},
+                {name: "artistIDs", types: ["Array"], optional: false, description: "Array of Artist IDs."},
             ],
         },
         getRelatedArtists: {
-            name: "Push",
-            code: "push(item)",
-            returns: "void",
+            name: "Get Related Artists",
+            code: "Artist.getRelatedArtists(artistID)",
+            returns: "Artists",
             parameters: [
-                {name: "item", types: ["Track", "Object", "String"], optional: false, description: "Item Instance, item object or item ID to add. "},
+                {name: "artistID", types: ["Track", "Object", "String"], optional: false, description: "Item Instance, item object or item ID to add. "},
             ],
         },
         getMyTopArtists: {
             name: "Push",
             code: "push(item)",
-            returns: "void",
+            returns: "Artists",
             parameters: [
                 {name: "item", types: ["Track", "Object", "String"], optional: false, description: "Item Instance, item object or item ID to add. "},
             ],
