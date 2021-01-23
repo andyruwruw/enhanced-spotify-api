@@ -7,11 +7,7 @@ function Wrapper() {}
 
 Wrapper.prototype = {
   ...require('spotify-web-api-node').prototype,
-  ...require('../functions/Shows'),
-  ...require('../functions/Episodes'),
 };
-
-Wrapper.prototype.play = require('../functions/Fixed').play;
 
 /**
  * Adds functionality to class

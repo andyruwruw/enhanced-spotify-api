@@ -222,6 +222,8 @@ describe('Show Instance Methods ', () => {
   /**
    * Verifies functionality of like to add a show to the user's
    * library.
+   * 
+   * Body params ? or query
    */
   it('Show: Like', async () => {
     let req;
@@ -229,7 +231,7 @@ describe('Show Instance Methods ', () => {
       .put('/me/shows')
       .reply(function () {
         req = this.req;
-        return [200];
+        return [200, [ true ]];
       });
 
     const show = new Show(show_simple.id);
@@ -237,8 +239,9 @@ describe('Show Instance Methods ', () => {
 
     expect(req).toBeDefined();
     body = JSON.parse(req.requestBodyBuffers[0].toString('utf8'));
+
     expect(body).toBeDefined();
-    expect(body.ids).toStrictEqual([show_simple.id]);
+    expect(body).toStrictEqual([show_simple.id]);
   });
 
   /**
@@ -260,7 +263,7 @@ describe('Show Instance Methods ', () => {
     expect(req).toBeDefined();
     body = JSON.parse(req.requestBodyBuffers[0].toString('utf8'));
     expect(body).toBeDefined();
-    expect(body.ids).toStrictEqual([show_simple.id]);
+    expect(body).toStrictEqual([show_simple.id]);
   });
 
   /**

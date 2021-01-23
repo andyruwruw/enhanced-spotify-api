@@ -31,7 +31,7 @@
   "dependencies": {
     "fs": "0.0.1-security",
     "path": "^0.12.7",
-    "spotify-web-api-node": "^4.0.0",
+    "spotify-web-api-node": "5.0.0",
     "superagent": "^6.0.0"
   },
   "devDependencies": {

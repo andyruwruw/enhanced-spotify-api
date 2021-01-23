@@ -256,10 +256,7 @@ describe('Playback Static Methods', () => {
         return [200, {}];
       });
 
-    const options = {
-      state: 'track',
-    };
-    await Playback.setRepeat(options);
+    await Playback.setRepeat('track');
 
     expect(req).toBeDefined();
   });
@@ -279,10 +276,7 @@ describe('Playback Static Methods', () => {
         return [200, {}];
       });
 
-    const options = {
-      state: 'false',
-    };
-    await Playback.setShuffle(options);
+    await Playback.setShuffle('false');
 
     expect(req).toBeDefined();
   });

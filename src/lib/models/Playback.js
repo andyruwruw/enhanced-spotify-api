@@ -75,8 +75,7 @@ Playback.getCurrentlyPlayingContext = async function getCurrentlyPlayingContext(
  */
 Playback.transferPlayback = function transferPlayback(deviceID, options) {
   const _options = options || {};
-  _options.deviceIds = [deviceID];
-  return Models.wrapperInstance.transferMyPlayback(_options);
+  return Models.wrapperInstance.transferMyPlayback([deviceID], _options);
 };
 
 /**
